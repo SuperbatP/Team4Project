@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <mvc:annotation-driven />
+    <!-- HandlerAdapter, HandlerMaooing + 여러 가지에 관한 설정 하는 곳.   -->
+
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+    <!-- mapping은 url요청,  location은 webapp에서의 위치 -->
+    <mvc:resources mapping="/resource/**" location="/resource/" />
+    <!-- 우리가 만든 resources에 있는 것도 연결해줌. 보통 정적페이지...  -->
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+
+    <context:component-scan base-package="com.study"  use-default-filters="false">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!-- component-scan :  use-default-filters="false"라 필터 사용 x  include-filter 는 내부-->
+
+    <!-- member만 관리자에게 보여주는 interceptors 설정-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/member/**"/>
+            <!-- 회원가입은 해야하니까 interceptors에서 제외-->
+            <mvc:exclude-mapping path="/member/memberForm.wow"/>
+            <mvc:exclude-mapping path="/member/memberRegist.wow"/>
+            <bean class="com.study.common.util.ManagerCheckInterceptor" id="managerCheckInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.study.common.util.IPCheckInterceptor" id="ipCheckInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+<!-- interface multipartResolver의 구현체가 2개 있는데 CommonsMultipartResolver(스프링 3버전) |
+StandardServletMultipartResolver(스프링5버전)   -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
+<!-- 원래 id는 마음대로 할 수 있지만 여기는 무조건 multipartResolver로 해야함. 스프링 내부적으로 사용하는 이름이 정해져 있음.   -->
+</beans>
