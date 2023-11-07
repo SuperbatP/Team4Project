@@ -10,6 +10,7 @@ public class ReservationVO {
     private String memHp;
     private String dtCode;
     private String dcId;
+    private String attendanceId;
     private String reservationDate;
     private String reservationTime;
     private String reservationRegDate;
@@ -70,6 +71,14 @@ public class ReservationVO {
 
     public void setDcId(String dcId) {
         this.dcId = dcId;
+    }
+
+    public String getAttendanceId() {
+        return attendanceId;
+    }
+
+    public void setAttendanceId(String attendanceId) {
+        this.attendanceId = attendanceId;
     }
 
     public String getReservationDate() {

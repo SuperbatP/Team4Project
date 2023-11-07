@@ -7,6 +7,13 @@
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-
+<c:forEach var="doctor" items="${doctors}">
+    <div>
+        <img src="${doctor.dcImg}">
+        이름${doctor.dcName}
+        진료과${doctor.major}
+        일정
+    </div>
+</c:forEach>
 </body>
 </html>
