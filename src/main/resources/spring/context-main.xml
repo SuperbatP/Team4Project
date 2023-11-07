@@ -6,7 +6,7 @@
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
-    <context:component-scan base-package="com.study"
+    <context:component-scan base-package="com.PhoenixHospital"
                             use-default-filters="true">
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
@@ -66,7 +66,7 @@
 
 <!-- component-scan의 scan은 @Compent, @Controller 등등만 스캔. mybatis @인 @Mapper는 component-scan이 스캔안함.
  그래서 따로 mybatis-sprig scan을 통해 스캔-->
-    <mybatis-spring:scan base-package="com.study"
+    <mybatis-spring:scan base-package="com.PhoenixHospital"
                          annotation="org.apache.ibatis.annotations.Mapper" />
 
 

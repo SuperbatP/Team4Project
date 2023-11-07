@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PhoenixHospital.excel.IExcelDao">
+
+    <select id="getFreeBoardBySearch" resultType="com.PhoenixHospital.free.vo.FreeBoardVO">
+        SELECT
+        to_char(bo_reg_date,'YYYY-MM-DD') AS bo_reg_date
+        ,to_char(bo_mod_date,'YYYY-MM-DD') AS bo_mod_date
+        , bo_no        , bo_title       , bo_category
+        , bo_writer    , bo_pass        , bo_content
+        , bo_hit       , bo_del_yn
+        ,b. comm_nm  AS bo_category_nm
+        FROM  free_board a ,comm_code b
+        where  a.bo_category = b.comm_cd
+        AND bo_del_yn = 'N'
+        <include refid="com.PhoenixHospital.free.dao.IFreeBoardDao.searchInFree" />
+-- 따로 include를 가져오지 않고 full path쓰면 가져옴.
+        order by bo_no DESC
+    </select>
+
+
+    <select id="getMemberBySearch" resultType="com.PhoenixHospital.member.vo.MemberVO">
+      SELECT to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir
+        , mem_id
+        , mem_pass
+        , mem_name
+        , mem_zip
+        , mem_add1
+        , mem_add2
+        , mem_hp
+        , mem_mail
+        , mem_job
+        , mem_hobby
+        , mem_mileage
+        , mem_del_yn
+        , b.comm_nm                      AS mem_job_nm
+        , c.comm_nm                      AS mem_hobby_nm
+        FROM member a,
+        comm_code b,
+        comm_code c
+        WHERE a.mem_job = b.comm_cd
+        AND a.mem_hobby = c.comm_cd
+        <include refid="com.PhoenixHospital.member.dao.IMemberDao.searchInMember" />
+        ORDER BY mem_id DESC
+    </select>
+</mapper>

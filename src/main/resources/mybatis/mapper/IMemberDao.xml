@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PhoenixHospital.member.dao.IMemberDao">
+
+
+    <sql id="searchInMember" >
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
+            <if test='search.searchType=="NM"'>
+                AND mem_name LIKE '%' || #{search.searchWord} || '%'
+            </if>
+            <if test='search.searchType=="ID"'>
+                AND mem_id LIKE '%' || #{search.searchWord} || '%'
+            </if>
+            <if test='search.searchType=="HP"'>
+                AND mem_hp LIKE '%' || #{search.searchWord} || '%'
+            </if>
+        </if>
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchJob)'>
+            AND mem_job = #{searchJob}
+        </if>
+
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchHobby)'>
+            AND mem_hobby = #{searchHobby}
+        </if>
+    </sql>
+
+    <select id="getTotalRowCount" resultType="int">
+        SELECT  count(*)
+        FROM member
+        WHERE 1=1
+        <include refid="searchInMember" />
+    </select>
+
+    <select id="getMemberList" resultType="com.PhoenixHospital.member.vo.MemberVO">
+        SELECT *
+        FROM (SELECT a.*, rownum AS rnum
+        FROM (SELECT to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir
+        , mem_id
+        , mem_pass
+        , mem_name
+        , mem_zip
+        , mem_add1
+        , mem_add2
+        , mem_hp
+        , mem_mail
+        , mem_job
+        , mem_hobby
+        , mem_mileage
+        , mem_del_yn
+        , b.comm_nm                      AS mem_job_nm
+        , c.comm_nm                      AS mem_hobby_nm
+        FROM member a,
+        comm_code b,
+        comm_code c
+        WHERE a.mem_job = b.comm_cd
+        AND a.mem_hobby = c.comm_cd
+        <include refid="searchInMember" />
+        ORDER BY mem_id DESC )  a  ) b
+        WHERE  rnum between    #{paging.firstRow} and #{paging.lastRow}
+    </select>
+
+    <select id="getMember" resultType="com.PhoenixHospital.member.vo.MemberVO" parameterType="String">
+        SELECT
+            to_char(mem_bir ,'YYYY-MM-DD') AS mem_bir
+             , mem_id               , mem_pass               , mem_name
+             , mem_zip              , mem_add1               , mem_add2
+             , mem_hp               , mem_mail               , mem_job
+             , mem_hobby            , mem_mileage            , mem_del_yn
+             , b.comm_nm AS mem_job_nm
+             ,c.comm_nm AS mem_hobby_nm
+        FROM member a , comm_code b, comm_code c
+        WHERE a.mem_id=#{memId}
+          AND a.mem_job= b.comm_cd
+          AND a.mem_hobby=c.comm_cd
+
+    </select>
+
+    <update id="updateMember">
+        UPDATE member
+        SET
+            mem_pass   =#{memPass}
+          , mem_name   =#{memName}
+          , mem_bir    =#{memBir}
+          , mem_zip    =#{memZip}
+          , mem_add1   =#{memAdd1}
+          , mem_add2   =#{memAdd2}
+          , mem_hp     =#{memHp}
+          , mem_mail   =#{memMail}
+          , mem_job    =#{memJob}
+          , mem_hobby  =#{memHobby}
+        WHERE mem_id = #{memId}
+
+    </update>
+
+    <delete id="deleteMember" parameterType="String">
+        UPDATE member SET mem_del_yn='Y'
+        WHERE mem_id=#{memId}
+    </delete>
+
+    <insert id="insertMember">
+        INSERT INTO member ( mem_id, mem_pass, mem_name
+                           , mem_bir, mem_zip, mem_add1
+                           , mem_add2, mem_hp, mem_mail
+                           , mem_job, mem_hobby, mem_mileage
+                           , mem_del_yn)
+        VALUES ( #{memId}, #{memPass}, #{memName}
+               , #{memBir}, #{memZip}, #{memAdd1}
+               , #{memAdd2}, #{memHp}, #{memMail}
+               , #{memJob}, #{memHobby}, 0
+               , 'N')
+
+    </insert>
+
+
+</mapper>
