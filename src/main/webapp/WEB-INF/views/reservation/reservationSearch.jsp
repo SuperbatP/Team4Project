@@ -13,7 +13,7 @@
 </form>
 <c:forEach var="tc" items="${codeList}">
     <div>
-        <a href="ReservationList.wow?=${tc.treatmentName}">
+        <a href="ReservationList.wow?=${tc.treatmentCode}">
             ${tc.treatmentName}
         </a>
     </div>
