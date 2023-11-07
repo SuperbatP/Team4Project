@@ -8,13 +8,13 @@
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <form name="search" action="ReservationList.wow" method="post">
-    <input>
+    <input type="text" name="searchWord">
     <button type="submit">검색</button>
 </form>
-<c:forEach var="dt" items="">
+<c:forEach var="tc" items="${codeList}">
     <div>
-        <a href="ReservationList.wow?=${dt.department_treatment}">
-
+        <a href="ReservationList.wow?=${tc.treatmentName}">
+            ${tc.treatmentName}
         </a>
     </div>
 </c:forEach>
