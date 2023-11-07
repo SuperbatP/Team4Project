@@ -3,10 +3,9 @@
 <html>
 <head>
     <%request.setCharacterEncoding("UTF-8");%>
-    <%@include file="/WEB-INF/inc/header.jsp"%>
+    <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-
 </body>
 </html>
