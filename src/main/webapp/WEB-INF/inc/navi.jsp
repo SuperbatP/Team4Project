@@ -30,7 +30,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#top" class="smoothScroll">진료안내</a></li>
         <li><a href="#about" class="smoothScroll">진료예약</a></li>
-        <li><a href="#team" class="smoothScroll">오시는길</a></li>
+        <li><a href="map/map.wow" class="smoothScroll">오시는길</a></li>
         <li><a href="#news" class="smoothScroll">발급안내</a></li>
         <li><a href="#google-map" class="smoothScroll">병원소개</a></li>
       </ul>
