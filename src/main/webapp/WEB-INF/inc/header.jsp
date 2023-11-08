@@ -15,4 +15,5 @@
 
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/tooplate-style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

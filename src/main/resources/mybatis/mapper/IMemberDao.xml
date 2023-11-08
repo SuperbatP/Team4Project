@@ -15,13 +15,6 @@
                 AND mem_hp LIKE '%' || #{search.searchWord} || '%'
             </if>
         </if>
-        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchJob)'>
-            AND mem_job = #{searchJob}
-        </if>
-
-        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchHobby)'>
-            AND mem_hobby = #{searchHobby}
-        </if>
     </sql>
 
     <select id="getTotalRowCount" resultType="int">
@@ -100,6 +93,8 @@
                , 'N')
 
     </insert>
+
+
 
 
 </mapper>

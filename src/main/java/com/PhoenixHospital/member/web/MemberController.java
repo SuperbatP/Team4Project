@@ -45,12 +45,6 @@ public class MemberController {
     @GetMapping("/member/memberEdit.wow")
     public String memberEdit(Model model, @RequestParam(name = "memId") String memId) throws BizException{
 
-        List<CodeVO> hobbyList = codeService.getCodeListByParent("HB00");
-        model.addAttribute("hobbyList", hobbyList);
-
-        List<CodeVO> jobList = codeService.getCodeListByParent("JB00");
-        model.addAttribute("jobList", jobList);
-
         MemberVO member = memberService.getMember(memId);
         model.addAttribute("member",member);
 
@@ -98,11 +92,6 @@ public class MemberController {
     }
     @RequestMapping("/member/memberForm.wow")
     public String  memberForm(Model model){
-        List<CodeVO> hobbyList = codeService.getCodeListByParent("HB00");
-        model.addAttribute("hobbyList", hobbyList);
-
-        List<CodeVO> jobList = codeService.getCodeListByParent("JB00");
-        model.addAttribute("jobList", jobList);
         return "member/memberForm";
     }
 

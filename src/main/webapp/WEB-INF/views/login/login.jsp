@@ -24,6 +24,7 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 	<%@include file="/WEB-INF/inc/navi.jsp"%>
+
 	${msg}
 	<section class="vh-100">
 		<div class="container py-5 h-100">

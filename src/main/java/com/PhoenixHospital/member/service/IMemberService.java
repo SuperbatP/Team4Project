@@ -16,4 +16,6 @@ public interface IMemberService {
 	public void modifyMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException ;	
 	public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException;
 	public void registMember(MemberVO member) throws BizNotEffectedException,BizDuplicateKeyException;
+
+
 }
