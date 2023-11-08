@@ -19,6 +19,7 @@
             ${atList.attendanceDate}
             ${atList.attendanceTime}
         </c:forEach>
+        <a>진료예약</a>
     </div>
 </c:forEach>
 
