@@ -13,7 +13,7 @@
     <title>자유게시판 - 글 보기</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/inc/top.jsp" %>
+<%@ include file="/WEB-INF/inc/navi.jsp" %>
 
 <div class="container">
     <div class="page-header">
