@@ -23,8 +23,7 @@ public class ReservationController {
     IDoctorsDao doctorsDao;
 
     @RequestMapping("reservation/reservationSearch.wow")
-    public String reservationSearch(Model model, @ModelAttribute("search") SearchVO search){
-        System.out.println(search);
+    public String reservationSearch(Model model){
         List<TreatmentCodeVO> codeList = codeDao.getCodeList();
         model.addAttribute("codeList", codeList);
         return "reservation/reservationSearch";
