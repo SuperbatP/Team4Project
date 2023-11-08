@@ -17,7 +17,7 @@ public interface IMemberDao {
 
 	public int getTotalRowCount(@Param("paging") PagingVO paging);
 
-	public List<MemberVO> getMemberList(@Param("paging")PagingVO paging, @Param("search")SearchVO search, @Param("searchJob")String searchJob, @Param("searchHobby")String searchHobby);
+	public List<MemberVO> getMemberList(@Param("paging")PagingVO paging);
 
 	/**
 	 * @param memId

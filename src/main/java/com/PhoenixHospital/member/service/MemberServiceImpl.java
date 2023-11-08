@@ -17,12 +17,12 @@ public class MemberServiceImpl implements IMemberService {
    @Autowired
    IMemberDao memberDao;
     @Override
-    public List<MemberVO> getMemberList(PagingVO paging, SearchVO search, String searchJob, String searchHobby) {
-            int totalRowCount = memberDao.getTotalRowCount(paging, search, searchJob, searchHobby );
+    public List<MemberVO> getMemberList(PagingVO paging) {
+            int totalRowCount = memberDao.getTotalRowCount(paging );
             paging.setTotalRowCount(totalRowCount);
             paging.pageSetting();
 
-            List<MemberVO> memberList = memberDao.getMemberList(paging, search, searchJob, searchHobby );
+            List<MemberVO> memberList = memberDao.getMemberList(paging );
             return memberList;
 
     }

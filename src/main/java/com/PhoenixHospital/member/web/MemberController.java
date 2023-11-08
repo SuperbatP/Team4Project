@@ -24,15 +24,10 @@ public class MemberController {
     IMemberService memberService;
 
     @RequestMapping("/member/memberList.wow")
-    public String memberList(Model model, @ModelAttribute("paging")PagingVO paging, @ModelAttribute("search") SearchVO search, String searchJob, String searchHobby ){
+    public String memberList(Model model, @ModelAttribute("paging")PagingVO paging){
 
-        List<CodeVO> jobList = codeService.getCodeListByParent("JB00");
-        model.addAttribute("jobList", jobList);
 
-        List<CodeVO> hobbyList = codeService.getCodeListByParent("HB00");
-        model.addAttribute("hobbyList", hobbyList);
-
-        List<MemberVO> memberList = memberService.getMemberList(paging, search, searchJob, searchHobby);
+        List<MemberVO> memberList = memberService.getMemberList(paging);
         model.addAttribute("memberList", memberList);
 
         return "member/memberList";
