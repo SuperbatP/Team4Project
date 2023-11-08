@@ -15,6 +15,10 @@
         이름${doctor.dcName}
         진료과${doctor.major}
         일정
+        <c:forEach var="atList" items="${attendance.get(doctor.dcId)}">
+            ${atList.attendanceDate}
+            ${atList.attendanceTime}
+        </c:forEach>
     </div>
 </c:forEach>
 
