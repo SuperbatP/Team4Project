@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IMemberService {
 	
-	public List<MemberVO> getMemberList(PagingVO paging, SearchVO search, String searchJob, String searchHobby);
+	public List<MemberVO> getMemberList(PagingVO paging);
 	public MemberVO getMember(String memId) throws BizNotFoundException ;
 	public void modifyMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException ;	
 	public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException;

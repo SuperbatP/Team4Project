@@ -8,7 +8,7 @@ public class MemberVO {
     @ExcelColumn(hearName = "아이디")
     private String memId;                   /* 회원아이디 */
     @ExcelColumn(hearName = "비밀번호")
-    private String memPass;                 /* 회원비밀번호 */
+    private String memPassword;                 /* 회원비밀번호 */
     @ExcelColumn(hearName = "이름")
     private String memName;                 /* 회원이름 */
     @ExcelColumn(hearName = "생년월일")
@@ -37,11 +37,11 @@ public class MemberVO {
     }
 
     public String getMemPass() {
-        return memPass;
+        return memPassword;
     }
 
     public void setMemPass(String memPass) {
-        this.memPass = memPass;
+        this.memPassword = memPassword;
     }
 
     public String getMemName() {
@@ -110,7 +110,7 @@ public class MemberVO {
 
     public MemberVO(String memId, String memPass, String memName, String memBir, String memZip, String memAdd1, String memAdd2, String memHp, String memMail, String memDelYn, String memGender) {
         this.memId = memId;
-        this.memPass = memPass;
+        this.memPassword = memPassword;
         this.memName = memName;
         this.memBir = memBir;
         this.memZip = memZip;

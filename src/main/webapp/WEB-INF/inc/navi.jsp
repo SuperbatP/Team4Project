@@ -2,11 +2,6 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <%@include file="/WEB-INF/inc/header.jsp" %>
-</head>
 <header>
   <div class="container">
     <div class="row">
@@ -16,8 +11,8 @@
       </div>
 
       <div class="col-md-8 col-sm-7 text-align-right">
-        <span class="phone-icon"><a href="#">회원가입</a></span>
-        <span class="date-icon"><a href="#">로그인</a></span>
+        <span class="phone-icon"><a href="/member/memberForm.wow">회원가입</a></span>
+        <span class="date-icon"><a href="/login/login.wow">로그인</a></span>
         <span class="email-icon"><a href="#">사이트맵</a></span>
       </div>
 

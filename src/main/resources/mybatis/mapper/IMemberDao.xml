@@ -39,13 +39,13 @@
         SELECT
         to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir,
         mem_id,
-        mem_pass,
+        mem_password,
         mem_name,
         mem_zip,
         mem_add1,
         mem_add2,
         mem_hp,
-        mem_mail,
+        mem_email,
         mem_gender,
         mem_del_yn
         FROM member
@@ -59,10 +59,9 @@
     <select id="getMember" resultType="com.PhoenixHospital.member.vo.MemberVO" parameterType="String">
         SELECT
             mem_bir
-             , mem_id               , mem_pass               , mem_name
+             , mem_id               , mem_password             , mem_name
              , mem_zip              , mem_add1               , mem_add2
-             , mem_hp               , mem_mail               , mem_job
-            , mem_gender            , mem_del_yn
+             , mem_hp               , mem_email               , mem_gender            , mem_del_yn
         FROM member a
         WHERE a.mem_id=#{memId}
 
@@ -72,14 +71,14 @@
     <update id="updateMember">
         UPDATE member
         SET
-            mem_pass   =#{memPass}
+            mem_password   =#{memPassword}
           , mem_name   =#{memName}
           , mem_bir    =#{memBir}
           , mem_zip    =#{memZip}
           , mem_add1   =#{memAdd1}
           , mem_add2   =#{memAdd2}
           , mem_hp     =#{memHp}
-          , mem_mail   =#{memMail}
+          , mem_email   =#{memEmail}
         WHERE mem_id = #{memId}
 
     </update>
@@ -90,12 +89,11 @@
     </delete>
 
     <insert id="insertMember">
-        INSERT INTO member ( mem_id, mem_pass, mem_name
+        INSERT INTO member ( mem_id, mem_password, mem_name
                            , mem_bir, mem_zip, mem_add1
-                           , mem_add2, mem_hp, mem_mail
-                           , mem_job, mem_hobby, mem_mileage
+                           , mem_add2, mem_hp, mem_email
                            , mem_del_yn)
-        VALUES ( #{memId}, #{memPass}, #{memName}
+        VALUES ( #{memId}, #{memPassword}, #{memName}
                , #{memBir}, #{memZip}, #{memAdd1}
                , #{memAdd2}, #{memHp}, #{memMail}
                , #{memJob}, #{memHobby}, 0

@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%@include file="/WEB-INF/inc/header.jsp" %>
-</head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
 <footer data-stellar-background-ratio="5">
     <div class="container">
         <div class="row">
@@ -35,7 +27,7 @@
         </div>
     </div>
 </footer>
-</body>
+
 
 
 

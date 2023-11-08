@@ -46,23 +46,7 @@
     </bean>
 
     <!-- 이메일 보내기 관련 git에 올릴때 조심할 것.  -->
-    <bean id="mailSender"
-          class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="587" />
-        <property name="username" value="nextitproject1213@gmail.com" />  <!--나는 hch930620@gmail.com  -->
-        <property name="password" value="xglm nitx supx aogc" />
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.debug">true</prop>
-                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
-            </props>
-        </property>
-    </bean>
+
 
 <!-- component-scan의 scan은 @Compent, @Controller 등등만 스캔. mybatis @인 @Mapper는 component-scan이 스캔안함.
  그래서 따로 mybatis-sprig scan을 통해 스캔-->
