@@ -11,7 +11,7 @@
 <title>next_study : ${resultMessageVO.title}</title>
 </head>
 <body>
-	<%@include file="/WEB-INF/inc/top.jsp"%>
+	<%@include file="/WEB-INF/inc/navi.jsp"%>
 	<div class="container">
 		<div class="row col-md-8 col-md-offset-2">
 			<div class="page-header">

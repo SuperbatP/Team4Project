@@ -13,34 +13,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file="/WEB-INF/inc/top.jsp"%>
+	<%@include file="/WEB-INF/inc/navi.jsp"%>
 
 	${msg}
-	<div class="container">
-		<form action="/login/login.wow" class="loginForm" method="post">
-			<h2>로그인</h2>
-			<table class="table table-bordered">
-				<tbody>
-					<tr>
-						<th>아이디</th>
-						<td><input type="text" name="userId" class="form-control input-sm" value="${id}"></td>
-					</tr>
-					<tr>
-						<th>비밀번호</th>
-						<td><input type="password" name="userPass" class="form-control input-sm"></td>
-					</tr>
-					<tr>
-						<td colspan="2"><label><input type="checkbox" name="rememberMe" value="Y" ${checked}  >ID 기억하기</label></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<button type="submit" class="btn btn-primary btn-sm pull-right">로그인</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-	</div>
+
+
+
+	<section class="vh-100">
+		<div class="container py-5 h-100">
+			<div class="row d-flex align-items-center justify-content-center h-100">
+				<div class="col-md-8 col-lg-7 col-xl-6">
+					<img src="/resource/bootstrap-3.3.2/images/news-image1.jpg"
+						 class="img-fluid" alt="Phone image">
+				</div>
+				<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+					<form>
+						<!-- Email input -->
+						<div class="form-outline mb-4">
+							<input type="email" id="form1Example13" class="form-control form-control-lg" />
+							<label class="form-label" for="form1Example13">Email address</label>
+						</div>
+
+						<!-- Password input -->
+						<div class="form-outline mb-4">
+							<input type="password" id="form1Example23" class="form-control form-control-lg" />
+							<label class="form-label" for="form1Example23">Password</label>
+						</div>
+
+
+
+
 
 </body>
 </html>

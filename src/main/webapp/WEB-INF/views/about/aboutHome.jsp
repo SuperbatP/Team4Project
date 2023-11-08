@@ -11,7 +11,7 @@
 <title></title>
 </head>
 <body>
-<%@include file="/WEB-INF/inc/top.jsp" %>
+<%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li role="presentation" class="active"><a href="chProfile" aria-controls="chProfile" role="tab" data-toggle="tab">창희프로필</a></li>

@@ -6,7 +6,7 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body>
-<%@include file="/WEB-INF/inc/top.jsp" %>
+<%@include file="/WEB-INF/inc/navi.jsp" %>
 <form name="search" action="reservationList.wow" method="post">
     <input type="text" name="searchWord" value="${search.searchWord}">
     <button type="submit">검색</button>

@@ -23,14 +23,8 @@ public class MemberVO {
     private String memHp;                   /* 회원전화번호 */
     @ExcelColumn(hearName = "이메일")
     private String memMail;                 /* 회원이메일 */
-    @ExcelColumn(hearName = "직업")
-    private String memJobNm;
-    @ExcelColumn(hearName = "취미")
-    private String memHobbyNm;
-    private String memJob;                  /* 회원직업 */
-    private String memHobby;                /* 회원취미 */
-    private int    memMileage;                 /* 회원마일리지 */
     private String  memDelYn;                /* 회원삭제여부 */
+    private String  memGender;                /* 회원성별 ; F/M */
 
 
 
@@ -106,30 +100,6 @@ public class MemberVO {
         this.memMail = memMail;
     }
 
-    public String getMemJob() {
-        return memJob;
-    }
-
-    public void setMemJob(String memJob) {
-        this.memJob = memJob;
-    }
-
-    public String getMemHobby() {
-        return memHobby;
-    }
-
-    public void setMemHobby(String memHobby) {
-        this.memHobby = memHobby;
-    }
-
-    public int getMemMileage() {
-        return memMileage;
-    }
-
-    public void setMemMileage(int memMileage) {
-        this.memMileage = memMileage;
-    }
-
     public String getMemDelYn() {
         return memDelYn;
     }
@@ -138,21 +108,18 @@ public class MemberVO {
         this.memDelYn = memDelYn;
     }
 
-
-    public String getMemJobNm() {
-        return memJobNm;
-    }
-
-    public void setMemJobNm(String memJobNm) {
-        this.memJobNm = memJobNm;
-    }
-
-    public String getMemHobbyNm() {
-        return memHobbyNm;
-    }
-
-    public void setMemHobbyNm(String memHobbyNm) {
-        this.memHobbyNm = memHobbyNm;
+    public MemberVO(String memId, String memPass, String memName, String memBir, String memZip, String memAdd1, String memAdd2, String memHp, String memMail, String memDelYn, String memGender) {
+        this.memId = memId;
+        this.memPass = memPass;
+        this.memName = memName;
+        this.memBir = memBir;
+        this.memZip = memZip;
+        this.memAdd1 = memAdd1;
+        this.memAdd2 = memAdd2;
+        this.memHp = memHp;
+        this.memMail = memMail;
+        this.memDelYn = memDelYn;
+        this.memGender = memGender;
     }
 
     @Override

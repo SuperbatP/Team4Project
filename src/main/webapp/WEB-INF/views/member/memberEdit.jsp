@@ -18,7 +18,7 @@
 	<%@ include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body>
-<%@include file="/WEB-INF/inc/top.jsp"%>
+<%@include file="/WEB-INF/inc/navi.jsp"%>
 
  <div class="container">	
 	<h3>회원 정보 수정</h3>	

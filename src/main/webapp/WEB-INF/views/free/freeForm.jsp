@@ -8,7 +8,7 @@
 <%@include file="/WEB-INF/inc/header.jsp"%>
 </head>
 <body>
-<%@ include file="/WEB-INF/inc/top.jsp"%>
+<%@ include file="/WEB-INF/inc/navi.jsp"%>
 <div class="container">
 	<div class="page-header">
 		<h3>자유게시판 - <small>글 등록</small></h3>
