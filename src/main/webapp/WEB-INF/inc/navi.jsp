@@ -31,7 +31,7 @@
   <div class="container">
     <!-- MENU LINKS -->
     <div class="collapse navbar-collapse">
-      <div class="nav navbar-nav navbar-left"><a href="index.wow"><img src="resource/bootstrap-3.3.2/images/logo_small.png" style="width:150px; "></a></div>
+      <div class="nav navbar-nav navbar-left"><a href="index.wow"><img src="/resource/bootstrap-3.3.2/images/logo_small.png" style="width:150px; "></a></div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#top" class="smoothScroll">진료안내</a></li>
         <li><a href="#about" class="smoothScroll">진료예약</a></li>

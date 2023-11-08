@@ -7,7 +7,7 @@
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
-<body>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
 <footer data-stellar-background-ratio="5">
     <div class="container">
