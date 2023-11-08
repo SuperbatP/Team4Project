@@ -16,6 +16,27 @@
 
 <!-- 코드 작성구역 시작-->
 
+<form name="reservation" action="reservationRegist.wow" method="post">
+    이름<input name="memName">
+    전화번호<input name="memHp">
+    메일주소<input name="memEmail">
+    <label>예약일</label>
+    <div>
+        <select name="reservationDate">
+            <option></option>
+        </select>
+    </div>
+
+    <label>예약시간</label>
+    <div>
+        <select name="reservationTime">
+            <option></option>
+        </select>
+    </div>
+<%--    나중에 추가구현--%>
+<%--    문진표--%>
+<%--    선결제--%>
+</form>
 
 <!-- 코드 작성구역 끝 -->
 
@@ -29,8 +50,5 @@
 <script src="/resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
 <script src="/resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
 <script src="/resource/bootstrap-3.3.2/js/custom.js"></script>
-
-
-
 </body>
 </html>
