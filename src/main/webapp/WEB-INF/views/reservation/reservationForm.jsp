@@ -23,14 +23,18 @@
     <label>예약일</label>
     <div>
         <select name="reservationDate">
-            <option></option>
+            <c:forEach var="at" items="${attendance}">
+                <option value="${at.attendanceDate}">${at.attendanceDate}</option>
+            </c:forEach>
         </select>
     </div>
 
     <label>예약시간</label>
     <div>
         <select name="reservationTime">
-            <option></option>
+            <c:forEach var="at" items="${attendance}">
+                <option value="${at.attendanceTime}">${at.attendanceTime}</option>
+            </c:forEach>
         </select>
     </div>
 <%--    나중에 추가구현--%>
