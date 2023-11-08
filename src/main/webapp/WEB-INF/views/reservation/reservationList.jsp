@@ -19,7 +19,7 @@
             ${atList.attendanceDate}
             ${atList.attendanceTime}
         </c:forEach>
-        <a href="reservationForm.wow?dcId=${doctor.dcId}">진료예약</a>
+        <a href="reservationForm.wow?memId=${USER_INFO!=null ? USER_INFO.userId : null}&dcId=${doctor.dcId}">진료예약</a>
     </div>
 </c:forEach>
 

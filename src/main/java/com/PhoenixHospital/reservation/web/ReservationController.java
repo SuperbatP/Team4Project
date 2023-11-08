@@ -5,12 +5,15 @@ import com.PhoenixHospital.doctor_attendance.dao.IAttendanceDao;
 import com.PhoenixHospital.doctor_attendance.vo.AttendanceVO;
 import com.PhoenixHospital.doctors.dao.IDoctorsDao;
 import com.PhoenixHospital.doctors.vo.DoctorsVO;
+import com.PhoenixHospital.member.dao.IMemberDao;
+import com.PhoenixHospital.member.vo.MemberVO;
 import com.PhoenixHospital.treatment_code.dao.ITreatmentCodeDao;
 import com.PhoenixHospital.treatment_code.vo.TreatmentCodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,6 +32,9 @@ public class ReservationController {
 
     @Autowired
     IAttendanceDao attendanceDao;
+
+    @Autowired
+    IMemberDao memberDao;
 
     @RequestMapping("reservation/reservationSearch.wow")
     public String reservationSearch(Model model){
@@ -50,5 +56,22 @@ public class ReservationController {
         model.addAttribute("doctors", doctorsList);
         model.addAttribute("attendance", attendanceVOMap);
         return "reservation/reservationList";
+    }
+
+    @RequestMapping("reservation/reservationForm.wow")
+    public String reservationForm(Model model, String memId, String dcId){
+        if(memId==null){
+            return "redirect:/login/login.wow";
+        }
+        MemberVO member = memberDao.getMember(memId);
+        List<AttendanceVO> attendanceVOList = attendanceDao.getAttendanceList(dcId);
+        model.addAttribute("member", member);
+        model.addAttribute("attendance", attendanceVOList);
+        return "reservation/reservationForm";
+    }
+
+    @PostMapping("reservation/reservationRegist.wow")
+    public String reservationRegist(){
+        return "";
     }
 }
