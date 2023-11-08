@@ -32,6 +32,7 @@ public class ReservationController {
 
     @RequestMapping("reservation/reservationList.wow")
     public String reservationList(Model model, SearchVO search){
+        System.out.println(search);
         List<DoctorsVO> doctorsList = doctorsDao.getDocList(search);
         model.addAttribute("doctors", doctorsList);
         return "reservation/reservationList";

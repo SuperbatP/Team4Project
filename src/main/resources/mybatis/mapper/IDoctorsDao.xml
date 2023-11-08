@@ -2,13 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.PhoenixHospital.doctors.dao.IDoctorsDao">
     <sql id="searchInDoc">
-        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search)'>
-            <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchType)'>
-                AND major=#{search.searchType}
-            </if>
-            <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
-                AND (major=#{search.searchWord} OR dc_name=#{search.searchWord})
-            </if>
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchType)'>
+            AND treatment_code=#{search.searchType}
+        </if>
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
+            AND (major Like '%' || #{search.searchWord} || '%' OR dc_name Like '%' || #{search.searchWord} || '%')
         </if>
     </sql>
 
