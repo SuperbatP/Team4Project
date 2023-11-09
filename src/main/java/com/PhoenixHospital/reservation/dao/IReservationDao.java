@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface IReservationDao {
     public List<ReservationVO> getReservationList();
-    public ReservationVO getReservation(String memId);
+    public ReservationVO getReservation(String reservationNo);
     public int updateReservation(ReservationVO reservation);
     public int deleteReservation(ReservationVO reservation);
     public int insertReservation(ReservationVO reservation);

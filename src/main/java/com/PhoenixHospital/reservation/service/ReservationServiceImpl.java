@@ -5,6 +5,7 @@ import com.PhoenixHospital.reservation.vo.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,7 +37,8 @@ public class ReservationServiceImpl implements IReservationService{
 
     @Override
     public void registReservation(ReservationVO reservation) {
-        reservation.setReservationNo("");
+        String reservationNo = "RENO";
+        reservation.setReservationNo(reservationNo);
         reservationDao.insertReservation(reservation);
     }
 }

@@ -37,7 +37,7 @@
             attendance_id,
             mem_email
         FROM reservation
-        WHERE mem_id=#{memId}
+        WHERE reservaion_no = #{reservationNo}
     </select>
 
     <update id="updateReservation">

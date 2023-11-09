@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IReservationService {
     public List<ReservationVO> getReservationList();
-    public ReservationVO getReservation(String memId);
+    public ReservationVO getReservation(String reservationNo);
     public void modifyReservation(ReservationVO reservation);
     public void cancelReservation(ReservationVO reservation);
     public void registReservation(ReservationVO reservation);
