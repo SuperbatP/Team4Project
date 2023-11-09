@@ -19,20 +19,21 @@
                 <td><input type="text" class="form-control" id="memId" placeholder="아이디" oninput="checkId(), activateSignupbtn()" name = "memId" autocomplete='off' required="required">
                     <font color = "red" id = "failid" style = "display:none">5~15자의 영문자와 숫자를 조합해서 입력해주세요.</font>
                     <font color = "red" id = "fail" style = "display:none">이미 존재하는 ID입니다.</font>
-                    <button type="button" id="idCheck">중복확인</button>
+                    <button type="button" id="idCheck" onclick="checkId()">중복확인</button>
                 </td>
             </tr>
             <tr>
                 <th>비밀번호</th>
                 <td><input type="password" name="memPassword" class="form-control input-sm"
-                           required="required" id="memPassword" placeholder="Password" oninput ="checkPwd(), checkPwd2()">
+                           required="required" id="memPassword" placeholder="Password" oninput ="checkPwd()">
                     <font color = "red" id = "failpwd" style = "display:none">8~16자의 영문자와 숫자를 조합해서 입력해주세요.</font>
                 </td>
             </tr>
             <tr>
                 <th>비밀번호 확인</th>
                 <td>
-                    <input type="password" class="form-control" id="pwCheck" placeholder="Password 확인" oninput ="checkPwd2(), activateSignupbtn()" name = "pwcheck">
+                    <input type="password" class="form-control" id="pwCheck" placeholder="Password 확인" oninput ="checkPwd2(), activateSignupbtn()" name = "pwCheck">
+                    <font color = "red" id = "failpwd2" style = "display:none">비밀번호가 맞지 않습니다.</font>
                 </td>
             </tr>
             <tr>
@@ -189,6 +190,7 @@
                     $(".signupbtn").css("background-color", "#aaaaaa");
                     $("#memId").css("background-color", "#FFCECE");
                     idCheck = 0;
+                    console.log("if1")
                 } else if (regMemberid(inputed) == false || inputed.length > 14) {
                     $("#failid").css("display", "block");
                     $("#fail").css("display", "none");
@@ -196,11 +198,13 @@
                     $(".signupbtn").css("background-color", "#aaaaaa");
                     $("#memId").css("background-color", "#FFCECE");
                     idCheck = 0;
+                    console.log("else1")
                 } else if (data == '0' && regMemberid(inputed)) { //중복되지않고, 정규식을 통과할 때
                     $("#memId").css("background-color", "#B0F6AC");
                     $("#failid").css("display", "none");
                     $("#fail").css("display", "none");
                     idCheck = 1;
+                    console.log("else2")
                 }
             }
         });
@@ -256,9 +260,11 @@
                     $(".signupbtn").prop("disabled", true);
                     $(".signupbtn").css("background-color", "#aaaaaa");
                     $("#pwCheck").css("background-color", "#FFCECE");
+                    $("#failpwd2").css("display", "block");
                     pwCheck = 0;
                 } else if (inputed == inputed1) {
                     $("#pwCheck").css("background-color", "#B0F6AC");
+                    $("#failpwd2").css("display", "none");
                     pwCheck = 1;
                 }
             }
