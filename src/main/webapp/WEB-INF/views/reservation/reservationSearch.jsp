@@ -20,6 +20,12 @@
         align-items: center;
     }
 
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .search-box {
         border: 0.5px solid;
         border-color: gainsboro;
@@ -28,6 +34,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
     }
 
     .search-img {
@@ -86,7 +93,8 @@
         flex-wrap: wrap;
         justify-content: center;
         cursor: pointer;
-        margin: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .dtimg {
