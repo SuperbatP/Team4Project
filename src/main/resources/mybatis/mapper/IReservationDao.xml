@@ -13,11 +13,27 @@
     </select>
 
     <update id="updateReservation">
-
+        UPDATE reservation
+        SET
+            mem_hp              = #{memHp},
+            mem_email           = #{memEmail},
+            dc_id               = #{dcId},
+            treatment_code      = #{treatmentCode},
+            reservation_date    = #{reservationDate},
+            reservation_time    = #{reservationTime},
+            reservation_mod_date = sysdate,
+            etc                 = #{etc},
+            attendance_id        = null
+        WHERE
+            reservation_no = #{reservationNo}
     </update>
 
     <update id="deleteReservation">
-
+        UPDATE reservation
+        SET
+            cancel_date = sysdate
+        WHERE
+            reservation_no = #{reservationNo}
     </update>
 
     <insert id="insertReservation">
