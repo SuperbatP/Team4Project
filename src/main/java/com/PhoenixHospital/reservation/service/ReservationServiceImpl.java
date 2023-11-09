@@ -26,12 +26,12 @@ public class ReservationServiceImpl implements IReservationService{
 
     @Override
     public void modifyReservation(ReservationVO reservation) {
-
+        reservationDao.updateReservation(reservation);
     }
 
     @Override
     public void cancelReservation(ReservationVO reservation) {
-
+        reservationDao.deleteReservation(reservation);
     }
 
     @Override
