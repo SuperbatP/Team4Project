@@ -17,6 +17,7 @@ import com.PhoenixHospital.reservation.service.IReservationService;
 import com.PhoenixHospital.reservation.service.ReservationServiceImpl;
 import com.PhoenixHospital.reservation.vo.ReservationVO;
 import com.PhoenixHospital.treatment_code.dao.ITreatmentCodeDao;
+import com.PhoenixHospital.treatment_code.service.ITreatmentCodeService;
 import com.PhoenixHospital.treatment_code.vo.TreatmentCodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ import java.util.Map;
 @Controller
 public class ReservationController {
     @Autowired
-    ITreatmentCodeDao codeDao;
+    ITreatmentCodeService treatmentCodeService;
 
     @Autowired
     IDoctorsService doctorsService;
@@ -50,7 +51,7 @@ public class ReservationController {
 
     @RequestMapping("reservation/reservationSearch.wow")
     public String reservationSearch(Model model){
-        List<TreatmentCodeVO> codeList = codeDao.getCodeList();
+        List<TreatmentCodeVO> codeList = treatmentCodeService.getCodeList();
         model.addAttribute("codeList", codeList);
         return "reservation/reservationSearch";
     }
@@ -58,7 +59,7 @@ public class ReservationController {
     @RequestMapping("reservation/reservationList.wow")
     public String reservationList(Model model, SearchVO search){
         List<DoctorsVO> doctorsList = doctorsService.getDocList(search);
-        Map<String, List<AttendanceVO>> attendanceVOMap = new HashMap<>();
+        Map<String, List<AttendanceVO>> attendanceVOMap = new HashMap<>(); //나중에 Service로 옮겨야됨
         for (int i = 0; i < doctorsList.size(); i++) {
             String dcId = doctorsList.get(i).getDcId();
             List<AttendanceVO> attendanceVOList = attendanceService.getAttendance(dcId);
@@ -67,6 +68,7 @@ public class ReservationController {
 
         model.addAttribute("doctors", doctorsList);
         model.addAttribute("attendance", attendanceVOMap);
+
         return "reservation/reservationList";
     }
 
@@ -75,14 +77,17 @@ public class ReservationController {
         if(memId.equals("")){
             return "redirect:/login/login.wow";
         }
+
         MemberVO member = memberService.getMember(memId);
         DoctorsVO doctorsVO = doctorsService.getDoc(dcId);
         List<AttendanceVO> attendanceVOList = attendanceService.getAttendance(dcId);
         List<ReservationVO> reservationVOList = reservationService.getReservationList();
+
         model.addAttribute("member", member);
         model.addAttribute("doctor", doctorsVO);
         model.addAttribute("attendance", attendanceVOList);
         model.addAttribute("reservation", reservationVOList);
+
         return "reservation/reservationForm";
     }
 

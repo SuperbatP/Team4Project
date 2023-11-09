@@ -36,6 +36,7 @@ public class ReservationServiceImpl implements IReservationService{
 
     @Override
     public void registReservation(ReservationVO reservation) {
+        reservation.setReservationNo("");
         reservationDao.insertReservation(reservation);
     }
 }
