@@ -8,6 +8,7 @@ import com.PhoenixHospital.doctors.vo.DoctorsVO;
 import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.vo.MemberVO;
 import com.PhoenixHospital.reservation.dao.IReservationDao;
+import com.PhoenixHospital.reservation.service.ReservationServiceImpl;
 import com.PhoenixHospital.reservation.vo.ReservationVO;
 import com.PhoenixHospital.treatment_code.dao.ITreatmentCodeDao;
 import com.PhoenixHospital.treatment_code.vo.TreatmentCodeVO;
@@ -39,7 +40,7 @@ public class ReservationController {
     IMemberDao memberDao;
 
     @Autowired
-    IReservationDao reservationDao;
+    ReservationServiceImpl reservationService;
 
     @RequestMapping("reservation/reservationSearch.wow")
     public String reservationSearch(Model model){
@@ -71,7 +72,7 @@ public class ReservationController {
         MemberVO member = memberDao.getMember(memId);
         DoctorsVO doctorsVO = doctorsDao.getDoc(dcId);
         List<AttendanceVO> attendanceVOList = attendanceDao.getAttendance(dcId);
-        List<ReservationVO> reservationVOList = reservationDao.getReservationList();
+        List<ReservationVO> reservationVOList = reservationService.getReservationList();
         model.addAttribute("member", member);
         model.addAttribute("doctor", doctorsVO);
         model.addAttribute("attendance", attendanceVOList);
@@ -81,7 +82,7 @@ public class ReservationController {
 
     @PostMapping("reservation/reservationRegist.wow")
     public String reservationRegist(Model model, ReservationVO reservation){
-        reservationDao.insertReservation(reservation);
+        reservationService.registReservation(reservation);
 
         return "reservation/reservationSearch";
     }
