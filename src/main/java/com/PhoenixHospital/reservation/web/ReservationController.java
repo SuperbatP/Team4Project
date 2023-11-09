@@ -78,7 +78,8 @@ public class ReservationController {
     }
 
     @PostMapping("reservation/reservationRegist.wow")
-    public String reservationRegist(){
-        return "";
+    public String reservationRegist(Model model, ReservationVO reservation){
+        reservationDao.insertReservation(reservation);
+        return "common/message";
     }
 }
