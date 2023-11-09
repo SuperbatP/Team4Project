@@ -2,12 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.PhoenixHospital.reservation.dao.IReservationDao">
     <select id="getReservationList" resultType="com.PhoenixHospital.reservation.vo.ReservationVO">
-        SELECT *
+        SELECT
+            reservation_no,
+            mem_name,
+            mem_id,
+            mem_hp,
+            treatment_code,
+            dc_id,
+            reservation_date,
+            reservation_time,
+            reservation_reg_date,
+            etc,
+            cancel_date,
+            reservation_mod_date,
+            attendance_id,
+            mem_email
         FROM reservation
     </select>
 
     <select id="getReservation" resultType="com.PhoenixHospital.reservation.vo.ReservationVO">
-        SELECT *
+        SELECT
+            reservation_no,
+            mem_name,
+            mem_id,
+            mem_hp,
+            treatment_code,
+            dc_id,
+            reservation_date,
+            reservation_time,
+            reservation_reg_date,
+            etc,
+            cancel_date,
+            reservation_mod_date,
+            attendance_id,
+            mem_email
         FROM reservation
         WHERE mem_id=#{memId}
     </select>

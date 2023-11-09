@@ -11,14 +11,28 @@
     </sql>
 
     <select id="getDocList" resultType="com.PhoenixHospital.doctors.vo.DoctorsVO">
-        SELECT *
+        SELECT
+            treatment_code,
+            dc_id,
+            dc_name,
+            dc_img,
+            major,
+            work_history,
+            university
         FROM doctors
         WHERE 1=1
         <include refid="searchInDoc"/>
     </select>
 
     <select id="getDoc" resultType="com.PhoenixHospital.doctors.vo.DoctorsVO">
-        SELECT *
+        SELECT
+            treatment_code,
+            dc_id,
+            dc_name,
+            dc_img,
+            major,
+            work_history,
+            university
         FROM doctors
         WHERE dc_id=#{dcId}
     </select>
