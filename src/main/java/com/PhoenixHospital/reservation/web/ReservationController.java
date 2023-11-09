@@ -7,6 +7,8 @@ import com.PhoenixHospital.doctors.dao.IDoctorsDao;
 import com.PhoenixHospital.doctors.vo.DoctorsVO;
 import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.vo.MemberVO;
+import com.PhoenixHospital.reservation.dao.IReservationDao;
+import com.PhoenixHospital.reservation.vo.ReservationVO;
 import com.PhoenixHospital.treatment_code.dao.ITreatmentCodeDao;
 import com.PhoenixHospital.treatment_code.vo.TreatmentCodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class ReservationController {
 
     @Autowired
     IMemberDao memberDao;
+
+    @Autowired
+    IReservationDao reservationDao;
 
     @RequestMapping("reservation/reservationSearch.wow")
     public String reservationSearch(Model model){
@@ -65,8 +70,10 @@ public class ReservationController {
         }
         MemberVO member = memberDao.getMember(memId);
         List<AttendanceVO> attendanceVOList = attendanceDao.getAttendanceList(dcId);
+        List<ReservationVO> reservationVOList = reservationDao.getReservationList();
         model.addAttribute("member", member);
         model.addAttribute("attendance", attendanceVOList);
+        model.addAttribute("reservation", reservationVOList);
         return "reservation/reservationForm";
     }
 
