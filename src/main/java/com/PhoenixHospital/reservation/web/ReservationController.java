@@ -69,9 +69,11 @@ public class ReservationController {
             return "redirect:/login/login.wow";
         }
         MemberVO member = memberDao.getMember(memId);
+        DoctorsVO doctorsVO = doctorsDao.getDoc(dcId);
         List<AttendanceVO> attendanceVOList = attendanceDao.getAttendanceList(dcId);
         List<ReservationVO> reservationVOList = reservationDao.getReservationList();
         model.addAttribute("member", member);
+        model.addAttribute("doctor", doctorsVO);
         model.addAttribute("attendance", attendanceVOList);
         model.addAttribute("reservation", reservationVOList);
         return "reservation/reservationForm";
@@ -80,6 +82,6 @@ public class ReservationController {
     @PostMapping("reservation/reservationRegist.wow")
     public String reservationRegist(Model model, ReservationVO reservation){
         reservationDao.insertReservation(reservation);
-        return "common/message";
+        return "reservation/reservationSearch";
     }
 }
