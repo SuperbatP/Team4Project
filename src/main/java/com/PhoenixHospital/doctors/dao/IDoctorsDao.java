@@ -10,4 +10,5 @@ import java.util.List;
 @Mapper
 public interface IDoctorsDao {
     public List<DoctorsVO> getDocList(@Param("search") SearchVO search);
+    public DoctorsVO getDoc(String dcId);
 }

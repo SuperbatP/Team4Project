@@ -21,6 +21,36 @@
     </update>
 
     <insert id="insertReservation">
-
+        INSERT INTO reservation (
+            reservation_no,
+            mem_name,
+            mem_id,
+            mem_hp,
+            mem_email,
+            dc_id,
+            treatment_code,
+            reservation_date,
+            reservation_time,
+            reservation_reg_date,
+            reservation_mod_date,
+            etc,
+            cancel_date,
+            attendance_id
+        ) VALUES (
+                  #{reservationNo},
+                  #{memName},
+                  #{memId},
+                  #{memHp},
+                  #{memEmail},
+                  #{dcId},
+                  #{treatmentCode},
+                  #{reservationDate},
+                  #{reservationTime},
+                  sysdate,
+                  null,
+                  #{etc},
+                  null,
+                  null
+                         )
     </insert>
 </mapper>

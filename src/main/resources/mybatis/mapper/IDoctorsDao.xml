@@ -16,4 +16,10 @@
         WHERE 1=1
         <include refid="searchInDoc"/>
     </select>
+
+    <select id="getDoc" resultType="com.PhoenixHospital.doctors.vo.DoctorsVO">
+        SELECT *
+        FROM doctors
+        WHERE dc_id=#{dcId}
+    </select>
 </mapper>

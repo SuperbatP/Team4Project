@@ -8,8 +8,10 @@ public class ReservationVO {
     private String memName;
     private String memId;
     private String memHp;
+    private String memEmail;
     private String dtCode;
     private String dcId;
+    private String treatmentCode;
     private String attendanceId;
     private String reservationDate;
     private String reservationTime;
@@ -57,6 +59,14 @@ public class ReservationVO {
         this.memHp = memHp;
     }
 
+    public String getMemEmail() {
+        return memEmail;
+    }
+
+    public void setMemEmail(String memEmail) {
+        this.memEmail = memEmail;
+    }
+
     public String getDtCode() {
         return dtCode;
     }
@@ -71,6 +81,14 @@ public class ReservationVO {
 
     public void setDcId(String dcId) {
         this.dcId = dcId;
+    }
+
+    public String getTreatmentCode() {
+        return treatmentCode;
+    }
+
+    public void setTreatmentCode(String treatmentCode) {
+        this.treatmentCode = treatmentCode;
     }
 
     public String getAttendanceId() {
