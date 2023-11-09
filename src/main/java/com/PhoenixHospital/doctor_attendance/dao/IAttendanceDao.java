@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface IAttendanceDao {
-    public List<AttendanceVO> getAttendanceList(String dcId);
+    public List<AttendanceVO> getAttendance(String dcId);
 }

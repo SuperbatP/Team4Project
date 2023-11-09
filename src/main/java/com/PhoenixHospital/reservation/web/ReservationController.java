@@ -54,7 +54,7 @@ public class ReservationController {
         Map<String, List<AttendanceVO>> attendanceVOMap = new HashMap<>();
         for (int i = 0; i < doctorsList.size(); i++) {
             String dcId = doctorsList.get(i).getDcId();
-            List<AttendanceVO> attendanceVOList = attendanceDao.getAttendanceList(dcId);
+            List<AttendanceVO> attendanceVOList = attendanceDao.getAttendance(dcId);
             attendanceVOMap.put(dcId, attendanceVOList);
         }
 
@@ -70,7 +70,7 @@ public class ReservationController {
         }
         MemberVO member = memberDao.getMember(memId);
         DoctorsVO doctorsVO = doctorsDao.getDoc(dcId);
-        List<AttendanceVO> attendanceVOList = attendanceDao.getAttendanceList(dcId);
+        List<AttendanceVO> attendanceVOList = attendanceDao.getAttendance(dcId);
         List<ReservationVO> reservationVOList = reservationDao.getReservationList();
         model.addAttribute("member", member);
         model.addAttribute("doctor", doctorsVO);
@@ -82,6 +82,7 @@ public class ReservationController {
     @PostMapping("reservation/reservationRegist.wow")
     public String reservationRegist(Model model, ReservationVO reservation){
         reservationDao.insertReservation(reservation);
+
         return "reservation/reservationSearch";
     }
 }
