@@ -3,6 +3,8 @@ package com.PhoenixHospital.reservation.vo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.util.Date;
+
 public class ReservationVO {
     private String reservationNo;
     private String memName;
@@ -13,7 +15,7 @@ public class ReservationVO {
     private String dcId;
     private String treatmentCode;
     private String attendanceId;
-    private String reservationDate;
+    private Date reservationDate;
     private String reservationTime;
     private String reservationRegDate;
     private String etc;
@@ -99,11 +101,11 @@ public class ReservationVO {
         this.attendanceId = attendanceId;
     }
 
-    public String getReservationDate() {
+    public Date getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(String reservationDate) {
+    public void setReservationDate(Date reservationDate) {
         this.reservationDate = reservationDate;
     }
 

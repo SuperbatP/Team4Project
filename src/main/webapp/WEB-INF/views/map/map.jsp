@@ -5,14 +5,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Tooplate">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/tooplate-style.css">
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 
-<div id="mapframe"
-     style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+<div id="mapframe" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
 
     <div id="map" style="width: 1000px; height: 350px; margin-top: 40px;"></div>
 
@@ -42,13 +55,13 @@
     <div class="mymap" style="width: 1000px; height: 300px; border: 0.5px solid; border-color: gainsboro; display: flex; justify-content: center; align-items: center;">
         <section id="appointment" style="width: 90%; height: 90%; display: flex; justify-content: space-evenly; align-items: center;">
 
-            <div class="col-sm-2 section-title wow fadeInUp" style="margin-top: -90px;">
+            <div class="col-sm-2 section-title" style="margin-top: -90px;">
                 <img style="width: 100%; height: 130px;" src="../../../resource/bootstrap-3.3.2/images/지도.png" class="img-responsive">
             </div>
 
             <div class="col-sm-7" style="margin-top: -90px;">
                     <!-- SECTION TITLE -->
-                    <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="section-title">
                         <h2>내 위치에서 오시는길</h2>
 
                         <div class="col-md-12 col-sm-12">

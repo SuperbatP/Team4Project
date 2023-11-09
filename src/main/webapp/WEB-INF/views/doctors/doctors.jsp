@@ -5,6 +5,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Tooplate">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/tooplate-style.css">
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -13,7 +27,7 @@
 
 <style>
     .container2 {
-        width: 1100px;
+        width: 1300px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -112,11 +126,12 @@
 
 </style>
 
+
 <section id="team" data-stellar-background-ratio="1"
          style="display: flex; justify-content: center; align-items: center;">
     <div class="container2">
 
-        <form style="width: 100%;" name="search" action="reservationList.wow" method="post">
+        <form name="search" action="reservationList.wow" method="post">
             <section class="search-box wow fadeInUp" data-wow-delay="0.1s" id="appointment">
                 <div class="search-img">
                     <img style="margin-top: -5px; width: 30px; height: 30px;"
@@ -137,44 +152,17 @@
             </section>
         </form>
 
+        <div class="clearfix"></div>
 
-        <%--        <c:forEach var="tc" items="${codeList}">--%>
-        <%--            <div>--%>
-        <%--                <a href="reservationList.wow?searchType=${tc.treatmentCode}">--%>
-        <%--                        ${tc.treatmentName}--%>
-        <%--                </a>--%>
-        <%--            </div>--%>
-        <%--        </c:forEach>--%>
-
-        <c:forEach var="tc" items="${codeList}">
-        <a href="reservationList.wow?searchType=${tc.treatmentCode}">
         <div class="dtlist_frame">
-            <div class="dt_frame wow fadeInUp" data-wow-delay="0.2s">
-                <div class="dtimg">
-                    <img src='../../../resource/bootstrap-3.3.2/images/진료과목/${tc.treatmentName}.png' class="img-responsive" alt="">
-                </div>
-                <div class="dtname">
-                    <p style="font-size: 17px; color: gray;">${tc.treatmentName}</p>
-                </div>
-            </div>
-        </div>
-        </a>
-        </c:forEach>
 
+        </div>
 
     </div>
 </section>
 
-<%@include file="/WEB-INF/inc/footer.jsp" %>
+
 <!-- SCRIPTS -->
-<script>
-    // $form=$("form[name='search']");
-    // $button = $('form div button');
-    //
-    // $button.click(function (e) {
-    //     $form.submit();
-    // });
-</script>
 <script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
 <script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
@@ -183,6 +171,31 @@
 <script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
 <script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
 <script src="resource/bootstrap-3.3.2/js/custom.js"></script>
+
+<script>
+    let v_dtnamelist = [['가정의학과'], ['감염내과'], ['내분비대사내과'], ['류마티스내과'], ['마취통증의학과'], ['방사선종양학과'], ['병리과'], ['비뇨의학과'], ['산부인과'], ['성형외과'], ['소아청소년과'], ['소화기내과'], ['신경과'], ['신경외과'], ['신장내과'], ['심장내과'], ['심장혈관흉부외과'], ['안과'], ['영상의학과'], ['외과'], ['외과-유방암·갑상선암'], ['응급의학과'], ['의공학과'], ['이비인후과'], ['재활의학과'], ['정신건강의학과'], ['정형외과'], ['진단검사의학과'], ['치과'], ['통증클리닉'], ['피부과'], ['핵의학과'], ['혈액종양내과'], ['호흡기알레르기내과']];
+
+
+    for (let i = 0; i < v_dtnamelist.length; i++) {
+
+        let v_dtlist = '<div class="dt_frame wow fadeInUp" data-wow-delay="0.2s">'
+        v_dtlist += '<div class="dtimg">'
+        v_dtlist += '<img src = "../../../resource/bootstrap-3.3.2/images/진료과목/' + v_dtnamelist[i] + '.png" class="img-responsive" alt = "">'
+        v_dtlist += '</div>'
+        v_dtlist += '<div class="dtname">'
+        v_dtlist += '<p style="font-size: 17px; color: gray;">' + v_dtnamelist[i] + '</p>'
+        v_dtlist += '</div>'
+        v_dtlist += '</div>'
+
+        document.querySelector(".dtlist_frame").innerHTML
+            = v_dtlist + document.querySelector(".dtlist_frame").innerHTML;
+
+        console.log(v_dtnamelist[i])
+    }
+
+</script>
+
+<%@include file="/WEB-INF/inc/footer.jsp" %>
 
 </body>
 </html>
