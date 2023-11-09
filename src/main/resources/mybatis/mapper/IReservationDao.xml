@@ -65,6 +65,10 @@
     </update>
 
     <insert id="insertReservation">
+<!--        <selectKey keyProperty="reservationNo" resultType="str" order="BEFORE">-->
+<!--            SELECT 'RENO' || (SELECT to_number(substr(max(reservation_no ), 5))+1) FROM reservation-->
+<!--        </selectKey>-->
+
         INSERT INTO reservation (
             reservation_no,
             mem_name,
