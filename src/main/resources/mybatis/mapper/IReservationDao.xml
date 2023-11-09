@@ -65,9 +65,9 @@
     </update>
 
     <insert id="insertReservation">
-<!--        <selectKey keyProperty="reservationNo" resultType="str" order="BEFORE">-->
-<!--            SELECT 'RENO' || (SELECT to_number(substr(max(reservation_no ), 5))+1) FROM reservation-->
-<!--        </selectKey>-->
+        <selectKey keyProperty="reservationNo" resultType="string" order="BEFORE">
+            SELECT 'RENO' || LPAD(seq_reservation.nextval, 4, '0') FROM dual
+        </selectKey>
 
         INSERT INTO reservation (
             reservation_no,

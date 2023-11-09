@@ -145,15 +145,6 @@
             </section>
         </form>
 
-
-        <%--        <c:forEach var="tc" items="${codeList}">--%>
-        <%--            <div>--%>
-        <%--                <a href="reservationList.wow?searchType=${tc.treatmentCode}">--%>
-        <%--                        ${tc.treatmentName}--%>
-        <%--                </a>--%>
-        <%--            </div>--%>
-        <%--        </c:forEach>--%>
-
         <c:forEach var="tc" items="${codeList}">
         <a href="reservationList.wow?searchType=${tc.treatmentCode}">
         <div class="dtlist_frame">
@@ -176,12 +167,7 @@
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 <!-- SCRIPTS -->
 <script>
-    // $form=$("form[name='search']");
-    // $button = $('form div button');
-    //
-    // $button.click(function (e) {
-    //     $form.submit();
-    // });
+
 </script>
 <script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
 <script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
