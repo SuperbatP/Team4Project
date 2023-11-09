@@ -17,9 +17,10 @@
 <!-- 코드 작성구역 시작-->
 
 <form name="reservation" action="reservationRegist.wow" method="post">
-    이름<input name="memName">
-    전화번호<input name="memHp">
-    메일주소<input name="memEmail">
+    아이디<input type="hidden" name="memId" value="${member.memId}">
+    이름<input name="memName" value="${member.memName}">
+    전화번호<input name="memHp" value="${member.memHp}">
+    메일주소<input name="memEmail" value="${member.memMail}">
     <label>예약일</label>
     <div>
         <select name="reservationDate">

@@ -60,7 +60,7 @@ public class ReservationController {
 
     @RequestMapping("reservation/reservationForm.wow")
     public String reservationForm(Model model, String memId, String dcId){
-        if(memId==null){
+        if(memId.equals("")){
             return "redirect:/login/login.wow";
         }
         MemberVO member = memberDao.getMember(memId);
