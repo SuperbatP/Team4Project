@@ -5,4 +5,22 @@
         SELECT *
         FROM reservation
     </select>
+
+    <select id="getReservation" resultType="com.PhoenixHospital.reservation.vo.ReservationVO">
+        SELECT *
+        FROM reservation
+        WHERE mem_id=#{memId}
+    </select>
+
+    <update id="updateReservation">
+
+    </update>
+
+    <update id="deleteReservation">
+
+    </update>
+
+    <insert id="insertReservation">
+
+    </insert>
 </mapper>
