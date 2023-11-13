@@ -50,8 +50,8 @@ public class FreeBoardController {
         //FreeBoardController는 CommCodeServiceImpl에 의존. -> @Autowired로 주입.
         //Model model 은 스프링에서 데이터를 담는 객체로 지원되는 것.
 
-        List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
-        model.addAttribute("codeList", codeList);
+        //    List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
+        //   model.addAttribute("codeList", codeList);
         //req.setAttribute("cateList", cateList); 대신에 addAttribute사용. 단 cateList의 경우 DB에서 가져오는 값이라 @ModelAttribute 사용x
 
         //model.addAttribute("paging", paging);
@@ -163,8 +163,8 @@ public class FreeBoardController {
 
     @RequestMapping("/free/freeForm.wow")
     public String freeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) {
-        List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
-        model.addAttribute("codeList", codeList);
+        //List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
+        //model.addAttribute("codeList", codeList);
         return "free/freeForm";
     }
 }

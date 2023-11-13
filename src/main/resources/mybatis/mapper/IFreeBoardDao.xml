@@ -43,39 +43,20 @@
 
     <select id="getTotalRowCount" resultType="int">
         SELECT  count(*)
-        FROM free_board
+        FROM ANNOUNCEMENT_BOARD
         WHERE 1=1
         --blank(공백 true) vs empty() and 조건절 동적쿼리
         --searchWord, searchType, searchCategory
-        <include refid="searchInFree" />
+
 
     </select>
 
     <select id="getBoardList" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" >
         <!--페이징은 리스트에서만!-->
+    select *
+    from ANNOUNCEMENT_BOARD
 
-        SELECT *
-        FROM
-            (SELECT a.*,rownum as rnum
-             FROM
-                 (
-        SELECT
-            to_char(bo_reg_date,'YYYY-MM-DD') AS bo_reg_date
-             ,to_char(bo_mod_date,'YYYY-MM-DD') AS bo_mod_date
-             , bo_no        , bo_title       , bo_category
-             , bo_writer    , bo_pass        , bo_content
-             , bo_hit       , bo_del_yn
-             ,b. comm_nm  AS bo_category_nm
-        FROM  free_board a ,comm_code b
-        where  a.bo_category = b.comm_cd
-        AND bo_del_yn = 'N'
-        <include refid="searchInFree" />
-
-        order by bo_no DESC) a) b
-        where rnum between #{paging.firstRow} and #{paging.lastRow}
-
-
-    </select>
+         </select>
 
     <resultMap id="freeAttaches" type="com.PhoenixHospital.free.vo.FreeBoardVO">
         <collection property="attaches" column="{atchParentNo=bo_no, atchCategory=bo_type} " ofType="com.PhoenixHospital.attach.vo.AttachVO" select="com.PhoenixHospital.attach.dao.IAttachDao.getAttachListByParent">
