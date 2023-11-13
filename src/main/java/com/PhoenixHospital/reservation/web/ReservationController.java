@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class ReservationController {
@@ -59,11 +60,12 @@ public class ReservationController {
     @RequestMapping("reservation/reservationList.wow")
     public String reservationList(Model model, SearchVO search){
         List<DoctorsVO> doctorsList = doctorsService.getDocList(search);
-        Map<String, List<AttendanceVO>> attendanceVOMap = new HashMap<>(); //나중에 Service로 옮겨야됨
+        Map<String, List<String>> attendanceVOMap = new HashMap<>(); //나중에 Service로 옮겨야됨
         for (int i = 0; i < doctorsList.size(); i++) {
             String dcId = doctorsList.get(i).getDcId();
-            List<AttendanceVO> attendanceVOList = attendanceService.getAttendance(dcId);
-            attendanceVOMap.put(dcId, attendanceVOList);
+            List<String> collect = attendanceService.getAttendance(dcId).stream().map(o -> o.getAttendanceDate()).collect(Collectors.toList());
+
+            attendanceVOMap.put(dcId, collect);
         }
 
         model.addAttribute("doctors", doctorsList);
