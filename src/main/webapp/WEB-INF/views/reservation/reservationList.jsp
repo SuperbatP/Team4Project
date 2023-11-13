@@ -9,6 +9,10 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
+
+
+
+
 <c:forEach var="doctor" items="${doctors}">
     <div>
         <img src="${doctor.dcImg}">

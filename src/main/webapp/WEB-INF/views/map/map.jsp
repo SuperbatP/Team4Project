@@ -25,11 +25,11 @@
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 
-<div id="mapframe" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+<div id="mapframe" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
 
-    <div id="map" style="width: 1000px; height: 350px; margin-top: 40px;"></div>
+    <div id="map" style="width: 1200px; height: 350px; margin-top: 40px;"></div>
 
-    <div style="width: 1000px; height: 300px;">
+    <div style="width: 1200px; height: 300px;">
         <div class="news-info">
             <h3>불사조 병원</h3>
             <p>주소: 대전광역시 중구 용두동 번지 2층 35-17 희영빌딩</p>
@@ -52,7 +52,7 @@
     </div>
 
 
-    <div class="mymap" style="width: 1000px; height: 300px; border: 0.5px solid; border-color: gainsboro; display: flex; justify-content: center; align-items: center;">
+    <div class="mymap" style="width: 1200px; height: 300px; border: 0.5px solid; border-color: gainsboro; display: flex; justify-content: center; align-items: center;">
         <section id="appointment" style="width: 90%; height: 90%; display: flex; justify-content: space-evenly; align-items: center;">
 
             <div class="col-sm-2 section-title" style="margin-top: -90px;">

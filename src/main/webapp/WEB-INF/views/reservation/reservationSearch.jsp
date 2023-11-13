@@ -13,7 +13,7 @@
 
 <style>
     .container2 {
-        width: 1100px;
+        width: 1200px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
