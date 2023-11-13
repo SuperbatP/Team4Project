@@ -33,7 +33,7 @@
         <li><a href="map/map.wow" class="smoothScroll">오시는길</a></li>
         <li><a href="#news" class="smoothScroll">발급안내</a></li>
         <li><a href="#google-map" class="smoothScroll">병원소개</a></li>
-        <li><a href="/free/listFree.wow" class="smoothScroll">정보마당</a></li>
+        <li><a href="/free/freeList.wow" class="smoothScroll">정보마당</a></li>
       </ul>
     </div>
 

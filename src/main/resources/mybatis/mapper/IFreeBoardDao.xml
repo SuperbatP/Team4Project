@@ -43,11 +43,11 @@
 
     <select id="getTotalRowCount" resultType="int">
         SELECT  count(*)
-        FROM free_board
+        FROM ANNOUNCEMENT_BOARD
         WHERE 1=1
         --blank(공백 true) vs empty() and 조건절 동적쿼리
         --searchWord, searchType, searchCategory
-        <include refid="searchInFree" />
+
 
     </select>
 
