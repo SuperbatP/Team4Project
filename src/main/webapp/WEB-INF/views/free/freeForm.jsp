@@ -13,7 +13,7 @@
 	<div class="page-header">
 		<h3>자유게시판 - <small>글 등록</small></h3>
 	</div>
-	<form action="freeRegist.wow" method="post" enctype="multipart/form-data">
+	<form action="freeList.wow" method="post" enctype="multipart/form-data">
 	<table class="table table-striped table-bordered">
 		<colgroup>
 			<col width="20%" />
@@ -45,7 +45,13 @@
 					<c:forEach items="${codeList}" var="code">
 						<option value="${code.commCd}">${code.commNm}</option>
 					</c:forEach>
+					<option value="free">자유글</option>
+					<option value="free">민원사항</option>
+					<option value="free">이모저모 나는 고모</option>
+
+
 				</select>
+
 			</td>
 		</tr>
 

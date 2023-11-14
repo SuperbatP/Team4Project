@@ -11,6 +11,7 @@ import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
+import com.PhoenixHospital.free.dao.IFreeBoardDao;
 import com.PhoenixHospital.free.service.IFreeBoardService;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,21 +151,41 @@ public class FreeBoardController {
 
         }// 파일 업로드 끝
 
-        // 파일에 대한 정보를 AttachVO에 담아서 DB에 저장. -> 서비스에서 해야함.
+        // 파일에 대한 정보를 AttachVO에 담아서 DB에 저장. -> 서비스에서 해야함.장
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
 
         freeBoardService.registBoard(freeBoard);
-        resultMessageVO.messageSetting(true, "등록", "등록성공", "/free/freeList.wow", "목록으로");
+        resultMessageVO.messageSetting(true, "등록", "등록성공", "/free/freeFrom.wow", "목록으로");
 
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
 
     @RequestMapping("/free/freeForm.wow")
-    public String freeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) {
+    public String freeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
         //List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
         //model.addAttribute("codeList", codeList);
         return "free/freeForm";
     }
+
+    //@RequestMapping("/board/freeForm.wow")
+    //public String freeForm() throws Exception {
+    //    return "/free/freeForm";
+    //}
+
+    @RequestMapping("/board/insertFirm.wow")
+    public String insertBoard(IFreeBoardDao board) throws Exception {
+        freeBoardService.insertBoard(board);
+        return "redirect:/board/freeView.wow";
+    }
+
+
 }
+
+
+
+
+
+
+

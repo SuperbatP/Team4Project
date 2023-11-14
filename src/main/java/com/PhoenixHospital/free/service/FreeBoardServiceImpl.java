@@ -111,4 +111,9 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
             }
         }
     }
+
+    @Override
+    public void insertBoard(IFreeBoardDao board) throws Exception {
+        freeBoardDao.insertBoard(board);
+    }
 }
