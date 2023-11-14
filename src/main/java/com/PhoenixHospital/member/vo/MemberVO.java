@@ -9,6 +9,10 @@ public class MemberVO {
     private String memId;                   /* 회원아이디 */
     @ExcelColumn(hearName = "비밀번호")
     private String memPassword;                 /* 회원비밀번호 */
+
+
+
+
     @ExcelColumn(hearName = "이름")
     private String memName;                 /* 회원이름 */
     @ExcelColumn(hearName = "생년월일")
@@ -26,7 +30,42 @@ public class MemberVO {
     private String  memDelYn;                /* 회원삭제여부 */
     private String  memGender;                /* 회원성별 ; F/M */
 
+    private String memRole;                   /* 관리자 와 회원 구분 */
 
+    private String remember;  // 아이디정보 기억하기
+
+    public String getRemember() {
+        return remember;
+    }
+
+    public void setRemember(String remember) {
+        this.remember = remember;
+    }
+
+
+    public String getMemRole() {
+        return memRole;
+    }
+
+    public void setMemRole(String memRole) {
+        this.memRole = memRole;
+    }
+
+    public String getMemPassword() {
+        return memPassword;
+    }
+
+    public void setMemPassword(String memPassword) {
+        this.memPassword = memPassword;
+    }
+
+    public String getMemGender() {
+        return memGender;
+    }
+
+    public void setMemGender(String memGender) {
+        this.memGender = memGender;
+    }
 
     public String getMemId() {
         return memId;
@@ -36,15 +75,7 @@ public class MemberVO {
         this.memId = memId;
     }
 
-    public String getMemPass() {
-        return memPassword;
-    }
-
-    public void setMemPass(String memPass) {
-        this.memPassword = memPassword;
-    }
-
-    public String getMemName() {
+     public String getMemName() {
         return memName;
     }
 
@@ -108,19 +139,6 @@ public class MemberVO {
         this.memDelYn = memDelYn;
     }
 
-    public MemberVO(String memId, String memPass, String memName, String memBir, String memZip, String memAdd1, String memAdd2, String memHp, String memMail, String memDelYn, String memGender) {
-        this.memId = memId;
-        this.memPassword = memPassword;
-        this.memName = memName;
-        this.memBir = memBir;
-        this.memZip = memZip;
-        this.memAdd1 = memAdd1;
-        this.memAdd2 = memAdd2;
-        this.memHp = memHp;
-        this.memMail = memMail;
-        this.memDelYn = memDelYn;
-        this.memGender = memGender;
-    }
 
     @Override
     public String toString() {

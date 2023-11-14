@@ -24,7 +24,7 @@ public class LoginService {
             UserVO user = new UserVO(
                     member.getMemId()
                     , member.getMemName()
-                    , member.getMemPass()
+                    , member.getMemPassword()
                     , role);
             return user;
         }

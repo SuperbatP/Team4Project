@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,6 +12,7 @@
 <div class="container">
     <h3>회원가입</h3>
     <form action="memberRegist.wow" method="post">
+        <sec:csrfInput/>
         <table class="table table-striped table-bordered">
 
             <tbody>
@@ -19,7 +21,6 @@
                 <td><input type="text" class="form-control" id="memId" placeholder="아이디" oninput="checkId(), activateSignupbtn()" name = "memId" autocomplete='off' required="required">
                     <font color = "red" id = "failid" style = "display:none">5~15자의 영문자와 숫자를 조합해서 입력해주세요.</font>
                     <font color = "red" id = "fail" style = "display:none">이미 존재하는 ID입니다.</font>
-                    <button type="button" id="idCheck" onclick="checkId()">중복확인</button>
                 </td>
             </tr>
             <tr>
@@ -58,7 +59,7 @@
             </tr>
             <tr>
                 <th>메일</th>
-                <td><input type="email" name="memEmail" class="form-control input-sm">
+                <td><input type="email" name="memMail" class="form-control input-sm">
                     <button id="email" type="button">이메일확인</button>
                 </td>
             </tr>
@@ -112,42 +113,7 @@
 
 
 <script>
-    // //id 중북확인. 이 때 비동기처리(페이지는 그대로인 것)를 통해 DB에만 확인 ->ajax
-    // //id 글자수나 한글허용은 html의 정규표현식을 이용하는 것.
-    //
-    // //중복확인 버튼 눌렀는데 id가 빈 값일 경우 ; id길이가 3이상이 아니면 중복확인버튼 활성화x
-    // //중복확인 버튼 누르고 회원가입 하다가 아이디를 바꾸면 다시 중복확인버튼 누르게 해야함.
-    // //중복확인이 안되어있는데 회원가입버튼 누르면 아이디를 확인하세요. 알람이 뜨도록.
-    //
-    // let isIdChecked = false;
-    //
-    // $("input[name='memId']").on("change", function (e) {
-    //     isIdChecked = false;
-    //     //중복확인 버튼 누르고 회원가입 하다가 아이디를 바꾸면 다시 중복확인버튼 누르게 해야함.
-    // });
-    //
-    //
-    // $("#idCheck").on("click", function (e) {
-    //     //들어온 id 중복확인
-    //     let curId = $("input[name='memId']").val(); //input에 들어온 값을 받아야 하니까.
-    //     if (!curId || curId.trim().length <= 3) {
-    //         alert("공백을 제거하거나 3글자 이상 입력하세요.")
-    //     } else {
-    //         $.ajax({
-    //             url: "/join/idCheck.wow"
-    //             , type: "get", data: {"id": curId}
-    //             , success: function (data) {
-    //                 alert(data);
-    //                 isIdChecked = true;
-    //             }
-    //             , error: function (err) {
-    //                 alert("에러");
-    //             }
-    //         });
-    //     }
-    //
-    // });
-    //
+
     // //이메일 인증
     // $("#email").on("click", function (e) {
     //     let mailAddress = $("input[name='memEmail']").val();
@@ -190,7 +156,6 @@
                     $(".signupbtn").css("background-color", "#aaaaaa");
                     $("#memId").css("background-color", "#FFCECE");
                     idCheck = 0;
-                    console.log("if1")
                 } else if (regMemberid(inputed) == false || inputed.length > 14) {
                     $("#failid").css("display", "block");
                     $("#fail").css("display", "none");
@@ -198,13 +163,12 @@
                     $(".signupbtn").css("background-color", "#aaaaaa");
                     $("#memId").css("background-color", "#FFCECE");
                     idCheck = 0;
-                    console.log("else1")
+
                 } else if (data == '0' && regMemberid(inputed)) { //중복되지않고, 정규식을 통과할 때
                     $("#memId").css("background-color", "#B0F6AC");
                     $("#failid").css("display", "none");
                     $("#fail").css("display", "none");
                     idCheck = 1;
-                    console.log("else2")
                 }
             }
         });
@@ -221,7 +185,6 @@
                     $("#memName").css("background-color", "#FFCECE");  // input 배경 붉은색으로 바꾸기
                     nameCheck = 0; // 회원 가입 전 값들 체크하기 위해 (0은 불가, 1은 가능)
                 } else if (regMemberName(inputed) == true) { //정규표현식에 해당할 때
-
                     $("#memName").css("background-color", "#B0F6AC"); // input 배경 초록색으로 바꾸기
                     $("#failname").css("display", "none");
                     nameCheck = 1;

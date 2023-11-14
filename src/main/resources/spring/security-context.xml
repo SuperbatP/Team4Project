@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	https://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <beans:bean id="customUserDetailsService" class="com.PhoenixHospital.auth.CustomUserDetailsService"/>
+
+    <http pattern="/resource/**" security="none"/>
+
+    <http auto-config="true">
+    <!--    <intercept-url pattern="/reservation/**" access="isAuthenticated()" />  &lt;!&ndash;로그인한 모든 사람은 예약페이지를 볼 수 있음 &ndash;&gt;
+        <intercept-url pattern="/memberList" access="hasRole('ADMIN')" /> &lt;!&ndash;memberList는 관리자만 볼 수 있음&ndash;&gt;
+        <intercept-url pattern="/member/**" access="hasAnyRole('ADMIN', 'USER')" /> 근데 회원가입폼은 제거해야하는뎅 -->
+        <intercept-url pattern="/*" access="permitAll" />
+
+        <form-login
+                login-page="/GoLogin"
+                login-processing-url="/login"
+                default-target-url="/"
+                username-parameter="memId"
+                password-parameter="memPassword"
+                authentication-failure-url="/login/fail"
+        />
+
+
+        <logout
+                logout-url="/logout"
+                logout-success-url="/"
+                delete-cookies="JSESSIONID, remember-me"/>
+
+        <remember-me
+                token-validity-seconds="604800"
+                data-source-ref="dataSource"/>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <password-encoder ref="bcryptPasswordEncoder"/>
+        </authentication-provider>
+
+
+    </authentication-manager>
+
+</beans:beans>

@@ -1,3 +1,4 @@
+
 <%@page import="com.PhoenixHospital.login.vo.UserVO"%>
 <%@page import="com.PhoenixHospital.common.util.CookieUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -35,6 +36,9 @@
 				</div>
 				<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
 					<form action="/login/login.wow" class="" method="post">
+						<sec:csrfInput/>
+						<input type="hidden" name="remember" value="true">
+						
 						<!-- id input -->
 						<div class="form-outline mb-4">
 							<label class="form-label" for="form1Example13">ID</label>
@@ -50,7 +54,7 @@
 							<!-- Checkbox -->
 							<div class="form-check">
 								<label class="form-check-label" for="form1Example3"> ID 기억하기 </label>
-								<input class="form-check-input" type="checkbox" name="rememberMe" value="Y" id="form1Example3" ${checked} >
+								<input class="form-check-input" type="checkbox" name="remember-me" value="Y" id="form1Example3" ${checked} >
 							</div>
 							<a href="#!">Forgot password?</a>
 						</div>
@@ -75,6 +79,12 @@
 			</div>
 		</div>
 	</section>
+
+
+
+
+
+
 	<%@include file="/WEB-INF/inc/footer.jsp" %>
 	<!-- SCRIPTS -->
 	<script src="/resource/bootstrap-3.3.2/js/jquery.js"></script>

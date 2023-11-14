@@ -1,3 +1,4 @@
+package com.PhoenixHospital.common.util;/*
 package com.PhoenixHospital.common.util;
 
 import com.PhoenixHospital.login.vo.UserVO;
@@ -43,3 +44,4 @@ public class ManagerCheckInterceptor extends HandlerInterceptorAdapter {
 //        super.afterCompletion(request, response, handler, ex);
 //    }
 }
+*/

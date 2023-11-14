@@ -1,3 +1,4 @@
+package com.PhoenixHospital.common.util;/*
 package com.PhoenixHospital.common.util;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -30,3 +31,4 @@ public class IPCheckInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 }
+*/

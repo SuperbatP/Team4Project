@@ -15,9 +15,9 @@ import java.util.List;
 @Mapper
 public interface IMemberDao {
 
-	public int getTotalRowCount(@Param("paging") PagingVO paging);
+	public int getTotalRowCount(@Param("paging") PagingVO paging, @Param("search") SearchVO search);
 
-	public List<MemberVO> getMemberList(@Param("paging")PagingVO paging);
+	public List<MemberVO> getMemberList(@Param("paging")PagingVO paging, @Param("search") SearchVO search);
 
 	/**
 	 * @param memId
@@ -28,6 +28,11 @@ public interface IMemberDao {
 	public int deleteMember(MemberVO member);
 	public int insertMember(MemberVO member);
 
+	public int idCheck(MemberVO member);
+
+	public int EmCheck(String memMail);
+
+	MemberVO loginCheck(MemberVO member);
 
 	
 }

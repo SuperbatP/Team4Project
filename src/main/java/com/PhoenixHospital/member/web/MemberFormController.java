@@ -5,6 +5,7 @@ import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.service.MailService;
 import com.PhoenixHospital.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import javax.mail.MessagingException;
 public class MemberFormController {
     @Autowired
     private IMemberService memberService;
+
 
 //    @ResponseBody
 //    @RequestMapping(value ="/join/idCheck.wow", produces = "text/plain; charset=UTF-8")
@@ -43,6 +45,18 @@ public class MemberFormController {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

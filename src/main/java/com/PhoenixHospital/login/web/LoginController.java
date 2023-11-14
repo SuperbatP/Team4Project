@@ -1,16 +1,22 @@
 package com.PhoenixHospital.login.web;
 
-
-import com.PhoenixHospital.common.util.CookieUtils;
-import com.PhoenixHospital.login.service.LoginService;
-import com.PhoenixHospital.login.vo.UserVO;
+import com.PhoenixHospital.auth.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.PhoenixHospital.login.vo.UserVO;
+import com.PhoenixHospital.login.service.LoginService;
+import com.PhoenixHospital.common.util.CookieUtils;
+import com.PhoenixHospital.login.vo.UserVO;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,17 +27,13 @@ import java.net.URLEncoder;
 
 @Controller
 public class LoginController {
- //    java에서는 먼저 받은 다음에 get/ process로 나뉘었는데, spring는 그냥 @으로 나누면 됨.
- /*   public String process(HttpServletRequest req, HttpServletResponse response) throws Exception {
-        if (req.getMethod().equals("GET")) {
-            return getProcess(req,response);
-        } else {  //post랑 그 외
-            return postProcess(req,response);
-        }
-    }*/
 
     @Autowired
-    LoginService loginService;
+    private LoginService loginService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
 
 
@@ -73,13 +75,22 @@ public class LoginController {
             UserVO user = loginService.getUser(id);
             if (user == null) {
                 return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비번확인", "utf-8");
-            } else { //id맞았을때
-                if (user.getUserPass().equals(pw)) {//다 맞는경우
+            } else {//id맞았을때
+                if (passwordEncoder.matches(pw, user.getUserPass())) {
                     if (save_id.equals("Y")) {
                         response.addCookie(CookieUtils.createCookie("SAVE_ID", id, "/", 3600 * 24 * 7));
                     }
                     session.setAttribute("USER_INFO", user);
-                    return  "redirect:/";  //성공했을때는 home으로
+
+                    // 로그인 성공시 Authentication 객체 생성 및 설정
+                    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                    // 사용자의 정보와 권한을 설정하려면 CustomUserDetails를 사용
+                    CustomUserDetails userDetails = new CustomUserDetails(user);
+                    authentication.setAuthenticated(true);
+                    userDetails.setAuthorities(user.getAuthorities());
+                    userDetails.setPassword(user.getUserPass());
+
+                    return "redirect:/";  // 성공했을때는 home으로
                 } else {//  비번만 틀린경우
                     return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비번확인", "utf-8");
                 }
@@ -93,4 +104,71 @@ public class LoginController {
         session.removeAttribute("USER_INFO");
         return "redirect:/";
     }
+
+
+
+/*
+    // 로그인창으로 감
+    @RequestMapping("/GoLogin")
+    public String GoLogin() {
+
+        return "login/login";
+    }
+
+*/
+
+
+
+
+
+
+
+
+/*
+
+    // 로그아웃
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        // 로그아웃할때 세션종료해서 정보 다없애고 다시 시작하는거임
+        return "redirect:/";
+    }
+*/
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*//개인회원가입 아이디중복체크
+    @RequestMapping("/join/idCheck")
+    @ResponseBody
+    public int idCheck(@ModelAttribute MemberVO member) {
+
+
+        boolean result = memberService.idCheck(member);
+        if(result) {
+            return 1;
+        }else {
+            return 2;
+        }
+
+    }*/
+
+   /* //개인회원가입 이메일 체크
+    @RequestMapping("/join/EmCheck")
+    @ResponseBody
+    public int EmCheck(@RequestParam String memMail) {
+
+        System.out.println("EmCheck:" + memMail);
+
+
+        boolean result = memberService.EmCheck(memMail);
+        if(result) {
+            return 1;
+        }else {
+            return 2;
+        }
+    }*/
+
+
+
+
 }
