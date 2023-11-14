@@ -18,6 +18,7 @@ public List<FreeBoardVO> getBoardList(@Param("paging") PagingVO paging, @Param("
   public int updateBoard(FreeBoardVO freeBoard);
   public int deleteBoard(FreeBoardVO freeBoard);
   public int insertBoard(FreeBoardVO freeBoard);
+  void insertBoard(IFreeBoardDao board) throws Exception;
 
   
 }

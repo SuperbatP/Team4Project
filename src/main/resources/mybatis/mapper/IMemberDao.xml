@@ -82,7 +82,7 @@
         WHERE mem_id=#{memId}
     </delete>
 
-    <insert id="memGenderMember">
+    <insert id="insertMember">
         INSERT INTO member ( mem_id, mem_password, mem_name
                            , mem_bir, mem_zip, mem_add1
                            , mem_add2, mem_hp, mem_email

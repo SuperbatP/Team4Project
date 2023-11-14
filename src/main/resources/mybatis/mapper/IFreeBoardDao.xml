@@ -43,7 +43,7 @@
 
     <select id="getTotalRowCount" resultType="int">
         SELECT  count(*)
-        FROM ANNOUNCEMENT_BOARD
+        FROM BOARD
         WHERE 1=1
         --blank(공백 true) vs empty() and 조건절 동적쿼리
         --searchWord, searchType, searchCategory
@@ -54,7 +54,7 @@
     <select id="getBoardList" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" >
         <!--페이징은 리스트에서만!-->
     select *
-    from ANNOUNCEMENT_BOARD
+    from BOARD
 
          </select>
 
@@ -123,6 +123,30 @@
         )
 
     </insert>
+
+
+    <select id="getfreeBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO" resultType="int">
+        SELECT count(*)
+        FROM free_board
+    </select>
+
+    <select id="getfreeBoardList" resultType="int" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
+        SELECT * FROM
+            (SELECT a.*,rownum AS rnum FROM (
+                                                SELECT bo_no
+                                                     , bo_title , bo_category, bo_writer
+                                                     , bo_pass, bo_content,  bo_hit
+                                                     , to_char(bo_reg_date,'YYYY-MM-DD') AS bo_reg_date
+                                                     , to_char(bo_mod_date,'YYYY-MM-DD') AS bo_mod_date
+                                                     , bo_del_yn
+                                                FROM free_board
+                                                WHERE bo_del_yn='N'
+                                                ORDER BY bo_no desc
+                                            ) a  )b
+        WHERE rnum between #{firstRow} and #{lastRow}
+
+    </select>
+
 
 </mapper>
 

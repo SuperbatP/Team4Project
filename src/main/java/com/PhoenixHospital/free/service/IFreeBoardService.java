@@ -5,6 +5,7 @@ import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
+import com.PhoenixHospital.free.dao.IFreeBoardDao;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
 
 import java.util.List;
@@ -22,4 +23,5 @@ public interface IFreeBoardService {
 			throws BizNotFoundException,BizPasswordNotMatchedException, BizNotEffectedException ;
 	public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 
+	public void insertBoard(IFreeBoardDao board) throws Exception;
 }
