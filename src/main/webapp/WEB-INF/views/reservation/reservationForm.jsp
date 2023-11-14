@@ -67,9 +67,9 @@
 <form name="reservation" action="reservationRegist.wow" method="post">
     <sec:csrfInput/>
     <input type="hidden" name="memId" value="${member.memId}">
-    이름<input name="memName" value="${member.memName}">
-    전화번호<input name="memHp" value="${member.memHp}">
-    메일주소<input name="memEmail" value="${member.memEmail}">
+    이름<input name="memName" value="${member.memName}" required="required">
+    전화번호<input name="memHp" value="${member.memHp}" required="required">
+    메일주소<input name="memEmail" value="${member.memEmail}" required="required">
     <input type="hidden" name="dcId" value="${doctor.dcId}">
     <input type="hidden" name="treatmentCode" value="${doctor.treatmentCode}">
 
@@ -99,11 +99,11 @@
         </tbody>
     </table>
 
-    <input type="hidden" name="reservationDate">
+    <input type="hidden" name="reservationDate" required="required">
 
     <label>예약시간</label>
     <div>
-        <select name="reservationTime">
+        <select name="reservationTime" required="required">
 
         </select>
     </div>
@@ -212,7 +212,7 @@
         let nowDate = new Date(nowColumn.id);
         $input.val(nowDate);
         let str = "";
-        str += "<option selected='selected'>예약시간 선택</option>";
+        str += "<option value='' selected='selected'>예약시간 선택</option>";
         for (let i = 0; i < atDate.length; i++) {
             if(nowDate.getDay() == DayToNum(atDate[i].value)){
                 str += "<option value='"+ atTime[i].value;
