@@ -95,7 +95,6 @@ public class ReservationController {
 
     @PostMapping("reservation/reservationRegist.wow")
     public String reservationRegist(Model model, ReservationVO reservation){
-        System.out.println(reservation);
         reservationService.registReservation(reservation);
 
         return "reservation/reservationSearch";
