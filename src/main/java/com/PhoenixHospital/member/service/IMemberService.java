@@ -21,7 +21,7 @@ public interface IMemberService {
 
 	boolean idCheck(MemberVO member);
 
-	boolean EmCheck(String memMail);
+	boolean EmCheck(String memEmail);
 
 	boolean loginCheck(MemberVO member, HttpServletResponse rep, HttpServletRequest req) throws BizNotEffectedException;
 

@@ -20,7 +20,7 @@
     <input type="hidden" name="memId" value="${member.memId}">
     이름<input name="memName" value="${member.memName}">
     전화번호<input name="memHp" value="${member.memHp}">
-    메일주소<input name="memEmail" value="${member.memMail}">
+    메일주소<input name="memEmail" value="${member.memEmail}">
     <input type="hidden" name="dcId" value="${doctor.dcId}">
     <input type="hidden" name="treatmentCode" value="${doctor.treatmentCode}">
     <label>예약일</label>

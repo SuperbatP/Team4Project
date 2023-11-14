@@ -30,7 +30,7 @@ public interface IMemberDao {
 
 	public int idCheck(MemberVO member);
 
-	public int EmCheck(String memMail);
+	public int EmCheck(String memEmail);
 
 	MemberVO loginCheck(MemberVO member);
 

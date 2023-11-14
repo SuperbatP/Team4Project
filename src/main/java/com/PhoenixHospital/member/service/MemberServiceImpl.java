@@ -118,9 +118,9 @@ public class MemberServiceImpl implements IMemberService {
     }
 
     @Override
-    public boolean EmCheck(String memMail) {
+    public boolean EmCheck(String memEmail) {
 
-        int count = memberDao.EmCheck(memMail);
+        int count = memberDao.EmCheck(memEmail);
         if (count == 0) {
             return true;
         }

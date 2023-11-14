@@ -55,8 +55,8 @@
 			</tr>
 			<tr>
 				<th>메일</th>
-				<td><input type="email" name="memMail" class="form-control input-sm" required="required"
-						   value='${member.memMail}'></td>
+				<td><input type="email" name="memEmail" class="form-control input-sm" required="required"
+						   value='${member.memEmail}'></td>
 			</tr>
 			<tr>
 				<th>핸드폰</th>

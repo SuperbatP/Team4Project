@@ -26,7 +26,7 @@ public class MemberVO {
     @ExcelColumn(hearName = "전화번호")
     private String memHp;                   /* 회원전화번호 */
     @ExcelColumn(hearName = "이메일")
-    private String memMail;                 /* 회원이메일 */
+    private String memEmail;                 /* 회원이메일 */
     private String  memDelYn;                /* 회원삭제여부 */
     private String  memGender;                /* 회원성별 ; F/M */
 
@@ -57,14 +57,6 @@ public class MemberVO {
 
     public void setMemPassword(String memPassword) {
         this.memPassword = memPassword;
-    }
-
-    public String getMemGender() {
-        return memGender;
-    }
-
-    public void setMemGender(String memGender) {
-        this.memGender = memGender;
     }
 
     public String getMemId() {
@@ -123,12 +115,12 @@ public class MemberVO {
         this.memHp = memHp;
     }
 
-    public String getMemMail() {
-        return memMail;
+    public String getMemEmail() {
+        return memEmail;
     }
 
-    public void setMemMail(String memMail) {
-        this.memMail = memMail;
+    public void setMemEmail(String memEmail) {
+        this.memEmail = memEmail;
     }
 
     public String getMemDelYn() {

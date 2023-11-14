@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <th>메일</th>
-                <td><input type="email" name="memMail" class="form-control input-sm">
+                <td><input type="email" name="memEmail" class="form-control input-sm">
                     <button id="email" type="button">이메일확인</button>
                 </td>
             </tr>
