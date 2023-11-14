@@ -34,7 +34,7 @@
     <div class="container">
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
-            <div class="nav navbar-nav navbar-left"><a href="index.wow"><img
+            <div class="nav navbar-nav navbar-left"><a href="/"><img
                     src="/resource/bootstrap-3.3.2/images/logo_small.png" style="width:150px; "></a></div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/reservation/reservationSearch.wow" class="smoothScroll">진료안내 및 예약</a></li>
