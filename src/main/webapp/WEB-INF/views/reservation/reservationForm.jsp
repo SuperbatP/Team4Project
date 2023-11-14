@@ -58,7 +58,7 @@
 
 <c:forEach var="re" items="${reservation}">
     <c:if test="${re.dcId eq doctor.dcId}">
-        <input class="reservationDate" type="hidden" value="${re.reservationDate}">
+        <input class="reservationDate" type="hidden" value="${re.reservationDateString}">
         <input class="reservationTime" type="hidden" value="${re.reservationTime}">
     </c:if>
 </c:forEach>
@@ -212,14 +212,15 @@
         let nowDate = new Date(nowColumn.id);
         $input.val(nowDate);
         let str = "";
-
+        str += "<option selected='selected'>예약시간 선택</option>";
         for (let i = 0; i < atDate.length; i++) {
             if(nowDate.getDay() == DayToNum(atDate[i].value)){
                 str += "<option value='"+ atTime[i].value;
                 for (let j = 0; j < reDate.length; j++) {
                     let reservationDate = new Date(reDate[j].value);
-                    if (DayToNum(reservationDate.getDay()) == nowDate.getDay() && reTime[j].value==atTime[i].value){
-                        str += "style='display: none'";
+                    if (reservationDate.getFullYear() == nowDate.getFullYear() && reservationDate.getMonth() == nowDate.getMonth() && reservationDate.getDate() == nowDate.getDate() && reTime[j].value==atTime[i].value){
+                        str += "' style='display: none";
+                        break;
                     }
                 }
                 str += "'>" + atTime[i].value +"</option>";

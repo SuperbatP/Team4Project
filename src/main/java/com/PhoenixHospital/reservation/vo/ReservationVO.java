@@ -15,6 +15,7 @@ public class ReservationVO {
     private String treatmentCode;
     private String attendanceId;
     private Date reservationDate;
+    private String reservationDateString;
     private String reservationTime;
     private String reservationRegDate;
     private String etc;
@@ -26,6 +27,14 @@ public class ReservationVO {
         return ToStringBuilder
                 .reflectionToString
                         (this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    public String getReservationDateString() {
+        return reservationDateString;
+    }
+
+    public void setReservationDateString(String reservationDateString) {
+        this.reservationDateString = reservationDateString;
     }
 
     public String getReservationNo() {

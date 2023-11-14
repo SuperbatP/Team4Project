@@ -5,8 +5,10 @@ import com.PhoenixHospital.reservation.vo.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements IReservationService{
@@ -16,7 +18,16 @@ public class ReservationServiceImpl implements IReservationService{
     @Override
     public List<ReservationVO> getReservationList() {
         List<ReservationVO>  reservationVOList = reservationDao.getReservationList();
-        return reservationVOList;
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        List<ReservationVO> collect = reservationVOList.stream().map(o -> {
+            String str = format.format(o.getReservationDate());
+            o.setReservationDateString(str);
+            ;
+            return o;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
     @Override
