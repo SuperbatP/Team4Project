@@ -200,7 +200,7 @@
         nowColumn.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
         console.log(nowColumn);
 
-        nowColumn.
+
     }
 
     // 이전달 버튼 클릭
