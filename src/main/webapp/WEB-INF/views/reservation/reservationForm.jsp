@@ -1,6 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%
     request.setCharacterEncoding("UTF-8");
 %>
@@ -48,7 +49,23 @@
     </style>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+
+<c:forEach var="at" items="${attendance}">
+    <input class="attendanceDate" type="hidden" value="${at.attendanceDate}">
+    <input class="attendanceTime" type="hidden" value="${at.attendanceTime}">
+</c:forEach>
+
+<c:forEach var="re" items="${reservation}">
+    <c:if test="${re.dcId eq doctor.dcId}">
+        <input class="reservationDate" type="hidden" value="${re.reservationDate}">
+        <input class="reservationTime" type="hidden" value="${re.reservationTime}">
+    </c:if>
+</c:forEach>
+
+
 <form name="reservation" action="reservationRegist.wow" method="post">
+    <sec:csrfInput/>
     <input type="hidden" name="memId" value="${member.memId}">
     이름<input name="memName" value="${member.memName}">
     전화번호<input name="memHp" value="${member.memHp}">
@@ -82,18 +99,7 @@
         </tbody>
     </table>
 
-
-    <c:forEach var="at" items="${attendance}">
-        <input class="attendanceDate" type="hidden" value="${at.attendanceDate}">
-        <input class="attendanceTime" type="hidden" value="${at.attendanceTime}">
-    </c:forEach>
-
-    <c:forEach var="re" items="${reservation}">
-        <c:if test="${re.dcId eq doctor.dcId}">
-            <input class="reservationDate" type="hidden" value="${re.reservationDate}">
-            <input class="reservationTime" type="hidden" value="${re.reservationTime}">
-        </c:if>
-    </c:forEach>
+    <input type="hidden" name="reservationDate">
 
     <label>예약시간</label>
     <div>
@@ -122,6 +128,9 @@
     let reDate = document.getElementsByClassName('reservationDate');
     let reTime = document.getElementsByClassName('reservationTime');
 
+    $input = $("input[name='reservationDate']");
+    $select = $("select[name='reservationTime']");
+
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
     function buildCalendar() {
         let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);     // 이번달 1일
@@ -145,7 +154,7 @@
 
             let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
             nowColumn.innerText = leftPad(nowDay.getDate());      // 추가한 열에 날짜 입력
-
+            nowColumn.id = nowDay.getFullYear() + "-" + (nowDay.getMonth()+1) + "-" + nowDay.getDate();
 
             if (nowDay.getDay() == 0) {                 // 일요일인 경우 글자색 빨강으로
                 nowColumn.style.color = "#DC143C";
@@ -200,7 +209,25 @@
         nowColumn.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
         console.log(nowColumn);
 
+        let nowDate = new Date(nowColumn.id);
+        $input.val(nowDate);
+        let str = "";
 
+        for (let i = 0; i < atDate.length; i++) {
+            if(nowDate.getDay() == DayToNum(atDate[i].value)){
+                str += "<option value='"+ atTime[i].value;
+                for (let j = 0; j < reDate.length; j++) {
+                    let reservationDate = new Date(reDate[j].value);
+                    if (DayToNum(reservationDate.getDay()) == nowDate.getDay() && reTime[j].value==atTime[i].value){
+                        str += "style='display: none'";
+                    }
+                }
+                str += "'>" + atTime[i].value +"</option>";
+            }
+        }
+
+        $select.empty();
+        $select.append(str);
     }
 
     // 이전달 버튼 클릭

@@ -70,35 +70,35 @@
         </selectKey>
 
         INSERT INTO reservation (
-            reservation_no,
-            mem_name,
-            mem_id,
-            mem_hp,
-            mem_email,
-            dc_id,
-            treatment_code,
-            reservation_date,
-            reservation_time,
-            reservation_reg_date,
-            reservation_mod_date,
-            etc,
-            cancel_date,
-            attendance_id
+        reservation_no,
+        mem_name,
+        mem_id,
+        mem_hp,
+        treatment_code,
+        dc_id,
+        reservation_date,
+        reservation_time,
+        reservation_reg_date,
+        etc,
+        cancel_date,
+        reservation_mod_date,
+        attendance_id,
+        mem_email
         ) VALUES (
                   #{reservationNo},
                   #{memName},
                   #{memId},
                   #{memHp},
-                  #{memEmail},
+        #{treatmentCode},
                   #{dcId},
-                  #{treatmentCode},
                   #{reservationDate},
                   #{reservationTime},
                   sysdate,
+                  #{etc,jdbcType=VARCHAR},
                   null,
-                  #{etc},
                   null,
-                  null
+                  null,
+        #{memEmail}
                          )
     </insert>
 </mapper>

@@ -11,7 +11,6 @@ public class ReservationVO {
     private String memId;
     private String memHp;
     private String memEmail;
-    private String dtCode;
     private String dcId;
     private String treatmentCode;
     private String attendanceId;
@@ -69,13 +68,6 @@ public class ReservationVO {
         this.memEmail = memEmail;
     }
 
-    public String getDtCode() {
-        return dtCode;
-    }
-
-    public void setDtCode(String dtCode) {
-        this.dtCode = dtCode;
-    }
 
     public String getDcId() {
         return dcId;
