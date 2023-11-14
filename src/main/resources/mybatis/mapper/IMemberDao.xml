@@ -39,7 +39,6 @@
         mem_add2,
         mem_hp,
         mem_email,
-        mem_gender,
         mem_del_yn,
         mem_role
         FROM member
@@ -54,7 +53,7 @@
             mem_bir
              , mem_id               , mem_password             , mem_name
              , mem_zip              , mem_add1               , mem_add2
-             , mem_hp               , mem_email               , mem_gender            , mem_del_yn
+             , mem_hp               , mem_email               , mem_del_yn
              , mem_role
         FROM member a
         WHERE a.mem_id=#{memId}
@@ -73,6 +72,7 @@
           , mem_add2   =#{memAdd2}
           , mem_hp     =#{memHp}
           , mem_email   =#{memEmail}
+          , mem_role   =#{memRole}
         WHERE mem_id = #{memId}
 
     </update>
@@ -82,7 +82,7 @@
         WHERE mem_id=#{memId}
     </delete>
 
-    <insert id="insertMember">
+    <insert id="memGenderMember">
         INSERT INTO member ( mem_id, mem_password, mem_name
                            , mem_bir, mem_zip, mem_add1
                            , mem_add2, mem_hp, mem_email
@@ -90,7 +90,7 @@
         VALUES ( #{memId}, #{memPassword}, #{memName}
                , #{memBir}, #{memZip}, #{memAdd1}
                , #{memAdd2}, #{memHp}, #{memMail}
-               , 'N', 'ADMIN')
+               , 'N', 'USER')
 
     </insert>
 
