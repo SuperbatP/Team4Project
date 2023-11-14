@@ -37,7 +37,7 @@
         justify-content: center;
         align-items: center;
         height: 450px;
-        border-bottom: 0.2px solid gainsboro;
+        margin-bottom: 50px;
 
     }
 
@@ -101,7 +101,6 @@
     }
 
     .doctor-info {
-        padding-top: 30px;
         min-width: 300px;
         height: 380px;
 
@@ -113,10 +112,10 @@
 </style>
 
 <div class="container2">
-    <div class="header col-sm-10 wow fadeInUp">
-        <h2 data-wow-delay="0.1s">진료과목나와야됨</h2>
-    </div>
     <c:forEach var="doctor" items="${doctors}">
+    <div class="header col-sm-10 wow fadeInUp">
+        <h2 data-wow-delay="0.1s">${doctor.major}</h2>
+    </div>
         <div class="col-sm-10 doctor-info-frame wow fadeInUp" data-wow-delay="0.2s">
             <div class="doctorimg col-sm-2">
                 <img src="${doctor.dcImg}" class="img-responsive" alt="" style="width: 100%; height: 200px;">
@@ -130,12 +129,12 @@
 
             <div class="doctor-info col-sm-10">
                 <div>
-                    <h3>${doctor.dcName}</h3>
-                    <p>&nbsp${doctor.major}</p>
+                    <h2 style="font-size: 30px">${doctor.dcName}</h2>
+                    <p style="font-size: 20px">&nbsp${doctor.major}</p>
                 </div>
                 <div class="team-contact-info">
-                    <p><i>·</i> ${doctor.university}</p>
-                    <p><i>·</i> ${doctor.workHistory}</p>
+                    <p style="font-size: 18px"><i>·</i> ${doctor.university}</p>
+                    <p style="font-size: 18px"><i>·</i> ${doctor.workHistory}</p>
                 </div>
                 <div class="graph">
                     <table>
