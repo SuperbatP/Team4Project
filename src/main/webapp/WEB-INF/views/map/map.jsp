@@ -29,7 +29,7 @@
 
     <div id="map" class="col-sm-7" style="min-width: 400px; height: 350px; margin-top: 40px;"></div>
 
-    <div style="width: 1200px; height: 300px;">
+    <div style="width: 1150px; height: 350px;">
         <div class="news-info">
             <h3>불사조 병원</h3>
             <p>주소: 대전광역시 중구 용두동 번지 2층 35-17 희영빌딩</p>

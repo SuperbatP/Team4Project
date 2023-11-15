@@ -68,7 +68,7 @@
         flex-wrap: wrap;
 
 
-        width: 150px;
+        width: 130px;
         height: 110px;
         background: #a5c422;
 
@@ -105,7 +105,7 @@
     /*이중선 제거*/
     th,
     td {
-        width: 110px;
+        width: 125px;
         height: 55px;
         text-align: center;
         border: 1px solid gainsboro;
