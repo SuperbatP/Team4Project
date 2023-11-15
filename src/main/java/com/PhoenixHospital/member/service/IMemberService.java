@@ -25,5 +25,7 @@ public interface IMemberService {
 
 	boolean loginCheck(MemberVO member, HttpServletResponse rep, HttpServletRequest req) throws BizNotEffectedException;
 
+	MemberVO getBySns(MemberVO snsUser);
+
 
 }

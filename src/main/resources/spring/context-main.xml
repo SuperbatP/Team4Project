@@ -17,7 +17,7 @@
 
     <!-- properties파일 읽은 프로퍼티 객체, DB말고도 여러가지 작성할 거라 main에 빈등록 -->
     <util:properties id="util"
-                     location="/WEB-INF/classes/spring/appconfig.properties" />
+                     location="classpath:/spring/appconfig.properties" />
 
 
     <!-- ContextLoaderListenr 빈 중 DB관련 빈들 등록 -->
@@ -40,10 +40,16 @@
           class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation"
-                  value="/WEB-INF/classes/mybatis/mybatis-config.xml" />
+                  value="classpath:/mybatis/mybatis-config.xml" />
         <property name="mapperLocations"
-                  value="/WEB-INF/classes/mybatis/mapper/*.xml" />
+                  value="classpath:/mybatis/mapper/*.xml" />
     </bean>
+
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
 
     <!-- 이메일 보내기 관련 git에 올릴때 조심할 것.  -->
     <bean id="mailSender"
@@ -64,8 +70,13 @@
         </property>
     </bean>
 
-<!-- component-scan의 scan은 @Compent, @Controller 등등만 스캔. mybatis @인 @Mapper는 component-scan이 스캔안함.
- 그래서 따로 mybatis-sprig scan을 통해 스캔-->
+
+
+
+
+
+    <!-- component-scan의 scan은 @Compent, @Controller 등등만 스캔. mybatis @인 @Mapper는 component-scan이 스캔안함.
+     그래서 따로 mybatis-sprig scan을 통해 스캔-->
     <mybatis-spring:scan base-package="com.PhoenixHospital"
                          annotation="org.apache.ibatis.annotations.Mapper" />
 

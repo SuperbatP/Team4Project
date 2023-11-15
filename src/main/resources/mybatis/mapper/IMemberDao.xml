@@ -96,5 +96,14 @@
 
 
 
+    <select id="getBySnsNaver" resultType="com.PhoenixHospital.member.vo.MemberVO">
+        select * from member where naverid = #{naverid}
+    </select>
+
+    <select id="getBySnsGoogle" resultType="com.PhoenixHospital.member.vo.MemberVO">
+        select * from member where googleid = #{googleid}
+    </select>
+
+
 
 </mapper>

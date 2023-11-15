@@ -8,8 +8,9 @@ import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.vo.MemberVO;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Service
 public class MemberServiceImpl implements IMemberService {
     @Autowired
@@ -27,6 +29,16 @@ public class MemberServiceImpl implements IMemberService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private SqlSession session;
+
+
+
+
+    private static final String NS = "com.PhoenixHospital.member.dao.IMemberDao";
+    private static final String GET_BY_SNS_NAVER = NS + ".getBySnsNaver";
+    private static final String GET_BY_SNS_GOOGLE = NS + ".getBySnsGoogle";
 
 
     @Override
@@ -183,6 +195,16 @@ public class MemberServiceImpl implements IMemberService {
                 throw new BizNotEffectedException();
             }
             return true;
+        }
+
+    }
+
+    @Override
+    public MemberVO getBySns(MemberVO snsUser) {
+        if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
+            return session.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
+        } else {
+            return session.selectOne(GET_BY_SNS_GOOGLE, snsUser.getGoogleid());
         }
 
     }

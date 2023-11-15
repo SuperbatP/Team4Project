@@ -66,14 +66,14 @@
 							<p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
 						</div>
 
-						<a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!"
+						<a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="${ naver_url }"
 						   role="button">
 						<%--	SNS계정 로그인 아이콘	--%>
-							<i class="fab fa-facebook-f me-2"></i>Continue with Facebook
+							<i class="fab fa-facebook-f me-2"></i>Continue with Naver
 						</a>
-						<a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
+						<a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="${ google_url }"
 						   role="button">
-							<i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
+							<i class="fab fa-twitter me-2"></i>Continue with Google</a>
 					</form>
 				</div>
 			</div>

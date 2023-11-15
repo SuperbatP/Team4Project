@@ -34,5 +34,7 @@ public interface IMemberDao {
 
 	MemberVO loginCheck(MemberVO member);
 
+	MemberVO getBySns(MemberVO snsUser);
+
 	
 }

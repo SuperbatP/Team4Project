@@ -6,87 +6,6 @@
 <html lang="en">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-
-
-
-
-
-    <script src='/resource/dist/index.global.js'></script>
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                headerToolbar: {
-                    left: 'prev,next toda' +
-                        '..' + 'y',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-                },
-                initialDate: '2023-01-12',
-                navLinks: true, // can click day/week names to navigate views
-                businessHours: true, // display business hours
-                editable: true,
-                selectable: true,
-                events: [
-                    {
-                        title: 'Business Lunch',
-                        start: '2023-01-03T13:00:00',
-                        constraint: 'businessHours'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2023-01-13T11:00:00',
-                        constraint: 'availableForMeeting', // defined below
-                        color: '#257e4a'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2023-01-18',
-                        end: '2023-01-20'
-                    },
-                    {
-                        title: 'Party',
-                        start: '2023-01-29T20:00:00'
-                    },
-
-                    // areas where "Meeting" must be dropped
-                    {
-                        groupId: 'availableForMeeting',
-                        start: '2023-01-11T10:00:00',
-                        end: '2023-01-11T16:00:00',
-                        display: 'background'
-                    },
-                    {
-                        groupId: 'availableForMeeting',
-                        start: '2023-01-13T10:00:00',
-                        end: '2023-01-13T16:00:00',
-                        display: 'background'
-                    },
-
-                    // red areas where no events can be dropped
-                    {
-                        start: '2023-01-24',
-                        end: '2023-01-28',
-                        overlap: false,
-                        display: 'background',
-                        color: '#ff9f89'
-                    },
-                    {
-                        start: '2023-01-06',
-                        end: '2023-01-08',
-                        overlap: false,
-                        display: 'background',
-                        color: '#ff9f89'
-                    }
-                ]
-            });
-
-            calendar.render();
-        });
-
-    </script>
     <style>
 
         body {
@@ -103,10 +22,6 @@
 
     </style>
 
-
-
-
-
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
@@ -118,7 +33,6 @@
 
     </div>
 </section>
-
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -421,11 +335,6 @@
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3647.3030413476204!2d100.5641230193719!3d13.757206847615207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf51ce6427b7918fc!2sG+Tower!5e0!3m2!1sen!2sth!4v1510722015945" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
 </section>
 
-<div id='calendar'>
-
-
-</div>
-
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 <!-- SCRIPTS -->
@@ -437,24 +346,6 @@
 <script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
 <script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
 <script src="resource/bootstrap-3.3.2/js/custom.js"></script>
-
-<script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
-        });
-        calendar.render();
-    });
-
-
-    document.getElementById('my-button').addEventListener('click', function() {
-        var date = calendar.getDate();
-        alert("The current date of the calendar is " + date.toISOString());
-    });
-
-</script>
 
 </body>
 </html>

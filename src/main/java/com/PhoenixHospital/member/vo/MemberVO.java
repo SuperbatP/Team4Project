@@ -10,9 +10,6 @@ public class MemberVO {
     @ExcelColumn(hearName = "비밀번호")
     private String memPassword;                 /* 회원비밀번호 */
 
-
-
-
     @ExcelColumn(hearName = "이름")
     private String memName;                 /* 회원이름 */
     @ExcelColumn(hearName = "생년월일")
@@ -28,7 +25,25 @@ public class MemberVO {
     @ExcelColumn(hearName = "이메일")
     private String memEmail;                 /* 회원이메일 */
     private String  memDelYn;                /* 회원삭제여부 */
-    private String  memGender;                /* 회원성별 ; F/M */
+
+    private String googleid;                   /* 소셜로그인 */
+    private String naverid;                    /* 소셜로그인 */
+
+    public String getGoogleid() {
+        return googleid;
+    }
+
+    public void setGoogleid(String googleid) {
+        this.googleid = googleid;
+    }
+
+    public String getNaverid() {
+        return naverid;
+    }
+
+    public void setNaverid(String naverid) {
+        this.naverid = naverid;
+    }
 
     private String memRole;                   /* 관리자 와 회원 구분 */
 
