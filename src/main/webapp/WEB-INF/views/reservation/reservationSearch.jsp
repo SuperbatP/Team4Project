@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,6 +125,7 @@
     <div class="container2">
 
         <form style="width: 100%;" name="search" action="reservationList.wow" method="post">
+            <sec:csrfInput/>
             <section class="search-box wow fadeInUp" data-wow-delay="0.1s" id="appointment">
                 <div class="search-img">
                     <img style="margin-top: -5px; width: 30px; height: 30px;"
