@@ -151,7 +151,7 @@
                             <h2 style="font-size: 30px">${doctor.dcName}</h2>
                             <p style="font-size: 20px">&nbsp${doctor.major}</p>
                         </div>
-                        <a href="reservationForm.wow?memId=${USER_INFO!=null ? USER_INFO.userId : null}&dcId=${doctor.dcId}">
+                        <a href="reservationForm.wow?dcId=${doctor.dcId}">
                             <div class="reservation-box col-sm-2">
                                 <img src="../../../resource/bootstrap-3.3.2/images/달력.png">
                                 <p>진료예약</p>

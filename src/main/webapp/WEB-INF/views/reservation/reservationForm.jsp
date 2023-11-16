@@ -66,7 +66,6 @@
 
 <form name="reservation" action="reservationRegist.wow" method="post">
     <sec:csrfInput/>
-    <input type="hidden" name="memId" value="${member.memId}">
     이름<input name="memName" value="${member.memName}" required="required">
     전화번호<input name="memHp" value="${member.memHp}" required="required">
     메일주소<input name="memEmail" value="${member.memEmail}" required="required">
@@ -99,7 +98,7 @@
         </tbody>
     </table>
 
-    <input type="hidden" name="reservationDate" required="required">
+    <input type="hidden" name="reservationDate">
 
     <label>예약시간</label>
     <div>
