@@ -1,5 +1,6 @@
 package com.PhoenixHospital.reservation.web;
 
+import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.doctor_attendance.dao.IAttendanceDao;
 import com.PhoenixHospital.doctor_attendance.service.AttendanceServiceImpl;
@@ -9,6 +10,7 @@ import com.PhoenixHospital.doctors.dao.IDoctorsDao;
 import com.PhoenixHospital.doctors.service.IDoctorsService;
 import com.PhoenixHospital.doctors.vo.DoctorsVO;
 import com.PhoenixHospital.exception.BizNotFoundException;
+import com.PhoenixHospital.login.vo.UserVO;
 import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +52,9 @@ public class ReservationController {
 
     @Autowired
     IReservationService reservationService;
+
+    @Autowired
+    ICheckUpService checkUpService;
 
     @RequestMapping("reservation/reservationSearch.wow")
     public String reservationSearch(Model model){
@@ -75,12 +81,13 @@ public class ReservationController {
     }
 
     @RequestMapping("reservation/reservationForm.wow")
-    public String reservationForm(Model model, String memId, String dcId) throws BizNotFoundException {
-        if(memId.equals("")){
+    public String reservationForm(Model model, HttpSession session, String dcId) throws BizNotFoundException {
+        UserVO userInfo = (UserVO) session.getAttribute("USER_INFO");
+        if(userInfo == null){
             return "redirect:/login/login.wow";
         }
 
-        MemberVO member = memberService.getMember(memId);
+        MemberVO member = memberService.getMember(userInfo.getUserId());
         DoctorsVO doctorsVO = doctorsService.getDoc(dcId);
         List<AttendanceVO> attendanceVOList = attendanceService.getAttendance(dcId);
         List<ReservationVO> reservationVOList = reservationService.getReservationList();
@@ -94,8 +101,23 @@ public class ReservationController {
     }
 
     @PostMapping("reservation/reservationRegist.wow")
-    public String reservationRegist(Model model, ReservationVO reservation){
+    public String reservationRegist(Model model, HttpSession session, ReservationVO reservation){
+        UserVO userInfo = (UserVO) session.getAttribute("USER_INFO");
+        reservation.setMemId(userInfo.getUserId());
         reservationService.registReservation(reservation);
+
+        return "reservation/reservationView";
+    }
+
+    @RequestMapping("reservation/reservationView.wow")
+    public String reservationView(Model model, HttpSession session){
+        UserVO userInfo = (UserVO) session.getAttribute("USER_INFO");
+        if(userInfo == null){
+            return "redirect:/login/login.wow";
+        }
+
+        model.addAttribute("reservation", reservationService.getReservation(userInfo.getUserId()));
+        model.addAttribute("checkUp", checkUpService.getCheckUp(userInfo.getUserId()));
 
         return "reservation/reservationView";
     }

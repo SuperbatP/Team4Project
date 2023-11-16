@@ -31,8 +31,8 @@ public class ReservationServiceImpl implements IReservationService{
     }
 
     @Override
-    public ReservationVO getReservation(String memId) {
-        ReservationVO reservationVO = reservationDao.getReservation(memId);
+    public List<ReservationVO> getReservation(String memId) {
+        List<ReservationVO> reservationVO = reservationDao.getReservation(memId);
         return reservationVO;
     }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PhoenixHospital.basic_checkUp_code.dao.IBasicCheckUpDao">
+    <select id="getCodeList" resultType="com.PhoenixHospital.basic_checkUp_code.vo.BasicCheckUpVO">
+        SELECT
+            basic_checkup_code,
+            basic_checkup_content,
+            basic_checkup_name
+        FROM
+            basic_checkup_code
+    </select>
+</mapper>

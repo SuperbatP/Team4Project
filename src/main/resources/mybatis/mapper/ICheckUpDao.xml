@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PhoenixHospital.checkUp.dao.ICheckUpDao">
+    <select id="getCheckUpList" resultType="com.PhoenixHospital.checkUp.vo.CheckUpVO">
+        SELECT
+            ck_reservation_no,
+            mem_id,
+            reservation_name,
+            reservation_gender,
+            reservation_birthday,
+            reservation_hp,
+            basic_checkup_code,
+            add_checkup_code,
+            dna_test_code,
+            reservation_date,
+            reservation_time,
+            reservation_reg_date,
+            etc,
+            cancel_date,
+            reservation_mod_date
+        FROM
+            checkup
+    </select>
+
+    <select id="getCheckUp" resultType="com.PhoenixHospital.checkUp.vo.CheckUpVO">
+        SELECT
+            ck_reservation_no,
+            mem_id,
+            reservation_name,
+            reservation_gender,
+            reservation_birthday,
+            reservation_hp,
+            basic_checkup_code,
+            add_checkup_code,
+            dna_test_code,
+            reservation_date,
+            reservation_time,
+            reservation_reg_date,
+            etc,
+            cancel_date,
+            reservation_mod_date
+        FROM
+            checkup
+        WHERE mem_id=#{memId}
+    </select>
+
+    <insert id="insertCheckUp">
+        <selectKey keyProperty="ckReservationNo" resultType="string" order="BEFORE">
+            SELECT 'CKNO' || LPAD(seq_checkup.nextval, 4, '0') FROM dual
+        </selectKey>
+
+        INSERT INTO checkup (
+            ck_reservation_no,
+            mem_id,
+            reservation_name,
+            reservation_gender,
+            reservation_birthday,
+            reservation_hp,
+            basic_checkup_code,
+            add_checkup_code,
+            dna_test_code,
+            reservation_date,
+            reservation_time,
+            reservation_reg_date,
+            etc,
+            cancel_date,
+            reservation_mod_date
+        ) VALUES (
+                     #{ckReservationNo},
+                     #{memId},
+                     #{reservationName},
+                     #{reservationGender},
+                     #{reservationBirthday},
+                     #{reservationHp},
+                     #{basicCheckupCode,jdbcType=VARCHAR},
+                     #{addCheckupCode,jdbcType=VARCHAR},
+                     #{dnaTestCode,jdbcType=VARCHAR},
+                     #{reservationDate},
+                     #{reservationTime},
+        sysdate,
+        #{etc,jdbcType=VARCHAR},
+                     null,
+                     null
+                 )
+    </insert>
+
+    <update id="updateCheckUp">
+        UPDATE checkup
+        SET
+            reservation_name     =#{reservationName},
+            reservation_gender   =#{reservationGender},
+            reservation_birthday =#{reservationBirthday},
+            reservation_hp       =#{reservationHp},
+            basic_checkup_code   =#{basicCheckupCode,jdbcType=VARCHAR},
+            add_checkup_code     =#{addCheckupCode,jdbcType=VARCHAR},
+            dna_test_code        =#{dnaTestCode,jdbcType=VARCHAR},
+            reservation_date     =#{reservationDate},
+            reservation_time     =#{reservationTime},
+            reservation_mod_date=sysdate,
+            etc=#{etc,jdbcType=VARCHAR},
+        WHERE
+            ck_reservation_no=#{ckNo}
+    </update>
+
+    <update id="deleteCheckUp">
+        UPDATE checkup
+        SET
+            cancel_date=sysdate
+        WHERE
+            ck_reservation_no=#{ckNo}
+    </update>
+</mapper>
