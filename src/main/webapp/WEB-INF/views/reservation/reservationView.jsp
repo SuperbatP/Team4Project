@@ -14,6 +14,18 @@
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
+<c:forEach var="re" items="${reservation}">
+    ${re}
+    <a href="reservationEdit.wow?reNo=${re.reservationNo}">예약수정</a>
+    <a href="reservationCancel.wow?reNo=${re.reservationNo}">예약취소</a>
+</c:forEach>
+
+<c:forEach var="ck" items="${checkUp}">
+    ${ck}
+    <a href="checkUpEdit.wow?ckNo=${ck.ckReservationNo}">예약수정</a>
+    <a href="checkUpCancel.wow?ckNo=${ck.ckReservationNo}">예약취소</a>
+</c:forEach>
+
 <!-- 코드 작성구역 시작-->
 
 
