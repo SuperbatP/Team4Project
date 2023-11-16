@@ -50,7 +50,7 @@
             reservation_date    = #{reservationDate},
             reservation_time    = #{reservationTime},
             reservation_mod_date = sysdate,
-            etc                 = #{etc},
+            etc                 = #{etc,jdbcType=VARCHAR},
             attendance_id        = null
         WHERE
             reservation_no = #{reservationNo}

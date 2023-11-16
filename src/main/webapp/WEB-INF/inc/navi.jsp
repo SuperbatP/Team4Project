@@ -81,7 +81,7 @@
                     <li class="drop-btn"><a href="/reservation/reservationSearch.wow">진료예약</a></li>
                     <div class="dropdown-content">
                         <a class="smoothScroll" href="/reservation/reservationSearch.wow">진료예약</a>
-                        <a class="smoothScroll" href="/reservation/checkUpForm.wow">건강검진예약</a>
+                        <a class="smoothScroll" href="/reservation/checkUpForm.wow?memId=${USER_INFO!=null ? USER_INFO.userId : null}">건강검진예약</a>
                         <a class="smoothScroll" href="/reservation/reservationView.wow">예약확인 및 취소</a>
                     </div>
                 </div>

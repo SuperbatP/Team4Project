@@ -97,6 +97,6 @@ public class ReservationController {
     public String reservationRegist(Model model, ReservationVO reservation){
         reservationService.registReservation(reservation);
 
-        return "reservation/reservationSearch";
+        return "reservation/reservationView";
     }
 }
