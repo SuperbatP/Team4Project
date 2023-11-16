@@ -11,7 +11,6 @@ import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
-import com.PhoenixHospital.free.dao.IFreeBoardDao;
 import com.PhoenixHospital.free.service.IFreeBoardService;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,15 +173,14 @@ public class FreeBoardController {
     //    return "/free/freeForm";
     //}
 
-    @RequestMapping("/board/insertFirm.wow")
-    public String insertBoard(IFreeBoardDao board) throws Exception {
-        freeBoardService.insertBoard(board);
-        return "redirect:/board/freeView.wow";
+    @RequestMapping("/free/insertForm.wow")
+    public String insertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
+        freeBoardService.insertForm(freeBoard);
+        return "redirect:/free/freeView.wow";
     }
 
 
 }
-
 
 
 
