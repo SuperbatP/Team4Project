@@ -64,31 +64,23 @@
     .reservation-box {
         display: flex;
         justify-content: center;
-        align-items: center;
         flex-wrap: wrap;
 
-
         width: 130px;
-        height: 110px;
+        height: 130px;
         background: #a5c422;
-
-    }
-
-    .reservation-box:hover {
-        background: #393939;
-        color: #ffffff;
+        border: 1px solid gainsboro;
+        border-radius: 20px;
     }
 
     .reservation-box > img {
-        margin-top: 10px;
-        width: 80px;
-        height: 70px;
-        border-radius: 40px;
+        width: 100px;
+        height: 100px;
     }
 
     .reservation-box > p {
         font-size: 15px;
-        color: black;
+        color: white;
     }
 
     .graph {
@@ -109,7 +101,7 @@
         height: 55px;
         text-align: center;
         border: 1px solid gainsboro;
-        color: gray;
+        color: dimgray;
     }
 
     .middle-box-top{
@@ -131,6 +123,10 @@
         display: flex;
         flex-wrap: wrap;
     }
+    tr:nth-child(1) >td {
+        background-color: whitesmoke;
+    }
+
 
 </style>
 
@@ -153,7 +149,7 @@
                         </div>
                         <a href="reservationForm.wow?dcId=${doctor.dcId}">
                             <div class="reservation-box col-sm-2">
-                                <img src="../../../resource/bootstrap-3.3.2/images/달력.png">
+                                <img src="../../../resource/bootstrap-3.3.2/images/달력6.png">
                                 <p>진료예약</p>
                             </div>
                         </a>
