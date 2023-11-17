@@ -9,6 +9,8 @@ import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,18 +36,18 @@ public class MemberController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/member/memberView.wow")
-    public String memberView(Model model, @RequestParam(name = "memId") String memId )throws BizException {
+    public String memberView(Model model, @AuthenticationPrincipal User user)throws BizException {
 
-        MemberVO member = memberService.getMember(memId);
+        MemberVO member = memberService.getMember(user.getUsername());
         model.addAttribute("member",member);
 
         return "member/memberView";
 
     }
     @GetMapping("/member/memberEdit.wow")
-    public String memberEdit(Model model, @RequestParam(name = "memId") String memId) throws BizException{
+    public String memberEdit(Model model, @AuthenticationPrincipal User user) throws BizException{
 
-        MemberVO member = memberService.getMember(memId);
+        MemberVO member = memberService.getMember(user.getUsername());
         model.addAttribute("member",member);
 
         return "member/memberEdit";
