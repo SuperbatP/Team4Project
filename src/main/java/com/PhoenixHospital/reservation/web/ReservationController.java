@@ -82,11 +82,8 @@ public class ReservationController {
     }
 
     @RequestMapping("reservation/reservationForm.wow")
-    public String reservationForm(Model model, String dcId, @AuthenticationPrincipal User user, ReservationVO reservationVO) throws BizNotFoundException {
-//        UserVO userInfo = (UserVO) session.getAttribute("USER_INFO");
-//        if(userInfo == null){
-//            return "redirect:/login/login.wow";
-//        }
+    public String reservationForm(Model model, String dcId, @AuthenticationPrincipal User user) throws BizNotFoundException {
+
         MemberVO member = memberService.getMember(user.getUsername());
         DoctorsVO doctorsVO = doctorsService.getDoc(dcId);
         List<AttendanceVO> attendanceVOList = attendanceService.getAttendance(dcId);
@@ -110,7 +107,6 @@ public class ReservationController {
 
     @RequestMapping("reservation/reservationView.wow")
     public String reservationView(Model model, @AuthenticationPrincipal User user){
-
 
         List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
         List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
