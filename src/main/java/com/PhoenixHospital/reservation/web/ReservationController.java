@@ -24,10 +24,7 @@ import com.PhoenixHospital.treatment_code.vo.TreatmentCodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -56,14 +53,15 @@ public class ReservationController {
     @Autowired
     ICheckUpService checkUpService;
 
-    @RequestMapping("reservation/reservationSearch.wow")
+    @GetMapping("reservation/reservationSearch.wow")
     public String reservationSearch(Model model){
         List<TreatmentCodeVO> codeList = treatmentCodeService.getCodeList();
         model.addAttribute("codeList", codeList);
+
         return "reservation/reservationSearch";
     }
 
-    @RequestMapping("reservation/reservationList.wow")
+    @GetMapping("reservation/reservationList.wow")
     public String reservationList(Model model, SearchVO search){
         List<DoctorsVO> doctorsList = doctorsService.getDocList(search);
         Map<String, List<String>> attendanceVOMap = new HashMap<>(); //나중에 Service로 옮겨야됨
@@ -118,6 +116,28 @@ public class ReservationController {
 
         model.addAttribute("reservation", reservationService.getReservation(userInfo.getUserId()));
         model.addAttribute("checkUp", checkUpService.getCheckUp(userInfo.getUserId()));
+
+        return "reservation/reservationView";
+    }
+
+    @RequestMapping("reservation/reservationEdit.wow")
+    public String reservationEdit(Model model, HttpSession session){
+        UserVO userInfo = (UserVO) session.getAttribute("USER_INFO");
+        model.addAttribute("reservation", reservationService.getReservation(userInfo.getUserId()));
+
+        return "reservation/reservationEdit";
+    }
+
+    @PostMapping("reservation/reservationModify.wow")
+    public String reservationModify(Model model, ReservationVO reservation){
+        reservationService.modifyReservation(reservation);
+
+        return "reservation/reservationView";
+    }
+
+    @PostMapping("reservation/reservationCancel.wow")
+    public String reservationCancel(Model model, ReservationVO reservation){
+        reservationService.cancelReservation(reservation);
 
         return "reservation/reservationView";
     }

@@ -42,6 +42,7 @@
         FROM
             checkup
         WHERE mem_id=#{memId}
+        AND cancel_date = null
     </select>
 
     <insert id="insertCheckUp">

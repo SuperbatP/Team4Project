@@ -61,4 +61,26 @@ public class CheckUpController {
 
         return "reservation/reservationView";
     }
+
+    @RequestMapping("reservation/checkUpEdit.wow")
+    public String checkUpEdit(Model model, HttpSession session, CheckUpVO checkUp){
+        UserVO userInfo = (UserVO) session.getAttribute("USER_INFO");
+        model.addAttribute("checkUp", checkUpService.getCheckUp(userInfo.getUserId()));
+
+        return "reservation/checkUpEdit";
+    }
+
+    @PostMapping("reservation/checkUpModify.wow")
+    public String checkUpModify(Model model, CheckUpVO checkUp){
+        checkUpService.modifyCheckUp(checkUp);
+
+        return "reservation/reservationView";
+    }
+
+    @PostMapping("reservation/checkUpCancel.wow")
+    public String checkUpCancel(Model model, CheckUpVO checkUp){
+        checkUpService.cancelCheckUp(checkUp);
+
+        return "reservation/reservationView";
+    }
 }
