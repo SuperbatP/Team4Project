@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.PhoenixHospital.free.dao.IFreeBoardDao">
+
+    <!--
+    MAPPER 작성법
+     1. <는 기본적으로 태그   크다 작다 비교 할 때
+     <![CDATA [  쿼리문   ]]     >
+     2. I**DAO랑 mapper.xml은 1:1 대응
+       <select or update >   </>  는 메소드랑 1:1 대응
+       id parameterType, resultType +   return 개수      (자동완성되지만.. 알고는 있어야...)
+     3. 동적쿼리는 몇개 써봅시다.  홈페이지 참고
+    -->
+
+    <!-- #{search, paging, searchCategory}
+        search.searchType = T ->bo_title
+                            W ->bo_writer
+                            C ->bo_content-->
+
+<!-- 동일한 코드 반복일 때 따로 분리   -->
+  <!-- blank(공백 true) vs empty() and 조건절 동적쿼리
+    searchWord, searchType, searchCategory-->
+
+    <sql id="searchInFree">
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
+            --공백주의
+            <if test='search.searchType=="T"'>
+                AND bo_title Like '%' || #{search.searchWord} || '%'
+            </if>
+            <if test='search.searchType=="W"'>
+                AND bo_writer Like '%' || #{search.searchWord} || '%'
+            </if>
+            <if test='search.searchType=="C"'>
+                AND bo_content Like '%' || #{search.searchWord} || '%'
+            </if>
+        </if>
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchCategory)'>
+            AND bo_category = #{searchCategory}
+        </if>
+
+    </sql>
+
+    <select id="getTotalRowCount" resultType="int">
+        SELECT  count(*)
+        FROM BOARD
+        WHERE 1=1
+        --blank(공백 true) vs empty() and 조건절 동적쿼리
+        --searchWord, searchType, searchCategory
+
+
+    </select>
+
+    <select id="getBoardList" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" >
+        <!--페이징은 리스트에서만!-->
+        SELECT *
+        FROM
+        (SELECT a.*,rownum as rnum
+        FROM
+        (
+        SELECT BO_NO
+        , BO_TITLE , BO_WRITER
+        , BO_CONTENTS,  BO_HIT
+        , TO_CHAR(BO_REG_DAT,'YYYY-MM-DD') AS BO_REG_DAT
+        , B0_DEL_YN
+        FROM  BOARD
+        WHERE  1=1
+        AND B0_DEL_YN = 'N'
+        <include refid="searchInFree" />
+
+        order by bo_no DESC) a) b
+        where rnum between #{paging.firstRow} and #{paging.lastRow}
+
+
+    </select>
+
+    <resultMap id="freeAttaches" type="com.PhoenixHospital.free.vo.FreeBoardVO">
+        <collection property="attaches" column="{atchParentNo=bo_no, atchCategory=bo_type} " ofType="com.PhoenixHospital.attach.vo.AttachVO" select="com.PhoenixHospital.attach.dao.IAttachDao.getAttachListByParent">
+<!--  atchCategory=bo_type라고 쓰는 이유는 'FREE'를 인식하지 못하고 변수형태로만 인식해서... 그래서 getBoard 쿼리문에 bo_type를 추가    -->
+        </collection>
+    </resultMap>
+
+
+    <select id="getBoard" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" parameterType="int" resultMap="freeAttaches">
+        SELECT
+            'FREE' as bo_type
+            ,to_char(bo_reg_date,'YYYY-MM-DD') AS bo_reg_date
+             ,to_char(bo_mod_date,'YYYY-MM-DD') AS bo_mod_date
+             , bo_no        , bo_title       , bo_category
+             , bo_writer    , bo_pass        , bo_content
+             , bo_hit       , bo_del_yn
+             ,b. comm_nm  AS bo_category_nm
+        FROM  free_board a ,comm_code b
+        WHERE bo_no=#{boNo}
+        AND bo_del_yn = 'N'
+        AND  a.bo_category = b.comm_cd
+
+    </select>
+    <update id="increaseHit" parameterType="int" >
+        UPDATE free_board SET
+            bo_hit        =  bo_hit+1
+        WHERE bo_no        = #{boNo}
+
+    </update>
+    <update id="updateBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
+        UPDATE free_board
+        SET bo_title    = #{boTitle}
+          , bo_category = #{boCategory}
+          , bo_content  = #{boContent}
+          , bo_hit      = bo_hit + 1
+          , bo_mod_date = sysdate
+        WHERE bo_no = #{boNo}
+
+    </update>
+    <delete id="deleteBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
+        UPDATE free_board
+        SET bo_del_yn= 'Y'
+        WHERE bo_no = #{boNo}
+
+    </delete>
+
+    <insert id="insertBoard"  parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
+        -- mybatis mapper/xml selectKey 확인
+        <selectKey keyProperty="boNo" resultType="int" order="BEFORE">
+            SELECT BOARD_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO board ( bo_no
+        , bo_title ,  bo_writer
+        , bo_contents,  bo_hit
+        , (bo_reg_date,'YYYY-MM-DD') AS bo_reg_date
+        , bo_del_yn
+        ) VALUES (
+-- 시퀀스 두 번 중복되지 않게, 현재의 boNo를 받아옴.
+        #{boNo} , #{boTitle} , #{boWriter} ,#{boContent}
+        , #{ boHit} , # {boRegDate} , #{boDelYn}
+        , 0 , sysdate
+        , null , 'N'
+        )
+
+    </insert>
+    <insert id="insertForm"></insert>
+
+
+    <select id="getfreeBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO" resultType="int">
+        SELECT count(*)
+        FROM board
+    </select>
+
+    <select id="getfreeBoardList" resultType="int" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
+        SELECT * FROM
+            (SELECT a.*,rownum AS rnum FROM (
+                                                SELECT bo_no
+                                                     , bo_title , bo_category, bo_writer
+                                                     , bo_contents,  bo_hit
+                                                     , to_char(bo_reg_date,'YYYY-MM-DD') AS bo_reg_date
+                                                     , bo_del_yn
+                                                FROM board
+                                                WHERE bo_del_yn='N'
+                                                ORDER BY bo_no desc
+                                            ) a  )b
+        WHERE rnum between #{firstRow} and #{lastRow}
+
+    </select>
+
+
+
+
+
+</mapper>
+
+
