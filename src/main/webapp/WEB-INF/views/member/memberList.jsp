@@ -116,9 +116,6 @@
             <th>회원명</th>
             <th>HP</th>
             <th>생일</th>
-            <th>직업</th>
-            <th>취미</th>
-            <th>마일리지</th>
         </tr>
         </thead>
         <tbody>
@@ -129,9 +126,6 @@
                     ${member.memName}</a></td>
             <td>${member.memHp}</td>
             <td>${member.memBir}</td>
-            <td>${member.memJobNm}</td>
-            <td>${member.memHobbyNm}</td>
-            <td>${member.memMileage}</td>
         </tr>
         </c:forEach>
         </tbody>

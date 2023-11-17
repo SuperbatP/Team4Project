@@ -24,7 +24,7 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td>${member.memPass}</td>
+						<td>${member.memPassword}</td>
 					</tr>
 					<tr>
 						<th>회원명</th>
@@ -45,18 +45,6 @@
 					<tr>
 						<th>핸드폰</th>
 						<td>${member.memHp}</td>
-					</tr>
-					<tr>
-						<th>직업</th>
-						<td>${member.memJobNm}</td>
-					</tr>
-					<tr>
-						<th>취미</th>
-						<td>${member.memHobbyNm}</td>
-					</tr>
-					<tr>
-						<th>마일리지</th>
-						<td>${member.memMileage}</td>
 					</tr>
 					<tr>
 						<th>탈퇴여부</th>

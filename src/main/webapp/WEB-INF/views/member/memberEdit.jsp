@@ -10,7 +10,8 @@
 <%@ page import="com.PhoenixHospital.exception.BizNotFoundException" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -23,6 +24,7 @@
  <div class="container">	
 	<h3>회원 정보 수정</h3>	
 	<form action="memberModify.wow" method="post" >
+		<sec:csrfInput/>
 	<table class="table table-striped table-bordered">
 		<tbody>
 			<tr>
@@ -31,7 +33,7 @@
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="memPass" class="form-control input-sm" 
+				<td><input type="password" name="memPassword" class="form-control input-sm"
 						    pattern="\w{4,}" title="알파벳과 숫자로 4글자 이상 입력" ></td>
 			</tr>
 			<tr>
@@ -62,32 +64,28 @@
 				<th>핸드폰</th>
 				<td><input type="tel" name="memHp" class="form-control input-sm" value='${member.memHp}'></td>
 			</tr>
-			<tr>
-				<th>직업</th>
-				<td>
-					<select name="memJob" class="form-control input-sm" >
-						<option value="">-- 직업 선택 --</option>
-						<c:forEach items="${jobList}" var="job">
-							<option value="${job.commCd}" ${member.memJob == job.commCd ? "selected='selected'" : ''} >${job.commNm}</option>
-						</c:forEach>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>취미</th>
-				<td>
-					<select name="memHobby" class="form-control input-sm" >
-						<option value="">-- 취미 선택 --</option>
-						<c:forEach items="${hobbyList}" var="hobby">
-							<option value="${hobby.commCd}" ${member.memHobby == hobby.commCd ? "selected='selected'" : ''} >${hobby.commNm}</option>
-						</c:forEach>
-					</select>			
-				</td>
-			</tr>	
-			<tr>
-				<th>마일리지</th>
-				<td>${member.memMileage}</td>
-			</tr>	
+<%--			<tr>--%>
+<%--				<th>직업</th>--%>
+<%--				<td>--%>
+<%--					<select name="memJob" class="form-control input-sm" >--%>
+<%--						<option value="">-- 직업 선택 --</option>--%>
+<%--						<c:forEach items="${jobList}" var="job">--%>
+<%--							<option value="${job.commCd}" ${member.memJob == job.commCd ? "selected='selected'" : ''} >${job.commNm}</option>--%>
+<%--						</c:forEach>--%>
+<%--					</select>--%>
+<%--				</td>--%>
+<%--			</tr>--%>
+<%--			<tr>--%>
+<%--				<th>취미</th>--%>
+<%--				<td>--%>
+<%--					<select name="memHobby" class="form-control input-sm" >--%>
+<%--						<option value="">-- 취미 선택 --</option>--%>
+<%--						<c:forEach items="${hobbyList}" var="hobby">--%>
+<%--							<option value="${hobby.commCd}" ${member.memHobby == hobby.commCd ? "selected='selected'" : ''} >${hobby.commNm}</option>--%>
+<%--						</c:forEach>--%>
+<%--					</select>			--%>
+<%--				</td>--%>
+<%--			</tr>--%>
 			<tr>
 				<th>탈퇴여부</th>
 				<td>${member.memDelYn}</td>

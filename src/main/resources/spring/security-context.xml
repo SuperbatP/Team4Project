@@ -9,23 +9,22 @@
 
     <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <beans:bean id="customUserDetailsService" class="com.PhoenixHospital.auth.CustomUserDetailsService"/>
-<!--
-    <http pattern="/resource/**" security="none"/>-->
-    <http pattern="/*" security="none"/>
+
+
+
 
     <http auto-config="true">
-    <!--    <intercept-url pattern="/reservation/**" access="isAuthenticated()" />  &lt;!&ndash;로그인한 모든 사람은 예약페이지를 볼 수 있음 &ndash;&gt;
-        <intercept-url pattern="/memberList" access="hasRole('ADMIN')" /> &lt;!&ndash;memberList는 관리자만 볼 수 있음&ndash;&gt;
-        <intercept-url pattern="/member/**" access="hasAnyRole('ADMIN', 'USER')" /> 근데 회원가입폼은 제거해야하는뎅 -->
+        <csrf disabled="false" />
+        <intercept-url pattern="/reservation/reservationSearch.wow" access="isAuthenticated()" />
+        <intercept-url pattern="/map/map.wow" access="hasRole('ADMIN')" />
+
         <intercept-url pattern="/**" access="permitAll" />
 
         <form-login
-                login-page="/GoLogin"
-                login-processing-url="/login"
+                login-page="/login/login.wow"
                 default-target-url="/"
-                username-parameter="memId"
-                password-parameter="memPassword"
-                authentication-failure-url="/login/fail"
+                username-parameter="userId"
+                password-parameter="userPass"
         />
 
 

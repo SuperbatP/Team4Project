@@ -12,11 +12,11 @@
 
     }
 
-    .drop-btn{
+    .drop-btn {
         padding-bottom: 15px;
-        width :150px;
+        width: 150px;
         text-align: left;
-        cursor : pointer;
+        cursor: pointer;
     }
 
     .dropdown-content {
@@ -29,9 +29,9 @@
 
     .dropdown-content a {
         display: block;
-        text-decoration : none;
+        text-decoration: none;
         font-size: 13px;
-        padding : 12px 15px;
+        padding: 12px 15px;
         font-family: sans-serif;
     }
 
@@ -49,18 +49,19 @@
                 <p style="font-size: 16px;">Phoenix Hospital</p>
             </div>
             <div class="col-md-8 col-sm-7 text-align-right">
-                <c:if test="${USER_INFO==null}">
-                    <span class="phone-icon"><a href="/member/memberForm.wow">회원가입</a></span>
-                    <span class="date-icon"><a href="/login/login.wow">로그인</a></span>
-                    <span class="email-icon"><a href="#">사이트맵</a></span>
-                </c:if>
-                <c:if test="${USER_INFO!=null}">
-                    <span class="">${USER_INFO.userName} 님</span>
-                    <span class="phone-icon"><a href="#">My page</a></span>
-                    <span class="date-icon"><a href="#">1:1 문의게시판</a></span>
-                    <span class="email-icon"><a href="/login/logout.wow">로그아웃</a></span>
-                    <span class="email-icon"><a href="#">사이트맵</a></span>
-                </c:if>
+                <sec:authorize access="isAnonymous()">
+                    <span class=""><a href="/member/memberForm.wow">회원가입</a></span>
+                    <span class=""><a href="/login/login.wow">로그인</a></span>
+                    <span class=""><a href="#">사이트맵</a></span>
+                </sec:authorize>
+
+                <sec:authorize access="isAuthenticated()">
+                    <span class=""> <sec:authentication property="principal.username"/>님</span>
+                    <span class=""><a href="member/memberEdit.wow?memId=<sec:authentication property='principal.username'/>" >My page</a></span>
+                    <span class=""><a href="#">1:1 문의게시판</a></span>
+                    <span class=""><a href="/logout">로그아웃</a></span>
+                    <span class=""><a href="#">사이트맵</a></span>
+                </sec:authorize>
             </div>
         </div>
     </div>

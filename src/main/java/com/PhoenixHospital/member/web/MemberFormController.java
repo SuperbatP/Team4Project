@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.mail.MessagingException;
@@ -18,18 +19,7 @@ public class MemberFormController {
     @Autowired
     private IMemberService memberService;
 
-
-//    @ResponseBody
-//    @RequestMapping(value ="/join/idCheck.wow", produces = "text/plain; charset=UTF-8")
-//    public String idCheck2(String id){ //매개변수의 id는 script 의 json 객체 id
-//        try {
-//            MemberVO member = memberService.getMember(id);
-//            return "중복입니다.";
-//        }catch (BizNotFoundException e){
-//            return "중복이 아닙니다.";
-//        }
-//    }
-
+    //아이디 체크
     @RequestMapping(method = {RequestMethod.GET}, value = "/member/checkid")
     public @ResponseBody int idCheck(String memId) {
 
@@ -37,14 +27,34 @@ public class MemberFormController {
             return -1;
         else{
             try {
+                //중복일 때
                 MemberVO member = memberService.getMember(memId);
                 return 1;
             }catch (BizNotFoundException e){
+                //중복이 아닐 때
                 return 0;
             }
         }
 
     }
+
+
+  /*  //개인회원가입 이메일 체크
+    @RequestMapping("/join/EmCheck")
+    @ResponseBody
+    public int EmCheck(@RequestParam String indivMemEmail) {
+
+        System.out.println("EmCheck:" + indivMemEmail);
+
+        boolean result = indivMemService.EmCheck(indivMemEmail);
+        if(result) {
+            return 1;
+        }else {
+            return 2;
+        }
+    }
+*/
+
 
 
 

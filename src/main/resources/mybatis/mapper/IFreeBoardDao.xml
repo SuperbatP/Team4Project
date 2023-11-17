@@ -22,6 +22,7 @@
   <!-- blank(공백 true) vs empty() and 조건절 동적쿼리
     searchWord, searchType, searchCategory-->
 
+
     <sql id="searchInFree">
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
             --공백주의
