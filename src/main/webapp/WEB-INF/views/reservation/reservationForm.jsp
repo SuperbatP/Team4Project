@@ -162,7 +162,6 @@
         .time-frame {
             width: 380px;
             height: 200px;
-            border: 1px solid red;
         }
 
 
@@ -222,7 +221,6 @@
     </c:forEach>
 
 
-
     <form name="reservation" action="reservationRegist.wow" method="post">
         <sec:csrfInput/>
         <input type="hidden" name="dcId" value="${doctor.dcId}">
@@ -260,7 +258,7 @@
             </div>
             <div class="reservation-time-select col-sm-5">
                 <div class="time-frame">
-                    <p>진료시간을 선택해주세요.</p>
+                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
                     <select name="reservationTime" required="required">
 
                     </select>
@@ -293,9 +291,9 @@
                 </tr>
                 <tr class="member-info-table-tr">
                     <td scope="col">예약날짜</td>
-                    <td scope="col" id="td_date"></td>
+                    <td scope="col"><input id="td_date" readonly></td>
                     <td scope="col">예약시간</td>
-                    <td scope="col" id="td_time"></td>
+                    <td scope="col"><input id="td_time" readonly></td>
                 </tr>
                 <tr class="member-info-table-tr">
                     <td scope="col">우편번호</td>
@@ -339,9 +337,10 @@
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
 
-    $form.find("button[type=submit]").click(function(e) {
+
+    $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
-        if ($input.value==null){
+        if ($input.value == null) {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();
@@ -445,9 +444,10 @@
                 str += "'>" + atTime[i].value + "</option>";
             }
         }
-
         $select.empty();
         $select.append(str);
+        $('#td_date').attr('value', nowColumn.id);
+
     }
 
     // 이전달 버튼 클릭
@@ -489,6 +489,10 @@
                 return 6;
         }
     }
+
+    $select.change(()=>{
+        $('#td_time').attr('value', $select[0].value)
+    });
 </script>
 <!-- 코드 작성구역 끝 -->
 
