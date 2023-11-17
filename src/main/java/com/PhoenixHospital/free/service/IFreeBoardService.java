@@ -2,6 +2,7 @@ package com.PhoenixHospital.free.service;
 
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.SearchVO;
+import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
@@ -22,5 +23,5 @@ public interface IFreeBoardService {
 			throws BizNotFoundException,BizPasswordNotMatchedException, BizNotEffectedException ;
 	public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 
-	public int insertForm(FreeBoardVO freeBoard) throws Exception;
+	public void insertForm(FreeBoardVO freeBoard) throws BizException;
 }

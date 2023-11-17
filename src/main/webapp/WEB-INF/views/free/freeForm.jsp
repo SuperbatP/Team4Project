@@ -38,23 +38,6 @@
           </span>
 				</td>
 			</tr>
-			<tr>
-				<th>분류</th>
-				<td>
-					<select name="boCategory" class="form-control input-sm" required="required">
-						<option value="">-- 선택하세요--</option>
-						<c:forEach items="${codeList}" var="code">
-							<option value="${code.commCd}">${code.commNm}</option>
-						</c:forEach>
-						<option value="free">자유글</option>
-						<option value="free">민원사항</option>
-						<option value="free">이모저모 나는 고모</option>
-
-
-					</select>
-
-				</td>
-			</tr>
 
 			<tr>
 				<th>내용</th>

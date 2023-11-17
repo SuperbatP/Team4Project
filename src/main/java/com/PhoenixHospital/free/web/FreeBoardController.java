@@ -47,20 +47,12 @@ public class FreeBoardController {
     @RequestMapping("/free/freeList.wow")
     // 요청을 받는 과정으로 웹에서 가져온 파라미터를 다 가지고 온다...! ㅇ0ㅇ!!! 그냥 매개변수로 할당하면 ok!
     public String freeList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search, @ModelAttribute("searchCategory") String searchCategory) {
-        //FreeBoardController는 CommCodeServiceImpl에 의존. -> @Autowired로 주입.
-        //Model model 은 스프링에서 데이터를 담는 객체로 지원되는 것.
 
-        //    List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
-        //   model.addAttribute("codeList", codeList);
-        //req.setAttribute("cateList", cateList); 대신에 addAttribute사용. 단 cateList의 경우 DB에서 가져오는 값이라 @ModelAttribute 사용x
-
-        //model.addAttribute("paging", paging);
-        //model.addAttribute("search", search);
-        //model.addAttribute("searchCategory", searchCategory);
-        //@ModelAttribute 사용하면 코드를 현저히 줄일 수 있다...! @ModelAttribute를 쓸 수 있는 값은 웹<->서버 왔다갔다 할 수 있는 값만 가능!
 
         List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(paging, search, searchCategory);
+
         model.addAttribute("freeBoardList", freeBoardList);
+
         return "free/freeList";
     }
 
@@ -70,7 +62,7 @@ public class FreeBoardController {
 
         FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
         model.addAttribute("freeBoard", freeBoard);
-        freeBoardService.increaseHit(boNo);
+       // freeBoardService.increaseHit(boNo);
 
         return "free/freeView";
     }
@@ -165,6 +157,8 @@ public class FreeBoardController {
     public String freeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
         //List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
         //model.addAttribute("codeList", codeList);
+
+
         return "free/freeForm";
     }
 
@@ -174,9 +168,11 @@ public class FreeBoardController {
     //}
 
     @RequestMapping("/free/insertForm.wow")
-    public String insertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
+    public String insertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException {
+
+       freeBoard.setCategory_Code("99");
         freeBoardService.insertForm(freeBoard);
-        return "redirect:/free/freeView.wow";
+        return "redirect:/free/freeList.wow";
     }
 
 
