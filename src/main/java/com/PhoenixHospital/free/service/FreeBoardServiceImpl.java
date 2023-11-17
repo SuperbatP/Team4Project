@@ -113,7 +113,13 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     }
 
     @Override
-    public void insertBoard(IFreeBoardDao board) throws Exception {
-        freeBoardDao.insertBoard(board);
+    public int insertForm(FreeBoardVO freeBoard) throws Exception {
+        int getfreeBoard = freeBoardDao.getfreeBoard(freeBoard);
+        freeBoard.setTotalRowCount(getfreeBoard);
+        //rowCount 임 /pageCount 아님
+        freeBoard.pageSetting();
+        int count = 0;
+        count = freeBoardDao.insertBoard(freeBoard);
+        return count;
     }
 }

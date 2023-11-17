@@ -1,6 +1,7 @@
 package com.PhoenixHospital.free.vo;
 
 import com.PhoenixHospital.attach.vo.AttachVO;
+import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.excel.ExcelColumn;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -9,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class FreeBoardVO  {
+public class FreeBoardVO extends PagingVO {
 
     @ExcelColumn(hearName = "글번호")
     private int    boNo       ;                                           /* 글 번호 */
