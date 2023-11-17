@@ -206,7 +206,7 @@
 
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
+<%@include file="/WEB-INF/inc/navi.jsp" %>
 <div class="container2">
     <c:forEach var="at" items="${attendance}">
         <input class="attendanceDate" type="hidden" value="${at.attendanceDate}">
@@ -304,8 +304,8 @@
                 </tr>
             </table>
             <div class="reservation-btn">
-                <button type="submit"><b>예약하기</b></button>
-                <button type="submit"><b>이전</b></button>
+                <button type="submit1"><b>예약하기</b></button>
+                <button type="submit2"><b>이전</b></button>
             </div>
         </div>
 
@@ -338,13 +338,17 @@
     $select = $("select[name='reservationTime']");
 
 
-    $form.find("button[type=submit]").click(function (e) {
+    $form.find("button[type=submit1]").click(function (e) {
         e.preventDefault();
         if ($input.value == null) {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();
         }
+    });
+
+    $form.find("button[type=submit2]").click(function() {
+        history.back();
     });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.

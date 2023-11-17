@@ -6,119 +6,120 @@
 <html lang="en">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+    <style>
+        .container2 {
+            width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-box {
+            border: 0.5px solid;
+            border-color: gainsboro;
+            width: 95%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .search-img {
+            margin-top: -100px;
+            width: 50px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-search {
+            margin-top: -100px;
+            width: 230px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-input {
+            margin-top: -100px;
+            width: 400px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-btn {
+            margin-top: -100px;
+            width: 130px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .dtlist_frame {
+            padding-top: 70px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dt_frame {
+            border: 0.5px solid;
+            border-color: gainsboro;
+            padding-top: 20px;
+            width: 200px;
+            height: 230px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .dtimg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 65%;
+            height: 65%;
+        }
+
+        .dtimg > img {
+            width: 80%;
+            height: 80%;
+        }
+
+        .dtname {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            height: 20%;
+        }
+
+    </style>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 
-<style>
-    .container2 {
-        width: 1200px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
 
-    form{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .search-box {
-        border: 0.5px solid;
-        border-color: gainsboro;
-        width: 95%;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    .search-img {
-        margin-top: -100px;
-        width: 50px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .search-search {
-        margin-top: -100px;
-        width: 230px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .search-input {
-        margin-top: -100px;
-        width: 400px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .search-btn {
-        margin-top: -100px;
-        width: 130px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .dtlist_frame {
-        padding-top: 70px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .dt_frame {
-        border: 0.5px solid;
-        border-color: gainsboro;
-        padding-top: 20px;
-        width: 200px;
-        height: 230px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        cursor: pointer;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    .dtimg {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 65%;
-        height: 65%;
-    }
-
-    .dtimg > img {
-        width: 80%;
-        height: 80%;
-    }
-
-    .dtname {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80%;
-        height: 20%;
-    }
-
-</style>
 
 <section id="team" data-stellar-background-ratio="1"
          style="display: flex; justify-content: center; align-items: center;">
