@@ -22,11 +22,30 @@ public class ReservationVO {
     private String cancelDate;
     private String reservationModDate;
 
+    private String dcName;
+    private String treatmentName;
+
     @Override
     public String toString() {
         return ToStringBuilder
                 .reflectionToString
                         (this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    public String getDcName() {
+        return dcName;
+    }
+
+    public void setDcName(String dcName) {
+        this.dcName = dcName;
+    }
+
+    public String getTreatmentName() {
+        return treatmentName;
+    }
+
+    public void setTreatmentName(String treatmentName) {
+        this.treatmentName = treatmentName;
     }
 
     public String getReservationDateString() {

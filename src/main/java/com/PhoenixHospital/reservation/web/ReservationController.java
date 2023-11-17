@@ -107,7 +107,6 @@ public class ReservationController {
 
     @RequestMapping("reservation/reservationView.wow")
     public String reservationView(Model model, @AuthenticationPrincipal User user){
-
         List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
         List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
 
@@ -135,6 +134,6 @@ public class ReservationController {
     public String reservationCancel(Model model, ReservationVO reservation){
         reservationService.cancelReservation(reservation);
 
-        return "reservation/reservationView";
+        return "redirect:reservation/reservationView";
     }
 }

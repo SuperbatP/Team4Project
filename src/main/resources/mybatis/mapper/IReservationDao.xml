@@ -26,8 +26,8 @@
             mem_name,
             mem_id,
             mem_hp,
-            treatment_code,
-            dc_id,
+            (SELECT treatment_name FROM treatment_codes tc WHERE tc.treatment_code = r.treatment_code) as treatment_name,
+            (SELECT dc_name FROM doctors dt WHERE dt.dc_id = r.dc_id) as dc_name,
             reservation_date,
             reservation_time,
             reservation_reg_date,
@@ -36,7 +36,7 @@
             reservation_mod_date,
             attendance_id,
             mem_email
-        FROM reservation
+        FROM reservation r
         WHERE mem_id = #{memId}
         AND cancel_date is null
     </select>
