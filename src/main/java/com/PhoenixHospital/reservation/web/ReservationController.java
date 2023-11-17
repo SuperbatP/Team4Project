@@ -100,7 +100,6 @@ public class ReservationController {
     @PostMapping("reservation/reservationRegist.wow")
     public String reservationRegist(Model model, ReservationVO reservation, @AuthenticationPrincipal User user){
         reservation.setMemId(user.getUsername());
-        System.out.println(reservation);
         reservationService.registReservation(reservation);
 
         return "reservation/reservationView";
