@@ -29,7 +29,7 @@
 		<tbody>
 			<tr>
 				<th>아이디</th>
-				<td>아이디는 못바꾸지만 데이터는 넘어가야지 <input type="hidden" name="memId" value="${member.memId}"></td>
+				<td><sec:authentication property="principal.username"/><input type="hidden" name="memId" value="${member.memId}"></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
