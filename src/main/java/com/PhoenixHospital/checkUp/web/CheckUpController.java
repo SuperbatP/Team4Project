@@ -60,8 +60,7 @@ public class CheckUpController {
 
     @RequestMapping("reservation/checkUpEdit.wow")
     public String checkUpEdit(Model model, @AuthenticationPrincipal User user, CheckUpVO checkUp){
-
-        model.addAttribute("checkUp", checkUpService.getCheckUp(user.getUsername()));
+        model.addAttribute("checkUp", checkUp);
 
         return "reservation/checkUpEdit";
     }

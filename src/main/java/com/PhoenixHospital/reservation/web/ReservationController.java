@@ -118,8 +118,8 @@ public class ReservationController {
     }
 
     @RequestMapping("reservation/reservationEdit.wow")
-    public String reservationEdit(Model model, @AuthenticationPrincipal User user){
-        model.addAttribute("reservation", reservationService.getReservation(user.getUsername()));
+    public String reservationEdit(Model model, @AuthenticationPrincipal User user, ReservationVO reservation){
+        model.addAttribute("reservation", reservation);
 
         return "reservation/reservationEdit";
     }

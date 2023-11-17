@@ -14,17 +14,24 @@
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
-<c:forEach var="re" items="${reservation}">
-    ${re}
-    <a href="reservationEdit.wow?reNo=${re.reservationNo}">예약수정</a>
-    <a href="reservationCancel.wow?reNo=${re.reservationNo}">예약취소</a>
-</c:forEach>
+<form name="reservation" action="reservationEdit.wow" method="post">
+    <c:forEach var="re" items="${reservation}">
+        ${re}
+        <button type="submit">예약수정</button>
+        <button type="submit" formaction="reservationCancel.wow">예약취소</button>
+    </c:forEach>
+</form>
 
-<c:forEach var="ck" items="${checkUp}">
-    ${ck}
-    <a href="checkUpEdit.wow?ckNo=${ck.ckReservationNo}">예약수정</a>
-    <a href="checkUpCancel.wow?ckNo=${ck.ckReservationNo}">예약취소</a>
-</c:forEach>
+<form name="checkUp" action="checkUpEdit.wow" method="post">
+    <c:forEach var="ck" items="${checkUp}">
+        <div>
+            <input name="" value="" readonly="readonly">
+        </div>
+        <button type="submit">예약수정</button>
+        <button type="submit" formaction="checkUpCancel.wow">예약취소</button>
+    </c:forEach>
+</form>
+
 
 <!-- 코드 작성구역 시작-->
 

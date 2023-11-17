@@ -42,7 +42,7 @@
         FROM
             checkup
         WHERE mem_id=#{memId}
-        AND cancel_date = null
+        AND cancel_date is null
     </select>
 
     <insert id="insertCheckUp">
@@ -108,6 +108,6 @@
         SET
             cancel_date=sysdate
         WHERE
-            ck_reservation_no=#{ckNo}
+            ck_reservation_no=#{ckReservationNo}
     </update>
 </mapper>
