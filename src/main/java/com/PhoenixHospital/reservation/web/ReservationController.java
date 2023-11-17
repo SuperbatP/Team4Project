@@ -1,6 +1,7 @@
 package com.PhoenixHospital.reservation.web;
 
 import com.PhoenixHospital.checkUp.service.ICheckUpService;
+import com.PhoenixHospital.checkUp.vo.CheckUpVO;
 import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.doctor_attendance.dao.IAttendanceDao;
 import com.PhoenixHospital.doctor_attendance.service.AttendanceServiceImpl;
@@ -114,8 +115,11 @@ public class ReservationController {
             return "redirect:/login/login.wow";
         }
 
-        model.addAttribute("reservation", reservationService.getReservation(userInfo.getUserId()));
-        model.addAttribute("checkUp", checkUpService.getCheckUp(userInfo.getUserId()));
+        List<ReservationVO> reservationVOList = reservationService.getReservation(userInfo.getUserId());
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(userInfo.getUserId());
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
 
         return "reservation/reservationView";
     }

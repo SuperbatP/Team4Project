@@ -36,9 +36,6 @@ public class CheckUpController {
     @RequestMapping("reservation/checkUpForm.wow")
     public String checkUpForm(Model model, HttpSession session){
         UserVO userInfo = (UserVO) session.getAttribute("USER_INFO");
-        if(userInfo == null){
-            return "redirect:/login/login.wow";
-        }
 
         List<CheckUpVO> checkUpVOList = checkUpService.getCheckUpList();
         List<BasicCheckUpVO> basicCheckUpVOList = basicCheckUpService.getCodeList();
