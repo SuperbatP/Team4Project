@@ -14,8 +14,13 @@
 
 
     <http auto-config="true">
+
         <csrf disabled="false" />
         <intercept-url pattern="/reservation/reservationSearch.wow" access="isAuthenticated()" />
+        <intercept-url pattern="/reservation/checkUpForm.wow" access="isAuthenticated()" />
+        <intercept-url pattern="/reservation/reservationList.wow" access="isAuthenticated()" />
+        <intercept-url pattern="/reservation/reservationView.wow" access="isAuthenticated()" />
+
         <intercept-url pattern="/map/map.wow" access="hasRole('ADMIN')" />
 
         <intercept-url pattern="/**" access="permitAll" />
