@@ -38,6 +38,7 @@
             mem_email
         FROM reservation
         WHERE mem_id = #{memId}
+        AND cancel_date = null
     </select>
 
     <update id="updateReservation">

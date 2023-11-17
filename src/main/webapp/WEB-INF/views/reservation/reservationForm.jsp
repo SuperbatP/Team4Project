@@ -335,8 +335,18 @@
     let reDate = document.getElementsByClassName('reservationDate');
     let reTime = document.getElementsByClassName('reservationTime');
 
+    $form = $("form[name='reservation']")
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
+
+    $form.find("button[type=submit]").click(function(e) {
+        e.preventDefault();
+        if ($input.value==null){
+            alert("날짜를 선택해주세요");
+        } else {
+            $form.submit();
+        }
+    });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
     function buildCalendar() {

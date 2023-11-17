@@ -94,11 +94,11 @@
         </tbody>
     </table>
 
-    <input type="hidden" name="reservationDate">
+    <input type="hidden" name="reservationDate" value="">
 
     <label>예약시간</label>
     <div>
-        <select name="reservationTime" required="required" >
+        <select name="reservationTime" required="required">
             <option value="">예약시간 선택</option>
             <option value="08:00~11:00">08:00~11:00</option>
             <option value="13:30~16:00">13:30~16:00</option>
@@ -108,7 +108,7 @@
     <label>기본검사</label>
     <div>
         <c:forEach var="basic" items="${basicCodeList}">
-            <input type="radio" name="basicCheckupCode" value="${basic.basicCheckupCode}">${basic.basicCheckupContent}
+            <input type="radio" name="basicCheckupCode" value="${basic.basicCheckupCode}" required="required">${basic.basicCheckupContent}
         </c:forEach>
     </div>
 
@@ -148,8 +148,18 @@
     let reDate = document.getElementsByClassName('reservationDate');
     let reTime = document.getElementsByClassName('reservationTime');
 
+    $form = $("form[name='checkUp']")
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
+
+    $form.find("button[type=submit]").click(function(e) {
+        e.preventDefault();
+        if ($input.value==null){
+            alert("날짜를 선택해주세요");
+        } else {
+            $form.submit();
+        }
+    });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
     function buildCalendar() {
