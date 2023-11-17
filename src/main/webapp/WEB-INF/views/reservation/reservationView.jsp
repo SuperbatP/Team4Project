@@ -21,13 +21,13 @@
         <sec:csrfInput/>
         <div>
             <input name="reservationNo" value="${re.reservationNo}" type="hidden">
-            <input name="" value="${re.dcName}" readonly="readonly">
-            <input name="" value="${re.treatmentName}" readonly="readonly">
-            <input name="" value="${re.reservationDate}" readonly="readonly">
-            <input name="" value="${re.reservationTime}" readonly="readonly">
-            <input name="" value="${re.memHp}" type="hidden">
-            <input name="" value="${re.memEmail}" type="hidden">
-            <input name="" value="${re.etc}" type="hidden">
+            <input name="dcName" value="${re.dcName}" readonly="readonly">
+            <input name="treatmentName" value="${re.treatmentName}" readonly="readonly">
+            <input name="reservationDate" value="${re.reservationDate}" readonly="readonly">
+            <input name="reservationTime" value="${re.reservationTime}" readonly="readonly">
+            <input name="memHp" value="${re.memHp}" type="hidden">
+            <input name="memEmail" value="${re.memEmail}" type="hidden">
+            <input name="etc" value="${re.etc}" type="hidden">
 
             <button type="submit">예약수정</button>
             <button type="submit" formaction="reservationCancel.wow">예약취소</button>
@@ -41,16 +41,16 @@
         <sec:csrfInput/>
         <div>
             <input name="ckReservationNo" value="${ck.ckReservationNo}" type="hidden">
-            <input name="" value="${ck.reservationName}" readonly="readonly">
-            <input name="" value="${ck.reservationGender}" type="hidden">
-            <input name="" value="${ck.reservationBirthday}" type="hidden">
-            <input name="" value="${ck.reservationHp}" type="hidden">
-            <input name="" value="${ck.reservationDate}" readonly="readonly">
-            <input name="" value="${ck.reservationTime}" readonly="readonly">
-            <input name="" value="${ck.basicCheckupCode}" type="hidden">
-            <input name="" value="${ck.addCheckupCode}" type="hidden">
-            <input name="" value="${ck.dnaTestCode}" type="hidden">
-            <input name="" value="${ck.etc}" type="hidden">
+            <input name="reservationName" value="${ck.reservationName}" readonly="readonly">
+            <input name="reservationGender" value="${ck.reservationGender}" type="hidden">
+            <input name="reservationBirthday" value="${ck.reservationBirthday}" type="hidden">
+            <input name="reservationHp" value="${ck.reservationHp}" type="hidden">
+            <input name="reservationDate" value="${ck.reservationDate}" readonly="readonly">
+            <input name="reservationTime" value="${ck.reservationTime}" readonly="readonly">
+            <input name="basicCheckupCode" value="${ck.basicCheckupCode}" type="hidden">
+            <input name="addCheckupCode" value="${ck.addCheckupCode}" type="hidden">
+            <input name="dnaTestCode" value="${ck.dnaTestCode}" type="hidden">
+            <input name="etc" value="${ck.etc}" type="hidden">
 
             <button type="submit">예약수정</button>
             <button type="submit" formaction="checkUpCancel.wow">예약취소</button>

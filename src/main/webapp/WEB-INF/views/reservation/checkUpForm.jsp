@@ -205,7 +205,7 @@
 
     $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
-        if ($input.value == null) {
+        if ($input[0].value == "" || $select[0].value == "") {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();

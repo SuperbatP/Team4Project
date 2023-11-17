@@ -266,7 +266,7 @@
             </div>
         </div>
 
-        <input type="hidden" name="reservationDate" required="required">
+        <input type="hidden" name="reservationDate" value="">
         <div class="reservation-title">
             <h3>
                 예약내용 확인
@@ -340,7 +340,7 @@
 
     $form.find("button[type=submit1]").click(function (e) {
         e.preventDefault();
-        if ($input.value == null) {
+        if ($input[0].value == "" || $select[0].value == "") {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();
