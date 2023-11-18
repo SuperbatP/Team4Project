@@ -17,7 +17,7 @@ public interface IFreeBoardDao {
   public int increaseHit(int boNo);
   public int updateBoard(FreeBoardVO freeBoard);
   public int deleteBoard(FreeBoardVO freeBoard);
-  public int insertBoard(FreeBoardVO freeBoard);
+  public void insertBoard(FreeBoardVO freeBoard);
   public int insertForm(FreeBoardVO freeBoard) throws Exception;
 
   public int getfreeBoard(FreeBoardVO freeBoard) throws Exception;

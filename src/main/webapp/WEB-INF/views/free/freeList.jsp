@@ -110,6 +110,7 @@
         </tr>
         </thead>
         <tbody>
+
         <c:forEach items="${freeBoardList }" var="freeBoard">
             <tr class="text-center">
                 <td>${freeBoard.boNo }</td>
@@ -120,7 +121,7 @@
                     </a>
                 </td>
                 <td>${freeBoard.boWriter }</td>
-                <td>${freeBoard.boRegDate }</td>
+                <td>${freeBoard.boRegDat }</td>
                 <td>${freeBoard.boHit }</td>
             </tr>
         </c:forEach>

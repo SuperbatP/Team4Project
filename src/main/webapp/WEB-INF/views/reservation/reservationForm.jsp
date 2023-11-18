@@ -162,7 +162,6 @@
         .time-frame {
             width: 380px;
             height: 200px;
-            border: 1px solid red;
         }
 
 
@@ -207,7 +206,7 @@
 
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
+<%@include file="/WEB-INF/inc/navi.jsp" %>
 <div class="container2">
     <c:forEach var="at" items="${attendance}">
         <input class="attendanceDate" type="hidden" value="${at.attendanceDate}">
@@ -220,7 +219,6 @@
             <input class="reservationTime" type="hidden" value="${re.reservationTime}">
         </c:if>
     </c:forEach>
-
 
 
     <form name="reservation" action="reservationRegist.wow" method="post">
@@ -260,7 +258,7 @@
             </div>
             <div class="reservation-time-select col-sm-5">
                 <div class="time-frame">
-                    <p>진료시간을 선택해주세요.</p>
+                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
                     <select name="reservationTime" required="required">
 
                     </select>
@@ -268,7 +266,7 @@
             </div>
         </div>
 
-        <input type="hidden" name="reservationDate" required="required">
+        <input type="hidden" name="reservationDate" value="">
         <div class="reservation-title">
             <h3>
                 예약내용 확인
@@ -293,9 +291,9 @@
                 </tr>
                 <tr class="member-info-table-tr">
                     <td scope="col">예약날짜</td>
-                    <td scope="col" id="td_date"></td>
+                    <td scope="col"><input id="td_date" readonly></td>
                     <td scope="col">예약시간</td>
-                    <td scope="col" id="td_time"></td>
+                    <td scope="col"><input id="td_time" readonly></td>
                 </tr>
                 <tr class="member-info-table-tr">
                     <td scope="col">우편번호</td>
@@ -306,8 +304,8 @@
                 </tr>
             </table>
             <div class="reservation-btn">
-                <button type="submit"><b>예약하기</b></button>
-                <button type="submit"><b>이전</b></button>
+                <button type="submit1"><b>예약하기</b></button>
+                <button type="submit2"><b>이전</b></button>
             </div>
         </div>
 
@@ -339,13 +337,18 @@
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
 
-    $form.find("button[type=submit]").click(function(e) {
+
+    $form.find("button[type=submit1]").click(function (e) {
         e.preventDefault();
-        if ($input.value==null){
+        if ($input[0].value == "" || $select[0].value == "") {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();
         }
+    });
+
+    $form.find("button[type=submit2]").click(function() {
+        history.back();
     });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
@@ -445,9 +448,10 @@
                 str += "'>" + atTime[i].value + "</option>";
             }
         }
-
         $select.empty();
         $select.append(str);
+        $('#td_date').attr('value', nowColumn.id);
+
     }
 
     // 이전달 버튼 클릭
@@ -489,6 +493,10 @@
                 return 6;
         }
     }
+
+    $select.change(()=>{
+        $('#td_time').attr('value', $select[0].value)
+    });
 </script>
 <!-- 코드 작성구역 끝 -->
 

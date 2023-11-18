@@ -32,6 +32,38 @@ public class FreeBoardVO extends PagingVO {
     private String boPass          ;                                      /* 비밀번호 */
 
 
+    public String getBoContents() {
+        return boContents;
+    }
+
+    public void setBoContents(String boContents) {
+        this.boContents = boContents;
+    }
+
+    public String getBoRegDat() {
+        return boRegDat;
+    }
+
+    public void setBoRegDat(String boRegDat) {
+        this.boRegDat = boRegDat;
+    }
+
+    public String getBodDelYn() {
+        return bodDelYn;
+    }
+
+    public void setBodDelYn(String bodDelYn) {
+        this.bodDelYn = bodDelYn;
+    }
+
+    private String  boContents;
+
+
+    private String boRegDat;
+    private String bodDelYn;
+
+
+
 
     private List<AttachVO> attaches ;      /*첨부파일 리스트    */
     //1:N 관계 -> free : attache ; 게시판 하나에 파일 여러개 올릴 수 있음.
@@ -44,7 +76,7 @@ public class FreeBoardVO extends PagingVO {
 
     private int CP_NO=0;
     private String CP_TITLE="";
-    private String CATEGORY_CODE="";
+    private String Category_Code="";
     private String CP_CONTENTS="";
     private String MEM_ID="";
     private int CP_HIT=0;
@@ -65,12 +97,12 @@ public class FreeBoardVO extends PagingVO {
         this.CP_TITLE = CP_TITLE;
     }
 
-    public String getCATEGORY_CODE() {
-        return CATEGORY_CODE;
+    public String getCategory_Code() {
+        return Category_Code;
     }
 
-    public void setCATEGORY_CODE(String CATEGORY_CODE) {
-        this.CATEGORY_CODE = CATEGORY_CODE;
+    public void setCategory_Code(String category_Code) {
+        Category_Code = category_Code;
     }
 
     public String getCP_CONTENTS() {

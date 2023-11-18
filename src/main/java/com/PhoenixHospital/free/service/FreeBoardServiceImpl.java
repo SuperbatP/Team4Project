@@ -4,6 +4,7 @@ import com.PhoenixHospital.attach.dao.IAttachDao;
 import com.PhoenixHospital.attach.vo.AttachVO;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.SearchVO;
+import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
@@ -97,29 +98,23 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     @Override
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException {
-        int result = freeBoardDao.insertBoard(freeBoard);
-        if (result < 1) throw new BizNotEffectedException();
-
-        //freeBoard는 List<AttachVO>가 셋팅된 freeBoard.
-        List<AttachVO> attaches = freeBoard.getAttaches();
-        if (attaches != null) {
-            for (AttachVO attach : attaches) {
-                //지금은 위에 있는 freeBoard가 boNo가 0 ; db에 들어가기 전 seq가 실행되지 않으니까...
-                //selectKey를 통해 먼저 완성된 boNo가 생김
-                attach.setAtchParentNo(freeBoard.getBoNo());
-                attachDao.insertAttach(attach);
-            }
-        }
+//        int result = freeBoardDao.insertBoard(freeBoard);
+//        if (result < 1) throw new BizNotEffectedException();
+//
+//        //freeBoard는 List<AttachVO>가 셋팅된 freeBoard.
+//        List<AttachVO> attaches = freeBoard.getAttaches();
+//        if (attaches != null) {
+//            for (AttachVO attach : attaches) {
+//                //지금은 위에 있는 freeBoard가 boNo가 0 ; db에 들어가기 전 seq가 실행되지 않으니까...
+//                //selectKey를 통해 먼저 완성된 boNo가 생김
+//                attach.setAtchParentNo(freeBoard.getBoNo());
+//                attachDao.insertAttach(attach);
+//            }
+//        }
     }
 
     @Override
-    public int insertForm(FreeBoardVO freeBoard) throws Exception {
-        int getfreeBoard = freeBoardDao.getfreeBoard(freeBoard);
-        freeBoard.setTotalRowCount(getfreeBoard);
-        //rowCount 임 /pageCount 아님
-        freeBoard.pageSetting();
-        int count = 0;
-        count = freeBoardDao.insertBoard(freeBoard);
-        return count;
+    public void insertForm(FreeBoardVO freeBoard) throws BizException {
+        freeBoardDao.insertBoard(freeBoard);
     }
 }

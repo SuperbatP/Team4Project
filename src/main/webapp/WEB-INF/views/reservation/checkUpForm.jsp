@@ -11,6 +11,16 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <title></title>
     <style>
+
+        .container2 {
+            width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;;
+            border: 1px solid red;
+        }
+
         td {
             width: 50px;
             height: 50px;
@@ -49,89 +59,130 @@
             color: #fff;
             cursor: pointer;
         }
+
+        .basicCheckUp > h3 {
+            padding: 10px;
+        }
+
+        .basicCheckUp-tr > td {
+            height: 55px;
+            text-align: center;
+            border: 1px solid gainsboro;
+        }
+
+        .basicCheckUp-tr > td:nth-child(1) {
+            width: 150px;
+        }
+
+        .basicCheckUp-tr > td:nth-child(2) {
+            text-align: left;
+            padding-left: 10px;
+            width: 1000px;
+        }
+
     </style>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<%@include file="/WEB-INF/inc/navi.jsp" %>
+<div class="container2">
+
+    <c:forEach var="cu" items="${checkUp}">
+        <input class="reservationDate" type="hidden" value="${cu.reservationDateString}">
+        <input class="reservationTime" type="hidden" value="${cu.reservationTime}">
+    </c:forEach>
 
 
-<c:forEach var="cu" items="${checkUp}">
-    <input class="reservationDate" type="hidden" value="${cu.reservationDateString}">
-    <input class="reservationTime" type="hidden" value="${cu.reservationTime}">
-</c:forEach>
-
-
-<form name="checkUp" action="checkUpRegist.wow" method="post">
-    <sec:csrfInput/>
-    이름<input name="reservationName" required="required">
-    <label>성별</label>
-    <div>
-        남<input type="radio" name="reservationGender" required="required" value="m">
-        여<input type="radio" name="reservationGender" required="required" value="f">
-    </div>
-    생년월일<input type="date" name="reservationBirthday" required="required">
-    전화번호<input type="text" name="reservationHp" required="required">
-    <table class="Calendar">
-        <thead>
-        <tr>
-            <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
-            <td colspan="5">
-                <span id="calYear"></span>년
-                <span id="calMonth"></span>월
-            </td>
-            <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
-        </tr>
-        <tr>
-            <td>일</td>
-            <td>월</td>
-            <td>화</td>
-            <td>수</td>
-            <td>목</td>
-            <td>금</td>
-            <td>토</td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-    <input type="hidden" name="reservationDate" value="">
-
-    <label>예약시간</label>
-    <div>
-        <select name="reservationTime" required="required">
-            <option value="">예약시간 선택</option>
-            <option value="08:00~11:00">08:00~11:00</option>
-            <option value="13:30~16:00">13:30~16:00</option>
-        </select>
+    <div class="basicCheckUp">
+        <h3>기본검진</h3>
+        <table>
+            <tr class="basicCheckUp-tr">
+                <td style="background-color: whitesmoke">프로그램</td>
+                <td style="background-color: whitesmoke">내용</td>
+            </tr>
+            <c:forEach var="basic" items="${basicCodeList}">
+                <tr class="basicCheckUp-tr">
+                    <td>${basic.basicCheckupName}</td>
+                    <td>${basic.basicCheckupContent}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 
-    <label>기본검사</label>
-    <div>
-        <c:forEach var="basic" items="${basicCodeList}">
-            <input type="radio" name="basicCheckupCode" value="${basic.basicCheckupCode}" required="required">${basic.basicCheckupContent}
-        </c:forEach>
-    </div>
+    <form name="checkUp" action="checkUpRegist.wow" method="post">
+        <sec:csrfInput/>
+        <h3>예약자 정보</h3>
+        이름<input name="reservationName" required="required">
+        <label>성별</label>
+        <div>
+            남<input type="radio" name="reservationGender" required="required" value="m">
+            여<input type="radio" name="reservationGender" required="required" value="f">
+        </div>
+        생년월일<input type="date" name="reservationBirthday" required="required">
+        전화번호<input type="text" name="reservationHp" required="required">
+        <table class="Calendar">
+            <thead>
+            <tr>
+                <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
+                <td colspan="5">
+                    <span id="calYear"></span>년
+                    <span id="calMonth"></span>월
+                </td>
+                <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
+            </tr>
+            <tr>
+                <td>일</td>
+                <td>월</td>
+                <td>화</td>
+                <td>수</td>
+                <td>목</td>
+                <td>금</td>
+                <td>토</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
 
-    <label>추가검사</label>
-    <div>
-        <c:forEach var="add" items="${addCodeList}">
-            <input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
-        </c:forEach>
-    </div>
+        <input type="hidden" name="reservationDate" value="">
 
-    <label>DNA검사</label>
-    <div>
-        <c:forEach var="dna" items="${DNACodeList}">
-            <input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}
-        </c:forEach>
-    </div>
+        <label>예약시간</label>
+        <div>
+            <select name="reservationTime" required="required">
+                <option value="">예약시간 선택</option>
+                <option value="08:00~11:00">08:00~11:00</option>
+                <option value="13:30~16:00">13:30~16:00</option>
+            </select>
+        </div>
+
+        <div>
+            <h3>기본검사</h3>
+            <c:forEach var="basic" items="${basicCodeList}">
+                <input type="radio" id="basicCheckupCode" name="basicCheckupCode" value="${basic.basicCheckupCode}"
+                       required="required">${basic.basicCheckupName}
+            </c:forEach>
+        </div>
+
+        <div>
+            <h3>추가검사</h3>
+            <c:forEach var="add" items="${addCodeList}">
+                <input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+            </c:forEach>
+        </div>
+
+        <div>
+            <h3>유전자검사</h3>
+            <c:forEach var="dna" items="${DNACodeList}">
+                <input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}
+            </c:forEach>
+        </div>
 
 
-    <%--    나중에 추가구현--%>
-    <%--    문진표--%>
-    <%--    선결제--%>
-    <button type="submit">예약</button>
-</form>
+        <%--    나중에 추가구현--%>
+        <%--    문진표--%>
+        <%--    선결제--%>
+        <button type="submit">예약</button>
+    </form>
+</div>
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 
@@ -152,9 +203,9 @@
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
 
-    $form.find("button[type=submit]").click(function(e) {
+    $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
-        if ($input.value==null){
+        if ($input[0].value == "" || $select[0].value == "") {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();
@@ -276,6 +327,7 @@
                 return 6;
         }
     }
+
 
 </script>
 <!-- 코드 작성구역 끝 -->
