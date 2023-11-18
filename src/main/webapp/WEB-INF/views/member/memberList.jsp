@@ -77,8 +77,7 @@
 
     <h3>회원목록</h3>
     <div>
-        <a href="memberForm.wow" class="btn btn-primary btn-sm pull-right">회원 등록</a>
-        <a href="/excel/MemberList.wow"  class="btn btn-primary btn-sm" target="_blank"  id="excelDown">excelDown</a>
+        <a href="/excel/MemberList.wow" class="btn btn-primary btn-sm pull-right" target="_blank"  id="excelDown">excelDown</a>
     </div>
     <table class="table table-striped table-bordered">
         <caption class="hidden">회원목록 조회</caption>

@@ -18,39 +18,47 @@
             <tbody>
             <tr>
                 <th>아이디</th>
-                <td><input type="text" class="form-control" id="memId" placeholder="아이디" oninput="checkId(), activateSignupbtn()" name = "memId" autocomplete='off' required="required">
-                    <font color = "red" id = "failid" style = "display:none">5~15자의 영문자와 숫자를 조합해서 입력해주세요.</font>
-                    <font color = "red" id = "fail" style = "display:none">이미 존재하는 ID입니다.</font>
+                <td><input type="text" class="form-control" id="memId" placeholder="아이디"
+                           oninput="checkId(), activateSignupbtn()" name="memId" autocomplete='off' required="required">
+                    <font color="red" id="failid" style="display:none">5~15자의 영문자와 숫자를 조합해서 입력해주세요.</font>
+                    <font color="red" id="fail" style="display:none">이미 존재하는 ID입니다.</font>
                 </td>
             </tr>
             <tr>
                 <th>비밀번호</th>
                 <td><input type="password" name="memPassword" class="form-control input-sm"
-                           required="required" id="memPassword" placeholder="Password" oninput ="checkPwd()">
-                    <font color = "red" id = "failpwd" style = "display:none">8~16자의 영문자와 숫자를 조합해서 입력해주세요.</font>
+                           required="required" id="memPassword" placeholder="Password" oninput="checkPwd()">
+                    <font color="red" id="failpwd" style="display:none">8~16자의 영문자와 숫자를 조합해서 입력해주세요.</font>
                 </td>
             </tr>
             <tr>
                 <th>비밀번호 확인</th>
                 <td>
-                    <input type="password" class="form-control" id="pwCheck" placeholder="Password 확인" oninput ="checkPwd2(), activateSignupbtn()" name = "pwCheck">
-                    <font color = "red" id = "failpwd2" style = "display:none">비밀번호가 맞지 않습니다.</font>
+                    <input type="password" class="form-control" id="pwCheck" placeholder="Password 확인"
+                           oninput="checkPwd2(), activateSignupbtn()" name="pwCheck">
+                    <font color="red" id="failpwd2" style="display:none">비밀번호가 맞지 않습니다.</font>
                 </td>
             </tr>
             <tr>
                 <th>이름</th>
-                <td><input type="text" class="form-control" id="memName" placeholder="이름" oninput="checkName(), activateSignupbtn()" name = "memName" autocomplete='off'>
-                    <font color = "red" id = "failname" style = "display:none">올바른 형식으로 입력하세요.</font>
+                <td><input type="text" class="form-control" id="memName" placeholder="이름"
+                           oninput="checkName(), activateSignupbtn()" name="memName" autocomplete='off'>
+                    <font color="red" id="failname" style="display:none">올바른 형식으로 입력하세요.</font>
                 </td>
             </tr>
             <tr>
                 <th>우편번호</th>
-                <td><input type="text" name="memZip" class="form-control input-sm"></td>
+                <td><input type="text" name="memZip" id="memZip" class="form-control input-sm"></td>
+                <td>
+                    <input type="button" class="form-control btn btn-block btn-secondary btn-sm"
+                           onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+                           style="border: 0px; height: 33px; background-color: #E4E6EF; color: black;">
+                </td>
             </tr>
             <tr>
                 <th>주소</th>
-                <td><input type="text" name="memAdd1" class="form-control input-sm">
-                    <input type="text" name="memAdd2" class="form-control input-sm">
+                <td><input type="text" name="memAdd1" id="memAdd1" class="form-control input-sm">
+                    <input type="text" name="memAdd2" id="memAdd2" class="form-control input-sm">
                 </td>
             </tr>
             <tr>
@@ -60,12 +68,29 @@
             <tr>
                 <th>메일</th>
                 <td><input type="email" name="memEmail" class="form-control input-sm">
-                    <button id="email" type="button">이메일확인</button>
+                    <button id="email" type="button">이메일인증</button>
                 </td>
             </tr>
             <tr>
                 <th>핸드폰</th>
-                <td> <input type="text" class="form-control" id="memHp"   placeholder="전화번호" oninput="addhyphen(),checkTel(), activateSignupbtn()" name = "memHp" ></td>
+                <td><input type="text" class="form-control" id="memHp" placeholder="전화번호"
+                           oninput="addhyphen(),checkTel(), activateSignupbtn()" name="memHp"></td>
+            </tr>
+            <tr>
+
+                <div class="row">
+                    <div class="col-8 mail_check_input">
+                        <input type="text" class="form-control mail_check_input" name="authNumber" id="authNum" value=""
+                               disabled="disabled" placeholder="인증번호 입력">
+                        <span id="mail_check_input_box_warn"></span>
+                    </div>
+                    <div class="col-4" style="padding-left:0px;">
+                        <input type="button" class="form-control btn btn-block btn-secondary btn-sm" id="email_auth_btn"
+                               value="인증번호 받기"
+                               style="border: 0px;  height: 33px; width:125px; background-color: #E4E6EF; color: black;">
+                    </div>
+                </div>
+
             </tr>
             </tbody>
         </table>
@@ -74,7 +99,7 @@
 </div>
 
 
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
 
@@ -100,16 +125,11 @@
 
     function addhyphen() {
         $(document).on("keyup", "#memHp", function () {
-            $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3").replace("--", "-") ); //- 자동으로 입력
+            $(this).val($(this).val().replace(/[^0-9]/g, "").replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, "$1-$2-$3").replace("--", "-")); //- 자동으로 입력
         })
     }
 
 </script>
-
-
-
-
-
 
 
 <script>
@@ -262,8 +282,132 @@
             $(".signupbtn").prop("disabled", true);
         }
     }
+</script>
+<script>
+    //    우편번호 검색기
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                /*var extraAddr = ''; // 참고항목 변수*/
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("memZip").value = data.zonecode;
+                document.getElementById("memAdd1").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("memAdd2").focus();
+            }
+        }).open();
+    }
+
+</script>
+
+
+<script>
+    let header = "${_csrf.headerName}";
+    let token  = "${_csrf.token}";
+    var code = "";//이메일전송 인증번호 저장위한 코드
+
+    /* 인증번호 비교 */
+    $(".mail_check_input").focusout(function(){ //마우스가 다음칸 클릭했을 경우 일치 불일치 여부 뜸
+        var inputCode = $("#authNum").val();// 입력코드
+        var checkResult = $("#mail_check_input_box_warn");// 비교 결과
+
+        if(inputCode == code){// 일치할 경우
+            checkResult.html("인증번호가 일치합니다.");
+            checkResult.attr("class", "correct");
+        } else {// 일치하지 않을 경우
+            checkResult.html("인증번호를 다시 확인해주세요.");
+            checkResult.attr("class", "incorrect");
+        }
+
+    });
+
+    $("#btn").submit(function() {
+        var pos = $("#job").find("option:selected").data("no");
+        var jcd = $("#position").val(pos);
+        var memberjobcd = $("#job option:selected").val();
+        var jod = $("#job option:selected").text();
+        $("#jobgubun").val(jod);
+
+        temp_pw_issuance()
+
+
+        if ($("#email").val() == null || $("#email").val() == "") {
+            alert("이메일을 입력해주세요.");
+            $("#email").focus();
+
+            return false;
+        }
+
+        if ($("#authNum").val() == "") {
+            alert("인증번호를 입력해주세요.");
+            $("#authNum").focus();
+
+            return false;
+        }
+
+
+
+        alert("회원가입이 완료되었습니다.");
+    });
+    /* 인증번호 이메일 전송 */
+    $("#email_auth_btn").click(function(){
+
+        var email = $("input[name='memEmail']").val();            // 입력한 이메일
+        var cehckBox = $("#authNum");     // 인증번호 입력란
+
+        $.ajax({
+
+            type:"GET",
+            url:"/emp/mailCheck?email=" + email,
+            beforeSend:function(xhr){
+                xhr.setRequestHeader(header,token);
+            },
+            success:function(data){
+                console.log("data : " + data);
+                cehckBox.attr("disabled",false);
+                //cehckBox.css("border-color","red");
+                code = data;
+                alert("인증번호가 발송되었습니다.");
+            }
+        });
+    });
+
+
+    function temp_pw_issuance() {
+        let ranValue1 = ['1','2','3','4','5','6','7','8','9','0'];
+        let ranValue2 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        let ranValue3 = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+        var temp_pw = ""; //임시비밀번호
+
+        for(i=0 ; i<2; i++) {
+            let ranPick1 = Math.floor(Math.random() * ranValue1.length);
+            let ranPick2 = Math.floor(Math.random() * ranValue2.length);
+            let ranPick3 = Math.floor(Math.random() * ranValue3.length);
+            temp_pw = temp_pw + ranValue1[ranPick1] + ranValue2[ranPick2] + ranValue3[ranPick3];
+        }
+
+        $("#pass").val(temp_pw);
+        console.log($("#pass").val());
+    }
+
 
 
 </script>
+
+
 </body>
 </html>

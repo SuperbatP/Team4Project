@@ -9,7 +9,6 @@ import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.checkUp.vo.CheckUpVO;
 import com.PhoenixHospital.dna_test_code.service.IDNATestService;
 import com.PhoenixHospital.dna_test_code.vo.DNATestVO;
-import com.PhoenixHospital.login.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;

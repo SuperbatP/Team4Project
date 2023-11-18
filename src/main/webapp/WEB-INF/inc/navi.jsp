@@ -64,7 +64,7 @@
                     <span class=""><a href="#">사이트맵</a></span>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <span class=""> <sec:authentication property="principal.username"/>님</span>
+                    <span class=""> <sec:authentication property="principal.username"/> 관리자 님</span>
                     <span class=""><a href="/member/memberEdit.wow">My Page</a></span>
                     <span class=""><a href="/member/memberList.wow">회원관리</a></span>
                     <span class=""><a href="/logout">로그아웃</a></span>
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="dropdown">
-                    <li class="drop-btn"><a>병원소개</a></li>
+                    <li class="drop-btn"><a href="/map/map.wow">병원소개</a></li>
                     <div class="dropdown-content">
                         <a class="smoothScroll" href="/map/map.wow">오시는길</a>
                         <a class="smoothScroll" href="/pharmacy/pharmacy.wow">인근약국 안내</a>

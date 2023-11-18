@@ -11,7 +11,6 @@ import com.PhoenixHospital.doctors.dao.IDoctorsDao;
 import com.PhoenixHospital.doctors.service.IDoctorsService;
 import com.PhoenixHospital.doctors.vo.DoctorsVO;
 import com.PhoenixHospital.exception.BizNotFoundException;
-import com.PhoenixHospital.login.vo.UserVO;
 import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;

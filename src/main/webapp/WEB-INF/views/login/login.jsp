@@ -1,9 +1,6 @@
-
-<%@page import="com.PhoenixHospital.login.vo.UserVO"%>
-<%@page import="com.PhoenixHospital.common.util.CookieUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> >
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -26,8 +23,6 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 	<%@include file="/WEB-INF/inc/navi.jsp"%>
-
-	${msg}
 	<section class="vh-100">
 		<div class="container py-5 h-100">
 			<div class="row d-flex align-items-center justify-content-center h-100">

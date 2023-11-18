@@ -1,3 +1,4 @@
+/*
 package com.PhoenixHospital.login.vo;
 //이미 제공됐다.
 
@@ -80,4 +81,4 @@ public class UserVO {
 		return authorities;
 	}
 
-}
+}*/
