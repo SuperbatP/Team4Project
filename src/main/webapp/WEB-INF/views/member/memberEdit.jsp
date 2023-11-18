@@ -1,13 +1,3 @@
-
-<%@page import="com.PhoenixHospital.member.vo.MemberVO"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@ page import="com.PhoenixHospital.member.service.IMemberService" %>
-<%@ page import="com.PhoenixHospital.member.service.MemberServiceImpl" %>
-<%@ page import="com.PhoenixHospital.exception.BizNotFoundException" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -65,36 +55,14 @@
 				<td><input type="tel" name="memHp" class="form-control input-sm" value='${member.memHp}'></td>
 			</tr>
 <%--			<tr>--%>
-<%--				<th>직업</th>--%>
-<%--				<td>--%>
-<%--					<select name="memJob" class="form-control input-sm" >--%>
-<%--						<option value="">-- 직업 선택 --</option>--%>
-<%--						<c:forEach items="${jobList}" var="job">--%>
-<%--							<option value="${job.commCd}" ${member.memJob == job.commCd ? "selected='selected'" : ''} >${job.commNm}</option>--%>
-<%--						</c:forEach>--%>
-<%--					</select>--%>
-<%--				</td>--%>
-<%--			</tr>--%>
-<%--			<tr>--%>
-<%--				<th>취미</th>--%>
-<%--				<td>--%>
-<%--					<select name="memHobby" class="form-control input-sm" >--%>
-<%--						<option value="">-- 취미 선택 --</option>--%>
-<%--						<c:forEach items="${hobbyList}" var="hobby">--%>
-<%--							<option value="${hobby.commCd}" ${member.memHobby == hobby.commCd ? "selected='selected'" : ''} >${hobby.commNm}</option>--%>
-<%--						</c:forEach>--%>
-<%--					</select>			--%>
-<%--				</td>--%>
-<%--			</tr>--%>
-			<tr>
-				<th>탈퇴여부</th>
-				<td>${member.memDelYn}</td>
-			</tr>	
+<%--				<th>탈퇴여부</th>--%>
+<%--				<td>${member.memDelYn}</td>--%>
+<%--			</tr>	--%>
 			<tr>
 				<td colspan="2">
-					<a href="memberList.wow" class="btn btn-info btn-sm">
+					<a href="/" class="btn btn-info btn-sm">
 					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-					&nbsp;목록으로
+					&nbsp;홈으로
 					</a>
 					<button type="submit" class="btn btn-primary">
 					<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>

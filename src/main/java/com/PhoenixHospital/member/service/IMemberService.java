@@ -16,7 +16,7 @@ public interface IMemberService {
 	public List<MemberVO> getMemberList(PagingVO paging, SearchVO search);
 	public MemberVO getMember(String memId) throws BizNotFoundException ;
 	public void modifyMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException ;	
-	public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException;
+	//public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException;
 	public void registMember(MemberVO member) throws BizNotEffectedException,BizDuplicateKeyException;
 
 	boolean idCheck(MemberVO member);
@@ -27,5 +27,5 @@ public interface IMemberService {
 
 	MemberVO getBySns(MemberVO snsUser);
 
-
+	public void updateUser(MemberVO member) throws BizNotEffectedException, BizNotFoundException ;
 }

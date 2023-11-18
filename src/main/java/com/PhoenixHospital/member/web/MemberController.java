@@ -36,9 +36,9 @@ public class MemberController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/member/memberView.wow")
-    public String memberView(Model model, @AuthenticationPrincipal User user)throws BizException {
+    public String memberView(Model model, MemberVO memberVO)throws BizException {
 
-        MemberVO member = memberService.getMember(user.getUsername());
+        MemberVO member = memberService.getMember(memberVO.getMemId());
         model.addAttribute("member",member);
 
         return "member/memberView";
@@ -65,7 +65,7 @@ public class MemberController {
 
         return "common/message";
     }
-    @PostMapping("/member/memberDelete.wow")
+ /*   @PostMapping("/member/memberDelete.wow")
     public String memberDelete(Model model, MemberVO member)throws BizException{
 
         memberService.removeMember(member);
@@ -77,7 +77,7 @@ public class MemberController {
         model.addAttribute("resultMessageVO", resultMessageVO);
 
         return  "common/message";
-    }
+    }*/
     @RequestMapping("/member/memberRegist.wow")
     public String memberRegist(Model model, MemberVO member)throws BizException{
 
@@ -96,5 +96,22 @@ public class MemberController {
     public String  memberForm(Model model){
         return "member/memberForm";
     }
+
+    @PostMapping("/member/updateUser.wow")
+    public String updateUser(Model model, MemberVO member)throws BizException{
+
+        memberService.updateUser(member);
+
+        ResultMessageVO resultMessageVO=new ResultMessageVO();
+        resultMessageVO.messageSetting(true ,"수정"
+                , "수정에 성공했어요" ,"/member/memberList.wow","목록으로");
+
+        model.addAttribute("resultMessageVO", resultMessageVO);
+
+        return  "common/message";
+    }
+
+
+
 
 }

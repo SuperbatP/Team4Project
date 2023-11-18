@@ -40,26 +40,6 @@
                     <div class="col-sm-2">
                         <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}" placeholder="검색어">
                     </div>
-                    <div>
-                        <label for="id_searchJob" class="col-sm-1 col-sm-offset control-label">직업</label>
-                        <div class="col-sm-2">
-                            <select id="id_searchJob" name="searchJob" class="form-control input-sm">
-                                <option value="">-- 전체 --</option>
-                                <c:forEach items="${jobList}" var="code">
-                                    <option value="${code.commCd}" ${searchJob eq code.commCd ? "selected='selected'":""} >${code.commNm}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <label for="id_searchHobby" class="col-sm-1 col-sm-offset control-label">취미</label>
-                        <div class="col-sm-2">
-                            <select id="id_searchHobby" name="searchHobby" class="form-control input-sm">
-                                <option value="">-- 전체 --</option>
-                                <c:forEach items="${hobbyList}" var="code">
-                                    <option value="${code.commCd}" ${searchHobby eq code.commCd ? "selected='selected'":""} >${code.commNm}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 col-sm-offset-9 text-right">
@@ -116,6 +96,8 @@
             <th>회원명</th>
             <th>HP</th>
             <th>생일</th>
+            <th>권한</th>
+            <th>탈퇴여부</th>
         </tr>
         </thead>
         <tbody>
@@ -126,6 +108,8 @@
                     ${member.memName}</a></td>
             <td>${member.memHp}</td>
             <td>${member.memBir}</td>
+            <td>${member.memRole}</td>
+            <td>${member.memDelYn}</td>
         </tr>
         </c:forEach>
         </tbody>

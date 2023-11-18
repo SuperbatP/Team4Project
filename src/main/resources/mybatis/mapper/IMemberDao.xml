@@ -45,12 +45,12 @@
         ORDER BY mem_id DESC
         ) a
         )
-        WHERE rnum BETWEEN #{paging.firstRow} AND #{paging.lastRow};
+        WHERE rnum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
     </select>
 
     <select id="getMember" resultType="com.PhoenixHospital.member.vo.MemberVO" parameterType="String">
         SELECT
-            mem_bir
+            to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir
              , mem_id               , mem_password             , mem_name
              , mem_zip              , mem_add1               , mem_add2
              , mem_hp               , mem_email               , mem_del_yn
@@ -61,7 +61,7 @@
 
     </select>
 
-    <update id="updateMember">
+    <update id="updateMember" parameterType="com.PhoenixHospital.member.vo.MemberVO">
         UPDATE member
         SET
             mem_password   =#{memPassword}
@@ -72,15 +72,14 @@
           , mem_add2   =#{memAdd2}
           , mem_hp     =#{memHp}
           , mem_email   =#{memEmail}
-          , mem_role   =#{memRole}
         WHERE mem_id = #{memId}
 
     </update>
 
-    <delete id="deleteMember" parameterType="String">
-        UPDATE member SET mem_del_yn='Y'
-        WHERE mem_id=#{memId}
-    </delete>
+<!--    <delete id="deleteMember" parameterType="String">-->
+<!--        UPDATE member SET mem_del_yn='Y'-->
+<!--        WHERE mem_id=#{memId}-->
+<!--    </delete>-->
 
     <insert id="insertMember">
         INSERT INTO member ( mem_id, mem_password, mem_name
@@ -94,8 +93,6 @@
 
     </insert>
 
-
-
     <select id="getBySnsNaver" resultType="com.PhoenixHospital.member.vo.MemberVO">
         select * from member where naverid = #{naverid}
     </select>
@@ -103,6 +100,14 @@
     <select id="getBySnsGoogle" resultType="com.PhoenixHospital.member.vo.MemberVO">
         select * from member where googleid = #{googleid}
     </select>
+
+    <update id="updateUser" parameterType="String">
+        UPDATE member
+        SET mem_role = #{memRole}
+            ,mem_del_yn = #{memDelYn}
+        WHERE mem_id=#{memId}
+    </update>
+
 
 
 

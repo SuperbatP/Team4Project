@@ -49,8 +49,6 @@ public class MemberServiceImpl implements IMemberService {
 
         List<MemberVO> memberList = memberDao.getMemberList(paging, search);
         return memberList;
-
-
     }
 
     @Override
@@ -71,29 +69,11 @@ public class MemberServiceImpl implements IMemberService {
         if (count < 1) throw new BizNotEffectedException();
     }
 
-    @Override
+  /*  @Override
     public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException {
         int count = memberDao.deleteMember(member);
         if (count < 1) throw new BizNotEffectedException();
-
-
-    /*    EnterMemberVO vo = null;
-        if(member.getIndivMemId() != null && ! member.getIndivMemId().equals("")) {
-            //vo = memberDao.getMember(member.getMemId());
-            vo = memMapper.getMember(member.getIndivMemId());
-        }
-        if( vo == null) {
-            throw new BizNotFoundException();
-        }
-        if( !vo.getEnterPw().equals(member.getIndivMemPw()) ){
-            throw new BizPasswordNotMatchedException();
-        }
-        int resultCnt = memMapper.deleteIndiv(member);
-        if(resultCnt != 1){
-            throw new BizNotEffectedException();
-        }
     }*/
-    }
 
     @Override
     public void registMember(MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
@@ -122,7 +102,6 @@ public class MemberServiceImpl implements IMemberService {
     public boolean idCheck(MemberVO member) {
 
         int count = memberDao.idCheck(member);
-
         if (count == 0) {
             return true;
         }
@@ -207,6 +186,13 @@ public class MemberServiceImpl implements IMemberService {
             return session.selectOne(GET_BY_SNS_GOOGLE, snsUser.getGoogleid());
         }
 
+    }
+
+    @Override
+    public void updateUser(MemberVO member) throws BizNotEffectedException, BizNotFoundException {
+
+        int count = memberDao.updateUser(member);
+        if (count < 1) throw new BizNotEffectedException();
     }
 
 }

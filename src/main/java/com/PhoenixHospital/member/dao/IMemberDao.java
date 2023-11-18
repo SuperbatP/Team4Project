@@ -25,7 +25,7 @@ public interface IMemberDao {
 	 */
 	public MemberVO getMember(String memId);
 	public int updateMember(MemberVO member);
-	public int deleteMember(MemberVO member);
+	//public int deleteMember(MemberVO member);
 	public int insertMember(MemberVO member);
 
 	public int idCheck(MemberVO member);
@@ -35,6 +35,9 @@ public interface IMemberDao {
 	MemberVO loginCheck(MemberVO member);
 
 	MemberVO getBySns(MemberVO snsUser);
+
+	public int updateUser(MemberVO member);
+
 
 	
 }

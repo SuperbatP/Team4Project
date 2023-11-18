@@ -4,11 +4,12 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
 <%@include file="/WEB-INF/inc/header.jsp"%>
-<title>next_study : ${resultMessageVO.title}</title>
+<title>결과 : ${resultMessageVO.title}</title>
 </head>
 <body>
 	<%@include file="/WEB-INF/inc/navi.jsp"%>
@@ -32,14 +33,16 @@
 							<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 							&nbsp;뒤로가기
 						</a> 
-						&nbsp;&nbsp;
+						&nbsp;
+						<sec:authorize access="hasRole('ADMIN')">
 						<c:if test="${not empty resultMessageVO.url}">
 							<a href="<c:url value='${resultMessageVO.url}' />"
-								class="btn btn-warning"> 
+								class="btn btn-warning">
 								<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
 								&nbsp;${resultMessageVO.urlTitle}
 							</a>
 						</c:if>
+						</sec:authorize>
 					</div>
 				</div>
 			</div>
