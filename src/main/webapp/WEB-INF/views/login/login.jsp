@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <%@include file="/WEB-INF/inc/header.jsp"%>
 <title>login</title>
 	<style>
@@ -21,7 +20,8 @@
 	</style>
 
 </head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
 	<%@include file="/WEB-INF/inc/navi.jsp"%>
 	<section class="vh-100">
 		<div class="container py-5 h-100">
@@ -35,7 +35,7 @@
 
 						<sec:csrfInput/>
 						<input type="hidden" name="remember" value="true">
-						
+
 						<!-- id input -->
 						<div class="form-outline mb-4">
 							<label class="form-label" for="form1Example13">ID</label>

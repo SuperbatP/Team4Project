@@ -12,7 +12,7 @@
 
 
 
-
+    <http pattern="/resources/**" security="none" />
     <http auto-config="true">
 
         <csrf disabled="false" />

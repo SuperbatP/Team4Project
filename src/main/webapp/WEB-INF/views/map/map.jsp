@@ -5,25 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="Tooplate">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/tooplate-style.css">
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
-
 
 <div id="mapframe" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
 
@@ -126,6 +111,7 @@
 <script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
 <script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
+<script src="resource/bootstrap-3.3.2/js/jquery1.11.2.js"></script>
 <script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
 <script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
 <script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
