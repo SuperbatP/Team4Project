@@ -13,6 +13,7 @@
     <style>
 
         .container2 {
+            margin: auto;
             width: 1200px;
             display: flex;
             justify-content: center;
@@ -164,18 +165,50 @@
 
         .addCheckUp-frame {
             width: 90%;
-            height: 140px;
+            height: 250px;
             padding-top: 18px;
             padding-left: 35px;
         }
 
         .dnaTest-frame {
             width: 90%;
-            height: 50px;
+            height: 100px;
             padding-top: 18px;
             padding-left: 35px;
         }
 
+        .reservation-btn {
+            width: 1200px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .reservation-btn > button:nth-child(1) {
+            width: 130px;
+            height: 100%;
+            margin-right: 10px;
+            border: 1px solid gainsboro;
+            background-color: whitesmoke;
+            color: dimgray;
+        }
+
+        .reservation-btn > button:nth-child(2) {
+            width: 130px;
+            height: 100%;
+            margin-left: 10px;
+            border: 1px solid gainsboro;
+            background-color: #a5c422;
+            color: white;
+
+        }
+
+        label {
+            padding: 7px;
+            font-weight: normal;
+        }
 
 
     </style>
@@ -279,22 +312,24 @@
         <h3>기본검사</h3>
         <div class="basicCheckUp-frame">
             <c:forEach var="basic" items="${basicCodeList}">
-                <input type="radio" id="basicCheckupCode" name="basicCheckupCode" value="${basic.basicCheckupCode}"
-                       required="required">${basic.basicCheckupName}
+                <label><input type="radio" id="basicCheckupCode" name="basicCheckupCode"
+                              value="${basic.basicCheckupCode}"
+                              required="required">${basic.basicCheckupName}</label>
             </c:forEach>
         </div>
 
         <h3>추가검사</h3>
         <div class="addCheckUp-frame">
             <c:forEach var="add" items="${addCodeList}">
-                <input type="checkbox" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+                <label><input type="checkbox" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+                </label>
             </c:forEach>
         </div>
 
         <h3>유전자검사</h3>
         <div class="dnaTest-frame">
             <c:forEach var="dna" items="${DNACodeList}">
-                <input type="checkbox" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}
+                <label><input type="checkbox" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}</label>
             </c:forEach>
         </div>
 
@@ -302,7 +337,11 @@
         <%--    나중에 추가구현--%>
         <%--    문진표--%>
         <%--    선결제--%>
-        <button type="submit">예약</button>
+
+        <div class="reservation-btn">
+            <button type="submit1"><b>예약하기</b></button>
+            <button type="submit2"><b>이전</b></button>
+        </div>
     </form>
 </div>
 
@@ -325,13 +364,17 @@
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
 
-    $form.find("button[type=submit]").click(function (e) {
+    $form.find("button[type=submit1]").click(function (e) {
         e.preventDefault();
-        if ($input.value == null) {
+        if ($input[0].value == "" || $select[0].value == "") {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();
         }
+    });
+
+    $form.find("button[type=submit2]").click(function () {
+        history.back();
     });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
