@@ -107,9 +107,9 @@ public class EmailController {
 	        */
 	        
 	        /* 이메일 보내기 */
-	        String setFrom = "zndntjswn24@naver.com";
+	        String setFrom = "nextitproject1213@gmail.com";
 	        String toMail = email;
-	        String title = "메디컬 테크놀로지 비밀번호 찾기 이메일 입니다.";
+	        String title = "불사조 병원 임시비밀번호 안내 이메일 입니다.";
 	        String content = 
 	                "메디컬 테그놀로지 비밀번호는 " +
 	                "<br><br>" + 
