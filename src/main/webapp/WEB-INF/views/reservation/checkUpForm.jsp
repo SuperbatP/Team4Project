@@ -18,7 +18,6 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;;
-            border: 1px solid red;
         }
 
         td {
@@ -60,25 +59,124 @@
             cursor: pointer;
         }
 
-        .basicCheckUp > h3 {
-            padding: 10px;
+        h3 {
+            display: flex;
+            align-items: end;
+            width: 1100px;
+            height: 70px;
+            margin-bottom: -10px;
+            padding-left: 35px;
         }
 
-        .basicCheckUp-tr > td {
+        .basicCheckUp-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1200px;
+            height: 600px;
+
+            flex-wrap: wrap;
+        }
+
+        .basicCheckUp-list-tr > td {
             height: 55px;
             text-align: center;
             border: 1px solid gainsboro;
         }
 
-        .basicCheckUp-tr > td:nth-child(1) {
+        .basicCheckUp-list-tr > td:nth-child(1) {
             width: 150px;
         }
 
-        .basicCheckUp-tr > td:nth-child(2) {
+        .basicCheckUp-list-tr > td:nth-child(2) {
             text-align: left;
             padding-left: 10px;
             width: 1000px;
         }
+
+        .checkup-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 1200px;
+            height: 100px;
+        }
+
+
+        .checkup-info-tr > td {
+            height: 55px;
+            text-align: center;
+            border: 1px solid gainsboro;
+        }
+
+        .checkup-info-tr > td:nth-child(1),
+        .checkup-info-tr > td:nth-child(3),
+        .checkup-info-tr > td:nth-child(5),
+        .checkup-info-tr > td:nth-child(7) {
+            background-color: whitesmoke;
+            width: 95px;
+        }
+
+        .checkup-info-tr > td:nth-child(2),
+        .checkup-info-tr > td:nth-child(4),
+        .checkup-info-tr > td:nth-child(6),
+        .checkup-info-tr > td:nth-child(8) {
+            width: 190px;
+        }
+
+        .reservation-top {
+            width: 1200px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 500px;
+        }
+
+        .Calendar-frame {
+            border: 1px solid gainsboro;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reservation-time-select {
+            border: 1px solid gainsboro;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .time-frame {
+            width: 380px;
+            height: 200px;
+        }
+
+        .basicCheckUp-frame {
+            width: 90%;
+            height: 50px;
+            padding-top: 18px;
+            padding-left: 35px;
+        }
+
+        .addCheckUp-frame {
+            width: 90%;
+            height: 140px;
+            padding-top: 18px;
+            padding-left: 35px;
+        }
+
+        .dnaTest-frame {
+            width: 90%;
+            height: 50px;
+            padding-top: 18px;
+            padding-left: 35px;
+        }
+
+
 
     </style>
 </head>
@@ -91,88 +189,112 @@
         <input class="reservationTime" type="hidden" value="${cu.reservationTime}">
     </c:forEach>
 
-
-    <div class="basicCheckUp">
-        <h3>기본검진</h3>
-        <table>
-            <tr class="basicCheckUp-tr">
-                <td style="background-color: whitesmoke">프로그램</td>
-                <td style="background-color: whitesmoke">내용</td>
-            </tr>
-            <c:forEach var="basic" items="${basicCodeList}">
-                <tr class="basicCheckUp-tr">
-                    <td>${basic.basicCheckupName}</td>
-                    <td>${basic.basicCheckupContent}</td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-
     <form name="checkUp" action="checkUpRegist.wow" method="post">
         <sec:csrfInput/>
+
+        <h3>기본검진</h3>
+        <div class="basicCheckUp-list">
+            <table>
+                <tr class="basicCheckUp-list-tr">
+                    <td style="background-color: whitesmoke">프로그램</td>
+                    <td style="background-color: whitesmoke">내용</td>
+                </tr>
+                <c:forEach var="basic" items="${basicCodeList}">
+                    <tr class="basicCheckUp-list-tr">
+                        <td>${basic.basicCheckupName}</td>
+                        <td>${basic.basicCheckupContent}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+
         <h3>예약자 정보</h3>
-        이름<input name="reservationName" required="required">
-        <label>성별</label>
-        <div>
-            남<input type="radio" name="reservationGender" required="required" value="m">
-            여<input type="radio" name="reservationGender" required="required" value="f">
+
+
+        <div class="checkup-info">
+            <table>
+                <tr class="checkup-info-tr">
+                    <td>이름</td>
+                    <td>
+                        <input name="reservationName" required="required" style="width: 80%">
+                    </td>
+                    <td>성별</td>
+                    <td>
+                        남<input type="radio" name="reservationGender" required="required" value="m">
+                        여<input type="radio" name="reservationGender" required="required" value="f">
+                    </td>
+                    <td>생년월일</td>
+                    <td>
+                        <input type="date" name="reservationBirthday" required="required">
+                    </td>
+                    <td>전화번호</td>
+                    <td>
+                        <input type="text" name="reservationHp" required="required" style="width: 80%">
+                    </td>
+                </tr>
+            </table>
         </div>
-        생년월일<input type="date" name="reservationBirthday" required="required">
-        전화번호<input type="text" name="reservationHp" required="required">
-        <table class="Calendar">
-            <thead>
-            <tr>
-                <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
-                <td colspan="5">
-                    <span id="calYear"></span>년
-                    <span id="calMonth"></span>월
-                </td>
-                <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
-            </tr>
-            <tr>
-                <td>일</td>
-                <td>월</td>
-                <td>화</td>
-                <td>수</td>
-                <td>목</td>
-                <td>금</td>
-                <td>토</td>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <h3>날짜 및 시간 선택</h3>
+        <div class="reservation-top">
+            <div class="Calendar-frame col-sm-5">
+                <table class="Calendar">
+                    <thead>
+                    <tr>
+                        <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
+                        <td colspan="5">
+                            <span id="calYear"></span>년
+                            <span id="calMonth"></span>월
+                        </td>
+                        <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
+                    </tr>
+                    <tr>
+                        <td>일</td>
+                        <td>월</td>
+                        <td>화</td>
+                        <td>수</td>
+                        <td>목</td>
+                        <td>금</td>
+                        <td>토</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
 
-        <input type="hidden" name="reservationDate" value="">
+            <input type="hidden" name="reservationDate" value="">
 
-        <label>예약시간</label>
-        <div>
-            <select name="reservationTime" required="required">
-                <option value="">예약시간 선택</option>
-                <option value="08:00~11:00">08:00~11:00</option>
-                <option value="13:30~16:00">13:30~16:00</option>
-            </select>
+            <div class="reservation-time-select col-sm-5">
+                <div class="time-frame">
+                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
+                    <select name="reservationTime" required="required">
+                        <option value="">예약시간 선택</option>
+                        <option value="08:00~11:00">08:00~11:00</option>
+                        <option value="13:30~16:00">13:30~16:00</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <h3>기본검사</h3>
+        <h3>기본검사</h3>
+        <div class="basicCheckUp-frame">
             <c:forEach var="basic" items="${basicCodeList}">
                 <input type="radio" id="basicCheckupCode" name="basicCheckupCode" value="${basic.basicCheckupCode}"
                        required="required">${basic.basicCheckupName}
             </c:forEach>
         </div>
 
-        <div>
-            <h3>추가검사</h3>
+        <h3>추가검사</h3>
+        <div class="addCheckUp-frame">
             <c:forEach var="add" items="${addCodeList}">
-                <input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+                <input type="checkbox" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
             </c:forEach>
         </div>
 
-        <div>
-            <h3>유전자검사</h3>
+        <h3>유전자검사</h3>
+        <div class="dnaTest-frame">
             <c:forEach var="dna" items="${DNACodeList}">
-                <input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}
+                <input type="checkbox" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}
             </c:forEach>
         </div>
 
@@ -205,7 +327,7 @@
 
     $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
-        if ($input[0].value == "" || $select[0].value == "") {
+        if ($input.value == null) {
             alert("날짜를 선택해주세요");
         } else {
             $form.submit();
