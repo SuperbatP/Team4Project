@@ -41,6 +41,7 @@
         FROM reservation r
         WHERE mem_id = #{memId}
         AND cancel_date is null
+        AND reservation_date > sysdate
     </select>
 
     <update id="updateReservation">

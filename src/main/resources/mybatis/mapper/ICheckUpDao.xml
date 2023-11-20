@@ -43,6 +43,7 @@
             checkup
         WHERE mem_id=#{memId}
         AND cancel_date is null
+        AND reservation_date > sysdate
     </select>
 
     <insert id="insertCheckUp">

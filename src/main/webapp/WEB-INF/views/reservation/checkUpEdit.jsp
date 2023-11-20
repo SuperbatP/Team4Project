@@ -90,6 +90,9 @@
     <input class="reservationTime" type="hidden" value="${cu.reservationTime}">
 </c:forEach>
 
+<input class="myReservationDate" value="${myCheckUp.reservationDateString}" type="hidden">
+<input class="myReservationTime" value="${myCheckUp.reservationTime}" type="hidden">
+
 <form name="checkUp" action="checkUpModify.wow" method="post">
     <sec:csrfInput/>
     <div>
@@ -233,20 +236,20 @@
                 nowColumn.className = "pastDay";
             } else {
                 if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
-                    nowColumn.className = "today";
+                    nowColumn.classList.add("today");
                     nowColumn.onclick = function () {
                         choiceDate(this);
                     }
                 } else {                                      // 미래인 경우
-                    nowColumn.className = "futureDay";
+                    nowColumn.classList.add("futureDay");
                     nowColumn.onclick = function () {
                         choiceDate(this);
                     }
                 }
+            }
 
-                if ($myDate[0].value == (nowDay.getFullYear() + "-" + (nowDay.getMonth()+1) + "-" + nowDay.getDate())) {
-                    nowColumn.classList.add("choiceDay");
-                }
+            if ($myDate[0].value === (nowDay.getFullYear() + "-" + (nowDay.getMonth()+1) + "-" + nowDay.getDate())) {
+                nowColumn.classList.add("choiceDay");
             }
         }
     }
