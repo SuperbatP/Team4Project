@@ -129,15 +129,15 @@
         <div>
             <select name="reservationTime" required="required">
                 <option value="">예약시간 선택</option>
-                <option value="08:00~11:00">08:00~11:00</option>
-                <option value="13:30~16:00">13:30~16:00</option>
+                <option value="08:00~11:00" ${myCheckUp.reservationTime eq "08:00~11:00" ? "selected='selected'":""}>08:00~11:00</option>
+                <option value="13:30~16:00" ${myCheckUp.reservationTime eq "13:30~16:00" ? "selected='selected'":""}>13:30~16:00</option>
             </select>
         </div>
 
         <div>
             <h3>기본검사</h3>
             <c:forEach var="basic" items="${basicCodeList}">
-                <input type="radio" id="basicCheckupCode" name="basicCheckupCode" value="${basic.basicCheckupCode}"
+                <input type="radio" id="basicCheckupCode" name="basicCheckupCode" value="${basic.basicCheckupCode}" ${myCheckUp.basicCheckupCode eq basic.basicCheckupCode ? "checked='checked'":""}
                        required="required">${basic.basicCheckupName}
             </c:forEach>
         </div>
@@ -145,14 +145,14 @@
         <div>
             <h3>추가검사</h3>
             <c:forEach var="add" items="${addCodeList}">
-                <input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+                <input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName} ${myCheckUp.addCheckupCode eq add.addCheckupCode ? "checked='checked'":""}
             </c:forEach>
         </div>
 
         <div>
             <h3>유전자검사</h3>
             <c:forEach var="dna" items="${DNACodeList}">
-                <input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}
+                <input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName} ${myCheckUp.dnaTestCode eq dna.dnaTestCode ? "checked='checked'":""}
             </c:forEach>
         </div>
 
@@ -161,7 +161,7 @@
         <%--    문진표--%>
         <%--    선결제--%>
 
-        <button type="submit">예약수정</button>
+        <button type="submit">완료</button>
     </div>
 </form>
 
@@ -182,6 +182,9 @@
     $form = $("form[name='checkUp']")
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
+
+    $myDate = $(".myReservationDate");
+    $myTime = $(".myReservationTime");
 
     $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
@@ -228,15 +231,21 @@
 
             if (nowDay < today) {                       // 지난날인 경우
                 nowColumn.className = "pastDay";
-            } else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
-                nowColumn.className = "today";
-                nowColumn.onclick = function () {
-                    choiceDate(this);
+            } else {
+                if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
+                    nowColumn.className = "today";
+                    nowColumn.onclick = function () {
+                        choiceDate(this);
+                    }
+                } else {                                      // 미래인 경우
+                    nowColumn.className = "futureDay";
+                    nowColumn.onclick = function () {
+                        choiceDate(this);
+                    }
                 }
-            } else {                                      // 미래인 경우
-                nowColumn.className = "futureDay";
-                nowColumn.onclick = function () {
-                    choiceDate(this);
+
+                if ($myDate[0].value == (nowDay.getFullYear() + "-" + (nowDay.getMonth()+1) + "-" + nowDay.getDate())) {
+                    nowColumn.classList.add("choiceDay");
                 }
             }
         }

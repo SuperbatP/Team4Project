@@ -216,12 +216,15 @@
     </c:if>
 </c:forEach>
 
+<input class="myReservationDate" value="${myReservation.reservationDateString}" type="hidden">
+<input class="myReservationTime" value="${myReservation.reservationTime}" type="hidden">
+
 <form name="reservation" action="reservationModify.wow" method="post">
     <sec:csrfInput/>
     <div>
         <input name="reservationNo" value="${myReservation.reservationNo}" type="hidden">
-        <input name="dcId" value="${re.dcId}" type="hidden">
-        <input name="treatmentCode" value="${re.treatmentCode}" type="hidden">
+        <input name="dcId" value="${myReservation.dcId}" type="hidden">
+        <input name="treatmentCode" value="${myReservation.treatmentCode}" type="hidden">
         <input name="memName" value="${myReservation.memName}" readonly="readonly">
         <input name="memHp" value="${myReservation.memHp}" readonly="readonly">
         <input name="memEmail" value="${myReservation.memEmail}" readonly="readonly">
@@ -269,7 +272,7 @@
         </div>
         <input type="hidden" name="reservationDate" value="">
 
-        <button type="submit">예약수정</button>
+        <button type="submit">완료</button>
     </div>
 </form>
 
@@ -293,6 +296,8 @@
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
 
+    $myDate = $(".myReservationDate");
+    $myTime = $(".myReservationTime");
 
     $form.find("button[type=submit1]").click(function (e) {
         e.preventDefault();
@@ -345,14 +350,18 @@
             } else {
                 for (let i = 0; i < atDate.length; i++) {
                     if (DayToNum(atDate[i].value) == nowDay.getDay()) {
+                        if ($myDate[0].value == (nowDay.getFullYear() + "-" + (nowDay.getMonth()+1) + "-" + nowDay.getDate())) {
+                            choiceDate(nowColumn);
+                        }
+
                         if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
-                            nowColumn.className = "today";
+                            nowColumn.classList.add("today");
                             nowColumn.onclick = function () {
                                 choiceDate(this);
                             }
                             break;
                         } else {                                      // 미래인 경우
-                            nowColumn.className = "futureDay";
+                            nowColumn.classList.add("futureDay");
                             nowColumn.onclick = function () {
                                 choiceDate(this);
                             }
@@ -388,13 +397,15 @@
                         break;
                     }
                 }
+                if ($myTime[0].value == atTime[i].value){
+                    str += "' selected='selected";
+                }
                 str += "'>" + atTime[i].value + "</option>";
             }
         }
         $select.empty();
         $select.append(str);
         $('#td_date').attr('value', nowColumn.id);
-
     }
 
     // 이전달 버튼 클릭
