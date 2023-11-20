@@ -32,10 +32,6 @@
             <td>${freeBoard.boTitle }</td>
         </tr>
         <tr>
-            <th>글분류</th>
-            <td>${freeBoard.boCategoryNm }</td>
-        </tr>
-        <tr>
             <th>작성자명</th>
             <td>${freeBoard.boWriter }</td>
         </tr>

@@ -24,4 +24,8 @@ public interface IFreeBoardService {
 	public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 
 	public void insertForm(FreeBoardVO freeBoard) throws BizException;
+
+	//FreeBoardVO freeView(int boNo)throws BizNotEffectedException, BizNotFoundException;
+
+	public FreeBoardVO freeView(int boNo)throws BizNotEffectedException, BizNotFoundException;
 }

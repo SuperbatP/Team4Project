@@ -85,21 +85,18 @@
     </resultMap>
 
 
-    <select id="getBoard" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" parameterType="int" resultMap="freeAttaches">
+    <select id="freeView" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" parameterType="int" resultMap="freeAttaches">
         SELECT
-            'FREE' as bo_type
-            ,to_char(bo_reg_date,'YYYY-MM-DD') AS bo_reg_date
-             ,to_char(bo_mod_date,'YYYY-MM-DD') AS bo_mod_date
-             , bo_no        , bo_title       , bo_category
-             , bo_writer    , bo_pass        , bo_content
-             , bo_hit       , bo_del_yn
-             ,b. comm_nm  AS bo_category_nm
-        FROM  free_board a ,comm_code b
-        WHERE bo_no=#{boNo}
-        AND bo_del_yn = 'N'
-        AND  a.bo_category = b.comm_cd
+            BO_NO, BO_TITLE ,  BO_WRITER
+             , BO_CONTENTS,  BO_HIT, BO_REG_DAT
+             ,CATEGORY_CODE, B0_DEL_YN
+        FROM
+            board
+        WHERE
+            bo_no =  #{boNo}
+  </select>
 
-    </select>
+
     <update id="increaseHit" parameterType="int" >
         UPDATE free_board SET
             bo_hit        =  bo_hit+1
@@ -113,7 +110,7 @@
           , bo_content  = #{boContent}
           , bo_hit      = bo_hit + 1
           , bo_mod_date = sysdate
-        WHERE bo_no = #{boNo}
+        WHERE bo_no = 1
 
     </update>
     <delete id="deleteBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
@@ -139,8 +136,8 @@
         ,#{boContent}, #{ boHit} , SYSDATE
         , #{Category_Code}
         )
-
     </insert>
+
 
 
     <select id="getfreeBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO" resultType="int">

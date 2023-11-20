@@ -56,6 +56,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         if (result < 0) throw new BizNotEffectedException();
     }
 
+    //수정
     @Override
     public void modifyBoard(FreeBoardVO freeBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
         FreeBoardVO dbVO = freeBoardDao.getBoard(freeBoard.getBoNo());
@@ -85,6 +86,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         }
     }
 
+    //삭제
     @Override
     public void removeBoard(FreeBoardVO freeBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
         FreeBoardVO dbVO = freeBoardDao.getBoard(freeBoard.getBoNo());
@@ -117,4 +119,10 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     public void insertForm(FreeBoardVO freeBoard) throws BizException {
         freeBoardDao.insertBoard(freeBoard);
     }
+
+ @Override
+    public FreeBoardVO freeView(int boNo) throws BizNotEffectedException, BizNotFoundException {
+        freeBoardDao.freeView(boNo);
+     return freeView(boNo);
+ }
 }

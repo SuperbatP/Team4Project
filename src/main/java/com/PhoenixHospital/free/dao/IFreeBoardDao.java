@@ -2,6 +2,8 @@ package com.PhoenixHospital.free.dao;
 
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.SearchVO;
+import com.PhoenixHospital.exception.BizNotEffectedException;
+import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,9 +20,8 @@ public interface IFreeBoardDao {
   public int updateBoard(FreeBoardVO freeBoard);
   public int deleteBoard(FreeBoardVO freeBoard);
   public void insertBoard(FreeBoardVO freeBoard);
-  public int insertForm(FreeBoardVO freeBoard) throws Exception;
 
   public int getfreeBoard(FreeBoardVO freeBoard) throws Exception;
 
-
+  public FreeBoardVO freeView(int boNo)throws BizNotEffectedException,BizNotFoundException;
 }
