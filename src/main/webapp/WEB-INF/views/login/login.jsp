@@ -48,16 +48,16 @@
                         </div>
                         <!-- 아이디 찾기 -->
                         <div class="form-check">
-                            <label class="form-check-label"><a href="#">아이디 찾기</a> </label>
+                            <label class="form-check-label"><a href="/login/search_Id.wow">아이디 찾기</a> </label>
                         </div>
                         <!-- 비밀번호 찾기 -->
                         <div class="form-check">
-                            <label class="form-check-label"><a href="#">비밀번호 찾기</a></label>
+                            <label class="form-check-label"><a href="/login/search_Pw.wow">비밀번호 찾기</a></label>
                         </div>
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">로그인 합시다</button>
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee"
                        href="/member/memberForm.wow"
                        role="button">회원가입</a>
