@@ -25,7 +25,7 @@ public class CheckUpServiceImpl implements ICheckUpService{
         List<CheckUpVO> collect = checkUpVOList.stream().map(o -> {
             String str = format.format(o.getReservationDate());
             o.setReservationDateString(str);
-            ;
+
             return o;
         }).collect(Collectors.toList());
         return collect;
@@ -33,7 +33,17 @@ public class CheckUpServiceImpl implements ICheckUpService{
 
     @Override
     public List<CheckUpVO> getCheckUp(String memId) {
-        return checkUpDao.getCheckUp(memId);
+        List<CheckUpVO>  checkUpVOList = checkUpDao.getCheckUp(memId);
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        List<CheckUpVO> collect = checkUpVOList.stream().map(o -> {
+            String str = format.format(o.getReservationDate());
+            o.setReservationDateString(str);
+
+            return o;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
     @Override

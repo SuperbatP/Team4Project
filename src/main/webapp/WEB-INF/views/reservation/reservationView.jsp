@@ -21,10 +21,13 @@
         <sec:csrfInput/>
         <div>
             <input name="reservationNo" value="${re.reservationNo}" type="hidden">
+            <input name="dcId" value="${re.dcId}" type="hidden">
+            <input name="treatmentCode" value="${re.treatmentCode}" type="hidden">
             <input name="dcName" value="${re.dcName}" readonly="readonly">
             <input name="treatmentName" value="${re.treatmentName}" readonly="readonly">
-            <input name="reservationDate" value="${re.reservationDate}" readonly="readonly">
+            <input name="reservationDateString" value="${re.reservationDateString}" readonly="readonly">
             <input name="reservationTime" value="${re.reservationTime}" readonly="readonly">
+            <input name="memName" value="${re.memName}" type="hidden">
             <input name="memHp" value="${re.memHp}" type="hidden">
             <input name="memEmail" value="${re.memEmail}" type="hidden">
             <input name="etc" value="${re.etc}" type="hidden">
@@ -45,7 +48,7 @@
             <input name="reservationGender" value="${ck.reservationGender}" type="hidden">
             <input name="reservationBirthday" value="${ck.reservationBirthday}" type="hidden">
             <input name="reservationHp" value="${ck.reservationHp}" type="hidden">
-            <input name="reservationDate" value="${ck.reservationDate}" readonly="readonly">
+            <input name="reservationDateString" value="${ck.reservationDateString}" readonly="readonly">
             <input name="reservationTime" value="${ck.reservationTime}" readonly="readonly">
             <input name="basicCheckupCode" value="${ck.basicCheckupCode}" type="hidden">
             <input name="addCheckupCode" value="${ck.addCheckupCode}" type="hidden">

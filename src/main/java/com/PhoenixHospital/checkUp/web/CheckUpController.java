@@ -2,7 +2,6 @@ package com.PhoenixHospital.checkUp.web;
 
 import com.PhoenixHospital.add_checkUp_code.service.IAddCheckUpService;
 import com.PhoenixHospital.add_checkUp_code.vo.AddCheckUpVO;
-import com.PhoenixHospital.basic_checkUp_code.dao.IBasicCheckUpDao;
 import com.PhoenixHospital.basic_checkUp_code.service.IBasicCheckUpService;
 import com.PhoenixHospital.basic_checkUp_code.vo.BasicCheckUpVO;
 import com.PhoenixHospital.checkUp.service.ICheckUpService;
@@ -59,7 +58,17 @@ public class CheckUpController {
 
     @RequestMapping("reservation/checkUpEdit.wow")
     public String checkUpEdit(Model model, @AuthenticationPrincipal User user, CheckUpVO checkUp){
-        model.addAttribute("checkUp", checkUp);
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUpList();
+        List<BasicCheckUpVO> basicCheckUpVOList = basicCheckUpService.getCodeList();
+        List<AddCheckUpVO> addCheckUpVOList = addCheckUpService.getCodeList();
+        List<DNATestVO> dnaTestVOList = dnaTestService.getCodeList();
+
+        model.addAttribute("checkUp", checkUpVOList);
+        model.addAttribute("basicCodeList", basicCheckUpVOList);
+        model.addAttribute("addCodeList", addCheckUpVOList);
+        model.addAttribute("DNACodeList", dnaTestVOList);
+
+        model.addAttribute("myCheckUp", checkUp);
 
         return "reservation/checkUpEdit";
     }

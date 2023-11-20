@@ -88,9 +88,6 @@
     <update id="updateCheckUp">
         UPDATE checkup
         SET
-            reservation_name     =#{reservationName},
-            reservation_gender   =#{reservationGender},
-            reservation_birthday =#{reservationBirthday},
             reservation_hp       =#{reservationHp},
             basic_checkup_code   =#{basicCheckupCode,jdbcType=VARCHAR},
             add_checkup_code     =#{addCheckupCode,jdbcType=VARCHAR},
@@ -98,9 +95,9 @@
             reservation_date     =#{reservationDate},
             reservation_time     =#{reservationTime},
             reservation_mod_date=sysdate,
-            etc=#{etc,jdbcType=VARCHAR},
+            etc=#{etc,jdbcType=VARCHAR}
         WHERE
-            ck_reservation_no=#{ckNo}
+            ck_reservation_no=#{ckReservationNo}
     </update>
 
     <update id="deleteCheckUp">

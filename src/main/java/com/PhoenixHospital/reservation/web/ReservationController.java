@@ -3,22 +3,15 @@ package com.PhoenixHospital.reservation.web;
 import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.checkUp.vo.CheckUpVO;
 import com.PhoenixHospital.common.vo.SearchVO;
-import com.PhoenixHospital.doctor_attendance.dao.IAttendanceDao;
-import com.PhoenixHospital.doctor_attendance.service.AttendanceServiceImpl;
 import com.PhoenixHospital.doctor_attendance.service.IAttendanceService;
 import com.PhoenixHospital.doctor_attendance.vo.AttendanceVO;
-import com.PhoenixHospital.doctors.dao.IDoctorsDao;
 import com.PhoenixHospital.doctors.service.IDoctorsService;
 import com.PhoenixHospital.doctors.vo.DoctorsVO;
 import com.PhoenixHospital.exception.BizNotFoundException;
-import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
-import com.PhoenixHospital.reservation.dao.IReservationDao;
 import com.PhoenixHospital.reservation.service.IReservationService;
-import com.PhoenixHospital.reservation.service.ReservationServiceImpl;
 import com.PhoenixHospital.reservation.vo.ReservationVO;
-import com.PhoenixHospital.treatment_code.dao.ITreatmentCodeDao;
 import com.PhoenixHospital.treatment_code.service.ITreatmentCodeService;
 import com.PhoenixHospital.treatment_code.vo.TreatmentCodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -116,8 +107,18 @@ public class ReservationController {
     }
 
     @RequestMapping("reservation/reservationEdit.wow")
-    public String reservationEdit(Model model, @AuthenticationPrincipal User user, ReservationVO reservation){
-        model.addAttribute("reservation", reservation);
+    public String reservationEdit(Model model, @AuthenticationPrincipal User user, ReservationVO reservation) throws BizNotFoundException {
+        MemberVO member = memberService.getMember(user.getUsername());
+        DoctorsVO doctorsVO = doctorsService.getDoc(reservation.getDcId());
+        List<AttendanceVO> attendanceVOList = attendanceService.getAttendance(reservation.getDcId());
+        List<ReservationVO> reservationVOList = reservationService.getReservationList();
+
+        model.addAttribute("member", member);
+        model.addAttribute("doctor", doctorsVO);
+        model.addAttribute("attendance", attendanceVOList);
+        model.addAttribute("reservation", reservationVOList);
+
+        model.addAttribute("myReservation", reservation);
 
         return "reservation/reservationEdit";
     }

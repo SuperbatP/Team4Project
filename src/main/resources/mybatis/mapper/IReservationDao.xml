@@ -26,6 +26,8 @@
             mem_name,
             mem_id,
             mem_hp,
+            dc_id,
+            treatment_code,
             (SELECT treatment_name FROM treatment_codes tc WHERE tc.treatment_code = r.treatment_code) as treatment_name,
             (SELECT dc_name FROM doctors dt WHERE dt.dc_id = r.dc_id) as dc_name,
             reservation_date,
@@ -46,8 +48,6 @@
         SET
             mem_hp              = #{memHp},
             mem_email           = #{memEmail},
-            dc_id               = #{dcId},
-            treatment_code      = #{treatmentCode},
             reservation_date    = #{reservationDate},
             reservation_time    = #{reservationTime},
             reservation_mod_date = sysdate,
