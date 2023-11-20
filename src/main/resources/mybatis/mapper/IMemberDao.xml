@@ -94,11 +94,15 @@
     </insert>
 
     <select id="getBySnsNaver" resultType="com.PhoenixHospital.member.vo.MemberVO">
-        select * from member where naverid = #{naverid}
+        SELECT *
+        FROM member
+        WHERE naverid = #{naverid}
     </select>
 
     <select id="getBySnsGoogle" resultType="com.PhoenixHospital.member.vo.MemberVO">
-        select * from member where googleid = #{googleid}
+        SELECT *
+        FROM member
+        WHERE googleid = #{googleid}
     </select>
 
     <update id="updateUser" parameterType="String">
@@ -109,6 +113,32 @@
     </update>
 
 
+    <select id="findId" resultType="com.PhoenixHospital.member.vo.MemberVO">
+        SELECT *
+        FROM member
+        WHERE mem_email = #{memEmail}
+    </select>
+
+    <select id="findIdCheck" resultType="int">
+        SELECT count(*)
+        FROM member
+        WHERE mem_email = #{memEmail}
+    </select>
+
+    <update id="findPw" parameterType="map">
+        UPDATE member
+        SET mem_password = #{memPassword}
+        WHERE mem_id = #{memId}
+          AND mem_email = #{memEmail}
+
+    </update>
+
+    <select id="findPwCheck" resultType="int">
+        SELECT count(*)
+        FROM member
+        WHERE mem_id = #{memId}
+          AND mem_email = #{memEmail}
+    </select>
 
 
 </mapper>

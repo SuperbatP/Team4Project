@@ -28,4 +28,14 @@ public interface IMemberService {
 	MemberVO getBySns(MemberVO snsUser);
 
 	public void updateUser(MemberVO member) throws BizNotEffectedException, BizNotFoundException ;
+
+	public List<MemberVO> findId(String memberEmail)throws Exception;
+
+	public int findIdCheck(String memberEmail)throws Exception;
+
+	public void findPw(String memId, String memEmail)throws Exception;
+
+	public int findPwCheck(MemberVO memberVO)throws Exception;
+
+
 }

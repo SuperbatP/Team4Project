@@ -66,7 +66,8 @@
                 <sec:authorize access="hasRole('ADMIN')">
                     <span class=""> <sec:authentication property="principal.username"/> 관리자 님</span>
                     <span class=""><a href="/member/memberEdit.wow">My Page</a></span>
-                    <span class=""><a href="/member/memberList.wow">회원관리</a></span>
+                    <span class=""><a href="/member/memberList.wow">회원정보관리</a></span>
+                    <span class=""><a href="/member/memberReservationList.wow">회원예약관리</a></span>
                     <span class=""><a href="/logout">로그아웃</a></span>
                     <span class=""><a href="#">사이트맵</a></span>
                 </sec:authorize>

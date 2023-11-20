@@ -1,13 +1,19 @@
 package com.PhoenixHospital.member.web;
 
+import com.PhoenixHospital.checkUp.service.ICheckUpService;
+import com.PhoenixHospital.checkUp.vo.CheckUpVO;
 import com.PhoenixHospital.code.service.ICommCodeService;
 import com.PhoenixHospital.code.vo.CodeVO;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.ResultMessageVO;
 import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizException;
+import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
+import com.PhoenixHospital.reservation.dao.IReservationDao;
+import com.PhoenixHospital.reservation.service.IReservationService;
+import com.PhoenixHospital.reservation.vo.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +21,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class MemberController {
@@ -24,6 +33,18 @@ public class MemberController {
 
     @Autowired
     IMemberService memberService;
+
+    @Autowired
+    IReservationDao reservationDao;
+
+    @Autowired
+    IReservationService reservationService;
+
+    @Autowired
+    ICheckUpService checkUpService;
+
+    @Autowired
+    private IMemberDao memberDao;
 
     @RequestMapping("/member/memberList.wow")
     public String memberList(Model model, @ModelAttribute("paging")PagingVO paging, @ModelAttribute("search") SearchVO search){
@@ -112,6 +133,16 @@ public class MemberController {
     }
 
 
+    @RequestMapping("/member/memberReservationList.wow")
+    public String memberReservationList(Model model, @ModelAttribute("paging")PagingVO paging, @ModelAttribute("search") SearchVO search){
 
+        List<ReservationVO> reservationVOList = reservationService.getReservationList();
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUpList();
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
+
+       return "member/memberReservationList";
+    }
 
 }

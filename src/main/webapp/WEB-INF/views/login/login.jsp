@@ -57,7 +57,7 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">로그인 합시다</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee"
                        href="/member/memberForm.wow"
                        role="button">회원가입</a>

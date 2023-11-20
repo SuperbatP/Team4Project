@@ -39,40 +39,6 @@ public class MemberFormController {
     }
 
 
-  /*  //개인회원가입 이메일 체크
-    @RequestMapping("/join/EmCheck")
-    @ResponseBody
-    public int EmCheck(@RequestParam String indivMemEmail) {
-
-        System.out.println("EmCheck:" + indivMemEmail);
-
-        boolean result = indivMemService.EmCheck(indivMemEmail);
-        if(result) {
-            return 1;
-        }else {
-            return 2;
-        }
-    }
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Autowired
     private MailService mailService;
 

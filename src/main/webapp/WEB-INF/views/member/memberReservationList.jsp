@@ -10,6 +10,8 @@
 <body>
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
+
+
 <div class="container">
     <!-- START : 검색 폼  -->
     <div class="panel panel-default collapse in" id="id_search_area">
@@ -64,43 +66,57 @@
 
 
     <h3>회원목록</h3>
-    <div>
-        <a href="/excel/MemberList.wow" class="btn btn-primary btn-sm pull-right" target="_blank"  id="excelDown">excelDown</a>
-    </div>
-    <table class="table table-striped table-bordered">
-        <caption class="hidden">회원목록 조회</caption>
-        <colgroup>
-            <col style="width: 15%"/>
-            <col/>
-            <col style="width: 20%"/>
-            <col style="width: 20%"/>
-            <col style="width: 15%"/>
-            <col style="width: 15%"/>
-        </colgroup>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>회원명</th>
-            <th>HP</th>
-            <th>생일</th>
-            <th>권한</th>
-            <th>탈퇴여부</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${memberList}" var="member">
-        <tr>
-            <td>${member.memId}</td>
-            <td><a href="memberView.wow?memId=${member.memId}">
-                    ${member.memName}</a></td>
-            <td>${member.memHp}</td>
-            <td>${member.memBir}</td>
-            <td>${member.memRole}</td>
-            <td>${member.memDelYn}</td>
-        </tr>
+
+    <section>
+
+        <c:forEach var="re" items="${reservation}">
+            <form name="reservation" action="reservationEdit.wow" method="post">
+                <sec:csrfInput/>
+                <div>
+                    <a href="reservationEdit.wow?memId=${re.memId}">
+                            ${re.memName}</a>
+                    <input name="memName" value="${re.memName}" readonly="readonly">
+                    <input name="memId" value="${re.memId}" readonly="readonly">
+                    <input name="reservationDate" value="${re.reservationDate}" readonly="readonly">
+                    <input name="reservationTime" value="${re.reservationTime}" readonly="readonly">
+                    <button type="submit">예약수정</button>
+                    <button type="submit" formaction="reservationCancel.wow">예약취소</button>
+                </div>
+            </form>
         </c:forEach>
-        </tbody>
-    </table>
+
+
+        <c:forEach var="ck" items="${checkUp}">
+            <form name="checkUp" action="checkUpEdit.wow" method="post">
+                <sec:csrfInput/>
+                <div>
+                    <input name="reservationName" value="${ck.reservationName}" readonly="readonly">
+                    <input name="memId" value="${ck.memId}" readonly="readonly">
+                    <input name="reservationDate" value="${ck.reservationDate}" readonly="readonly">
+                    <input name="reservationTime" value="${ck.reservationTime}" readonly="readonly">
+
+                    <button type="submit">예약수정</button>
+                    <button type="submit" formaction="checkUpCancel.wow">예약취소</button>
+                </div>
+            </form>
+        </c:forEach>
+
+
+
+
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+
     <!-- START : 페이지네이션  -->
     <nav class="text-center">
         <ul class="pagination">
