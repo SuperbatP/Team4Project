@@ -79,9 +79,9 @@
     </select>
 
     <resultMap id="freeAttaches" type="com.PhoenixHospital.free.vo.FreeBoardVO">
-        <collection property="attaches" column="{atchParentNo=bo_no, atchCategory=bo_type} " ofType="com.PhoenixHospital.attach.vo.AttachVO" select="com.PhoenixHospital.attach.dao.IAttachDao.getAttachListByParent">
+<!--        <collection property="attaches" column="{atchParentNo=bo_no, atchCategory=bo_type} " ofType="com.PhoenixHospital.attach.vo.AttachVO" select="com.PhoenixHospital.attach.dao.IAttachDao.getAttachListByParent">-->
 <!--  atchCategory=bo_type라고 쓰는 이유는 'FREE'를 인식하지 못하고 변수형태로만 인식해서... 그래서 getBoard 쿼리문에 bo_type를 추가    -->
-        </collection>
+<!--        </collection>-->
     </resultMap>
 
 
@@ -90,10 +90,8 @@
             BO_NO, BO_TITLE ,  BO_WRITER
              , BO_CONTENTS,  BO_HIT, BO_REG_DAT
              ,CATEGORY_CODE, B0_DEL_YN
-        FROM
-            board
-        WHERE
-            bo_no =  #{boNo}
+        FROM board
+        WHERE bo_no    = #{boNo}
   </select>
 
 

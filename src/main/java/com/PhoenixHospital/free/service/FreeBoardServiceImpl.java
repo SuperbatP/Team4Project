@@ -120,9 +120,10 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         freeBoardDao.insertBoard(freeBoard);
     }
 
- @Override
+    @Override
     public FreeBoardVO freeView(int boNo) throws BizNotEffectedException, BizNotFoundException {
-        freeBoardDao.freeView(boNo);
-     return freeView(boNo);
- }
+        return freeBoardDao.freeView(boNo);
+    }
+
+
 }

@@ -39,7 +39,7 @@
         <tr>
             <th>내용</th>
             <td><textarea rows="10" name="boContent" class="form-control input-sm" readonly="readonly">
-                ${freeBoard.boContent }
+                ${freeBoard.boContents }
             </textarea></td>
         </tr>
 

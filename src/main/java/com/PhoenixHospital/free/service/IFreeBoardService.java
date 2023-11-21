@@ -27,5 +27,5 @@ public interface IFreeBoardService {
 
 	//FreeBoardVO freeView(int boNo)throws BizNotEffectedException, BizNotFoundException;
 
-	public FreeBoardVO freeView(int boNo)throws BizNotEffectedException, BizNotFoundException;
+	public FreeBoardVO freeView(int boNo) throws BizNotEffectedException, BizNotFoundException;
 }

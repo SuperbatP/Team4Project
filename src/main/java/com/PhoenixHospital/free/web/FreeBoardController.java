@@ -168,14 +168,16 @@ public class FreeBoardController {
     @RequestMapping(method = RequestMethod.GET, value = "/free/freeView.wow")
     //@GetMapping("/free/freeView.wow")와 같은 맥락
     public String freeView(Model model, int boNo) throws BizNotEffectedException, BizNotFoundException {
-
         FreeBoardVO freeBoard = freeBoardService.freeView(boNo);
         model.addAttribute("freeBoard", freeBoard);
-         freeBoardService.increaseHit(boNo);
-
+        //freeBoardService.increaseHit(boNo);
         return "free/freeView";
     }
+
+
 }
+
+
 
 
 
