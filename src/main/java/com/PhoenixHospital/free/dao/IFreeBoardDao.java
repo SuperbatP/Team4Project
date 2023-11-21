@@ -1,5 +1,6 @@
 package com.PhoenixHospital.free.dao;
 
+import com.PhoenixHospital.code.vo.CodeVO;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizNotEffectedException;
@@ -24,4 +25,10 @@ public interface IFreeBoardDao {
   public int getfreeBoard(FreeBoardVO freeBoard) throws Exception;
 
   public FreeBoardVO freeView(int boNo)throws BizNotEffectedException,BizNotFoundException;
+
+    Void increaseHit(Integer boNo) throws Exception;
+
+    public List<CodeVO> freeEdit(int boNo) throws Exception;
+
+
 }

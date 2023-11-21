@@ -57,52 +57,6 @@ public class FreeBoardController {
     }
 
 
-    @GetMapping("/free/freeEdit.wow")
-    public String freeEdit(Model model, int boNo) throws BizNotFoundException {
-
-        List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
-        model.addAttribute("codeList", codeList);
-
-        FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
-        model.addAttribute("freeBoard", freeBoard);
-
-        return "free/freeEdit";
-    }
-
-
-    @PostMapping("/free/freeModify.wow")
-    //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
-    public String freeModify(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
-        // 날라온 첨부파일들에 대해서는 form과 동일
-        if(boFiles!=null){
-            List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "FREE", "free");
-            freeBoard.setAttaches(attaches);
-        }
-
-        //form과 차이점은 휴지통 버튼을 통해 삭제해야 할 첨부파일 번호들도 날라옴 -> service에서 처리함.
-        //freeBoardVO의 delAtchNos 필드가 있음.
-        freeBoardService.modifyBoard(freeBoard);
-
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
-        resultMessageVO.messageSetting(true, "수정", "수정성공", "/free/freeList.wow", "목록으로");
-        model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
-    }
-
-
-    @PostMapping("/free/freeDelete.wow")
-    //BizException를 상속받은거라 throws BizException 하나만 작성해도 ok
-    public String freeDelete(Model model, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
-
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
-
-        freeBoardService.removeBoard(freeBoard);
-        resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/free/freeList.wow", "목록으로");
-
-        model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
-    }
-
     //파일 처리는 freeRegist에서.
     @RequestMapping("/free/freeRegist.wow")
     public String freeRegist(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
@@ -159,22 +113,65 @@ public class FreeBoardController {
 
     @RequestMapping("/free/insertForm.wow")
     public String insertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException {
-
        freeBoard.setCategory_Code("99");
         freeBoardService.insertForm(freeBoard);
         return "redirect:/free/freeList.wow";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/free/freeView.wow")
-    //@GetMapping("/free/freeView.wow")와 같은 맥락
     public String freeView(Model model, int boNo) throws BizNotEffectedException, BizNotFoundException {
         FreeBoardVO freeBoard = freeBoardService.freeView(boNo);
         model.addAttribute("freeBoard", freeBoard);
-        //freeBoardService.increaseHit(boNo);
+        freeBoardService.increaseHit(boNo);
         return "free/freeView";
     }
 
+//수정페이지
+    @GetMapping("/free/freeEdit.wow")
+    public String freerfEdit(Model model, int boNo) throws Exception {
 
+        List<CodeVO> codeList = freeBoardService.freeEdit(boNo);
+        model.addAttribute("codeList", codeList);
+
+        FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
+        model.addAttribute("freeBoard", freeBoard);
+
+        return "free/freeEdit";
+    }
+
+    //수정하는단계
+    @PostMapping("/free/freeModify.wow")
+    //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
+    public String freeModify(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+        // 날라온 첨부파일들에 대해서는 form과 동일
+        if(boFiles!=null){
+            List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "FREE", "free");
+            freeBoard.setAttaches(attaches);
+        }
+
+        //form과 차이점은 휴지통 버튼을 통해 삭제해야 할 첨부파일 번호들도 날라옴 -> service에서 처리함.
+        //freeBoardVO의 delAtchNos 필드가 있음.
+        freeBoardService.modifyBoard(freeBoard);
+
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
+        resultMessageVO.messageSetting(true, "수정", "수정성공", "/free/freeList.wow", "목록으로");
+        model.addAttribute("resultMessageVO", resultMessageVO);
+        return "common/message";
+    }
+
+//삭제하는단계
+    @PostMapping("/free/freeDelete.wow")
+    //BizException를 상속받은거라 throws BizException 하나만 작성해도 ok
+    public String freeDelete(Model model, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
+
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
+
+        freeBoardService.removeBoard(freeBoard);
+        resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/free/freeList.wow", "목록으로");
+
+        model.addAttribute("resultMessageVO", resultMessageVO);
+        return "common/message";
+    }
 }
 
 

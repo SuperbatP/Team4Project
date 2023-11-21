@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,6 +25,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <form name="search" action="freeList.wow" method="post" class="form-horizontal">
+                <sec:csrfInput/>
                 <input type="hidden" name="curPage" value="${paging.curPage}"> <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
                 <div class="form-group">
                     <label for="id_searchType" class="col-sm-2 control-label">검색</label>
@@ -75,7 +77,7 @@
                 </c:forEach>
             </select>
         </div>
-    </div>
+    </div>호
     <!-- END : 목록건수 및 새글쓰기 버튼  -->
 
     <div class="page-header">
@@ -116,7 +118,7 @@
                 <td>${freeBoard.boNo }</td>
                 <td>${freeBoard.boCategoryNm }</td>
                 <td class="text-left">
-                    <a href="freeView.wow?boNo=${freeBoard.boNo }">
+                    <a href="freeView.wow?boNo= ${freeBoard.boNo }">
                             ${freeBoard.boTitle }
                     </a>
                 </td>

@@ -2,6 +2,7 @@ package com.PhoenixHospital.free.service;
 
 import com.PhoenixHospital.attach.dao.IAttachDao;
 import com.PhoenixHospital.attach.vo.AttachVO;
+import com.PhoenixHospital.code.vo.CodeVO;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizException;
@@ -125,5 +126,9 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         return freeBoardDao.freeView(boNo);
     }
 
+    @Override
+    public List<CodeVO> freeEdit(int boNo) throws Exception{
+        return freeBoardDao.freeEdit(boNo);
+    }
 
 }

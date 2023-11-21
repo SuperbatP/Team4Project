@@ -1,5 +1,6 @@
 package com.PhoenixHospital.free.service;
 
+import com.PhoenixHospital.code.vo.CodeVO;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizException;
@@ -25,7 +26,7 @@ public interface IFreeBoardService {
 
 	public void insertForm(FreeBoardVO freeBoard) throws BizException;
 
-	//FreeBoardVO freeView(int boNo)throws BizNotEffectedException, BizNotFoundException;
-
 	public FreeBoardVO freeView(int boNo) throws BizNotEffectedException, BizNotFoundException;
+
+	public List<CodeVO> freeEdit(int boNo) throws Exception;
 }
