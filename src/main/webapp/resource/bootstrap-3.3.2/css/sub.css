@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/* reservationView.jsp 예약확인 및 취소 */
+.reservation-btnbox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* reservationSwarch.jsp 진료예약 */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.search-btn {
+    margin-top: -105px;
+    margin-left: 10px;
+    width: 100px;
+    height: 45px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    border-radius: 5px;
+}
+.dtlist_frame {
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}.search-box {
+     border: 0.5px solid;
+     border-color: gainsboro;
+     width: 95%;
+     height: 100px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+.search-img {
+    margin-top: -100px;
+    width: 50px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-search {
+    margin-top: -100px;
+    width: 230px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input {
+    margin-top: -100px;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dt_frame {
+    border: 0.5px solid;
+    border-color: gainsboro;
+    padding-top: 20px;
+    width: 200px;
+    height: 230px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.dtimg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    height: 65%;
+}
+.dtimg > img {
+    width: 80%;
+    height: 80%;
+}
+.dtname {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 20%;
+}
+
+/* 건강검진예약 */
+.checkup-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
