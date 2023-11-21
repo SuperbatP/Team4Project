@@ -23,22 +23,41 @@
                      class="rounded" style="width: 500px; " alt="">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-0">
+                <%-- find ID  --%>
+                    <div class="divider d-flex align-items-center my-4">
+                        <span class="text-center fw-bold mx-3 mb-0" style="font-size: 20px">아이디 찾기</span>
+                    </div>
+                <form action="/login/findId" method="POST">
+                    <sec:csrfInput/>
+                    <div class="mb-4">
+                        <label for="memEmail1" class="form-label">이메일</label>
+                        <input type="email" class="form-control form-control-lg"
+                               id="memEmail1" autocomplete='off' required="required" name="memEmail"
+                               placeholder="가입시 작성한 이메일을 입력하세요.">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                        FIND ID
+                    </button>
+                </form>
+                    <div class="divider d-flex align-items-center my-8" >
+                        <span class="text-center fw-bold mx-3 mb-0" style="font-size: 20px">비밀번호 찾기</span>
+                    </div>
+                <%-- find PW   --%>
                 <form action="/login/findPw" method="POST">
                     <sec:csrfInput/>
-
                     <div class="mb-4">
-                        <label for="memId" class="control-label">아이디</label>
+                        <label for="memId" class="form-label">아이디</label>
                         <input type="text" class="form-control form-control-lg"
                                id="memId" autocomplete='off' required="required" name="memId">
                     </div>
                     <div class="mb-4">
-                        <label for="memEmail" class="control-label">이메일</label>
+                        <label for="memEmail" class="form-label">이메일</label>
                         <input type="email" class="form-control form-control-lg"
                                id="memEmail" autocomplete='off' required="required" name="memEmail"
                                placeholder="가입시 작성한 이메일을 입력하세요.">
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                        Find PW
+                        FIND PASSWORD
                     </button>
                 </form>
             </div>

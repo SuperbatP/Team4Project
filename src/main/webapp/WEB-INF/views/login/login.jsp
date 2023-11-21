@@ -28,15 +28,15 @@
 
                     <!-- id input -->
                     <div class="mb-4">
-                        <label class="form-label" for="form1Example13">ID</label>
-                        <input type="text" name="userId" value="${id}" id="form1Example13"
+                        <label class="form-label" for="userId">아이디</label>
+                        <input type="text" name="userId" value="${id}" id="userId"
                                class="form-control form-control-lg" placeholder="아이디를 입력하세요.">
                     </div>
 
                     <!-- Password input -->
                     <div class="mb-4">
-                        <label class="form-label" for="form1Example23">Password</label>
-                        <input type="password" name="userPass" id="form1Example23" class="form-control form-control-lg"
+                        <label class="form-label " for="userPass">비밀번호</label>
+                        <input type="password" name="userPass" id="userPass" class="form-control form-control-lg"
                                placeholder="비밀번호를 입력하세요.">
                     </div>
                     <div class="d-flex justify-content-around align-items-center mb-4">
@@ -48,14 +48,13 @@
                         </div>
                         <!-- 아이디 찾기 -->
                         <div class="form-check">
-                            <label class="form-check-label"><a href="/login/search_Id.wow">아이디 찾기</a> </label>
-                        </div>
-                        <!-- 비밀번호 찾기 -->
-                        <div class="form-check">
-                            <label class="form-check-label"><a href="/login/search_Pw.wow">비밀번호 찾기</a></label>
+                            <label class="form-check-label"><a href="/login/search_IdPw.wow">아이디 찾기 /  비밀번호 찾기</a> </label>
                         </div>
                     </div>
 
+                    <div class="d-flex align-items-center my-6">
+                    <%--  공백 처리용--%>
+                    </div>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee"

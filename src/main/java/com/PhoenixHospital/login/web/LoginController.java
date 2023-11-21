@@ -3,17 +3,12 @@ package com.PhoenixHospital.login.web;
 import com.PhoenixHospital.auth.SNSLogin;
 import com.PhoenixHospital.auth.SnsValue;
 import com.PhoenixHospital.email.EmailService;
-import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
@@ -22,10 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.URLEncoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,9 +85,9 @@ public class LoginController {
         return "login/login";
     }
 
-    @GetMapping("/login/search_Id.wow")
-    public String searchId() throws Exception {
-        return "/login/search_Id";
+    @GetMapping("/login/search_IdPw.wow")
+    public String searchIdPW() throws Exception {
+        return "login/search_IdPw";
     }
 
     @RequestMapping(value = "/login/findId", method = RequestMethod.POST)
@@ -103,7 +96,7 @@ public class LoginController {
 
         if (memberService.findIdCheck(memberVO.getMemEmail()) == 0) {
             model.addAttribute("msg", "이메일을 확인해주세요");
-            return "/login/search_Id";
+            return "/login/search_IdPW";
         } else {
             model.addAttribute("member", memberService.findId(memberVO.getMemEmail()));
             return
@@ -111,17 +104,12 @@ public class LoginController {
         }
     }
 
-    @GetMapping(value = "/login/search_Pw.wow")
-    public String searchPw() throws Exception {
-        return "/login/search_Pw";
-    }
-
     @RequestMapping(value = "/login/findPw", method = RequestMethod.POST)
     public String findPw(MemberVO memberVO, Model model) throws Exception {
 
         if (memberService.findPwCheck(memberVO) == 0) {
             model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
-            return "/login/search_Pw";
+            return "search_IdPw";
         } else {
             memberService.findPw(memberVO.getMemId(), memberVO.getMemEmail());
             model.addAttribute("member", memberVO.getMemEmail());

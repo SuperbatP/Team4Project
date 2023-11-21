@@ -45,6 +45,18 @@
     margin-bottom: 1.5rem !important;
 }
 
+
+.my-6 {
+    margin-top: 3rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.my-8 {
+    margin-top: 4rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+
 .divider:after,
 .divider:before {
     content: "";
@@ -52,6 +64,7 @@
     height: 1px;
     background: #eee;
 }
+
 
 .d-flex {
     display: flex !important;
@@ -114,9 +127,33 @@
     margin-left: 91.66666667%;
 }
 
+.form-control-lg {
+    min-height: calc(1.75em + 1rem + 2px);
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 0.3rem;
+}
 
+.form-control-lg::-webkit-file-upload-button {
+    padding: 0.5rem 1rem;
+    margin: -0.5rem -1rem;
+    -webkit-margin-end: 1rem;
+    margin-inline-end: 1rem;
+}
 
+.form-control-lg::file-selector-button {
+    padding: 0.5rem 1rem;
+    margin: -0.5rem -1rem;
+    -webkit-margin-end: 1rem;
+    margin-inline-end: 1rem;
+}
 
+.form-control-lg::-webkit-file-upload-button {
+    padding: 0.5rem 1rem;
+    margin: -0.5rem -1rem;
+    -webkit-margin-end: 1rem;
+    margin-inline-end: 1rem;
+}
 
 .mb-4 {
     margin-bottom: 1.5rem !important;
@@ -124,6 +161,7 @@
 
 .form-label {
     margin-bottom: 0.5rem;
+    font-size: 1.75rem;
 }
 
 .form-check {
@@ -200,4 +238,8 @@
 
 .form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label {
     opacity: 0.5;
+}
+
+.btn-user {
+
 }
