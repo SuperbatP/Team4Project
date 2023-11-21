@@ -64,6 +64,10 @@
 					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 					&nbsp;홈으로
 					</a>
+					<a href="/member/memberPasswordForm.wow" class="btn btn-info btn-sm">
+					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+					&nbsp;비밀번호변경
+				</a>
 					<button type="submit" class="btn btn-primary">
 					<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 					&nbsp;&nbsp; 저장

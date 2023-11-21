@@ -3,7 +3,7 @@
 <mapper namespace="com.PhoenixHospital.member.dao.IMemberDao">
 
 
-    <sql id="searchInMember" >
+    <sql id="searchInMember">
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
             <if test='search.searchType=="NM"'>
                 AND mem_name LIKE '%' || #{search.searchWord} || '%'
@@ -18,68 +18,68 @@
     </sql>
 
     <select id="getTotalRowCount" resultType="int">
-        SELECT  count(*)
+        SELECT count(*)
         FROM member
         WHERE 1=1
-        <include refid="searchInMember" />
+        <include refid="searchInMember"/>
     </select>
 
     <select id="getMemberList" resultType="com.PhoenixHospital.member.vo.MemberVO">
         SELECT *
-        FROM (
-        SELECT a.*, rownum AS rnum
-        FROM (
-        SELECT
-        to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir,
-        mem_id,
-        mem_password,
-        mem_name,
-        mem_zip,
-        mem_add1,
-        mem_add2,
-        mem_hp,
-        mem_email,
-        mem_del_yn,
-        mem_role
-        FROM member
-        ORDER BY mem_id DESC
-        ) a
-        )
+        FROM (SELECT a.*, rownum AS rnum
+              FROM (SELECT to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir,
+                           mem_id,
+                           mem_password,
+                           mem_name,
+                           mem_zip,
+                           mem_add1,
+                           mem_add2,
+                           mem_hp,
+                           mem_email,
+                           mem_del_yn,
+                           mem_role
+                    FROM member
+                    ORDER BY mem_id DESC) a)
         WHERE rnum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
     </select>
 
     <select id="getMember" resultType="com.PhoenixHospital.member.vo.MemberVO" parameterType="String">
-        SELECT
-            to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir
-             , mem_id               , mem_password             , mem_name
-             , mem_zip              , mem_add1               , mem_add2
-             , mem_hp               , mem_email               , mem_del_yn
+        SELECT to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir
+             , mem_id
+             , mem_password
+             , mem_name
+             , mem_zip
+             , mem_add1
+             , mem_add2
+             , mem_hp
+             , mem_email
+             , mem_del_yn
              , mem_role
         FROM member a
-        WHERE a.mem_id=#{memId}
+        WHERE a.mem_id = #{memId}
 
 
     </select>
 
     <update id="updateMember" parameterType="com.PhoenixHospital.member.vo.MemberVO">
         UPDATE member
-        SET
-            mem_password   =#{memPassword}
-          , mem_name   =#{memName}
-          , mem_bir    =#{memBir}
-          , mem_zip    =#{memZip}
-          , mem_add1   =#{memAdd1}
-          , mem_add2   =#{memAdd2}
-          , mem_hp     =#{memHp}
-          , mem_email   =#{memEmail}
+        SET mem_password =#{memPassword}
+          , mem_name     =#{memName}
+          , mem_bir      =#{memBir}
+          , mem_zip      =#{memZip}
+          , mem_add1     =#{memAdd1}
+          , mem_add2     =#{memAdd2}
+          , mem_hp       =#{memHp}
+          , mem_email    =#{memEmail}
         WHERE mem_id = #{memId}
 
     </update>
 
-<!--    <delete id="deleteMember" parameterType="String">-->
-<!--        UPDATE member SET mem_del_yn='Y'-->
-<!--        WHERE mem_id=#{memId}-->
-<!--    </delete>-->
+    <delete id="deleteMember" parameterType="String">
+        UPDATE member
+        SET mem_del_yn='Y'
+        WHERE mem_id = #{memId}
+    </delete>
 
     <insert id="insertMember">
         INSERT INTO member ( mem_id, mem_password, mem_name
@@ -107,11 +107,10 @@
 
     <update id="updateUser" parameterType="String">
         UPDATE member
-        SET mem_role = #{memRole}
-            ,mem_del_yn = #{memDelYn}
-        WHERE mem_id=#{memId}
+        SET mem_role   = #{memRole}
+          , mem_del_yn = #{memDelYn}
+        WHERE mem_id = #{memId}
     </update>
-
 
     <select id="findId" resultType="com.PhoenixHospital.member.vo.MemberVO">
         SELECT *
@@ -140,5 +139,16 @@
           AND mem_email = #{memEmail}
     </select>
 
+<!--    <select id="pwCheck" resultType="String">-->
+<!--        SELECT mem_password-->
+<!--        FROM member-->
+<!--        WHERE mem_id = #{memId}-->
+<!--    </select>-->
+
+    <update id="pwUpdate">
+        UPDATE member
+        SET mem_password = #{memPassword}
+        WHERE mem_id = #{memId}
+    </update>
 
 </mapper>
