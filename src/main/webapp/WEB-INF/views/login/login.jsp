@@ -12,7 +12,9 @@
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
-<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/login.css">
+
+<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/common.css">
+<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/sub.css">
 <section class="vh-100">
     <div class="container h-60">
         <div class="row d-flex align-items-center justify-content-center h-100">
@@ -62,7 +64,7 @@
                        role="button">회원가입</a>
 
                     <div class="divider d-flex align-items-center my-4">
-                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                        <p class="text-center fontW600 mx-3 mar-bottom0 text-muted">OR</p>
                     </div>
 
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="${ naver_url }"
