@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.PhoenixHospital.add_checkUp_code.dao.IAddCheckUpDao">
-    <select id="getCodeList" resultType="com.PhoenixHospital.add_checkUp_code.vo.AddCheckUpVO">
+    <select id="getCodeList" resultType="com.PhoenixHospital.add_checkUp_code.vo.AddCheckUpVO"> --주석
         SELECT
             add_checkup_code,
             add_checkup_name
