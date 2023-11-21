@@ -160,21 +160,21 @@
             width: 90%;
             height: 50px;
             padding-top: 18px;
-            padding-left: 35px;
+            padding-left: 50px;
         }
 
         .addCheckUp-frame {
             width: 90%;
             height: 250px;
             padding-top: 18px;
-            padding-left: 35px;
+            padding-left: 50px;
         }
 
         .dnaTest-frame {
             width: 90%;
-            height: 100px;
+            height: 150px;
             padding-top: 18px;
-            padding-left: 35px;
+            padding-left: 50px;
         }
 
         .reservation-btn {
@@ -321,7 +321,7 @@
         <h3>추가검사</h3>
         <div class="addCheckUp-frame">
             <c:forEach var="add" items="${addCodeList}">
-                <label><input type="checkbox" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+                <label><input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
                 </label>
             </c:forEach>
         </div>
@@ -329,7 +329,7 @@
         <h3>유전자검사</h3>
         <div class="dnaTest-frame">
             <c:forEach var="dna" items="${DNACodeList}">
-                <label><input type="checkbox" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}</label>
+                <label><input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}</label>
             </c:forEach>
         </div>
 
