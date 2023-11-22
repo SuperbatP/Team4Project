@@ -67,7 +67,7 @@
                                 <td class="width200px height50px" >
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="submit" class="width80px height40px btn-green margin-left5" id="cf-submit" formaction="checkUpCancel.wow"><b>취소</b></button>
+                                        <button type="submit" class="width80px height40px btn-green margin-left5" id="cf-submit" formaction="reservationCancel.wow"><b>취소</b></button>
                                     </div>
                                 </td>
                             </tr>
