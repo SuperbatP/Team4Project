@@ -266,14 +266,4 @@ public class MemberServiceImpl implements IMemberService {
     }
 
 
-    @Override
-    public String pwCheck(String memId)throws Exception{
-        return memberDao.pwCheck(memId);
-    }
-
-    @Override
-    public void pwUpdate(String memId, String memPassword)throws Exception{
-        memberDao.pwUpdate(memId, memPassword);
-    }
-
 }

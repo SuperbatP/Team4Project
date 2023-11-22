@@ -37,9 +37,5 @@ public interface IMemberService {
 
 	public int findPwCheck(MemberVO memberVO)throws Exception;
 
-	public String pwCheck(String memId)throws Exception;
-
-	public void pwUpdate(String memId, String memPassword)throws Exception;
-
 
 }
