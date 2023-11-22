@@ -13,8 +13,7 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
-<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/common.css">
-<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/sub.css">
+<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/login.css">
 <!-- 코드 작성구역 시작-->
 <section class="vh-100">
     <div class="container h-60">
