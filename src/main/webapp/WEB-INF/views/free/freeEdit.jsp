@@ -26,6 +26,7 @@
 				</h3>
 			</div>
 			<form action="freeModify.wow" method="post" enctype="multipart/form-data">
+				<sec:csrfInput/>
 <%-- 첨부파일에 대한 정보도 받아야 하니까.	enctype="multipart/form-data" 추가	--%>
 				<table class="table table-striped table-bordered">
 					<colgroup>
@@ -52,21 +53,10 @@
 						<td><input type="password" name="boPass" value="" class="form-control input-sm" required="required" pattern="\w{4,}" title="알파벳과 숫자로 4글자 이상 입력"> <span class="text-danger"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 글 등록시에 입력한 비밀번호를 입력하세요.
 						</span></td>
 					</tr>
-					<tr>
-						<th>분류</th>
-						<td><select name="boCategory" class="form-control input-sm" required="required">
-								<option value="">-- 선택하세요--</option>
-								<c:forEach items="${codeList}" var="code">
-									<option value="${code.commCd}"
-										${freeBoard.boCategory eq code.commCd  ? "selected='selected'" : ""} >
-											${code.commNm}
-									</option>
-								</c:forEach>
-						</select></td>
-					</tr>	
+
 					<tr>
 						<th>내용</th>
-						<td><textarea rows="10" name="boContent" class="form-control input-sm">${freeBoard.boContent } </textarea></td>
+						<td><textarea rows="10" name="boContents" class="form-control input-sm">${freeBoard.boContents } </textarea></td>
 					</tr>
 					<tr>
 						<th>조회수</th>

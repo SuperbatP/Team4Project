@@ -51,6 +51,7 @@
 
     </select>
 
+
     <select id="getBoardList" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" >
         <!--페이징은 리스트에서만!-->
         SELECT rnum, bo_no
@@ -89,11 +90,18 @@
         SELECT
             BO_NO, BO_TITLE ,  BO_WRITER
              , BO_CONTENTS,  BO_HIT, BO_REG_DAT
-             ,CATEGORY_CODE, B0_DEL_YN
+             ,CATEGORY_CODE, B0_DEL_YN,BO_PASS
         FROM board
         WHERE bo_no    = #{boNo}
   </select>
-
+    <select id="getBoard" resultType="com.PhoenixHospital.free.vo.FreeBoardVO" parameterType="int">
+        SELECT
+            BO_NO, BO_TITLE ,  BO_WRITER
+                 , BO_CONTENTS,  BO_HIT, BO_REG_DAT
+                 ,CATEGORY_CODE, B0_DEL_YN
+        FROM  board
+        WHERE bo_no=#{boNo}
+    </select>
 
     <update id="increaseHit" parameterType="int" >
         UPDATE board
@@ -101,21 +109,38 @@
         WHERE bo_no        = #{boNo}
 
     </update>
-    <update id="freeEdit" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
+
+    <select id="freeEdit"  resultType="com.PhoenixHospital.free.vo.FreeBoardVO" parameterType="int" resultMap="freeAttaches" >
+        SELECT
+            BO_NO, BO_TITLE ,  BO_WRITER
+             , BO_CONTENTS,  BO_HIT, BO_REG_DAT
+             ,CATEGORY_CODE, B0_DEL_YN,BO_PASS
+        FROM board
+        WHERE bo_no    = #{boNo}
+    </select>
+
+    <update id="resultMessage" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO" >
         UPDATE board
         SET  BO_TITLE    = #{boTitle}
           , BO_CONTENTS = #{boContents}
           , BO_HIT      = bo_hit + 1
           , BO_MOD_DATE = sysdate
+          , BO_PASS = #{boPass}
         WHERE bo_no = #{boNo}
-
     </update>
-    <update id="freeEdi"></update>
+    <update id="updateBoard"  parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
+        UPDATE board
+        SET bo_title    = #{boTitle}
+          , bo_contents  = #{boContents}
+          , bo_hit      = bo_hit + 1
+          , bo_mod_date = sysdate
+          , bo_pass = #{boPass}
+        WHERE bo_no = #{boNo}
+    </update>
     <delete id="deleteBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
-        UPDATE free_board
+        UPDATE board
         SET bo_del_yn= 'Y'
         WHERE bo_no = #{boNo}
-
     </delete>
 
     <insert id="insertBoard"  parameterType="com.PhoenixHospital.free.vo.FreeBoardVO" >
@@ -127,12 +152,12 @@
         INSERT INTO BOARD (
         BO_NO, BO_TITLE ,  BO_WRITER
         , BO_CONTENTS,  BO_HIT, BO_REG_DAT
-        ,CATEGORY_CODE
+        ,CATEGORY_CODE,BO_PASS
         ) VALUES (
         -- 시퀀스 두 번 중복되지 않게, 현재의 boNo를 받아옴.
         #{boNo} , #{boTitle} , #{boWriter}
         ,#{boContent}, #{ boHit} , SYSDATE
-        , #{Category_Code}
+        , #{Category_Code},#{boPass}
         )
     </insert>
 
