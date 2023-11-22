@@ -81,7 +81,7 @@
             <div>
                 <table class="width100 border-bottom">
                     <tr class="table-tr fontW600">
-                        <td class="width200px height50px" >의료진</td>
+                        <td class="width200px height50px" >예약자명</td>
                         <td class="width200px height50px" >기본검진</td>
                         <td class="width200px height50px" >추가검진</td>
                         <td class="width200px height50px" >유전자검사</td>
