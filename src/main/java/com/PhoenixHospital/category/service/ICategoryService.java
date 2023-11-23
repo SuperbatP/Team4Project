@@ -5,5 +5,5 @@ import com.PhoenixHospital.category.vo.CategoryVO;
 import java.util.List;
 
 public interface ICategoryService {
-    List<CategoryVO> getCodeList() ;
+    List<CategoryVO> getCategoryList() ;
 }

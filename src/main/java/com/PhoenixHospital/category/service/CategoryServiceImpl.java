@@ -13,8 +13,7 @@ public class CategoryServiceImpl implements ICategoryService {
     @Autowired
     ICategoryDao categoryDao;
 
-    @Override
-    public List<CategoryVO> getCodeList() {
+    public List<CategoryVO> getCategoryList() {
         return categoryDao.getCodeList();
     }
 }
