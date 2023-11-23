@@ -26,7 +26,6 @@
             </div>
     </section>
 
-
     <!--회원가입 양식-->
     <section>
         <form action="memberRegist.wow" method="post" class="form-horizontal">

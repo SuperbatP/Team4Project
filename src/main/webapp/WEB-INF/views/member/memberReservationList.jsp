@@ -10,8 +10,6 @@
 <body>
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
-
-
 <div class="container">
     <!-- START : 검색 폼  -->
     <div class="panel panel-default collapse in" id="id_search_area">

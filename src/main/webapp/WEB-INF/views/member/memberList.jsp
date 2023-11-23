@@ -46,7 +46,6 @@
     </div>
     <!-- END : 검색 폼  -->
 
-
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-sm-3 form-inline">

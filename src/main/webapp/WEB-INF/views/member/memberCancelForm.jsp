@@ -20,7 +20,6 @@
                     <p style="font-size: 15px; font-weight: bold">회원을 탈퇴하실 경우, 고객님의 모든 정보는 병원 홈페이지 시스템에서 완전히 삭제됩니다. </p>
                     <p style="font-size: 15px; font-weight: bold">탈퇴 후 아이디를 제외한 모든 정보는 삭제되며 의료정보기록이 있는 회원의 경우 본원의 환자 관련 정보는 삭제되지 않고 저장 됩니다.</p>
 
-
                 </div>
                 <div class="form-img" >
                     <img src="/resource/bootstrap-3.3.2/images/form-img.png" style="height: 280px">

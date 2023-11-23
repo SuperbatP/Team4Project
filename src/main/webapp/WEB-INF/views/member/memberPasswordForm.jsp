@@ -39,7 +39,6 @@
                             <input type="password" name="memPassword" id="memPassword" onchange="checkpassword()"
                                    class="form-control form-control-inline text-center" placeholder="현재 비밀번호" autoComplete="off"/>
                             <span  id="fail" style="display:none; color: red;">현재 비밀번호와 맞지 않습니다.</span>
-
                         </div>
                         <div class="form-group">
                             <input type="password" id="memberPw1" name="memberPw1" class="form-control form-control-inline text-center"
