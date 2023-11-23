@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PhoenixHospital.admin.dao.IAdminBoardDao">
+    <sql id="searchInFree">
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
+            <if test='search.searchType=="T"'>AND bo_title LIKE '%' || #{search.searchWord} || '%'</if>
+            <if test='search.searchType=="W"'>AND bo_writer LIKE '%' || #{search.searchWord} || '%'</if>
+            <if test='search.searchType=="C"'>AND bo_contents LIKE '%' || #{search.searchWord} || '%'</if>
+        </if>
+
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchCategory)'>
+            AND category_code = #{searchCategory}
+        </if>
+
+    </sql>
+    <insert id="insertBoard" parameterType="com.PhoenixHospital.admin.vo.AdminBoardVO">
+        <selectKey keyProperty="boNo" resultType="int" order="BEFORE">
+            select SEQ_FREE_BOARD.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO board (
+        bo_no, bo_title, category_code
+        , bo_contents, bo_writer, bo_hit
+        , bo_reg_date, bo_mod_date, bo_del_yn
+        , atch_no, bo_pass
+        ) VALUES (
+        #{boNo}, #{boTitle}, #{categoryCode}
+        , #{boContents}, #{boWriter}, 0
+        , SYSDATE, null,  'N'
+        ,'n' ,#{boPass}
+        )
+    </insert>
+    <update id="increaseHit">
+        UPDATE board
+        SET bo_hit = bo_hit + 1
+        WHERE bo_no = #{boNo}
+    </update>
+    <update id="updateBoard">
+        UPDATE board
+        SET bo_title    = #{boTitle},
+            category_code = #{categoryCode},
+            bo_contents  = #{boContents},
+            bo_mod_date = sysdate
+        WHERE bo_no = #{boNo}
+    </update>
+    <delete id="deleteBoard">
+        UPDATE board
+        SET bo_del_yn='Y'
+        WHERE bo_no = #{boNo}
+    </delete>
+
+    <select id="getTotalRowCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM board
+        WHERE 1=1
+        <include refid="searchInFree" />
+    </select>
+    <select id="getAdminBoardList" resultType="com.PhoenixHospital.admin.vo.AdminBoardVO">
+        SELECT * FROM (
+        SELECT b.*, rownum
+        FROM (
+        SELECT to_char(bo_reg_date, 'YYYY-MM-DD') as bo_reg_date,
+        to_char(bo_mod_date, 'YYYY-MM-DD') as bo_mod_date,
+        bo_no, bo_title, category_code,
+        bo_contents, bo_writer, bo_hit,
+        bo_pass, bo_del_yn
+        FROM board a
+        WHERE a.category_code = 'A001'
+        <include refid="searchInFree"/>
+        ORDER BY bo_no DESC
+        ) b
+        WHERE rownum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
+        )
+
+    </select>
+    <select id="getAdminBoard" resultType="com.PhoenixHospital.admin.vo.AdminBoardVO">
+        SELECT 'A001' AS bo_type ,
+               to_char(bo_reg_date, 'YYYY-MM-DD') as bo_reg_date ,
+               to_char(bo_mod_date, 'YYYY-MM-DD') as bo_mod_date ,
+               bo_no,           bo_title,      category_code,
+               bo_contents,     bo_writer,     bo_hit,
+               bo_pass,         bo_del_yn
+        FROM board ab
+        where ab.bo_category
+          and  bo_no = #{boNo}
+    </select>
+</mapper>
