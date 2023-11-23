@@ -105,7 +105,7 @@
             <div class="form-group">
                 <label for="memEmail" class="col-sm-3 control-label">이메일<span class="req"> *</span></label>
                 <div class="col-sm-4">
-                    <input type="email" id="memEmail" name="memEmail" class="form-control input-sm">
+                    <input type="email" id="memEmail" name="memEmail" class="form-control input-sm" required>
                 </div>
                 <div class="col-sm-2">
                     <input type="button" class="form-control btn btn-block btn-secondary btn-sm" id="email_auth_btn"
@@ -361,6 +361,7 @@
     let header = "${_csrf.headerName}";
     let token = "${_csrf.token}";
     var code = "";//이메일전송 인증번호 저장위한 코드
+    var memEmail = $("#memEmail");
 
     /* 인증번호 비교 */
     $(".mail_check_input").focusout(function () { //마우스가 다음칸 클릭했을 경우 일치 불일치 여부 뜸
@@ -370,6 +371,7 @@
         if (inputCode == code) {// 일치할 경우
             checkResult.html("인증번호가 일치합니다.");
             checkResult.attr("class", "correct");
+            memEmail.attr("disabled", true);
         } else {// 일치하지 않을 경우
             checkResult.html("인증번호를 다시 확인해주세요.");
             checkResult.attr("class", "incorrect");
@@ -386,9 +388,9 @@
 
         temp_pw_issuance()
 
-        if ($("#email").val() == null || $("#email").val() == "") {
+        if ($("#memEmail").val() == null || $("#memEmail").val() == "") {
             alert("이메일을 입력해주세요.");
-            $("#email").focus();
+            $("#memEmail").focus();
 
             return false;
         }

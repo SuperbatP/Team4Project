@@ -2,7 +2,6 @@ package com.PhoenixHospital.member.web;
 
 import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.checkUp.vo.CheckUpVO;
-import com.PhoenixHospital.code.service.ICommCodeService;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.ResultMessageVO;
 import com.PhoenixHospital.common.vo.SearchVO;
@@ -26,9 +25,6 @@ import java.util.List;
 
 @Controller
 public class MemberController {
-    @Autowired
-    ICommCodeService codeService;
-
     @Autowired
     IMemberService memberService;
 
