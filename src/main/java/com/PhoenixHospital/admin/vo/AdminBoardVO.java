@@ -1,5 +1,9 @@
 package com.PhoenixHospital.admin.vo;
 
+import com.PhoenixHospital.attach.vo.AttachVO;
+
+import java.util.List;
+
 public class AdminBoardVO {
     private int boNo;
     private String boTitle;
@@ -9,9 +13,29 @@ public class AdminBoardVO {
     private int boHit;
     private String boRegDat;
     private String boModDate;
-    private String b0DelYn;
+    private String boDelYn;
     private String atchNo;
     private String boPass;
+
+    private List<AttachVO> attaches;
+    private int[] delAtchNos;
+
+
+    public List<AttachVO> getAttaches() {
+        return attaches;
+    }
+
+    public void setAttaches(List<AttachVO> attaches) {
+        this.attaches = attaches;
+    }
+
+    public int[] getDelAtchNos() {
+        return delAtchNos;
+    }
+
+    public void setDelAtchNos(int[] delAtchNos) {
+        this.delAtchNos = delAtchNos;
+    }
 
     public int getBoNo() {
         return boNo;
@@ -77,12 +101,12 @@ public class AdminBoardVO {
         this.boModDate = boModDate;
     }
 
-    public String getB0DelYn() {
-        return b0DelYn;
+    public String getBoDelYn() {
+        return boDelYn;
     }
 
-    public void setB0DelYn(String b0DelYn) {
-        this.b0DelYn = b0DelYn;
+    public void setBoDelYn(String boDelYn) {
+        this.boDelYn = boDelYn;
     }
 
     public String getAtchNo() {
