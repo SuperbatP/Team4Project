@@ -95,8 +95,10 @@
     const form = document.getElementById("appointment-form")
     function f_click() {
         const place = document.querySelector("#myplace").value
-        location.href = "https://map.kakao.com/?eName=희영빌딩&sName="+ place +""
+        var openNewWindow = window.open("about:blank");
+        openNewWindow.location.href = "https://www.google.co.kr/maps/dir/" + place + "/넥스트아이티교육센터";
         console.log(place)
+
     }
 
 
