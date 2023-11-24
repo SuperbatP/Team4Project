@@ -3,6 +3,11 @@
 <mapper namespace="com.PhoenixHospital.member.dao.IMemberDao">
 
 
+
+
+
+
+
     <sql id="searchInMember">
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
             <if test='search.searchType=="NM"'>

@@ -16,7 +16,7 @@ public interface IFreeBoardDao {
   public int getTotalRowCount(@Param("paging") PagingVO paging, @Param("search") SearchVO search, @Param("searchCategory") String searchCategory);
   //검색어에 대한 List 반환 , String searchCategory-분류
   public List<FreeBoardVO> getBoardList(@Param("paging") PagingVO paging, @Param("search") SearchVO search, @Param("searchCategory") String searchCategory) ;
-  public FreeBoardVO getBoard(int boNo);
+
   public int increaseHit(int boNo);
   public int updateBoard(FreeBoardVO freeBoard);
   public int deleteBoard(FreeBoardVO freeBoard);
@@ -29,6 +29,10 @@ public interface IFreeBoardDao {
     Void increaseHit(Integer boNo) throws Exception;
 
     public List<CodeVO> freeEdit(int boNo) throws Exception;
+
+  public FreeBoardVO getBoard(int boNo) throws BizNotFoundException;
+
+  public String resultMessage(int boNo);
 
 
 }

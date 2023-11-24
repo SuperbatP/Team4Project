@@ -54,11 +54,6 @@
 				<th>핸드폰</th>
 				<td><input type="tel" name="memHp" class="form-control input-sm" value='${member.memHp}'></td>
 			</tr>
-<%--			<tr>--%>
-<%--				<th>탈퇴여부</th>--%>
-<%--				<td>${member.memDelYn}</td>--%>
-<%--			</tr>	--%>
-			<tr>
 				<td colspan="2">
 					<a href="/" class="btn btn-info btn-sm">
 					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>

@@ -16,9 +16,9 @@
     <section class="vh-100">
         <div class="form-title">
             <div class="col-md-7" style="margin-left: 40px">
-                <h2 style="margin-top: 40px">불사조 병원 회원가입</h2>
-                <p style="font-size: 15px; font-weight: bold">불사조병원 홈페이지는 회원의 개인정보보호를 위해 항상 최선을 다하고 있습니다.</p>
-                <p style="font-size: 15px; font-weight: bold">아래의 항목을 모두 기입하시고 "회원가입" 버튼을 누르시면 회원가입이 완료 됩니다.</p>
+                <h2 style="margin-top: 40px">비밀번호 변경</h2>
+<%--                <p style="font-size: 15px; font-weight: bold">불사조병원 홈페이지는 회원의 개인정보보호를 위해 항상 최선을 다하고 있습니다.</p>--%>
+<%--                <p style="font-size: 15px; font-weight: bold">아래의 항목을 모두 기입하시고 "회원가입" 버튼을 누르시면 회원가입이 완료 됩니다.</p>--%>
             </div>
             <div class="form-img">
                 <img src="/resource/bootstrap-3.3.2/images/form-img.png" style="height: 280px">
@@ -39,7 +39,6 @@
                             <input type="password" name="memPassword" id="memPassword" onchange="checkpassword()"
                                    class="form-control form-control-inline text-center" placeholder="현재 비밀번호" autoComplete="off"/>
                             <span  id="fail" style="display:none; color: red;">현재 비밀번호와 맞지 않습니다.</span>
-
                         </div>
                         <div class="form-group">
                             <input type="password" id="memberPw1" name="memberPw1" class="form-control form-control-inline text-center"

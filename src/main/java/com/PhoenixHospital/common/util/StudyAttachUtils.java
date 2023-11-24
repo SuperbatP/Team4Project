@@ -45,7 +45,7 @@ public class StudyAttachUtils {
 			vo.setAtchFileSize(multipart.getSize());
 			vo.setAtchContentType(multipart.getContentType());
 			vo.setAtchFileName(fileName);
-			vo.setAtchCategory(category);
+			vo.setCategoryCode(category);
 			vo.setAtchPath(path);
 			vo.setAtchFancySize(fancySize(multipart.getSize()));
 			String filePath = uploadPath + File.separatorChar + vo.getAtchPath();

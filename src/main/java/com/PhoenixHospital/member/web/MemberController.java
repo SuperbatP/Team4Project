@@ -2,8 +2,6 @@ package com.PhoenixHospital.member.web;
 
 import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.checkUp.vo.CheckUpVO;
-import com.PhoenixHospital.code.service.ICommCodeService;
-import com.PhoenixHospital.code.vo.CodeVO;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.ResultMessageVO;
 import com.PhoenixHospital.common.vo.SearchVO;
@@ -23,17 +21,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class MemberController {
-    @Autowired
-    ICommCodeService codeService;
-
     @Autowired
     IMemberService memberService;
 

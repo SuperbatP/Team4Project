@@ -7,7 +7,7 @@ public class AttachVO {
     private int atchNo;                     /* 첨부파일 번호(PK) */
     //테이블을 조인하는게 아니라 테이블내에 부모글의 번호, 카테고리를 지정해서 사용.
     private int atchParentNo;               /* 부모글의 PK  */
-    private String atchCategory;            /* 상위글 분류(BOARD, FREE, QNA, PDS 등) */
+    private String categoryCode;            /* 상위글 분류(BOARD, FREE, QNA, PDS 등) */
     //DB에 파일의 고유한 이름
     private String atchFileName;            /* 실제 저장된 파일명 */
     //사용자가 파일을 받을때 나타나는 이름
@@ -40,12 +40,12 @@ public class AttachVO {
         this.atchParentNo = atchParentNo;
     }
 
-    public String getAtchCategory() {
-        return atchCategory;
+    public String getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setAtchCategory(String atchCategory) {
-        this.atchCategory = atchCategory;
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
     }
 
     public String getAtchFileName() {

@@ -20,7 +20,6 @@
             <tbody>
             <tr>
                 <th>아이디</th>
-
                 <td><input name="memId" value='${member.memId}' readonly="readonly"></td>
             </tr>
             <tr>

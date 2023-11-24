@@ -35,7 +35,7 @@
 					<span class="text-danger">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             수정 또는 삭제시에 필요합니다.
-          </span>
+          </span><sec:csrfInput/>
 				</td>
 			</tr>
 

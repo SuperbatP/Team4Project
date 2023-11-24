@@ -5,8 +5,6 @@ import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import java.util.List;
-
 @Data
 public class MemberVO {
     @ExcelColumn(hearName = "아이디")

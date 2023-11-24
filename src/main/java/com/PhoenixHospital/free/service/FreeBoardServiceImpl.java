@@ -37,21 +37,6 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
 
     @Override
-    public FreeBoardVO getBoard(int boNo) throws BizNotFoundException {
-        FreeBoardVO freeBoard = freeBoardDao.getBoard(boNo);
-        if (freeBoard == null) throw new BizNotFoundException();
-        //----------------free board 가져오기------------------------------------------------
-
-        //List<AttachVO> attaches = attachDao.getAttachListByParent(freeBoard.getBoNo(),"FREE");
-        //어떤 글의 첨부파일'들' 이 필요하니까 List
-        //freeBoard.setAttaches(attaches);
-        //-------------- attach 가져오기------------------------------------------------------
-
-        // resultMap을 통해 이미 freeBoard에는 attaches 가 셋팅되어 있다.
-        return freeBoard;
-    }
-
-    @Override
     public void increaseHit(int boNo) throws BizNotEffectedException {
         int result = freeBoardDao.increaseHit(boNo);
         if (result < 0) throw new BizNotEffectedException();
@@ -62,7 +47,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     public void modifyBoard(FreeBoardVO freeBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
         FreeBoardVO dbVO = freeBoardDao.getBoard(freeBoard.getBoNo());
         if (dbVO == null) throw new BizNotFoundException();
-        if (!dbVO.getBoPass().equals(freeBoard.getBoPass()))
+        if (dbVO.getBoPass() == null || !dbVO.getBoPass().equals(freeBoard.getBoPass()))
             throw new BizPasswordNotMatchedException();
         int result = freeBoardDao.updateBoard(freeBoard);
         if (result < 1) throw new BizNotEffectedException();
@@ -130,5 +115,25 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     public List<CodeVO> freeEdit(int boNo) throws Exception{
         return freeBoardDao.freeEdit(boNo);
     }
+    @Override
+    public FreeBoardVO getBoard(int boNo) throws BizNotFoundException {
+        FreeBoardVO freeBoard = freeBoardDao.getBoard(boNo);
+        if (freeBoard == null) throw new BizNotFoundException();
+        //----------------free board 가져오기------------------------------------------------
+
+        //List<AttachVO> attaches = attachDao.getAttachListByParent(freeBoard.getBoNo(),"FREE");
+        //어떤 글의 첨부파일'들' 이 필요하니까 List
+        //freeBoard.setAttaches(attaches);
+        //-------------- attach 가져오기------------------------------------------------------
+
+        // resultMap을 통해 이미 freeBoard에는 attaches 가 셋팅되어 있다.
+        return freeBoard;
+    }
+
+    public String resultMessageVO(int boNo){
+        return freeBoardDao.resultMessage(boNo);
+    }
+
+
 
 }
