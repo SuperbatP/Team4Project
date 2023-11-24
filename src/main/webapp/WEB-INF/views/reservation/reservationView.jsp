@@ -35,11 +35,11 @@
             <div>
                 <table class="width100 border-bottom">
                     <tr class="table-tr fontW600">
-                        <td class="width200px height50px" >의료진</td>
-                        <td class="width200px height50px" >진료과</td>
-                        <td class="width200px height50px" >예약날짜</td>
-                        <td class="width200px height50px" >예약시간</td>
-                        <td class="width200px height50px" ></td>
+                        <td class="width200px height50px">의료진</td>
+                        <td class="width200px height50px">진료과</td>
+                        <td class="width200px height50px">예약날짜</td>
+                        <td class="width200px height50px">예약시간</td>
+                        <td class="width200px height50px"></td>
                     </tr>
                     <c:forEach var="re" items="${reservation}">
                         <form name="reservation" action="reservationEdit.wow" method="post">
@@ -48,26 +48,28 @@
                                 <input name="reservationNo" value="${re.reservationNo}" type="hidden">
                                 <input name="dcId" value="${re.dcId}" type="hidden">
                                 <input name="treatmentCode" value="${re.treatmentCode}" type="hidden">
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <input name="dcName" value="${re.dcName}" readonly="readonly">
                                 </td>
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <input name="treatmentName" value="${re.treatmentName}" readonly="readonly">
                                 </td>
-                                <td class="width200px height50px" >
-                                    <input name="reservationDateString" value="${re.reservationDateString}" readonly="readonly">
+                                <td class="width200px height50px">
+                                    <input name="reservationDateString" value="${re.reservationDateString}"
+                                           readonly="readonly">
                                 </td>
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <input name="reservationTime" value="${re.reservationTime}" readonly="readonly">
                                 </td>
                                 <input name="memName" value="${re.memName}" type="hidden">
                                 <input name="memHp" value="${re.memHp}" type="hidden">
                                 <input name="memEmail" value="${re.memEmail}" type="hidden">
                                 <input name="etc" value="${re.etc}" type="hidden">
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="submit" class="width80px height40px btn-green margin-left5" id="cf-submit" formaction="reservationCancel.wow"><b>취소</b></button>
+                                        <button type="submit" class="width80px height40px btn-green margin-left5"
+                                                id="cf-submit" formaction="reservationCancel.wow"><b>취소</b></button>
                                     </div>
                                 </td>
                             </tr>
@@ -81,46 +83,48 @@
             <div>
                 <table class="width100 border-bottom">
                     <tr class="table-tr fontW600">
-                        <td class="width200px height50px" >예약자명</td>
-                        <td class="width200px height50px" >기본검진</td>
-                        <td class="width200px height50px" >추가검진</td>
-                        <td class="width200px height50px" >유전자검사</td>
-                        <td class="width200px height50px" >예약날짜</td>
-                        <td class="width200px height50px" >예약시간</td>
-                        <td class="width200px height50px" ></td>
+                        <td class="width200px height50px">예약자명</td>
+                        <td class="width200px height50px">기본검진</td>
+                        <td class="width200px height50px">추가검진</td>
+                        <td class="width200px height50px">유전자검사</td>
+                        <td class="width200px height50px">예약날짜</td>
+                        <td class="width200px height50px">예약시간</td>
+                        <td class="width200px height50px"></td>
                     </tr>
                     <c:forEach var="ck" items="${checkUp}">
                         <form name="checkUp" action="checkUpEdit.wow" method="post">
                             <sec:csrfInput/>
+                            <input name="ckReservationNo" value="${ck.ckReservationNo}" type="hidden">
+                            <input name="reservationGender" value="${ck.reservationGender}" type="hidden">
+                            <input name="reservationBirthday" value="${ck.reservationBirthday}" type="hidden">
+                            <input name="reservationHp" value="${ck.reservationHp}" type="hidden">
+                            <input name="etc" value="${ck.etc}" type="hidden">
+
                             <tr class="table-tr">
-                                <input name="ckReservationNo" value="${ck.ckReservationNo}" type="hidden">
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <input name="reservationName" value="${ck.reservationName}" readonly="readonly">
                                 </td>
-                                <td class="width200px height50px" >
-                                    <input name="basicCheckupCode" value="${ck.basicCheckupCode}">
+                                <td class="width200px height50px">
+                                    <input name="basicCheckupCode" value="${ck.basicCheckupName}" readonly="readonly">
                                 </td>
-                                <td class="width200px height50px" >
-                                    <input name="addCheckupCode" value="${ck.addCheckupCode}">
+                                <td class="width200px height50px">
+                                    <input name="addCheckupCode" value="${ck.addCheckupName}" readonly="readonly">
                                 </td>
-                                <td class="width200px height50px" >
-                                    <input name="dnaTestCode" value="${ck.dnaTestCode}">
+                                <td class="width200px height50px">
+                                    <input name="dnaTestCode" value="${ck.dnaTestName}" readonly="readonly">
                                 </td>
-                                <input name="reservationGender" value="${ck.reservationGender}" type="hidden">
-                                <input name="reservationBirthday" value="${ck.reservationBirthday}" type="hidden">
-                                <input name="reservationHp" value="${ck.reservationHp}" type="hidden">
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <input name="reservationDateString" value="${ck.reservationDateString}"
                                            readonly="readonly">
                                 </td>
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <input name="reservationTime" value="${ck.reservationTime}" readonly="readonly">
                                 </td>
-                                <input name="etc" value="${ck.etc}" type="hidden">
-                                <td class="width200px height50px" >
+                                <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="submit" class="width80px height40px btn-green margin-left5" formaction="checkUpCancel.wow"><b>취소</b></button>
+                                        <button type="submit" class="width80px height40px btn-green margin-left5"
+                                                formaction="checkUpCancel.wow"><b>취소</b></button>
                                     </div>
                                 </td>
                             </tr>

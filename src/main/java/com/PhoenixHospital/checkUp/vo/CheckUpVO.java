@@ -13,8 +13,8 @@ public class CheckUpVO {
     private String reservationBirthday;
     private String reservationHp;
     private String basicCheckupCode;
-    private String addCheckupCode;
-    private String dnaTestCode;
+    private String addCheckupCode; // 추가검진
+    private String dnaTestCode;  // 유전자
     private String reservationDateString;
     private Date reservationDate;
     private String reservationTime;
@@ -22,12 +22,39 @@ public class CheckUpVO {
     private String etc;
     private String cancelDate;
     private String reservationModDate;
+    private String basicCheckupName;
+    private String addCheckupName;
+    private String dnaTestName;
 
     @Override
     public String toString() {
         return ToStringBuilder
                 .reflectionToString
                         (this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    public String getBasicCheckupName() {
+        return basicCheckupName;
+    }
+
+    public void setBasicCheckupName(String basicCheckupName) {
+        this.basicCheckupName = basicCheckupName;
+    }
+
+    public String getAddCheckupName() {
+        return addCheckupName;
+    }
+
+    public void setAddCheckupName(String addCheckupName) {
+        this.addCheckupName = addCheckupName;
+    }
+
+    public String getDnaTestName() {
+        return dnaTestName;
+    }
+
+    public void setDnaTestName(String dnaTestName) {
+        this.dnaTestName = dnaTestName;
     }
 
     public String getReservationDateString() {
@@ -103,18 +130,54 @@ public class CheckUpVO {
     }
 
     public String getAddCheckupCode() {
+        String defaultStr = "-";
+
+        if(addCheckupCode == null || (addCheckupCode != null && addCheckupCode.equals("")
+                || (addCheckupCode != null && addCheckupCode.equals(" "))))
+        {
+            addCheckupCode = defaultStr;
+        }
+
         return addCheckupCode;
     }
 
     public void setAddCheckupCode(String addCheckupCode) {
+
+        String defaultStr = "-";
+
+        if(addCheckupCode == null || (addCheckupCode != null && addCheckupCode.equals("")
+                || (addCheckupCode != null && addCheckupCode.equals(" "))))
+        {
+            addCheckupCode = defaultStr;
+        }
+
         this.addCheckupCode = addCheckupCode;
     }
 
     public String getDnaTestCode() {
+
+        String defaultStr = "-";
+
+        if(dnaTestCode == null || (dnaTestCode != null && dnaTestCode.equals("")
+                || (dnaTestCode != null && dnaTestCode.equals(" "))))
+        {
+            dnaTestCode = defaultStr;
+        }
+
+
         return dnaTestCode;
     }
 
     public void setDnaTestCode(String dnaTestCode) {
+
+        String defaultStr = "-";
+
+        if(dnaTestCode == null || (dnaTestCode != null && dnaTestCode.equals("")
+                || (dnaTestCode != null && dnaTestCode.equals(" "))))
+        {
+            dnaTestCode = defaultStr;
+        }
+
         this.dnaTestCode = dnaTestCode;
     }
 

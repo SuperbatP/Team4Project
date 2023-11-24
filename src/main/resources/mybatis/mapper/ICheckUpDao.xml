@@ -33,6 +33,9 @@
             basic_checkup_code,
             add_checkup_code,
             dna_test_code,
+            (SELECT BASIC_CHECKUP_NAME FROM basic_checkup_code bc WHERE bc.BASIC_CHECKUP_CODE = cu.basic_checkup_code) as basic_checkup_name,
+            (SELECT ADD_CHECKUP_NAME FROM add_checkup_code ac WHERE ac.add_checkup_code = cu.add_checkup_code) as add_checkup_name,
+            (SELECT DNA_TEST_NAME FROM dna_test_code dc WHERE dc.dna_test_code = cu.dna_test_code) as dna_test_name,
             reservation_date,
             reservation_time,
             reservation_reg_date,
@@ -40,7 +43,7 @@
             cancel_date,
             reservation_mod_date
         FROM
-            checkup
+            checkup cu
         WHERE mem_id=#{memId}
         AND cancel_date is null
         AND reservation_date > sysdate
@@ -77,6 +80,7 @@
                      #{basicCheckupCode,jdbcType=VARCHAR},
                      #{addCheckupCode,jdbcType=VARCHAR},
                      #{dnaTestCode,jdbcType=VARCHAR},
+
                      #{reservationDate},
                      #{reservationTime},
         sysdate,
