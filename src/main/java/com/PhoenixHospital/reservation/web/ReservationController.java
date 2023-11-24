@@ -54,7 +54,7 @@ public class ReservationController {
         return "reservation/reservationSearch";
     }
 
-    @GetMapping("reservation/reservationList.wow")
+    @RequestMapping("reservation/reservationList.wow")
     public String reservationList(Model model, SearchVO search){
         List<DoctorsVO> doctorsList = doctorsService.getDocList(search);
         Map<String, List<String>> attendanceVOMap = new HashMap<>(); //나중에 Service로 옮겨야됨
