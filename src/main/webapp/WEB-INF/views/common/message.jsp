@@ -29,7 +29,7 @@
 						&nbsp;Home
 					</a>
 					<div class="pull-right">
-						<a href="#" onclick="history.back()" class="btn btn-default">
+						<a href="/free/freeList.wow" onclick="history.back()" class="btn btn-default">
 							<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 							&nbsp;뒤로가기
 						</a> 

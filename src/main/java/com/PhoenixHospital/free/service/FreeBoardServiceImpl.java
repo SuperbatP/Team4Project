@@ -11,9 +11,11 @@ import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
 import com.PhoenixHospital.free.dao.IFreeBoardDao;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -44,45 +46,49 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     //수정
     @Override
-    public void modifyBoard(FreeBoardVO freeBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
-        FreeBoardVO dbVO = freeBoardDao.getBoard(freeBoard.getBoNo());
-        if (dbVO == null) throw new BizNotFoundException();
-        if (dbVO.getBoPass() == null || !dbVO.getBoPass().equals(freeBoard.getBoPass()))
-            throw new BizPasswordNotMatchedException();
-        int result = freeBoardDao.updateBoard(freeBoard);
-        if (result < 1) throw new BizNotEffectedException();
-        //추가된 첨부파일 DB에 넣는 건 regist랑 똑같이.
-        //차이점은 수정의 경우 특정 글에 대한 bo_bo가 넘어온다는 것.
-        List<AttachVO> attaches = freeBoard.getAttaches();
+    public void modifyBoard(FreeBoardVO freeBoard, @Param("boPass")String boPass) throws  BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
 
-        if (attaches != null) {
-            for (AttachVO attach : attaches) {
-                attach.setAtchParentNo(freeBoard.getBoNo());
-                attachDao.insertAttach(attach);
+        if (boPass.equals(freeBoard.getBoPass())){
+            System.out.println(freeBoard);
+            int result = freeBoardDao.updateBoard(freeBoard);
+            if (result < 1) throw new BizNotEffectedException();
+            //추가된 첨부파일 DB에 넣는 건 regist랑 똑같이.
+            //차이점은 수정의 경우 특정 글에 대한 bo_bo가 넘어온다는 것.
+            List<AttachVO> attaches = freeBoard.getAttaches();
+
+            if (attaches != null) {
+                for (AttachVO attach : attaches) {
+                    attach.setAtchParentNo(freeBoard.getBoNo());
+                    attachDao.insertAttach(attach);
+                }
+            }
+
+            //휴지통 버튼에 의해 삭제될 첨부파일들을 처리해줘야 함.
+            int[] delAtchNos = freeBoard.getDelAtchNos();
+            //delAtchNos에 있는 모든 첨부파일을 받아옴. -> 그래서 배열형태
+            //파라미터에 배열 + 쿼리문 forEach
+            //where atch_no In(,,,,,)
+            if (delAtchNos != null && delAtchNos.length > 0) {
+                attachDao.delAtchNos(delAtchNos);
             }
         }
 
-        //휴지통 버튼에 의해 삭제될 첨부파일들을 처리해줘야 함.
-        int[] delAtchNos = freeBoard.getDelAtchNos();
-        //delAtchNos에 있는 모든 첨부파일을 받아옴. -> 그래서 배열형태
-        //파라미터에 배열 + 쿼리문 forEach
-        //where atch_no In(,,,,,)
-        if (delAtchNos != null && delAtchNos.length > 0) {
-            attachDao.delAtchNos(delAtchNos);
-        }
+//        if (dbVO == null) throw new BizNotFoundException();
+//        if (dbVO.getBoPass() == null || !dbVO.getBoPass().equals(freeBoard.getBoPass()))
+//            throw new BizPasswordNotMatchedException();
+
     }
 
     //삭제
     @Override
-    public void removeBoard(FreeBoardVO freeBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
+    public void removeBoard(FreeBoardVO freeBoard, @Param("boPass")String boPass) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
         FreeBoardVO dbVO = freeBoardDao.getBoard(freeBoard.getBoNo());
-        if (dbVO == null) throw new BizNotFoundException();
-        if (!dbVO.getBoPass().equals(freeBoard.getBoPass()))
-            throw new BizPasswordNotMatchedException();
         int result = freeBoardDao.deleteBoard(freeBoard);
         if (result < 1) throw new BizNotEffectedException();
     }
-
+// if (dbVO == null) throw new BizNotFoundException();
+//        if (!dbVO.getBoPass().equals(freeBoard.getBoPass()))
+//            throw new BizPasswordNotMatchedException();
 
     @Override
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException {
@@ -103,6 +109,23 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     @Override
     public void insertForm(FreeBoardVO freeBoard) throws BizException {
+        List<AttachVO> attaches = freeBoard.getAttaches();
+
+        if (attaches != null) {
+            for (AttachVO attach : attaches) {
+                attach.setAtchParentNo(freeBoard.getBoNo());
+                attachDao.insertAttach(attach);
+            }
+        }
+
+        //휴지통 버튼에 의해 삭제될 첨부파일들을 처리해줘야 함.
+        int[] delAtchNos = freeBoard.getDelAtchNos();
+        //delAtchNos에 있는 모든 첨부파일을 받아옴. -> 그래서 배열형태
+        //파라미터에 배열 + 쿼리문 forEach
+        //where atch_no In(,,,,,)
+        if (delAtchNos != null && delAtchNos.length > 0) {
+            attachDao.delAtchNos(delAtchNos);
+        }
         freeBoardDao.insertBoard(freeBoard);
     }
 
@@ -132,6 +155,10 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     public String resultMessageVO(int boNo){
         return freeBoardDao.resultMessage(boNo);
+    }
+
+    public String  freeRegist(FreeBoardVO freeBoard)throws BizException, IOException{
+        return freeBoardDao.freeRegist(freeBoard);
     }
 
 

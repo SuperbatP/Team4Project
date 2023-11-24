@@ -4,29 +4,29 @@
     <insert id="insertAttach" parameterType="com.PhoenixHospital.attach.vo.AttachVO">
 
         INSERT INTO attach (
-                             atch_no, atch_parent_no, atch_category
+                             atch_no, atch_parent_no, category_code
                            , atch_file_name, atch_original_name, atch_file_size
                            , atch_fancy_size, atch_content_type, atch_path
                            , atch_down_hit, atch_del_yn, atch_reg_date
         ) VALUES (
-            seq_attach.nextval, #{atchParentNo}, #{atchCategory}
-            ,#{atchFileName}, #{atchOriginalName}, #{atchFileSize}
-            ,#{atchFancySize}, #{atchContentType}, #{atchPath}
-            ,#{atchDownHit}, 'N', sysdate
+                     atch_no_seq.nextval, #{atchParentNo} ,#{categoryCode}
+                 ,#{atchFileName}, #{atchOriginalName}, #{atchFileSize}
+                 ,#{atchFancySize}, #{atchContentType}, #{atchPath}
+                 ,#{atchDownHit}, 'N', sysdate
                  )
     </insert>
 
 
     <select id="getAttachListByParent" resultType="com.PhoenixHospital.attach.vo.AttachVO">
         SELECT
-            atch_no, atch_parent_no, atch_category
+            atch_no, atch_parent_no
              , atch_file_name, atch_original_name, atch_file_size
              , atch_fancy_size, atch_content_type, atch_path
              , atch_down_hit, atch_del_yn, atch_reg_date
         FROM attach
         WHERE atch_parent_no = #{atchParentNo}
-        AND atch_category = #{atchCategory}
-        AND atch_del_yn='N'
+
+          AND atch_del_yn='N'
     </select>
 
 
@@ -41,7 +41,7 @@
 
     <select id="getAttach" parameterType="int" resultType="com.PhoenixHospital.attach.vo.AttachVO">
         SELECT
-            atch_no, atch_parent_no, atch_category
+            atch_no, atch_parent_no
              , atch_file_name, atch_original_name, atch_file_size
              , atch_fancy_size, atch_content_type, atch_path
              , atch_down_hit, atch_del_yn, atch_reg_date

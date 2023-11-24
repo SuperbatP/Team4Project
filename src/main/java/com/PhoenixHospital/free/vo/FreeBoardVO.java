@@ -2,171 +2,46 @@ package com.PhoenixHospital.free.vo;
 
 import com.PhoenixHospital.attach.vo.AttachVO;
 import com.PhoenixHospital.common.vo.PagingVO;
-import com.PhoenixHospital.excel.ExcelColumn;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import java.util.Date;
 import java.util.List;
 
 
 public class FreeBoardVO extends PagingVO {
 
-    @ExcelColumn(hearName = "글번호")
-    private int    boNo       ;                                           /* 글 번호 */
-    @ExcelColumn(hearName = "글제목")
-    private String boTitle     ;                                     /* 글 제목 */
-    @ExcelColumn(hearName = "카테고리")
-    private String boCategory     ;                                  /* 글 분류 코드 */
-    @ExcelColumn(hearName = "카테고리 이름")
-    private String boCategoryNm;
-    @ExcelColumn(hearName = "작성자")
-    private String boWriter    ;                                    /* 작성자명 */
-    @ExcelColumn(hearName = "글내용")
-    private String boContent    ;                                   /* 글 내용 */
-    @ExcelColumn(hearName = "조회수")
-    private int    boHit       ;                                          /* 조회수 */
-    private String boRegDate       ;                                   /* 등록 일자 */
-    private String boModDate       ;                                   /* 수정 일자 */
-    private String boDelYn      ;                                     /* 삭제 여부 */
-    private String boPass          ;                                      /* 비밀번호 */
 
+    private int boNo;                                           /* 글 번호 */
 
-    public String getBoContents() {
-        return boContents;
+    private String boTitle;                                     /* 글 제목 */
+
+    public String getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setBoContents(String boContents) {
-        this.boContents = boContents;
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
     }
 
-    public String getBoRegDat() {
-        return boRegDat;
-    }
+    private String categoryCode;                                  /* 글 분류 코드 */
 
-    public void setBoRegDat(String boRegDat) {
-        this.boRegDat = boRegDat;
-    }
+//    private String boCategoryNm;
 
-    public String getBodDelYn() {
-        return bodDelYn;
-    }
+    private String boWriter;                                    /* 작성자명 */
 
-    public void setBodDelYn(String bodDelYn) {
-        this.bodDelYn = bodDelYn;
-    }
+    private String boContents;                                   /* 글 내용 */
 
-    private String  boContents;
+    private int boHit;                                          /* 조회수 */
+    private String boRegDate;                                   /* 등록 일자 */
+    private String boModDate;                                   /* 수정 일자 */
+    private String boDelYn;                                     /* 삭제 여부 */
+    private String boPass;                                      /* 비밀번호 */
 
 
-    private String boRegDat;
-    private String bodDelYn;
-
-
-
-
-    private List<AttachVO> attaches ;      /*첨부파일 리스트    */
+    private List<AttachVO> attaches;      /*첨부파일 리스트    */
     //1:N 관계 -> free : attache ; 게시판 하나에 파일 여러개 올릴 수 있음.
 
     private int[] delAtchNos;             /*삭제를 위한 글 번호  */
-
-
-
-
-
-    private int CP_NO=0;
-    private String CP_TITLE="";
-    private String Category_Code="";
-    private String CP_CONTENTS="";
-    private String MEM_ID="";
-    private int CP_HIT=0;
-
-    public int getCP_NO() {
-        return CP_NO;
-    }
-
-    public void setCP_NO(int CP_NO) {
-        this.CP_NO = CP_NO;
-    }
-
-    public String getCP_TITLE() {
-        return CP_TITLE;
-    }
-
-    public void setCP_TITLE(String CP_TITLE) {
-        this.CP_TITLE = CP_TITLE;
-    }
-
-    public String getCategory_Code() {
-        return Category_Code;
-    }
-
-    public void setCategory_Code(String category_Code) {
-        Category_Code = category_Code;
-    }
-
-    public String getCP_CONTENTS() {
-        return CP_CONTENTS;
-    }
-
-    public void setCP_CONTENTS(String CP_CONTENTS) {
-        this.CP_CONTENTS = CP_CONTENTS;
-    }
-
-    public String getMEM_ID() {
-        return MEM_ID;
-    }
-
-    public void setMEM_ID(String MEM_ID) {
-        this.MEM_ID = MEM_ID;
-    }
-
-    public int getCP_HIT() {
-        return CP_HIT;
-    }
-
-    public void setCP_HIT(int CP_HIT) {
-        this.CP_HIT = CP_HIT;
-    }
-
-    public Date getCP_REG_DATE() {
-        return CP_REG_DATE;
-    }
-
-    public void setCP_REG_DATE(Date CP_REG_DATE) {
-        this.CP_REG_DATE = CP_REG_DATE;
-    }
-
-    public Date getCP_MOD_DATE() {
-        return CP_MOD_DATE;
-    }
-
-    public void setCP_MOD_DATE(Date CP_MOD_DATE) {
-        this.CP_MOD_DATE = CP_MOD_DATE;
-    }
-
-    public String getCP_DEL_YN() {
-        return CP_DEL_YN;
-    }
-
-    public void setCP_DEL_YN(String CP_DEL_YN) {
-        this.CP_DEL_YN = CP_DEL_YN;
-    }
-
-    public String getCP_ATTACH() {
-        return CP_ATTACH;
-    }
-
-    public void setCP_ATTACH(String CP_ATTACH) {
-        this.CP_ATTACH = CP_ATTACH;
-    }
-
-    private Date CP_REG_DATE;
-    private Date CP_MOD_DATE;
-    private String CP_DEL_YN="";
-    private String CP_ATTACH="";
-
-
 
     public int getBoNo() {
         return boNo;
@@ -184,13 +59,6 @@ public class FreeBoardVO extends PagingVO {
         this.boTitle = boTitle;
     }
 
-    public String getBoCategory() {
-        return boCategory;
-    }
-
-    public void setBoCategory(String boCategory) {
-        this.boCategory = boCategory;
-    }
 
     public String getBoWriter() {
         return boWriter;
@@ -200,20 +68,12 @@ public class FreeBoardVO extends PagingVO {
         this.boWriter = boWriter;
     }
 
-    public String getBoPass() {
-        return boPass;
+    public String getBoContents() {
+        return boContents;
     }
 
-    public void setBoPass(String boPass) {
-        this.boPass = boPass;
-    }
-
-    public String getBoContent() {
-        return boContent;
-    }
-
-    public void setBoContent(String boContent) {
-        this.boContent = boContent;
+    public void setBoContents(String boContents) {
+        this.boContents = boContents;
     }
 
     public int getBoHit() {
@@ -248,12 +108,12 @@ public class FreeBoardVO extends PagingVO {
         this.boDelYn = boDelYn;
     }
 
-    public String getBoCategoryNm() {
-        return boCategoryNm;
+    public String getBoPass() {
+        return boPass;
     }
 
-    public void setBoCategoryNm(String boCategoryNm) {
-        this.boCategoryNm = boCategoryNm;
+    public void setBoPass(String boPass) {
+        this.boPass = boPass;
     }
 
     public List<AttachVO> getAttaches() {
@@ -272,10 +132,12 @@ public class FreeBoardVO extends PagingVO {
         this.delAtchNos = delAtchNos;
     }
 
-    //UserVO에 있는 toString 복사  ,  MemberVO도 toString
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString
-                (this, ToStringStyle.MULTI_LINE_STYLE);
+        return ToStringBuilder
+                .reflectionToString
+                        (this, ToStringStyle.MULTI_LINE_STYLE);
     }
+
+
 }

@@ -43,9 +43,9 @@
                     <div class="col-sm-2">
                         <select id="id_searchCategory" name="searchCategory" class="form-control input-sm">
                             <option value="">-- 전체 --</option>
-                            <c:forEach items="${cateList}" var="code">
-                                <option value="${code.commCd}" ${searchCategory eq code.commCd ? "selected='selected'":""} >${code.commNm}</option>
-                            </c:forEach>
+<%--                            <c:forEach items="${cateList}" var="code">--%>
+<%--                                <option value="${code.commCd}" ${searchCategory eq code.commCd ? "selected='selected'":""} >${code.commNm}</option>--%>
+<%--                            </c:forEach>--%>
                         </select>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 </c:forEach>
             </select>
         </div>
-    </div>호
+    </div>
     <!-- END : 목록건수 및 새글쓰기 버튼  -->
 
     <div class="page-header">
@@ -116,14 +116,14 @@
         <c:forEach items="${freeBoardList }" var="freeBoard">
             <tr class="text-center">
                 <td>${freeBoard.boNo }</td>
-                <td>${freeBoard.boCategoryNm }</td>
+                <td>${freeBoard.categoryCode }</td>
                 <td class="text-left">
                     <a href="freeView.wow?boNo= ${freeBoard.boNo }">
                             ${freeBoard.boTitle }
                     </a>
                 </td>
                 <td>${freeBoard.boWriter }</td>
-                <td>${freeBoard.boRegDat }</td>
+                <td>${freeBoard.boRegDate }</td>
                 <td>${freeBoard.boHit }</td>
             </tr>
         </c:forEach>

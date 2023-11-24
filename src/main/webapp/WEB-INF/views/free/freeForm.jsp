@@ -41,7 +41,7 @@
 
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" name="boContent" class="form-control"></textarea>
+				<td><textarea rows="10" name="boContents" class="form-control"></textarea>
 				</td>
 			</tr>
 
