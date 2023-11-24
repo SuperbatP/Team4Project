@@ -8,6 +8,8 @@ import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.checkUp.vo.CheckUpVO;
 import com.PhoenixHospital.dna_test_code.service.IDNATestService;
 import com.PhoenixHospital.dna_test_code.vo.DNATestVO;
+import com.PhoenixHospital.reservation.service.IReservationService;
+import com.PhoenixHospital.reservation.vo.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -33,6 +35,9 @@ public class CheckUpController {
     @Autowired
     IDNATestService dnaTestService;
 
+    @Autowired
+    IReservationService reservationService;
+
     @RequestMapping("reservation/checkUpForm.wow")
     public String checkUpForm(Model model, @AuthenticationPrincipal User user){
         List<CheckUpVO> checkUpVOList = checkUpService.getCheckUpList();
@@ -52,6 +57,12 @@ public class CheckUpController {
     public String checkUpRegist(Model model, @AuthenticationPrincipal User user, CheckUpVO checkUp){
         checkUp.setMemId(user.getUsername());
         checkUpService.registCheckUp(checkUp);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
 
         return "reservation/reservationView";
     }
@@ -74,15 +85,27 @@ public class CheckUpController {
     }
 
     @PostMapping("reservation/checkUpModify.wow")
-    public String checkUpModify(Model model, CheckUpVO checkUp){
+    public String checkUpModify(Model model, CheckUpVO checkUp, @AuthenticationPrincipal User user){
         checkUpService.modifyCheckUp(checkUp);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
 
         return "reservation/reservationView";
     }
 
     @PostMapping("reservation/checkUpCancel.wow")
-    public String checkUpCancel(Model model, CheckUpVO checkUp){
+    public String checkUpCancel(Model model, CheckUpVO checkUp, @AuthenticationPrincipal User user){
         checkUpService.cancelCheckUp(checkUp);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
 
         return "reservation/reservationView";
     }

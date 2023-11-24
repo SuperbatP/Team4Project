@@ -54,7 +54,7 @@ public class ReservationController {
         return "reservation/reservationSearch";
     }
 
-    @GetMapping("reservation/reservationList.wow")
+    @RequestMapping("reservation/reservationList.wow")
     public String reservationList(Model model, SearchVO search){
         List<DoctorsVO> doctorsList = doctorsService.getDocList(search);
         Map<String, List<String>> attendanceVOMap = new HashMap<>(); //나중에 Service로 옮겨야됨
@@ -92,6 +92,12 @@ public class ReservationController {
         reservation.setMemId(user.getUsername());
         reservationService.registReservation(reservation);
 
+        List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
+
         return "reservation/reservationView";
     }
 
@@ -124,15 +130,27 @@ public class ReservationController {
     }
 
     @PostMapping("reservation/reservationModify.wow")
-    public String reservationModify(Model model, ReservationVO reservation){
+    public String reservationModify(Model model, ReservationVO reservation, @AuthenticationPrincipal User user){
         reservationService.modifyReservation(reservation);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
 
         return "reservation/reservationView";
     }
 
     @PostMapping("reservation/reservationCancel.wow")
-    public String reservationCancel(Model model, ReservationVO reservation){
+    public String reservationCancel(Model model, ReservationVO reservation, @AuthenticationPrincipal User user){
         reservationService.cancelReservation(reservation);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(user.getUsername());
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(user.getUsername());
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
 
         return "reservation/reservationView";
     }
