@@ -69,6 +69,7 @@
                     <span class=""><a href="/member/memberList.wow">회원정보관리</a></span>
                     <span class=""><a href="/member/memberReservationList.wow">회원예약관리</a></span>
                     <span class=""><a href="/logout">로그아웃</a></span>
+                    <span class=""><a href="/admin/adminBoardList.wow">관리자게시판</a></span>
                     <span class=""><a href="#">사이트맵</a></span>
                 </sec:authorize>
             </div>
