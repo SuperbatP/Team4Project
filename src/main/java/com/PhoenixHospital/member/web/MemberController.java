@@ -15,12 +15,14 @@ import com.PhoenixHospital.reservation.service.IReservationService;
 import com.PhoenixHospital.reservation.vo.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -153,7 +155,7 @@ public class MemberController {
         return "member/memberReservationList";
     }
 
-
+    //회원이 비밀번호 변경: 페이지 이동
     @RequestMapping(value = "/member/memberPasswordForm.wow", method = RequestMethod.GET)
     public String pwUpdateView() throws Exception {
         return "/member/memberPasswordForm";
@@ -177,7 +179,31 @@ public class MemberController {
     public String pwUpdate(@AuthenticationPrincipal User user, String memberPw1) throws Exception {
         String memPassword = passwordEncoder.encode(memberPw1);
         memberService.pwUpdate(user.getUsername(), memPassword);
-        return "redirect:/logout";
+        SecurityContextHolder.clearContext(); //시큐리티에서 로그아웃 시키기
+        return "/login/login";
     }
+
+    //회원 탈퇴: 탈퇴 페이지 이동
+    @RequestMapping(value = "/member/memberCancelForm.wow", method = RequestMethod.GET)
+    public String deleteView() throws Exception {
+        return "/member/memberCancelForm";
+    }
+
+    //회원 탈퇴: 탈퇴 실행
+    @RequestMapping(value = "/removeMember", method = RequestMethod.POST)
+    public String removeMember(@RequestParam("memPassword") String memPassword, @AuthenticationPrincipal User user, HttpServletRequest request) throws Exception {
+
+        MemberVO memberVO = memberService.getMember(user.getUsername());
+
+        if (passwordEncoder.matches(memPassword, memberVO.getMemPassword())) {
+            memberService.removeMember(memberVO.getMemPassword());
+            SecurityContextHolder.clearContext(); //시큐리티에서 로그아웃 시키기
+            return "redirect:/";
+        } else {
+            String referer = request.getHeader("Referer");
+            return "redirect:" + referer;
+        }
+    }
+
 }
 

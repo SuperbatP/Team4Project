@@ -52,4 +52,6 @@ public interface IMemberDao {
 
     public void pwUpdate(@Param("memId")String memId, @Param("memPassword")String memPassword)throws Exception;
 
+    public int removeMember(String memPassword);
+
 }

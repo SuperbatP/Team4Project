@@ -14,16 +14,16 @@
 <div class="container">
     <!--회원가입 안내문-->
     <section class="vh-100">
-            <div class="form-title">
-                <div class="col-md-7" style="margin-left: 40px">
-                    <h2 style="margin-top: 40px">불사조 병원 회원가입</h2>
-                    <p style="font-size: 15px; font-weight: bold">불사조병원 홈페이지는 회원의 개인정보보호를 위해 항상 최선을 다하고 있습니다.</p>
-                    <p style="font-size: 15px; font-weight: bold">아래의 항목을 모두 기입하시고 "회원가입" 버튼을 누르시면 회원가입이 완료 됩니다.</p>
-                </div>
-                <div class="form-img" >
-                    <img src="/resource/bootstrap-3.3.2/images/form-img.png" style="height: 280px">
-                </div>
+        <div class="form-title">
+            <div class="col-md-7" style="margin-left: 40px">
+                <h2 style="margin-top: 40px">불사조 병원 회원가입</h2>
+                <p style="font-size: 15px; font-weight: bold">불사조병원 홈페이지는 회원의 개인정보보호를 위해 항상 최선을 다하고 있습니다.</p>
+                <p style="font-size: 15px; font-weight: bold">아래의 항목을 모두 기입하시고 "회원가입" 버튼을 누르시면 회원가입이 완료 됩니다.</p>
             </div>
+            <div class="form-img">
+                <img src="/resource/bootstrap-3.3.2/images/form-img.png" style="height: 280px">
+            </div>
+        </div>
     </section>
 
     <!--회원가입 양식-->
@@ -36,7 +36,7 @@
                     <input type="text" class="form-control" id="memId"
                            oninput="checkId(), activateSignupbtn()" name="memId" autocomplete='off' required="required">
                     <span id="failid"
-                          style="display:none; margin-top: 5px; color: red;">5~15자의 영문자와 숫자를 조합해서 입력해주세요.</span>
+                          style="display:none; margin-top: 5px; color: red;">6~16자의 영문자와 숫자를 조합해서 입력해주세요.</span>
                     <span color="red" id="fail" style="display:none">이미 존재하는 ID입니다.</span>
                 </div>
             </div>
@@ -158,7 +158,8 @@
 <script>
 
     function regMemberid(memId) { //영문자 또는 숫자 6~16자
-        var regExp = /^[A-za-z0-9]{5,15}/g;
+        // var regExp = /^[A-za-z0-9]{5,15}/g;
+        var regExp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,16}$/g;
         return regExp.test(memId);
     }
 
@@ -308,6 +309,7 @@
 
 
     function activateSignupbtn() {
+        $("#memEmail").attr("disabled", false);
 
         if (idCheck == 1 && pwdCheck == 1 && nameCheck == 1 && pwCheck == 1 && authCheck == 1) {
             $(".signupbtn").prop("disabled", false);
@@ -371,6 +373,7 @@
         if (inputCode == code) {// 일치할 경우
             checkResult.html("인증번호가 일치합니다.");
             checkResult.attr("class", "correct");
+            $("#authNum").css("background-color", "#B0F6AC");
             memEmail.attr("disabled", true);
         } else {// 일치하지 않을 경우
             checkResult.html("인증번호를 다시 확인해주세요.");
@@ -379,74 +382,68 @@
 
     });
 
-    $("#btn").submit(function () {
-        var pos = $("#job").find("option:selected").data("no");
-        var jcd = $("#position").val(pos);
-        var memberjobcd = $("#job option:selected").val();
-        var jod = $("#job option:selected").text();
-        $("#jobgubun").val(jod);
+    // $("#btn").submit(function () {
+    //     var pos = $("#job").find("option:selected").data("no");
+    //     var jcd = $("#position").val(pos);
+    //     var memberjobcd = $("#job option:selected").val();
+    //     var jod = $("#job option:selected").text();
+    //     $("#jobgubun").val(jod);
+    //
+    //     temp_pw_issuance()
+    //
+    //     if ($("#memEmail").val() == null || $("#memEmail").val() == "") {
+    //         alert("이메일을 입력해주세요.");
+    //         $("#memEmail").focus();
+    //
+    //         return false;
+    //     }
+    //
+    //     if ($("#authNum").val() == "") {
+    //         alert("인증번호를 입력해주세요.");
+    //         $("#authNum").focus();
+    //
+    //         return false;
+    //     }
+    //
+    //     alert("회원가입이 완료되었습니다.");
+    // });
 
-        temp_pw_issuance()
+    /* 인증번호 이메일 전송 */
+
+    $("#email_auth_btn").click(function () {
+
+        var email = $("input[name='memEmail']").val();            // 입력한 이메일
+        var cehckBox = $("#authNum");     // 인증번호 입력란
 
         if ($("#memEmail").val() == null || $("#memEmail").val() == "") {
             alert("이메일을 입력해주세요.");
             $("#memEmail").focus();
 
             return false;
+        } else {
+            $.ajax({
+                type: "GET",
+                url: "/emp/mailCheck?email=" + email,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                success: function (data) {
+                    console.log("data : " + data);
+                    cehckBox.attr("disabled", false);
+                    //cehckBox.css("border-color","red");
+                    code = data;
+                    alert("인증번호가 발송되었습니다.");
+                }
+            });
         }
-
-        if ($("#authNum").val() == "") {
-            alert("인증번호를 입력해주세요.");
-            $("#authNum").focus();
-
-            return false;
-        }
-
-
-        alert("회원가입이 완료되었습니다.");
-    });
-
-    /* 인증번호 이메일 전송 */
-    $("#email_auth_btn").click(function () {
-
-        var email = $("input[name='memEmail']").val();            // 입력한 이메일
-        var cehckBox = $("#authNum");     // 인증번호 입력란
-
-        $.ajax({
-
-            type: "GET",
-            url: "/emp/mailCheck?email=" + email,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader(header, token);
-            },
-            success: function (data) {
-                console.log("data : " + data);
-                cehckBox.attr("disabled", false);
-                //cehckBox.css("border-color","red");
-                code = data;
-                alert("인증번호가 발송되었습니다.");
-            }
-        });
     });
 
 
-    function temp_pw_issuance() {
-        let ranValue1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-        let ranValue2 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-        let ranValue3 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-        var temp_pw = ""; //임시비밀번호
 
-        for (i = 0; i < 2; i++) {
-            let ranPick1 = Math.floor(Math.random() * ranValue1.length);
-            let ranPick2 = Math.floor(Math.random() * ranValue2.length);
-            let ranPick3 = Math.floor(Math.random() * ranValue3.length);
-            temp_pw = temp_pw + ranValue1[ranPick1] + ranValue2[ranPick2] + ranValue3[ranPick3];
-        }
 
-        $("#pass").val(temp_pw);
-        console.log($("#pass").val());
-    }
+
+
 </script>
 <!-- SCRIPTS -->
 <script src="resource/bootstrap-3.3.2/js/jquery.js"></script>

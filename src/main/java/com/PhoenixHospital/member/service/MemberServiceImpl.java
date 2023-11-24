@@ -70,19 +70,19 @@ public class MemberServiceImpl implements IMemberService {
     @Override
     public void modifyMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException {
 
-        String encodedPw
+  /*      String encodedPw
                 = passwordEncoder.encode(member.getMemPassword());
         System.out.println("encodedPw : " + encodedPw);
-        member.setMemPassword(encodedPw);
+        member.setMemPassword(encodedPw);*/
         int count = memberDao.updateMember(member);
         if (count < 1) throw new BizNotEffectedException();
     }
 
-  /*  @Override
-    public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException {
-        int count = memberDao.deleteMember(member);
+    @Override
+    public void removeMember(String memPassword) throws BizNotEffectedException, BizNotFoundException {
+        int count = memberDao.removeMember(memPassword);
         if (count < 1) throw new BizNotEffectedException();
-    }*/
+    }
 
     @Override
     public void registMember(MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {

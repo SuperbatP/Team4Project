@@ -68,8 +68,8 @@
 
     <update id="updateMember" parameterType="com.PhoenixHospital.member.vo.MemberVO">
         UPDATE member
-        SET mem_password =#{memPassword}
-          , mem_name     =#{memName}
+        SET
+            mem_name     =#{memName}
           , mem_bir      =#{memBir}
           , mem_zip      =#{memZip}
           , mem_add1     =#{memAdd1}
@@ -84,6 +84,7 @@
         UPDATE member
         SET mem_del_yn='Y'
         WHERE mem_id = #{memId}
+        AND mem_password = #{memPassword}
     </delete>
 
     <insert id="insertMember">
@@ -144,16 +145,16 @@
           AND mem_email = #{memEmail}
     </select>
 
-<!--    <select id="pwCheck" resultType="String">-->
-<!--        SELECT mem_password-->
-<!--        FROM member-->
-<!--        WHERE mem_id = #{memId}-->
-<!--    </select>-->
-
     <update id="pwUpdate">
         UPDATE member
         SET mem_password = #{memPassword}
         WHERE mem_id = #{memId}
+    </update>
+
+    <update id="removeMember" parameterType="String" >
+        UPDATE MEMBER
+        SET mem_del_yn = 'Y'
+        WHERE mem_password = #{memPassword}
     </update>
 
 </mapper>
