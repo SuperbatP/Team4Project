@@ -66,4 +66,5 @@ bin/
 application-db.properties
 application-api.properties
 application-private.properties
+context-main.xml
 /.idea/
