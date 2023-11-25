@@ -9,7 +9,7 @@
                            , atch_fancy_size, atch_content_type, atch_path
                            , atch_down_hit, atch_del_yn, atch_reg_date
         ) VALUES (
-                     atch_no_seq.nextval, #{atchParentNo} ,#{categoryCode}
+                     ATCH_NO_SEQ.nextval, #{atchParentNo}, #{categoryCode}
                  ,#{atchFileName}, #{atchOriginalName}, #{atchFileSize}
                  ,#{atchFancySize}, #{atchContentType}, #{atchPath}
                  ,#{atchDownHit}, 'N', sysdate
@@ -19,13 +19,13 @@
 
     <select id="getAttachListByParent" resultType="com.PhoenixHospital.attach.vo.AttachVO">
         SELECT
-            atch_no, atch_parent_no
+            atch_no, atch_parent_no, category_code
              , atch_file_name, atch_original_name, atch_file_size
              , atch_fancy_size, atch_content_type, atch_path
              , atch_down_hit, atch_del_yn, atch_reg_date
         FROM attach
         WHERE atch_parent_no = #{atchParentNo}
-
+          AND category_code = #{categoryCode}
           AND atch_del_yn='N'
     </select>
 
@@ -41,7 +41,7 @@
 
     <select id="getAttach" parameterType="int" resultType="com.PhoenixHospital.attach.vo.AttachVO">
         SELECT
-            atch_no, atch_parent_no
+            atch_no, atch_parent_no, category_code
              , atch_file_name, atch_original_name, atch_file_size
              , atch_fancy_size, atch_content_type, atch_path
              , atch_down_hit, atch_del_yn, atch_reg_date

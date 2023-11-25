@@ -23,7 +23,6 @@ public class AttachVO {
     private String atchRegDate;             /* 등록일 */
 
 
-
     public int getAtchNo() {
         return atchNo;
     }
@@ -119,7 +118,6 @@ public class AttachVO {
     public void setAtchRegDate(String atchRegDate) {
         this.atchRegDate = atchRegDate;
     }
-
 
     @Override
     public String toString() {

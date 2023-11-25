@@ -15,20 +15,19 @@
     </sql>
     <insert id="insertBoard" parameterType="com.PhoenixHospital.admin.vo.AdminBoardVO">
         <selectKey keyProperty="boNo" resultType="int" order="BEFORE">
-            select SEQ_FREE_BOARD.nextval FROM dual
+            select BOARD_SEQ.nextval FROM dual
         </selectKey>
 
         INSERT INTO board (
         bo_no, bo_title, category_code
         , bo_contents, bo_writer, bo_hit
         , bo_reg_date, bo_mod_date, bo_del_yn
-        , atch_no, bo_pass
+        , bo_pass
         ) VALUES (
         #{boNo}, #{boTitle}, #{categoryCode}
         , #{boContents}, #{boWriter}, 0
         , SYSDATE, null,  'N'
-        ,'n' ,#{boPass}
-        )
+        ,#{boPass})
     </insert>
     <update id="increaseHit">
         UPDATE board
@@ -66,6 +65,7 @@
         bo_pass, bo_del_yn
         FROM board a
         WHERE a.category_code = 'A001'
+        AND a.bo_del_yn = 'N'
         <include refid="searchInFree"/>
         ORDER BY bo_no DESC
         ) b
@@ -73,15 +73,19 @@
         )
 
     </select>
-    <select id="getAdminBoard" resultType="com.PhoenixHospital.admin.vo.AdminBoardVO">
+
+    <resultMap id="adminBoardAttaches" type="com.PhoenixHospital.admin.vo.AdminBoardVO">
+        <collection property="attaches" column="{atchParentNo=bo_no, categoryCode=bo_type}" ofType="com.PhoenixHospital.attach.vo.AttachVO" select="com.PhoenixHospital.attach.dao.IAttachDao.getAttachListByParent"/>
+    </resultMap>
+
+    <select id="getAdminBoard" resultType="com.PhoenixHospital.admin.vo.AdminBoardVO" resultMap="adminBoardAttaches">
         SELECT 'A001' AS bo_type ,
                to_char(bo_reg_date, 'YYYY-MM-DD') as bo_reg_date ,
                to_char(bo_mod_date, 'YYYY-MM-DD') as bo_mod_date ,
                bo_no,           bo_title,      category_code,
                bo_contents,     bo_writer,     bo_hit,
                bo_pass,         bo_del_yn
-        FROM board ab
-        where ab.bo_category
-          and  bo_no = #{boNo}
+        FROM board
+        where bo_no = #{boNo}
     </select>
 </mapper>

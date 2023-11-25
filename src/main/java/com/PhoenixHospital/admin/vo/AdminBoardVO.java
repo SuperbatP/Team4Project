@@ -11,7 +11,7 @@ public class AdminBoardVO {
     private String boContents;
     private String boWriter;
     private int boHit;
-    private String boRegDat;
+    private String boRegDate;
     private String boModDate;
     private String boDelYn;
     private String atchNo;
@@ -85,12 +85,12 @@ public class AdminBoardVO {
         this.boHit = boHit;
     }
 
-    public String getBoRegDat() {
-        return boRegDat;
+    public String getBoRegDate() {
+        return boRegDate;
     }
 
-    public void setBoRegDat(String boRegDat) {
-        this.boRegDat = boRegDat;
+    public void setBoRegDate(String boRegDate) {
+        this.boRegDate = boRegDate;
     }
 
     public String getBoModDate() {

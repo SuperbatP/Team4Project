@@ -11,7 +11,7 @@ import java.util.List;
 public interface IAttachDao {
     public int insertAttach(AttachVO attach);
 
-    public List<AttachVO> getAttachListByParent(@Param(value = "atchParentNo")int atchParentNo, @Param(value = "atchCategory")String atchCategory);
+    public List<AttachVO> getAttachListByParent(@Param(value = "atchParentNo")int atchParentNo, @Param(value = "categoryCode")String categoryCode);
 
     public int delAtchNos(@Param("delAtchNos") int[] delAtchNos);
 

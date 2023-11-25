@@ -55,6 +55,18 @@
 					</tr>
 
 					<tr>
+						<th>분류</th>
+						<td>
+							<select name="categoryCode" class="form-control input-sm" required="required">
+								<option value="">-- 선택하세요--</option>
+								<c:forEach items="${categoryList}" var="categoryList">
+									<option value="${categoryList.categoryCode}">${categoryList.category}</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
 						<th>내용</th>
 						<td><textarea rows="10" name="boContents" class="form-control input-sm">${adminBoard.boContents } </textarea></td>
 					</tr>

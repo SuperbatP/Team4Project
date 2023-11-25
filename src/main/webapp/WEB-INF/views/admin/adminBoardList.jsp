@@ -27,8 +27,7 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}"
-                               placeholder="검색어">
+                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}" placeholder="검색어">
                     </div>
                     <label for="id_searchCategory" class="col-sm-2 col-sm-offset-2 control-label">분류</label>
                     <div class="col-sm-2">
@@ -85,12 +84,12 @@
     </div>
     <table class="table table-striped table-bordered table-hover">
         <colgroup>
-            <col width="10%"/>
-            <col width="15%"/>
-            <col/>
-            <col width="10%"/>
-            <col width="15%"/>
-            <col width="10%"/>
+            <col width="10%" />
+            <col width="15%" />
+            <col />
+            <col width="10%" />
+            <col width="15%" />
+            <col width="10%" />
         </colgroup>
         <thead>
         <tr>
@@ -106,7 +105,7 @@
         <c:forEach var="adminBoard" items="${adminBoardList}">
             <tr class="text-center">
                 <td>${adminBoard.boNo}</td>
-                <td>${adminBoard.boCategoryNm}</td>
+                <td>${adminBoard.categoryCode}</td>
                 <td class="text-left">
                     <a href="adminBoardView.wow?boNo=${adminBoard.boNo}">
                             ${adminBoard.boTitle}
@@ -120,7 +119,6 @@
         </tbody>
     </table>
 
-    ${paging}
 
     <!-- 페이지네이션 시작 -->
     <nav class="text-center">
