@@ -5,7 +5,6 @@
          version="4.0">
   <display-name>Archetype Created Web Application</display-name>
 
-
   <filter>
     <filter-name>encoding</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter
@@ -31,8 +30,7 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:/spring/context-main.xml
-      classpath:/spring/security-context.xml
+      classpath:/spring/context-*.xml
     </param-value>
   </context-param>
 
