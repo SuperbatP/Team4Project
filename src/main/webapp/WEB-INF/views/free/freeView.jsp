@@ -51,10 +51,6 @@
             <th>최근등록일자</th>
             <td>${freeBoard.boRegDate}</td>
         </tr>
-        <tr>
-            <th>삭제여부</th>
-            <td>${freeBoard.boDelYn }</td>
-        </tr>
 
         <tr>
             <th>첨부파일</th>

@@ -89,13 +89,12 @@
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 &nbsp;새글쓰기
             </a>
-            <a href="/excel/freeList.wow"  class="btn btn-primary btn-sm" target="_blank"  id="excelDown" >excelDown</a>
+
         </div>
     </div>
     <table class="table table-striped table-bordered table-hover">
         <colgroup>
             <col width="10%"/>
-            <col width="15%"/>
             <col/>
             <col width="10%"/>
             <col width="15%"/>
@@ -104,7 +103,6 @@
         <thead>
         <tr>
             <th>글번호</th>
-            <th>분류</th>
             <th>제목</th>
             <th>작성자</th>
             <th>등록일</th>
@@ -116,7 +114,6 @@
         <c:forEach items="${freeBoardList }" var="freeBoard">
             <tr class="text-center">
                 <td>${freeBoard.boNo }</td>
-                <td>${freeBoard.categoryCode }</td>
                 <td class="text-left">
                     <a href="freeView.wow?boNo= ${freeBoard.boNo }">
                             ${freeBoard.boTitle }

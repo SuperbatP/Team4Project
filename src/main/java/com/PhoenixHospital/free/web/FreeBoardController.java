@@ -46,7 +46,7 @@ public class FreeBoardController {
     @RequestMapping("/free/freeList.wow")
     // 요청을 받는 과정으로 웹에서 가져온 파라미터를 다 가지고 온다...! ㅇ0ㅇ!!! 그냥 매개변수로 할당하면 ok!
     public String freeList(Model model,@ModelAttribute("freeBoardVO")  FreeBoardVO freeBoardVO) {
-        freeBoardVO.setCategoryCode("99");
+        freeBoardVO.setCategoryCode("BO001");
 
         List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(freeBoardVO);
         model.addAttribute("freeBoardList", freeBoardList);
@@ -68,8 +68,8 @@ public class FreeBoardController {
 
     @RequestMapping("/free/insertForm.wow")
     public String insertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
-        // freeBoard.setCategory_Code("99");
-        freeBoard.setCategoryCode("99");
+        // freeBoard.setCategory_Code("BO001");
+        freeBoard.setCategoryCode("BO001");
         if (boFiles != null) {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, freeBoard.getCategoryCode(),freeBoard.getCategoryCode());
             freeBoard.setAttaches(attaches);
@@ -85,7 +85,7 @@ public class FreeBoardController {
     public String freeView(Model model, int boNo) throws BizNotEffectedException, BizNotFoundException {
 
         FreeBoardVO freeBoard = freeBoardService.freeView(boNo);
-        freeBoard.setCategoryCode("99");
+        freeBoard.setCategoryCode("BO001");
 
         List<AttachVO> attaches = attachDao.getAttachListByParent(freeBoard.getBoNo(),freeBoard.getCategoryCode());
         freeBoard.setAttaches(attaches);
@@ -100,7 +100,7 @@ public class FreeBoardController {
     @PostMapping("/free/freeModify.wow")
     //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
     public String freeModify(Model model, @Param("boPass")String boPass, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
-        freeBoard.setCategoryCode("99");
+        freeBoard.setCategoryCode("BO001");
 
         // 날라온 첨부파일들에 대해서는 form과 동일
         if(boFiles!=null){
@@ -210,10 +210,31 @@ public class FreeBoardController {
      *  여기서부터 내꺼
      * */
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @RequestMapping("/free/noticeList.wow")
     // 요청을 받는 과정으로 웹에서 가져온 파라미터를 다 가지고 온다...! ㅇ0ㅇ!!! 그냥 매개변수로 할당하면 ok!
     public String noticeList(Model model,@ModelAttribute("freeBoardVO")  FreeBoardVO freeBoardVO) {
-        freeBoardVO.setCategoryCode("100");
+        freeBoardVO.setCategoryCode("BO002");
         List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(freeBoardVO);
         System.out.println(freeBoardList);
         model.addAttribute("freeBoardList", freeBoardList);
@@ -238,7 +259,7 @@ public class FreeBoardController {
 
     @RequestMapping("/free/noticeInsertForm.wow")
     public String noticeInsertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
-        freeBoard.setCategoryCode("100");
+        freeBoard.setCategoryCode("BO002");
 
         if (boFiles != null) {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, freeBoard.getCategoryCode(),freeBoard.getCategoryCode());
@@ -265,7 +286,7 @@ public class FreeBoardController {
     @PostMapping("/free/noticeModify.wow")
     //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
     public String noticeModify(Model model, @Param("boPass")String boPass, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
-        freeBoard.setCategoryCode("99");
+        freeBoard.setCategoryCode("BO002");
 
         // 날라온 첨부파일들에 대해서는 form과 동일
         if(boFiles!=null){
