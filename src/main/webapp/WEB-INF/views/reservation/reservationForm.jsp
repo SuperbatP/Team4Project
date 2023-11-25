@@ -305,7 +305,7 @@
             </table>
             <div class="reservation-btn">
                 <button type="submit1"><b>예약하기</b></button>
-                <button type="submit2"><b>이전</b></button>
+                <button type="button"><b>이전</b></button>
             </div>
         </div>
 
@@ -319,6 +319,7 @@
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 
 <!-- 코드 작성구역 시작 -->
+
 <script>
     window.onload = function () {
         buildCalendar();
@@ -338,17 +339,20 @@
     $select = $("select[name='reservationTime']");
 
 
+
     $form.find("button[type=submit1]").click(function (e) {
         e.preventDefault();
         if ($input[0].value == "" || $select[0].value == "") {
-            alert("날짜를 선택해주세요");
+            alert("날짜 및 시간을 선택해주세요");
         } else {
-            $form.submit();
+            if (window.confirm($("#td_date").val() + " 일 "+ $select[0].value +"시에 "+ "예약하시겠습니까?")) {
+                $form.submit();
+            }
         }
     });
 
-    $form.find("button[type=submit2]").click(function() {
-        history.back();
+    $form.find("button[type=button]").click(function () {
+        window.history.back();
     });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
@@ -494,7 +498,7 @@
         }
     }
 
-    $select.change(()=>{
+    $select.change(() => {
         $('#td_time').attr('value', $select[0].value)
     });
 </script>
