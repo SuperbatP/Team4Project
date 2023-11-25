@@ -61,8 +61,8 @@
             <td>
                 <c:forEach var="f" items="${freeBoard.attaches}" varStatus="st">
                     <div> 파일 ${st.count} <a href="<c:url value='/attach/download/${f.atchNo}' />" target="_blank">
-                    <%-- DB에 originalName, fileName(우리가 찾을 랜덤값), filePath  -> 파일 전송; response    --%>
-                    <%-- target="_blank" 새 탭이 생겼다가 사라짐. 꼭 써줘야함. --%>
+                            <%-- DB에 originalName, fileName(우리가 찾을 랜덤값), filePath  -> 파일 전송; response    --%>
+                            <%-- target="_blank" 새 탭이 생겼다가 사라짐. 꼭 써줘야함. --%>
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}
                     </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
                     </div>
@@ -344,7 +344,7 @@
         //삭제버튼
         $("#id_reply_list_area").on("click", 'button[name="btn_reply_delete"]'
             , function (e) {
-            e.preventDefault();
+                e.preventDefault();
                 //가장 가까운 div 찾기
                 $div = $(this).closest('.row');
                 //reNo,  reMemId(현재 로그인 한 사람의 id) 구하기

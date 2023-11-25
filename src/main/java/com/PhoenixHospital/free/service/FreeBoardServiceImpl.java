@@ -3,8 +3,6 @@ package com.PhoenixHospital.free.service;
 import com.PhoenixHospital.attach.dao.IAttachDao;
 import com.PhoenixHospital.attach.vo.AttachVO;
 import com.PhoenixHospital.code.vo.CodeVO;
-import com.PhoenixHospital.common.vo.PagingVO;
-import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
@@ -27,13 +25,13 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     private IAttachDao attachDao;
 
     @Override
-    public List<FreeBoardVO> getBoardList(PagingVO paging, SearchVO search, String searchCategory) {
-        int totalRowCount = freeBoardDao.getTotalRowCount(paging, search, searchCategory);
-        paging.setTotalRowCount(totalRowCount);
-        //rowCount 임 /pageCount 아님
-        paging.pageSetting();
+    public List<FreeBoardVO> getBoardList(FreeBoardVO freeBoardVO) {
+        int totalRowCount = freeBoardDao.getTotalRowCount(freeBoardVO);
+        freeBoardVO.setTotalRowCount(totalRowCount);
+        freeBoardVO.pageSetting();
+        List<FreeBoardVO> freeBoardList = freeBoardDao.getBoardList(freeBoardVO);
 
-        List<FreeBoardVO> freeBoardList = freeBoardDao.getBoardList(paging, search, searchCategory);
+
         return freeBoardList;
     }
 
@@ -110,6 +108,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     @Override
     public void insertForm(FreeBoardVO freeBoard) throws BizException {
         List<AttachVO> attaches = freeBoard.getAttaches();
+        freeBoardDao.insertBoard(freeBoard);
 
         if (attaches != null) {
             for (AttachVO attach : attaches) {
@@ -126,11 +125,11 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         if (delAtchNos != null && delAtchNos.length > 0) {
             attachDao.delAtchNos(delAtchNos);
         }
-        freeBoardDao.insertBoard(freeBoard);
     }
 
     @Override
     public FreeBoardVO freeView(int boNo) throws BizNotEffectedException, BizNotFoundException {
+
         return freeBoardDao.freeView(boNo);
     }
 

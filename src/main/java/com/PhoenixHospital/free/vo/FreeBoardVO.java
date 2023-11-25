@@ -36,7 +36,25 @@ public class FreeBoardVO extends PagingVO {
     private String boModDate;                                   /* 수정 일자 */
     private String boDelYn;                                     /* 삭제 여부 */
     private String boPass;                                      /* 비밀번호 */
+    private String searchType;
 
+    public String getSearchType() {
+        return searchType;
+    }
+
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
+    }
+
+    public String getSearchWord() {
+        return searchWord;
+    }
+
+    public void setSearchWord(String searchWord) {
+        this.searchWord = searchWord;
+    }
+
+    private String searchWord;
 
     private List<AttachVO> attaches;      /*첨부파일 리스트    */
     //1:N 관계 -> free : attache ; 게시판 하나에 파일 여러개 올릴 수 있음.

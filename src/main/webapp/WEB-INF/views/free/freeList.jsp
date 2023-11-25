@@ -26,26 +26,26 @@
         <div class="panel-body">
             <form name="search" action="freeList.wow" method="post" class="form-horizontal">
                 <sec:csrfInput/>
-                <input type="hidden" name="curPage" value="${paging.curPage}"> <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
+                <input type="hidden" name="curPage" value="${freeBoardVO.curPage}"> <input type="hidden" name="rowSizePerPage" value="${freeBoardVO.rowSizePerPage}">
                 <div class="form-group">
                     <label for="id_searchType" class="col-sm-2 control-label">검색</label>
                     <div class="col-sm-2">
                         <select id="id_searchType" name="searchType" class="form-control input-sm">
-                            <option value="T" ${search.searchType=='T' ? "selected='selected'" : ""} >제목</option>
-                            <option value="W" ${search.searchType=='W' ? "selected='selected'" : ""} >작성자</option>
-                            <option value="C" ${search.searchType=='C' ? "selected='selected'" : ""} >내용</option>
+                            <option value="T" ${freeBoardVO.searchType=='T' ? "selected='selected'" : ""} >제목</option>
+                            <option value="W" ${freeBoardVO.searchType=='W' ? "selected='selected'" : ""} >작성자</option>
+                            <option value="C" ${freeBoardVO.searchType=='C' ? "selected='selected'" : ""} >내용</option>
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}" placeholder="검색어">
+                        <input type="text" name="searchWord" class="form-control input-sm" value="${freeBoardVO.searchWord}" placeholder="검색어">
                     </div>
                     <label for="id_searchCategory" class="col-sm-2 col-sm-offset-2 control-label">분류</label>
                     <div class="col-sm-2">
                         <select id="id_searchCategory" name="searchCategory" class="form-control input-sm">
                             <option value="">-- 전체 --</option>
-<%--                            <c:forEach items="${cateList}" var="code">--%>
-<%--                                <option value="${code.commCd}" ${searchCategory eq code.commCd ? "selected='selected'":""} >${code.commNm}</option>--%>
-<%--                            </c:forEach>--%>
+                            <%--                            <c:forEach items="${cateList}" var="code">--%>
+                            <%--                                <option value="${code.commCd}" ${searchCategory eq code.commCd ? "selected='selected'":""} >${code.commNm}</option>--%>
+                            <%--                            </c:forEach>--%>
                         </select>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
             전체 1000건 조회
             <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">
                 <c:forEach var="i" begin="10" end="50" step="10">
-                    <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>
+                    <option value="${i}" ${freeBoardVO.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>
                 </c:forEach>
             </select>
         </div>
@@ -140,32 +140,32 @@
             <li><a href="freeList.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>
 
             <!-- 이전 페이지 -->
-            <c:if test="${paging.firstPage>1}">
-                <li><a href="freeList.wow?curPage=${paging.curPage-1}" data-page=""><span aria-hidden="true">&lt;</span></a></li>
+            <c:if test="${freeBoardVO.firstPage>1}">
+                <li><a href="freeList.wow?curPage=${freeBoardVO.curPage-1}" data-page=""><span aria-hidden="true">&lt;</span></a></li>
             </c:if>
 
             <!-- 페이지 넘버링  -->
             <%--a태그의 기본동작이 아니라 form태그의 검색 파라미터 + curPage가 같이 넘어가게 ->e.preventDefault()--%>
-            <c:forEach var="i" begin="${paging.firstPage}" end="${paging.lastPage}">
+            <c:forEach var="i" begin="${freeBoardVO.firstPage}" end="${freeBoardVO.lastPage}">
                 <li>
-                    <c:choose>
-                        <c:when test="${paging.curPage == i}">
-                            <li class="active"><a href="#">${i}</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="freeList.wow?curPage=${i}" data-page="${i}">${i}</a>
-                        </c:otherwise>
-                    </c:choose>
+                <c:choose>
+                    <c:when test="${freeBoardVO.curPage == i}">
+                        <li class="active"><a href="#">${i}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="freeList.wow?curPage=${i}" data-page="${i}">${i}</a>
+                    </c:otherwise>
+                </c:choose>
                 </li>
 
             </c:forEach>
             <!-- 다음  페이지  -->
-            <c:if test="${paging.lastPage < paging.totalPageCount}">
-                <li><a href="freeList.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span aria-hidden="true">&gt;</span></a></li>
+            <c:if test="${freeBoardVO.lastPage < freeBoardVO.totalPageCount}">
+                <li><a href="freeList.wow?curPage=${freeBoardVO.lastPage+1}" data-page="${freeBoardVO.lastPage+1}"><span aria-hidden="true">&gt;</span></a></li>
             </c:if>
 
             <!-- 마지막 페이지 -->
-            <li><a href="freeList.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span aria-hidden="true">&raquo;</span></a></li>
+            <li><a href="freeList.wow?curPage=${freeBoardVO.totalPageCount}" data-page="${freeBoardVO.totalPageCount}"><span aria-hidden="true">&raquo;</span></a></li>
         </ul>
     </nav>
     <!-- END : 페이지네이션  -->
@@ -231,7 +231,7 @@
 
     // 초기화 버튼 클릭
     $('#id_btn_reset').click(function() {
-    //검색에 있는 초기화 버튼 누르면 선택한 분류와 넣어둔 검색어 날림.
+        //검색에 있는 초기화 버튼 누르면 선택한 분류와 넣어둔 검색어 날림.
 
 
         $("#id_searchType option:eq(0)").prop("selected", "selected");
