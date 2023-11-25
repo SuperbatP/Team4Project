@@ -9,244 +9,246 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <title></title>
-    <style>
-
-        .container2 {
-            margin: auto;
-            width: 1200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;;
-        }
-
-        td {
-            width: 50px;
-            height: 50px;
-        }
-
-        .Calendar {
-            text-align: center;
-            margin: 0 auto;
-        }
-
-        .Calendar > thead > tr:first-child > td {
-            font-weight: bold;
-        }
-
-        .Calendar > thead > tr:last-child > td {
-            background-color: gray;
-            color: white;
-        }
-
-        .pastDay {
-            background-color: lightgray;
-        }
-
-        .today {
-            background-color: #FFCA64;
-            cursor: pointer;
-        }
-
-        .futureDay {
-            background-color: #FFFFFF;
-            cursor: pointer;
-        }
-
-        .futureDay.choiceDay, .today.choiceDay {
-            background-color: #3E85EF;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        h3 {
-            display: flex;
-            align-items: end;
-            width: 1100px;
-            height: 70px;
-            margin-bottom: -10px;
-            padding-left: 35px;
-        }
-
-        .basicCheckUp-list {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 1200px;
-            height: 600px;
-
-            flex-wrap: wrap;
-        }
-
-        .basicCheckUp-list-tr > td {
-            height: 55px;
-            text-align: center;
-            border: 1px solid gainsboro;
-        }
-
-        .basicCheckUp-list-tr > td:nth-child(1) {
-            width: 150px;
-        }
-
-        .basicCheckUp-list-tr > td:nth-child(2) {
-            text-align: left;
-            padding-left: 10px;
-            width: 1000px;
-        }
-
-        .checkup-info {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            width: 1200px;
-            height: 100px;
-        }
-
-
-        .checkup-info-tr > td {
-            height: 55px;
-            text-align: center;
-            border: 1px solid gainsboro;
-        }
-
-        .checkup-info-tr > td:nth-child(1),
-        .checkup-info-tr > td:nth-child(3),
-        .checkup-info-tr > td:nth-child(5),
-        .checkup-info-tr > td:nth-child(7) {
-            background-color: whitesmoke;
-            width: 95px;
-        }
-
-        .checkup-info-tr > td:nth-child(2),
-        .checkup-info-tr > td:nth-child(4),
-        .checkup-info-tr > td:nth-child(6),
-        .checkup-info-tr > td:nth-child(8) {
-            width: 190px;
-        }
-
-        .reservation-top {
-            width: 1200px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 500px;
-        }
-
-        .Calendar-frame {
-            border: 1px solid gainsboro;
-            height: 450px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .reservation-time-select {
-            border: 1px solid gainsboro;
-            height: 450px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .time-frame {
-            width: 380px;
-            height: 200px;
-        }
-
-        .basicCheckUp-frame {
-            width: 90%;
-            height: 50px;
-            padding-top: 18px;
-            padding-left: 50px;
-        }
-
-        .addCheckUp-frame {
-            width: 90%;
-            height: 250px;
-            padding-top: 18px;
-            padding-left: 50px;
-        }
-
-        .dnaTest-frame {
-            width: 90%;
-            height: 150px;
-            padding-top: 18px;
-            padding-left: 50px;
-        }
-
-        .reservation-btn {
-            width: 1200px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .reservation-btn > button:nth-child(1) {
-            width: 130px;
-            height: 100%;
-            margin-right: 10px;
-            border: 1px solid gainsboro;
-            background-color: whitesmoke;
-            color: dimgray;
-        }
-
-        .reservation-btn > button:nth-child(2) {
-            width: 130px;
-            height: 100%;
-            margin-left: 10px;
-            border: 1px solid gainsboro;
-            background-color: #a5c422;
-            color: white;
-
-        }
-
-        label {
-            padding: 7px;
-            font-weight: normal;
-        }
-
-
-    </style>
+    <title>건강검진예약</title>
+    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/common.css"/>
+    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/sub.css"/>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/wow.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/custom.js"></script>
 </head>
+<style>
+
+    td {
+        width: 50px;
+        height: 50px;
+    }
+
+    .Calendar {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .Calendar > thead > tr:first-child > td {
+        font-weight: bold;
+    }
+
+    .Calendar > thead > tr:last-child > td {
+        background-color: gray;
+        color: white;
+    }
+
+    .pastDay {
+        background-color: lightgray;
+    }
+
+    .today {
+        background-color: #FFCA64;
+        cursor: pointer;
+    }
+
+    .futureDay {
+        background-color: #FFFFFF;
+        cursor: pointer;
+    }
+
+    .futureDay.choiceDay, .today.choiceDay {
+        background-color: #3E85EF;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    h3 {
+        display: flex;
+        align-items: end;
+        width: 1100px;
+        height: 70px;
+        margin-bottom: -10px;
+        padding-left: 35px;
+    }
+
+    .basicCheckUp-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1200px;
+        height: 600px;
+
+        flex-wrap: wrap;
+    }
+
+    .basicCheckUp-list-tr > td {
+        height: 55px;
+        text-align: center;
+        border: 1px solid gainsboro;
+    }
+
+    .basicCheckUp-list-tr > td:nth-child(1) {
+        width: 150px;
+    }
+
+    .basicCheckUp-list-tr > td:nth-child(2) {
+        text-align: left;
+        padding-left: 10px;
+        width: 1000px;
+    }
+
+    .checkup-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 1200px;
+        height: 100px;
+    }
+
+
+    .checkup-info-tr > td {
+        height: 55px;
+        text-align: center;
+        border: 1px solid gainsboro;
+    }
+
+    .checkup-info-tr > td:nth-child(1),
+    .checkup-info-tr > td:nth-child(3),
+    .checkup-info-tr > td:nth-child(5),
+    .checkup-info-tr > td:nth-child(7) {
+        background-color: whitesmoke;
+        width: 95px;
+    }
+
+    .checkup-info-tr > td:nth-child(2),
+    .checkup-info-tr > td:nth-child(4),
+    .checkup-info-tr > td:nth-child(6),
+    .checkup-info-tr > td:nth-child(8) {
+        width: 190px;
+    }
+
+    .reservation-top {
+        width: 1200px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 500px;
+    }
+
+    .Calendar-frame {
+        border: 1px solid gainsboro;
+        height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .reservation-time-select {
+        border: 1px solid gainsboro;
+        height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .time-frame {
+        width: 380px;
+        height: 200px;
+    }
+
+    .basicCheckUp-frame {
+        width: 90%;
+        height: 50px;
+        padding-top: 18px;
+        padding-left: 50px;
+    }
+
+    .addCheckUp-frame {
+        width: 90%;
+        height: 250px;
+        padding-top: 18px;
+        padding-left: 50px;
+    }
+
+    .dnaTest-frame {
+        width: 90%;
+        height: 150px;
+        padding-top: 18px;
+        padding-left: 50px;
+    }
+
+    .reservation-btn {
+        width: 1200px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .reservation-btn > button:nth-child(1) {
+        width: 130px;
+        height: 100%;
+        margin-right: 10px;
+        border: 1px solid gainsboro;
+        background-color: whitesmoke;
+        color: dimgray;
+    }
+
+    .reservation-btn > button:nth-child(2) {
+        width: 130px;
+        height: 100%;
+        margin-left: 10px;
+        border: 1px solid gainsboro;
+        background-color: #a5c422;
+        color: white;
+
+    }
+
+    label {
+        padding: 7px;
+        font-weight: normal;
+    }
+
+
+</style>
+
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
-<div class="container2">
 
-    <c:forEach var="cu" items="${checkUp}">
-        <input class="reservationDate" type="hidden" value="${cu.reservationDateString}">
-        <input class="reservationTime" type="hidden" value="${cu.reservationTime}">
-    </c:forEach>
+<div class="container">
+    <form class="width100 checkup-display" name="checkUp" action="checkUpRegist.wow" method="post">
+        <h3 class="mar-top40">기본검진</h3>
 
-    <form name="checkUp" action="checkUpRegist.wow" method="post">
+        <c:forEach var="cu" items="${checkUp}">
+            <input class="reservationDate" type="hidden" value="${cu.reservationDateString}">
+            <input class="reservationTime" type="hidden" value="${cu.reservationTime}">
+        </c:forEach>
+
         <sec:csrfInput/>
-
-        <h3>기본검진</h3>
-        <div class="basicCheckUp-list">
-            <table>
-                <tr class="basicCheckUp-list-tr">
-                    <td style="background-color: whitesmoke">프로그램</td>
-                    <td style="background-color: whitesmoke">내용</td>
+        <div class="mar-top20">
+            <table class="border-bottom width100">
+                <tr class="table-tr fontW600">
+                    <td class="height50px">프로그램</td>
+                    <td class="height50px">내용</td>
                 </tr>
                 <c:forEach var="basic" items="${basicCodeList}">
-                    <tr class="basicCheckUp-list-tr">
-                        <td>${basic.basicCheckupName}</td>
-                        <td>${basic.basicCheckupContent}</td>
+                    <tr class="table-tr">
+                        <td class="height50px">${basic.basicCheckupName}</td>
+                        <td class="height50px">${basic.basicCheckupContent}</td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
 
-        <h3>예약자 정보</h3>
+        <h3 class="mar-top40">예약자 정보</h3>
 
 
-        <div class="checkup-info">
-            <table>
-                <tr class="checkup-info-tr">
+        <div class="mar-top20">
+            <table class="border-bottom width100">
+                <tr class="table-tr">
                     <td>이름</td>
                     <td>
                         <input name="reservationName" required="required" style="width: 80%">
@@ -267,82 +269,91 @@
                 </tr>
             </table>
         </div>
-        <h3>날짜 및 시간 선택</h3>
-        <div class="reservation-top">
-            <div class="Calendar-frame col-sm-5">
-                <table class="Calendar">
-                    <thead>
-                    <tr>
-                        <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
-                        <td colspan="5">
-                            <span id="calYear"></span>년
-                            <span id="calMonth"></span>월
-                        </td>
-                        <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
-                    </tr>
-                    <tr>
-                        <td>일</td>
-                        <td>월</td>
-                        <td>화</td>
-                        <td>수</td>
-                        <td>목</td>
-                        <td>금</td>
-                        <td>토</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+                    <h3 class="mar-top40">날짜 및 시간 선택</h3>
+                    <div class="reservation-top">
+                        <div class="Calendar-frame col-sm-5">
+                            <table class="Calendar">
+                                <thead>
+                                <tr>
+                                    <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
+                                    <td colspan="5">
+                                        <span id="calYear"></span>년
+                                        <span id="calMonth"></span>월
+                                    </td>
+                                    <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
+                                </tr>
+                                <tr>
+                                    <td>일</td>
+                                    <td>월</td>
+                                    <td>화</td>
+                                    <td>수</td>
+                                    <td>목</td>
+                                    <td>금</td>
+                                    <td>토</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
 
-            <input type="hidden" name="reservationDate" value="">
+                        <input type="hidden" name="reservationDate" value="">
 
-            <div class="reservation-time-select col-sm-5">
-                <div class="time-frame">
-                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
-                    <select name="reservationTime" required="required">
-                        <option value="">예약시간 선택</option>
-                        <option value="08:00~11:00">08:00~11:00</option>
-                        <option value="13:30~16:00">13:30~16:00</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+                        <div class="reservation-time-select col-sm-5">
+                            <div class="time-frame">
+                                <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
+                                <select name="reservationTime" required="required">
+                                    <option value="">예약시간 선택</option>
+                                    <option value="08:00~11:00">08:00~11:00</option>
+                                    <option value="13:30~16:00">13:30~16:00</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-        <h3>기본검사</h3>
-        <div class="basicCheckUp-frame">
-            <c:forEach var="basic" items="${basicCodeList}">
-                <label><input type="radio" id="basicCheckupCode" name="basicCheckupCode"
-                              value="${basic.basicCheckupCode}"
-                              required="required">${basic.basicCheckupName}</label>
-            </c:forEach>
-        </div>
+                    <h3 class="mar-top40">기본검사</h3>
+                    <div class="basicCheckUp-frame">
+                        <c:forEach var="basic" items="${basicCodeList}">
+                            <label><input type="radio" id="basicCheckupCode" name="basicCheckupCode"
+                                          value="${basic.basicCheckupCode}"
+                                          required="required">${basic.basicCheckupName}</label>
+                        </c:forEach>
+                    </div>
 
-        <h3>추가검사</h3>
-        <div class="addCheckUp-frame">
-            <c:forEach var="add" items="${addCodeList}">
-                <label><input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
-                </label>
-            </c:forEach>
-        </div>
+                    <h3 class="mar-top40">추가검사</h3>
+                    <div class="addCheckUp-frame">
+                        <c:forEach var="add" items="${addCodeList}">
 
-        <h3>유전자검사</h3>
-        <div class="dnaTest-frame">
-            <c:forEach var="dna" items="${DNACodeList}">
-                <label><input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}</label>
-            </c:forEach>
-        </div>
+                            <c:if test="${add.addCheckupCode != '-'}"> <!-- if 조건 선언 -->
+                                <label><input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+                                </label>
+                            </c:if>
+
+                        </c:forEach>
+                    </div>
+
+                    <h3 class="mar-top40">유전자검사</h3>
+                    <div class="dnaTest-frame">
+                        <c:forEach var="dna" items="${DNACodeList}">
+
+                            <c:if test="${dna.dnaTestCode != '-'}"> <!-- if 조건 선언 -->
+                                <label><input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}</label>
+                            </c:if>
+
+                        </c:forEach>
+                    </div>
 
 
-        <%--    나중에 추가구현--%>
-        <%--    문진표--%>
-        <%--    선결제--%>
+                    <%--    나중에 추가구현--%>
+                    <%--    문진표--%>
+                    <%--    선결제--%>
 
-        <div class="reservation-btn">
-            <button type="submit1"><b>예약하기</b></button>
-            <button type="submit2"><b>이전</b></button>
-        </div>
+                    <div class="reservation-btn">
+                        <button type="submit1"><b>예약하기</b></button>
+                        <button type="submit2"><b>이전</b></button>
+                    </div>
     </form>
+
 </div>
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
@@ -497,14 +508,5 @@
 </script>
 <!-- 코드 작성구역 끝 -->
 
-<!-- SCRIPTS -->
-<script src="/resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/custom.js"></script>
 </body>
 </html>
