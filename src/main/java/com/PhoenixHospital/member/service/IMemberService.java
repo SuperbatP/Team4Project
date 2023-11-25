@@ -23,7 +23,7 @@ public interface IMemberService {
 
 	boolean EmCheck(String memEmail);
 
-	boolean loginCheck(MemberVO member, HttpServletResponse rep, HttpServletRequest req) throws BizNotEffectedException;
+//	boolean loginCheck(MemberVO member, HttpServletResponse rep, HttpServletRequest req) throws BizNotEffectedException;
 
 	MemberVO getBySns(MemberVO snsUser);
 

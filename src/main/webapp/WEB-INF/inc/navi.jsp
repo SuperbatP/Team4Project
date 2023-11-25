@@ -106,9 +106,9 @@
                 </div>
 
                 <div class="dropdown">
-                    <li class="drop-btn"><a>증명서발급</a></li>
+                    <li class="drop-btn"><a href="/certificate/certificateChoice.wow">증명서발급</a></li>
                     <div class="dropdown-content">
-
+                        <a class="smoothScroll" href="/certificate/certificateChoice.wow">증명서 발급</a>
                     </div>
                 </div>
 

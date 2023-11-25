@@ -18,7 +18,6 @@ public class ReservationServiceImpl implements IReservationService{
     @Override
     public List<ReservationVO> getReservationList() {
         List<ReservationVO>  reservationVOList = reservationDao.getReservationList();
-        Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         List<ReservationVO> collect = reservationVOList.stream().map(o -> {
@@ -33,7 +32,6 @@ public class ReservationServiceImpl implements IReservationService{
     @Override
     public List<ReservationVO> getReservation(String memId) {
         List<ReservationVO> reservationVO = reservationDao.getReservation(memId);
-        Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         List<ReservationVO> collect = reservationVO.stream().map(o -> {
