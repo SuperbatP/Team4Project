@@ -99,6 +99,7 @@ public class AdminBoardServiceImpl implements IAdminBoardService {
         List<AttachVO> attaches = adminBoard.getAttaches();
         if(attaches != null) {
             for(AttachVO attach : attaches) {
+                attach.setAtchParentNo(adminBoard.getBoNo());
                 attachDao.insertAttach(attach);
             }
         }
