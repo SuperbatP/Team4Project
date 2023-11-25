@@ -63,6 +63,7 @@ bin/
 !**/src/test/**/bin/
 
 ### 민감정보 은폐 ###
+appconfig.properties
 application-db.properties
 application-api.properties
 application-private.properties
