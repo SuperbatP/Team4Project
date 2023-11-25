@@ -203,78 +203,121 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
+<div class="container2">
+    <c:forEach var="at" items="${attendance}">
+        <input class="attendanceDate" type="hidden" value="${at.attendanceDate}">
+        <input class="attendanceTime" type="hidden" value="${at.attendanceTime}">
+    </c:forEach>
 
-<c:forEach var="at" items="${attendance}">
-    <input class="attendanceDate" type="hidden" value="${at.attendanceDate}">
-    <input class="attendanceTime" type="hidden" value="${at.attendanceTime}">
-</c:forEach>
+    <c:forEach var="re" items="${reservation}">
+        <c:if test="${re.dcId eq doctor.dcId}">
+            <input class="reservationDate" type="hidden" value="${re.reservationDateString}">
+            <input class="reservationTime" type="hidden" value="${re.reservationTime}">
+        </c:if>
+    </c:forEach>
 
-<c:forEach var="re" items="${reservation}">
-    <c:if test="${re.dcId eq doctor.dcId}">
-        <input class="reservationDate" type="hidden" value="${re.reservationDateString}">
-        <input class="reservationTime" type="hidden" value="${re.reservationTime}">
-    </c:if>
-</c:forEach>
+    <input class="myReservationDate" value="${myReservation.reservationDateString}" type="hidden">
+    <input class="myReservationTime" value="${myReservation.reservationTime}" type="hidden">
 
-<input class="myReservationDate" value="${myReservation.reservationDateString}" type="hidden">
-<input class="myReservationTime" value="${myReservation.reservationTime}" type="hidden">
+    <div class="reservation-title">
+        <h3>
+            예약내용 확인
+        </h3>
+    </div>
 
-<form name="reservation" action="reservationModify.wow" method="post">
-    <sec:csrfInput/>
-    <div>
-        <input name="reservationNo" value="${myReservation.reservationNo}" type="hidden">
-        <input name="dcId" value="${myReservation.dcId}" type="hidden">
-        <input name="treatmentCode" value="${myReservation.treatmentCode}" type="hidden">
-        <input name="memName" value="${myReservation.memName}" readonly="readonly">
-        <input name="memHp" value="${myReservation.memHp}" readonly="readonly">
-        <input name="memEmail" value="${myReservation.memEmail}" readonly="readonly">
-        <input name="dcName" value="${myReservation.dcName}" readonly="readonly">
-        <input name="treatmentName" value="${myReservation.treatmentName}" readonly="readonly">
-        <div class="reservation-title">
-            <h3>날짜 및 시간 선택</h3>
-        </div>
-        <div class="reservation-top">
-            <div class="calendar-frame col-sm-5">
-                <table class="Calendar">
-                    <thead>
-                    <tr>
-                        <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
-                        <td colspan="5">
-                            <span id="calYear"></span>년
-                            <span id="calMonth"></span>월
-                        </td>
-                        <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
-                    </tr>
-                    <tr>
-                        <td>일</td>
-                        <td>월</td>
-                        <td>화</td>
-                        <td>수</td>
-                        <td>목</td>
-                        <td>금</td>
-                        <td>토</td>
-                    </tr>
-                    </thead>
+    <div class="member-info">
+        <table class="member-info-table">
+            <tr class="member-info-table-tr">
+                <td scope="col">이름</td>
+                <td scope="col"><input name="memName" value="${myReservation.memName}" readonly="readonly"></td>
+                <td scope="col">생년월일</td>
+                <td scope="col"><input readonly name="memBir" value="${member.memBir}" required="required"
+                                       id="memberDate"></td>
+            </tr>
+            <tr class="member-info-table-tr">
+                <td scope="col">전화번호</td>
+                <td scope="col"><input name="memHp" value="${myReservation.memHp}" readonly="readonly"></td>
+                <td scope="col">이메일주소</td>
+                <td scope="col"><input name="memEmail" value="${myReservation.memEmail}" readonly="readonly">
+                </td>
+            </tr>
+            <tr class="member-info-table-tr">
+                <td scope="col">진료과목</td>
+                <td scope="col"><input name="treatmentName" value="${myReservation.treatmentName}"
+                                       readonly="readonly"></td>
+                <td scope="col">담당의</td>
+                <td scope="col"><input name="dcName" value="${myReservation.dcName}" readonly="readonly"></td>
+            </tr>
+            <tr class="member-info-table-tr">
+                <td scope="col">예약날짜</td>
+                <td scope="col"><input class="myReservationDate" value="${myReservation.reservationDateString}"
+                                       readonly="readonly"></td>
+                <td scope="col">예약시간</td>
+                <td scope="col"><input class="myReservationTime" value="${myReservation.reservationTime}"
+                                       readonly="readonly"></td>
+            </tr>
+        </table>
+    </div>
 
-                    <tbody>
-
-                    </tbody>
-                </table>
+    <form name="reservation" action="reservationModify.wow" method="post">
+        <sec:csrfInput/>
+        <div>
+            <input name="reservationNo" value="${myReservation.reservationNo}" type="hidden">
+            <input name="dcId" value="${myReservation.dcId}" type="hidden">
+            <input name="treatmentCode" value="${myReservation.treatmentCode}" type="hidden">
+            <input name="memName" value="${myReservation.memName}" type="hidden">
+            <input name="memHp" value="${myReservation.memHp}" type="hidden">
+            <input name="memEmail" value="${myReservation.memEmail}" type="hidden">
+            <input name="dcName" value="${myReservation.dcName}" type="hidden">
+            <input name="treatmentName" value="${myReservation.treatmentName}" type="hidden">
+            <div class="reservation-title">
+                <h3>날짜 및 시간 선택</h3>
             </div>
-            <div class="reservation-time-select col-sm-5">
-                <div class="time-frame">
-                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
-                    <select name="reservationTime" required="required">
+            <div class="reservation-top">
+                <div class="calendar-frame col-sm-5">
+                    <table class="Calendar">
+                        <thead>
+                        <tr>
+                            <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
+                            <td colspan="5">
+                                <span id="calYear"></span>년
+                                <span id="calMonth"></span>월
+                            </td>
+                            <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
+                        </tr>
+                        <tr>
+                            <td>일</td>
+                            <td>월</td>
+                            <td>화</td>
+                            <td>수</td>
+                            <td>목</td>
+                            <td>금</td>
+                            <td>토</td>
+                        </tr>
+                        </thead>
 
-                    </select>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="reservation-time-select col-sm-5">
+                    <div class="time-frame">
+                        <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
+                        <select name="reservationTime" required="required">
+
+                        </select>
+                    </div>
                 </div>
             </div>
+            <input type="hidden" name="reservationDate" value="">
+            <div class="reservation-btn">
+                <button type="submit1"><b>변경하기</b></button>
+                <button type="button"><b>이전</b></button>
+            </div>
         </div>
-        <input type="hidden" name="reservationDate" value="">
-
-        <button type="submit">완료</button>
-    </div>
-</form>
+    </form>
+</div>
 
 <!-- 코드 작성구역 시작-->
 
@@ -302,14 +345,17 @@
     $form.find("button[type=submit1]").click(function (e) {
         e.preventDefault();
         if ($input[0].value == "" || $select[0].value == "") {
-            alert("날짜를 선택해주세요");
+            alert("날짜 및 시간을 선택해주세요");
         } else {
-            $form.submit();
+            if (window.confirm("예약을 변경 하시겠습니까?")) {
+                // 특정 날짜 값만 받아오면 400error 발생 ㅠ0ㅠ
+                $form.submit();
+            }
         }
     });
 
-    $form.find("button[type=submit2]").click(function() {
-        history.back();
+    $form.find("button[type=button]").click(function () {
+        window.history.back();
     });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
@@ -350,7 +396,7 @@
             } else {
                 for (let i = 0; i < atDate.length; i++) {
                     if (DayToNum(atDate[i].value) == nowDay.getDay()) {
-                        if ($myDate[0].value == (nowDay.getFullYear() + "-" + (nowDay.getMonth()+1) + "-" + nowDay.getDate())) {
+                        if ($myDate[0].value == (nowDay.getFullYear() + "-" + (nowDay.getMonth() + 1) + "-" + nowDay.getDate())) {
                             choiceDate(nowColumn);
                         }
 
@@ -397,7 +443,7 @@
                         break;
                     }
                 }
-                if ($myTime[0].value == atTime[i].value){
+                if ($myTime[0].value == atTime[i].value) {
                     str += "' selected='selected";
                 }
                 str += "'>" + atTime[i].value + "</option>";
@@ -448,7 +494,7 @@
         }
     }
 
-    $select.change(()=>{
+    $select.change(() => {
         $('#td_time').attr('value', $select[0].value)
     });
 </script>
