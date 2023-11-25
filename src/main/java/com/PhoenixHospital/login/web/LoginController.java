@@ -7,6 +7,8 @@ import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
@@ -19,9 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 @Controller
@@ -92,15 +91,12 @@ public class LoginController {
 
     @RequestMapping(value = "/login/findId", method = RequestMethod.POST)
     public String findId(MemberVO memberVO, Model model) throws Exception {
-        logger.info("memberEmail" + memberVO.getMemEmail());
-
         if (memberService.findIdCheck(memberVO.getMemEmail()) == 0) {
-            model.addAttribute("msg", "이메일을 확인해주세요");
-            return "/login/search_IdPW";
+            model.addAttribute("msg", "가입시 작성한 올바른 이메일을 입력하세요.");
+            return "/login/search_IdPw";
         } else {
             model.addAttribute("member", memberService.findId(memberVO.getMemEmail()));
-            return
-                    "/login/findId";
+            return "/login/findId";
         }
     }
 
@@ -109,7 +105,7 @@ public class LoginController {
 
         if (memberService.findPwCheck(memberVO) == 0) {
             model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
-            return "search_IdPw";
+            return "/login/search_IdPw";
         } else {
             memberService.findPw(memberVO.getMemId(), memberVO.getMemEmail());
             model.addAttribute("member", memberVO.getMemEmail());

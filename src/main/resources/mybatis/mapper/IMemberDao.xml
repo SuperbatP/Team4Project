@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.PhoenixHospital.member.dao.IMemberDao">
 
-
-
-
-
-
-
-    <sql id="searchInMember">
+    <sql id="searchInMember" >
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
             <if test='search.searchType=="NM"'>
                 AND mem_name LIKE '%' || #{search.searchWord} || '%'
@@ -31,20 +25,26 @@
 
     <select id="getMemberList" resultType="com.PhoenixHospital.member.vo.MemberVO">
         SELECT *
-        FROM (SELECT a.*, rownum AS rnum
-              FROM (SELECT to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir,
-                           mem_id,
-                           mem_password,
-                           mem_name,
-                           mem_zip,
-                           mem_add1,
-                           mem_add2,
-                           mem_hp,
-                           mem_email,
-                           mem_del_yn,
-                           mem_role
-                    FROM member
-                    ORDER BY mem_id DESC) a)
+        FROM (
+        SELECT a.*, rownum AS rnum
+        FROM (
+        SELECT to_char(mem_bir, 'YYYY-MM-DD') AS mem_bir
+        , mem_id
+        , mem_password
+        , mem_name
+        , mem_zip
+        , mem_add1
+        , mem_add2
+        , mem_hp
+        , mem_email
+        , mem_del_yn
+        , mem_role
+        FROM member
+        WHERE 1=1
+        <include refid="searchInMember" />
+        ORDER BY mem_id DESC
+        ) a
+        ) b
         WHERE rnum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
     </select>
 
@@ -62,8 +62,6 @@
              , mem_role
         FROM member a
         WHERE a.mem_id = #{memId}
-
-
     </select>
 
     <update id="updateMember" parameterType="com.PhoenixHospital.member.vo.MemberVO">
@@ -122,12 +120,14 @@
         SELECT *
         FROM member
         WHERE mem_email = #{memEmail}
+        AND mem_del_yn = 'N'
     </select>
 
     <select id="findIdCheck" resultType="int">
         SELECT count(*)
         FROM member
         WHERE mem_email = #{memEmail}
+          AND mem_del_yn = 'N'
     </select>
 
     <update id="findPw" parameterType="map">
@@ -135,6 +135,7 @@
         SET mem_password = #{memPassword}
         WHERE mem_id = #{memId}
           AND mem_email = #{memEmail}
+          AND mem_del_yn = 'N'
 
     </update>
 
@@ -143,6 +144,7 @@
         FROM member
         WHERE mem_id = #{memId}
           AND mem_email = #{memEmail}
+          AND mem_del_yn = 'N'
     </select>
 
     <update id="pwUpdate">

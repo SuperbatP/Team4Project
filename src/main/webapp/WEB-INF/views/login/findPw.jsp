@@ -29,7 +29,7 @@
                     </c:forEach>
                     &nbsp;&nbsp; 로 전송하였습니다.</h4>
                 <button type="button" class="btn btn-primary" onclick="location.href='/login/login.wow'">로그인페이지</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='/'">메인페이지</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/login/search_IdPw.wow'">뒤로가기</button>
             </div>
         </div>
     </div>

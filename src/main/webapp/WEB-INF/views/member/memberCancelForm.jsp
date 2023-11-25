@@ -38,11 +38,12 @@
                         <p class="lead">비밀번호를 입력해주세요.</p>
                         <div class="form-group">
                             <input type="password" name="memPassword" id="memPassword" onchange="checkpassword()"
-                                   class="form-control form-control-inline text-center" placeholder="현재 비밀번호" autoComplete="off"/>
+                                   class="form-control form-control-inline text-center" placeholder="현재 비밀번호" autoComplete="off" />
                             <span  id="fail" style="display:none; color: red;">현재 비밀번호와 맞지 않습니다.</span>
                         </div>
-                        <button type="submit" id="pwUpdate" name="pwUpdate" class="btn btn-primary">탈퇴</button>
-                        <a href="/" class="btn btn-default">취소</a>
+                        <button type="button" id="pwUpdateCk" class="btn btn-primary" onclick="removeMember()">탈퇴</button>
+                        <button type="submit" id="pwUpdate" style="display: none;" name="pwUpdate" class="btn btn-primary">탈퇴</button>
+                        <a href="/" class="btn btn-default" id="cancle" style="display: inline-block">취소</a>
                     </div>
                 </div>
             </div>
@@ -51,6 +52,17 @@
 </div>
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
+
+<script>
+    function removeMember() {
+        if(window.confirm("탈퇴하시겠습니까?")){
+            $("#pwUpdateCk").css("display", "none");
+            $("#pwUpdate").css("display", "inline-block");
+            $("#pwUpdate").css("background-color", "#a10000");
+            $("#cancle").css("display", "none");
+        }
+    }
+</script>
 
 <script>
     function checkpassword() {
@@ -72,6 +84,7 @@
                 }
             }
         });
+
     }
 
 </script>

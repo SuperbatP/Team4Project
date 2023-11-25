@@ -119,7 +119,7 @@
                 <div class="col-sm-6 mail_check_input">
                     <input type="text" class="form-control mail_check_input" name="authNumber" id="authNum" value=""
                            disabled="disabled">
-                    <span id="mail_check_input_box_warn"></span>
+                    <span id="mail_check_input_box_warn" style="display:none; margin-top: 5px; color: red; ">비밀번호가 맞지 않습니다.</span>
                 </div>
             </div>
             <p class="divider-text"></p>
@@ -371,13 +371,16 @@
         var checkResult = $("#mail_check_input_box_warn");// 비교 결과
 
         if (inputCode == code) {// 일치할 경우
-            checkResult.html("인증번호가 일치합니다.");
-            checkResult.attr("class", "correct");
+            $("#mail_check_input_box_warn").css("display", "none");
+            // checkResult.html("인증번호가 일치합니다.");
+            // checkResult.attr("class", "correct");
             $("#authNum").css("background-color", "#B0F6AC");
             memEmail.attr("disabled", true);
         } else {// 일치하지 않을 경우
-            checkResult.html("인증번호를 다시 확인해주세요.");
-            checkResult.attr("class", "incorrect");
+            $("#mail_check_input_box_warn").css("display", "block");
+            // checkResult.html("인증번호를 다시 확인해주세요.");
+            // checkResult.attr("class", "incorrect");
+            $("#authNum").css("background-color", "#FFCECE");
         }
 
     });

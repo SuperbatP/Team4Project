@@ -30,14 +30,14 @@
                     <div class="mb-4">
                         <label class="form-label" for="userId">아이디</label>
                         <input type="text" name="userId" value="${id}" id="userId"
-                               class="form-control form-control-lg" placeholder="아이디를 입력하세요.">
+                               class="form-control form-control-lg" placeholder="아이디를 입력하세요." required="required">
                     </div>
 
                     <!-- Password input -->
                     <div class="mb-4">
                         <label class="form-label " for="userPass">비밀번호</label>
                         <input type="password" name="userPass" id="userPass" class="form-control form-control-lg"
-                               placeholder="비밀번호를 입력하세요.">
+                               placeholder="비밀번호를 입력하세요." required="required">
                     </div>
                     <div class="d-flex justify-content-around align-items-center mb-4">
                         <!-- 아이디 기억하기 -->
@@ -51,7 +51,6 @@
                             <label class="form-check-label"><a href="/login/search_IdPw.wow">아이디 찾기 /  비밀번호 찾기</a> </label>
                         </div>
                     </div>
-
                     <div class="d-flex align-items-center my-6">
                     <%--  공백 처리용--%>
                     </div>
@@ -79,7 +78,13 @@
     </div>
 </section>
 
+<script>
+    var msg = "${msg}";
 
+    if (msg != "") {
+        alert(msg);
+    }
+</script>
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 <!-- SCRIPTS -->
 <script src="/resource/bootstrap-3.3.2/js/jquery.js"></script>

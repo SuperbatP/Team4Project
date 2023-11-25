@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -15,6 +16,7 @@
     <div class="panel panel-default collapse in" id="id_search_area">
         <div class="panel-body">
             <form name="search" action="memberList.wow" method="post" class="form-horizontal">
+                <sec:csrfInput/>
                 <input type="hidden" name="curPage" value="${paging.curPage}"> <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
                 <div class="form-group">
                     <label for="id_searchType" class="col-sm-2 control-label">검색</label>
@@ -60,12 +62,7 @@
     <!-- END : 목록건수 및 새글쓰기 버튼  -->
 
 
-
-
     <h3>회원목록</h3>
-    <div>
-        <a href="/excel/MemberList.wow" class="btn btn-primary btn-sm pull-right" target="_blank"  id="excelDown">excelDown</a>
-    </div>
     <table class="table table-striped table-bordered">
         <caption class="hidden">회원목록 조회</caption>
         <colgroup>
@@ -142,21 +139,6 @@
 </div>
 
 </body>
-<script>
-    let firstHref = $('#excelDown').attr("href");
-
-    $('#excelDown').on("click", function (e){
-
-        //검색어를 적용한 데이터 다운
-        $(this).attr("href",firstHref);
-        let data = $("form[name='search']").serialize(); //serialize() : serchType=aaa&searchWord=bbb 로 반환
-        $(this).attr("href", firstHref + "?" + data);
-
-        //함수가 먼저 실행된 후 event 실행
-
-    });
-</script>
-
 <script type="text/javascript">
     // 변수 정의
     $form=$("form[name='search']");

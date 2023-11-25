@@ -1,19 +1,12 @@
 package com.PhoenixHospital.auth;
 
 import com.PhoenixHospital.member.dao.IMemberDao;
+import com.PhoenixHospital.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import com.PhoenixHospital.member.vo.MemberVO;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 public class CustomUserDetailsService implements UserDetailsService {
 

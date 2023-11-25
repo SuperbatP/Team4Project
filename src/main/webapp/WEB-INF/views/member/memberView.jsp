@@ -44,12 +44,23 @@
                 <td>${member.memHp}</td>
             </tr>
             <tr>
-                <th>권한 USER/ADMIN</th>
-                <td><input name="memRole" value='${member.memRole}'></td>
+                <th>권한</th>
+                <td>
+                    <select name="memRole" class="form-control input-sm">
+                        <option value="USER" ${member.memRole=='USER' ? "selected='selected'" : ""}>USER</option>
+                        <option value="ADMIN" ${member.memRole=='ADMIN' ? "selected='selected'" : ""}>ADMIN</option>
+                    </select>
+                </td>
             </tr>
             <tr>
-                <th>탈퇴여부 Y/N</th>
-                <td><input name="memDelYn" value='${member.memDelYn}'></td>
+                <th>탈퇴여부</th>
+                <td>
+                    <select name="memDelYn" class="form-control input-sm">
+                        <option value="Y" ${member.memDelYn=='Y' ? "selected='selected'" : ""}>Y</option>
+                        <option value="N" ${member.memDelYn=='N' ? "selected='selected'" : ""}>N</option>
+                    </select>
+                </td>
+
             </tr>
             <tr>
                 <td colspan="2"><a href="memberList.wow" class="btn btn-default btn-sm"> <span

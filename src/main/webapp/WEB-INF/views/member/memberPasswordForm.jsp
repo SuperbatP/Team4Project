@@ -63,6 +63,7 @@
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 
+
 <script>
     function checkpassword() {
         var inputed = $('#memPassword').val();

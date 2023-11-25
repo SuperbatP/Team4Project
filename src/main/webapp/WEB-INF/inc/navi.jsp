@@ -56,7 +56,7 @@
                 </sec:authorize>
 
                 <sec:authorize access="hasRole('USER')">
-                    <span class=""> <sec:authentication property="principal.username"/> ${member.memId} 님</span>
+                    <span class=""> <sec:authentication property="principal.username"/>님</span>
                     <span class=""><a href="/member/memberEdit.wow">My Page</a></span>
 <%--                    <span class=""><a href="member/memberEdit.wow?memId=<sec:authentication property='principal.username'/>" >My page</a></span>--%>
                     <span class=""><a href="#">1:1 문의게시판</a></span>

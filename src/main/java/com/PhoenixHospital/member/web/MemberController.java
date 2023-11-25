@@ -7,7 +7,6 @@ import com.PhoenixHospital.common.vo.ResultMessageVO;
 import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotFoundException;
-import com.PhoenixHospital.member.dao.IMemberDao;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
 import com.PhoenixHospital.reservation.dao.IReservationDao;
@@ -40,15 +39,27 @@ public class MemberController {
     ICheckUpService checkUpService;
 
     @Autowired
-    private IMemberDao memberDao;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    //회원가입 양식 이동
+    @RequestMapping("/member/memberForm.wow")
+    public String memberForm(Model model) {
+        return "member/memberForm";
+    }
+
+    //회원가입
+    @RequestMapping("/member/memberRegist.wow")
+    public String memberRegist(Model model, MemberVO member) throws BizException {
+
+        memberService.registMember(member);
+        model.addAttribute("msg", "불사조 병원 회원가입을 환영합니다. 서비스 이용시 로그인이 필요합니다.");
+        return "/login/login";
+    }
+
 
     //회원목록
     @RequestMapping("/member/memberList.wow")
     public String memberList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search) {
-
 
         List<MemberVO> memberList = memberService.getMemberList(paging, search);
         model.addAttribute("memberList", memberList);
@@ -64,7 +75,6 @@ public class MemberController {
         model.addAttribute("member", member);
 
         return "member/memberView";
-
     }
 
     //회원 정보
@@ -80,7 +90,7 @@ public class MemberController {
     //회원 정보 수정
     @PostMapping("/member/memberModify.wow")
     public String memberModify(Model model, MemberVO member) throws BizException {
-
+        System.out.println(member);
         memberService.modifyMember(member);
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
@@ -91,41 +101,8 @@ public class MemberController {
         return "common/message";
     }
 
- /*   @PostMapping("/member/memberDelete.wow")
-    public String memberDelete(Model model, MemberVO member)throws BizException{
 
-        memberService.removeMember(member);
 
-        ResultMessageVO resultMessageVO=new ResultMessageVO();
-        resultMessageVO.messageSetting(true ,"삭제"
-                    , "삭제에 성공했어요" ,"/member/memberList.wow","목록으로");
-
-        model.addAttribute("resultMessageVO", resultMessageVO);
-
-        return  "common/message";
-    }*/
-
-    //회원가입
-    @RequestMapping("/member/memberRegist.wow")
-    public String memberRegist(Model model, MemberVO member) throws BizException {
-
-        memberService.registMember(member);
-
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
-        resultMessageVO.messageSetting(true, "등록", "등록성공했어요"
-                , "/member/memberList.wow", "목록으로");
-
-        model.addAttribute("resultMessageVO", resultMessageVO);
-
-        return "common/message";
-
-    }
-
-    //회원가입 양식 이동
-    @RequestMapping("/member/memberForm.wow")
-    public String memberForm(Model model) {
-        return "member/memberForm";
-    }
 
     //관리자가 회원 권한 및 탈퇴여부 처리
     @PostMapping("/member/updateUser.wow")
@@ -176,9 +153,10 @@ public class MemberController {
 
     //회원이 비밀번호 변경: 비번 변경 후 로그아웃 처리
     @RequestMapping(value = "/pwUpdate", method = RequestMethod.POST)
-    public String pwUpdate(@AuthenticationPrincipal User user, String memberPw1) throws Exception {
+    public String pwUpdate(@AuthenticationPrincipal User user, String memberPw1, Model model) throws Exception {
         String memPassword = passwordEncoder.encode(memberPw1);
         memberService.pwUpdate(user.getUsername(), memPassword);
+        model.addAttribute("msg", "비밀번호를 변경했습니다. 다시 로그인 해주세요.");
         SecurityContextHolder.clearContext(); //시큐리티에서 로그아웃 시키기
         return "/login/login";
     }

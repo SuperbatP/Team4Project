@@ -9,7 +9,7 @@
 
     <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <beans:bean id="customUserDetailsService" class="com.PhoenixHospital.auth.CustomUserDetailsService"/>
-
+    <beans:bean id="g" class="com.PhoenixHospital.auth.UserLoginFailHandler"/>
 
 
     <http pattern="/resources/**" security="none" />
@@ -22,9 +22,6 @@
         <intercept-url pattern="/reservation/reservationView.wow" access="isAuthenticated()" />
         <intercept-url pattern="/member/memberList.wow" access="hasRole('ADMIN')" />
 
-
-<!--        <intercept-url pattern="/map/map.wow" access="hasRole('ADMIN')" />-->
-
         <intercept-url pattern="/**" access="permitAll" />
 
         <form-login
@@ -32,7 +29,8 @@
                 default-target-url="/"
                 username-parameter="userId"
                 password-parameter="userPass"
-        />
+                authentication-failure-handler-ref="g" />
+
 
 
         <logout
@@ -49,8 +47,6 @@
         <authentication-provider user-service-ref="customUserDetailsService">
             <password-encoder ref="bcryptPasswordEncoder"/>
         </authentication-provider>
-
-
     </authentication-manager>
 
 </beans:beans>
