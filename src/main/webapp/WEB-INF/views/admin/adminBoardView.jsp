@@ -8,8 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="ko">
 <head>
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <%@ include file="/WEB-INF/inc/header.jsp" %>
     <title>자유게시판 - 글 보기</title>
 </head>
@@ -94,7 +97,7 @@
         <div class="panel-body form-horizontal">
             <form name="frm_reply" action="<c:url value='/reply/replyRegist' />"
                   method="post" onclick="return false;">
-                    <sec:csrfInput/>
+                <sec:csrfInput/>
                 <input type="hidden" name="reParentNo" value="${adminBoard.boNo}">
                 <input type="hidden" name="categoryCode" value="A001"> <input
                     type="hidden" name="memId" value="<sec:authentication property="principal.username"/>">
@@ -116,14 +119,6 @@
 
     <!-- // START : 댓글 목록 영역  -->
     <div id="id_reply_list_area">
-    </div>
-    <div class="col-sm-2">
-        <button name="btn_reply_edit" type="button"
-                class=" btn btn-sm btn-info" onclick="fn_modify()">수정
-        </button>
-        <button name="btn_reply_delete" type="button"
-                class="btn btn-sm btn-danger">삭제
-        </button>
     </div>
     <div class="row text-center" id="id_reply_list_more">
         <a id="btn_reply_list_more"
