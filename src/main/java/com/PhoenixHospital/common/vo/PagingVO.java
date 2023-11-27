@@ -6,13 +6,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.io.Serializable;
 
 public class PagingVO implements Serializable {
-    public static void main(String[] args) {
-        PagingVO pagingVO = new PagingVO();
-        pagingVO.setCurPage(13);
-        pagingVO.setTotalRowCount(253);
-        pagingVO.pageSetting();
-        System.out.println(pagingVO);
-    }
 
     //입력받는 데이터
     private int curPage = 1;           // 현재 페이지 번호

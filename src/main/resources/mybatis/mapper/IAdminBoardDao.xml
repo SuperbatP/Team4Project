@@ -21,7 +21,7 @@
         , bo_reg_date, bo_mod_date, bo_del_yn
         , bo_pass
         ) VALUES (
-        #{boNo}, #{boTitle}, #{categoryCode}
+        #{boNo}, #{boTitle}, 'A001'
         , #{boContents}, #{boWriter}, 0
         , SYSDATE, null,  'N'
         ,#{boPass})
@@ -34,7 +34,7 @@
     <update id="updateBoard">
         UPDATE board
         SET bo_title    = #{boTitle},
-            category_code = #{categoryCode},
+            category_code = 'A001',
             bo_contents  = #{boContents},
             bo_mod_date = sysdate
         WHERE bo_no = #{boNo}

@@ -24,10 +24,10 @@ public class ReplyController {
 
     //map 형태인건 공공데이터 포털 데이터 가져올때 json 형태 생각해보기
     @RequestMapping(value = "/reply/replyList.wow")
-    public Map<String, Object> replyList(PagingVO paging, String reCategory, int reParentNo) {
+    public Map<String, Object> replyList(PagingVO paging, String categoryCode, int reParentNo) {
         Map<String, Object> map = new HashMap<>();
-        List<ReplyVO> replyList = replyService.getReplyListByParent(paging, reCategory, reParentNo);
-        map.put("reCategoty", reCategory);
+        List<ReplyVO> replyList = replyService.getReplyListByParent(paging, categoryCode, reParentNo);
+        map.put("categoryCode", categoryCode);
         map.put("size", replyList.size());
         map.put("data", replyList);
         return map;

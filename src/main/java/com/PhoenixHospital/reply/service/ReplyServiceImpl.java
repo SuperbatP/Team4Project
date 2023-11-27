@@ -16,18 +16,18 @@ public class ReplyServiceImpl implements IReplyService{
     private IReplyDao replyDao;
 
     @Override
-    public List<ReplyVO> getReplyListByParent(PagingVO paging, String reCategory, int reParentNo) {
-        int totalRowCount = replyDao.getReplyCountByParent(paging, reCategory, reParentNo);
+    public List<ReplyVO> getReplyListByParent(PagingVO paging, String categoryCode, int reParentNo) {
+        int totalRowCount = replyDao.getReplyCountByParent(paging, categoryCode, reParentNo);
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
-        List<ReplyVO> replyList = replyDao.getReplyListByParent(paging, reCategory, reParentNo);
+        List<ReplyVO> replyList = replyDao.getReplyListByParent(paging, categoryCode, reParentNo);
         return replyList;
     }
 
     @Override
     public void modifyReply(ReplyVO reply) throws BizNotFoundException, BizAccessFailException {
         ReplyVO replyFromDB = replyDao.getReply(reply.getReNo());
-        if(!reply.getReMemId().equals(replyFromDB.getReMemId())){
+        if(!reply.getMemId().equals(replyFromDB.getMemId())){
             //!reply.getReMemId().equals(replyFromDB.getReMemId() 가 같지 않다면
             throw new BizAccessFailException("글쓴이가 아닙니다.");
         }
@@ -37,7 +37,7 @@ public class ReplyServiceImpl implements IReplyService{
     @Override
     public void removeReply(ReplyVO reply) throws BizNotFoundException, BizAccessFailException {
         ReplyVO replyFromDB = replyDao.getReply(reply.getReNo());
-        if(!reply.getReMemId().equals(replyFromDB.getReMemId())){
+        if(!reply.getMemId().equals(replyFromDB.getMemId())){
             //!reply.getReMemId().equals(replyFromDB.getReMemId() 가 같지 않다면
             throw new BizAccessFailException("글쓴이가 아닙니다.");
         }

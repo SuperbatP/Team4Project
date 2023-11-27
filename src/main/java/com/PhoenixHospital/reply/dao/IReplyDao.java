@@ -9,9 +9,9 @@ import java.util.List;
 
 @Mapper
 public interface IReplyDao {
-	public int getReplyCountByParent(@Param("paging") PagingVO paging, @Param("reCategory") String reCategory, @Param("reParentNo") int reParentNo);
+	public int getReplyCountByParent(@Param("paging") PagingVO paging, @Param("categoryCode") String categoryCode, @Param("reParentNo") int reParentNo);
 
-	public List<ReplyVO> getReplyListByParent(@Param("paging") PagingVO paging, @Param("reCategory") String reCategory, @Param("reParentNo") int reParentNo);
+	public List<ReplyVO> getReplyListByParent(@Param("paging") PagingVO paging, @Param("categoryCode") String categoryCode, @Param("reParentNo") int reParentNo);
 
 	public ReplyVO getReply(int reNo);
 

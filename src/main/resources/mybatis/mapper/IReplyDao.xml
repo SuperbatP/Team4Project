@@ -12,7 +12,7 @@
            번의 댓글의 갯수 가지고 와야겠죠.*/
         SELECT count(*)
         FROM reply
-        WHERE re_category=#{reCategory}
+        WHERE category_code=#{categoryCode}
           AND re_parent_no=#{reParentNo}
     </select>
     <select id="getReplyListByParent" resultType="com.PhoenixHospital.reply.vo.ReplyVO">
@@ -22,23 +22,24 @@
                 FROM
                     (
                         SELECT
-                            re_no          , re_category   , re_parent_no
-                             , re_mem_id      , re_content    , re_ip
+                            re_no          , category_code   , re_parent_no
+                             , r.mem_id      , re_content
                              , re_reg_date    , re_mod_date
-                             , m.mem_name AS re_mem_name
                         FROM
                             reply  r, member m
-                        WHERE re_category=#{reCategory}
+                        WHERE category_code=#{categoryCode}
                           AND re_parent_no=#{reParentNo}
-                          AND r.re_mem_id=m.mem_id
+                          AND r.mem_id=m.mem_id
                         ORDER BY re_no desc  ) a ) b
         WHERE rnum  BETWEEN  #{paging.firstRow} AND #{paging.lastRow}
 
     </select>
+
+
     <select id="getReply" resultType="com.PhoenixHospital.reply.vo.ReplyVO">
         SELECT
-            re_no          , re_category   , re_parent_no
-             , re_mem_id      , re_content    , re_ip
+            re_no          , category_code   , re_parent_no
+             , mem_id      , re_content
              , re_reg_date    , re_mod_date
         FROM
             reply
@@ -55,13 +56,13 @@
     </update>
     <update id="insertReply" parameterType="com.PhoenixHospital.reply.vo.ReplyVO">
         INSERT INTO reply (
-                            re_no, re_category, re_parent_no
-                          , re_mem_id, re_content, re_ip
-                          , re_reg_date, re_mod_date
+                            re_no, category_code, re_parent_no
+                          , mem_id, re_content
+                          , re_reg_date, re_mod_date, re_del_yn
         ) VALUES (
-                     seq_reply.NEXTVAL, #{reCategory}, #{reParentNo}
-                 , #{reMemId} , #{reContent} , null
-                 , sysdate, null
+                 RE_NO_SEQ.NEXTVAL, #{categoryCode}, #{reParentNo}
+                 , #{memId} , #{reContent}
+                 , sysdate, null, 'N'
                  )
 
     </update>
