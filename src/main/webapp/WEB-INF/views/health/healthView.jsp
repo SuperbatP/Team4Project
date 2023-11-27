@@ -73,11 +73,13 @@
                                                                                    aria-hidden="true"></span> &nbsp;&nbsp;목록
                     </a>
                 </div>
-                <div class="pull-right">
-                    <a href="healthEdit.wow?boNo=${freeBoard.boNo }" class="btn btn-success btn-sm"> <span
-                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
-                    </a>
-                </div>
+                <c:if test='<sec:authentication property="principal.username"/> == ${freeBoard.boWriter}'>
+                    <div class="pull-right">
+                        <a href="freeEdit.wow?boNo=${freeBoard.boNo }" class="btn btn-success btn-sm"> <span
+                                class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
+                        </a>
+                    </div>
+                </c:if>
             </td>
         </tr>
         </tbody>
