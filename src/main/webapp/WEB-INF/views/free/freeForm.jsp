@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<%@include file="/WEB-INF/inc/header.jsp"%>
+	<script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
+	<script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/navi.jsp"%>
+
+
 <div class="container">
 	<div class="page-header">
 		<h3>자유게시판 - <small>글 등록</small></h3>
@@ -41,7 +46,7 @@
 
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" name="boContents" class="form-control"></textarea>
+				<td><textarea id="summernote" rows="10" name="boContents" class="form-control"></textarea>
 				</td>
 			</tr>
 
@@ -89,9 +94,25 @@
 		$(this).closest('div').remove();
 	});
 
-
+	$('#summernote').summernote({
+		lang: "ko-KR",
+		height: 350,
+		placeholder: '내용을 작성하세요.',
+	})
 
 </script>
+
+ㄹ<script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
+<script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+<script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
+<script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
+<script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
+<script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
+<script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
+<script src="resource/bootstrap-3.3.2/js/custom.js"></script>
+
+
+
 
 
 </body>

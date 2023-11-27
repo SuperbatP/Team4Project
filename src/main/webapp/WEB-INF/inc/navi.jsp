@@ -116,8 +116,8 @@
                     <li class="drop-btn"><a>정보마당</a></li>
                     <div class="dropdown-content">
                         <a class="smoothScroll" href="/free/freeList.wow">민원게시판</a>
-                        <a class="smoothScroll" href="#">공지사항</a>
-                        <a class="smoothScroll" href="#">건강정보</a>
+                        <a class="smoothScroll" href="/notice/noticeList.wow">공지사항</a>
+                        <a class="smoothScroll" href="/health/healthList.wow">건강정보</a>
                     </div>
                 </div>
             </ul>

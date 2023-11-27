@@ -12,6 +12,9 @@
 <html lang="ko">
 <head>
 	<%@include file="/WEB-INF/inc/header.jsp"%>
+	<script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
+	<script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/navi.jsp"%>
@@ -56,7 +59,7 @@
 
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" name="boContents" class="form-control input-sm">${freeBoard.boContents } </textarea></td>
+				<td><textarea id="summernote" rows="10" name="boContents" class="form-control input-sm">${freeBoard.boContents } </textarea></td>
 			</tr>
 			<tr>
 				<th>조회수</th>
@@ -140,7 +143,13 @@
 				'<input type="hidden" name="delAtchNos" value="' + $btn.data("atch-no")  + '" />'
 				//freeBoardVO의 delAtchNos 필드가 있음.
 		);
+
 	});   //
+	$('#summernote').summernote({
+		lang: "ko-KR",
+		height: 350,
+		placeholder: '내용을 작성하세요.'
+	});
 
 
 </script>

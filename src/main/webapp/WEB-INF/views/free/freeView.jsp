@@ -38,9 +38,9 @@
         <!-- 비밀번호는 보여주지 않음  -->
         <tr>
             <th>내용</th>
-            <td><textarea rows="10" name="boContent" class="form-control input-sm" readonly="readonly">
+            <td><div  rows="10" name="boContent" class="form-control input-sm" readonly="readonly">
                 ${freeBoard.boContents }
-            </textarea></td>
+            </div></td>
         </tr>
 
         <tr>
