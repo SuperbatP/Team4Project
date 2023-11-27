@@ -38,9 +38,9 @@
         <!-- 비밀번호는 보여주지 않음  -->
         <tr>
             <th>내용</th>
-            <td><textarea rows="10" name="boContent" class="form-control input-sm" readonly="readonly">
+            <td><div style="height: 350px;" name="boContent" class="form-control input-sm" readonly="readonly">
                 ${adminBoard.boContents }
-            </textarea></td>
+            </div></td>
         </tr>
 
         <tr>
@@ -50,10 +50,6 @@
         <tr>
             <th>최근등록일자</th>
             <td>${adminBoard.boRegDate}</td>
-        </tr>
-        <tr>
-            <th>삭제여부</th>
-            <td>${adminBoard.boDelYn }</td>
         </tr>
 
         <tr>
@@ -365,6 +361,7 @@
 
             }); //삭제버튼
     });
+
 </script>
 </body>
 

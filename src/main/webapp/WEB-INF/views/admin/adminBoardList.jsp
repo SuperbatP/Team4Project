@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <form name="search" action="adminBoardList.wow" method="post" class="form-horizontal">
+                <sec:csrfInput/>
                 <input type="hidden" name="curPage" value="${paging.curPage}">
                 <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
                 <div class="form-group">
@@ -27,16 +29,8 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}" placeholder="검색어">
-                    </div>
-                    <label for="id_searchCategory" class="col-sm-2 col-sm-offset-2 control-label">분류</label>
-                    <div class="col-sm-2">
-                        <select id="id_searchCategory" name="searchCategory" class="form-control input-sm">
-                            <option value="">-- 전체 --</option>
-                            <c:forEach items="${categoryList}" var="categoryList">
-                                <option value="${categoryList.categoryCode}" ${searchCategory eq categoryList.categoryCode ? "selected = 'selected'" :""} >${categoryList.category}</option>
-                            </c:forEach>
-                        </select>
+                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}"
+                               placeholder="검색어">
                     </div>
                 </div>
                 <div class="form-group">
@@ -72,7 +66,7 @@
 
 
     <div class="page-header">
-        <h3>자유게시판 - <small>글 목록</small></h3>
+        <h3>관리자게시판 - <small>글 목록</small></h3>
     </div>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
@@ -84,17 +78,15 @@
     </div>
     <table class="table table-striped table-bordered table-hover">
         <colgroup>
-            <col width="10%" />
-            <col width="15%" />
-            <col />
-            <col width="10%" />
-            <col width="15%" />
-            <col width="10%" />
+            <col width="10%"/>
+            <col width="60"/>
+            <col width="10%"/>
+            <col width="10%"/>
+            <col width="10%"/>
         </colgroup>
         <thead>
         <tr>
             <th>글번호</th>
-            <th>분류</th>
             <th>제목</th>
             <th>작성자</th>
             <th>등록일</th>
@@ -105,7 +97,6 @@
         <c:forEach var="adminBoard" items="${adminBoardList}">
             <tr class="text-center">
                 <td>${adminBoard.boNo}</td>
-                <td>${adminBoard.categoryCode}</td>
                 <td class="text-left">
                     <a href="adminBoardView.wow?boNo=${adminBoard.boNo}">
                             ${adminBoard.boTitle}

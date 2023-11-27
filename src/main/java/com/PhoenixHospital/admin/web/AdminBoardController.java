@@ -44,7 +44,7 @@ public class AdminBoardController {
         return "common/message";
     }
 
-    @GetMapping("/admin/adminBoardList.wow")
+    @RequestMapping("/admin/adminBoardList.wow")
     public String adminBoardList(Model model,
                                  @ModelAttribute("paging") PagingVO paging,
                                  @ModelAttribute("search") SearchVO search,

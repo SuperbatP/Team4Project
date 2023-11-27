@@ -8,9 +8,6 @@
             <if test='search.searchType=="C"'>AND bo_contents LIKE '%' || #{search.searchWord} || '%'</if>
         </if>
 
-        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchCategory)'>
-            AND category_code = #{searchCategory}
-        </if>
 
     </sql>
     <insert id="insertBoard" parameterType="com.PhoenixHospital.admin.vo.AdminBoardVO">
@@ -54,6 +51,7 @@
         WHERE 1=1
         <include refid="searchInFree" />
     </select>
+
     <select id="getAdminBoardList" resultType="com.PhoenixHospital.admin.vo.AdminBoardVO">
         SELECT * FROM (
         SELECT b.*, rownum

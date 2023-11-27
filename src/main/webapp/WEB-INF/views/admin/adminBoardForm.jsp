@@ -7,6 +7,9 @@
 <html lang="en">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+    <script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
+    <script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
@@ -53,7 +56,8 @@
 
             <tr>
                 <th>내용</th>
-                <td><textarea rows="10" name="boContents" class="form-control"></textarea>
+                <td>
+                    <textarea id="summernote" name="boContents" class="form-control"></textarea>
                 </td>
             </tr>
 
@@ -103,6 +107,13 @@
     $('.file_area').on('click', '.btn_delete', function () {
         $(this).closest('div').remove();
     });
+
+    $('#summernote').summernote({
+        lang: "ko-KR",
+        height: 350,
+        placeholder: '내용을 작성하세요.',
+    });
+
 </script>
 
 <script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
