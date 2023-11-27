@@ -131,7 +131,7 @@
 
             <!-- 다음 페이지 -->
             <c:if test="${paging.curPage < paging.totalPageCount}">
-                <li><a href="adminBoardList.wow?curPage=${paging.curPage + 1}" data-page="${paging.curPage + 1}"><span
+                <li><a href="adminBoardList.wow?curPage=${paging.curPage+1}" data-page="${paging.curPage+1}"><span
                         aria-hidden="true">&gt;</span></a></li>
             </c:if>
 

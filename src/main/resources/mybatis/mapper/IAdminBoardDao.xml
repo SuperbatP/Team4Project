@@ -48,13 +48,14 @@
     <select id="getTotalRowCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM board
-        WHERE 1=1
+        WHERE category_code = 'A001'
+        AND bo_del_yn = 'N'
         <include refid="searchInFree" />
     </select>
 
     <select id="getAdminBoardList" resultType="com.PhoenixHospital.admin.vo.AdminBoardVO">
         SELECT * FROM (
-        SELECT b.*, rownum
+        SELECT b.*, rownum as rnum
         FROM (
         SELECT to_char(bo_reg_date, 'YYYY-MM-DD') as bo_reg_date,
         to_char(bo_mod_date, 'YYYY-MM-DD') as bo_mod_date,
@@ -66,9 +67,9 @@
         AND a.bo_del_yn = 'N'
         <include refid="searchInFree"/>
         ORDER BY bo_no DESC
-        ) b
-        WHERE rownum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
-        )
+        ) b) c
+        WHERE rnum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
+
 
     </select>
 

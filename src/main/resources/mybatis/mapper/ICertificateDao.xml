@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PhoenixHospital.medical_certificate.dao.ICertificateDao">
+    <select id="getCertificate" resultType="com.PhoenixHospital.medical_certificate.vo.CertificateVO">
+        SELECT
+            certification_id,
+            mem_id,
+            certification_opinion,
+            certification_medicine,
+            certification_diagnosis,
+            date_of_onset,
+            certification_period,
+            reservation_no
+        FROM
+            medical_certificate
+        WHERE
+            reservation_no=#{reservationNo}
+    </select>
+</mapper>
