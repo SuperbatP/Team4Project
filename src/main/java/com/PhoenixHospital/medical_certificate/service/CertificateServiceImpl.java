@@ -1,6 +1,5 @@
 package com.PhoenixHospital.medical_certificate.service;
 
-import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.medical_certificate.dao.ICertificateDao;
 import com.PhoenixHospital.medical_certificate.vo.CertificateVO;
 import com.PhoenixHospital.member.dao.IMemberDao;
@@ -16,7 +15,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -138,6 +139,7 @@ public class CertificateServiceImpl implements ICertificateService {
 
     @Override
     public File getCertificate(String reservationNo, String fileName) {
+        System.out.println(reservationNo);
         CertificateVO certificateVO = certificateDao.getCertificate(reservationNo);
         MemberVO memberVO = memberDao.getMember(certificateVO.getMemId());
 
