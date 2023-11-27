@@ -21,6 +21,7 @@
         <intercept-url pattern="/reservation/reservationList.wow" access="isAuthenticated()" />
         <intercept-url pattern="/reservation/reservationView.wow" access="isAuthenticated()" />
         <intercept-url pattern="/member/memberList.wow" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
 
         <intercept-url pattern="/**" access="permitAll" />
 
