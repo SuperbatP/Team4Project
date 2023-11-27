@@ -28,7 +28,7 @@ public class AdminBoardServiceImpl implements IAdminBoardService {
         int totalRowCount = adminBoardDao.getTotalRowCount(paging, search, searchCategory);
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
-
+        System.out.println(paging);
         List<AdminBoardVO> adminBoardList = adminBoardDao.getAdminBoardList(paging, search, searchCategory);
         return adminBoardList;
     }
