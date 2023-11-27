@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IFreeBoardService {
-	public List<FreeBoardVO> getBoardList(PagingVO paging, SearchVO search, String searchCategory);
+	public List<FreeBoardVO> getBoardList(FreeBoardVO freeBoardVO);
 	public FreeBoardVO getBoard(int boNo) throws BizNotFoundException;
 	public List<CodeVO> freeEdit(int boNo) throws Exception;
 	public void modifyBoard(FreeBoardVO freeBoard, String boPass)

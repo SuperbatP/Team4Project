@@ -1,18 +1,18 @@
 package com.PhoenixHospital.free.web;
 
+import com.PhoenixHospital.attach.dao.IAttachDao;
 import com.PhoenixHospital.attach.vo.AttachVO;
 import com.PhoenixHospital.code.service.ICommCodeService;
 import com.PhoenixHospital.code.vo.CodeVO;
 import com.PhoenixHospital.common.util.StudyAttachUtils;
-import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.ResultMessageVO;
-import com.PhoenixHospital.common.vo.SearchVO;
 import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
 import com.PhoenixHospital.free.service.IFreeBoardService;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
+import com.PhoenixHospital.attach.dao.IAttachDao;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -39,23 +40,67 @@ public class FreeBoardController {
     @Autowired
     private StudyAttachUtils attachUtils;
 
+    @Autowired
+    private IAttachDao attachDao;
+
     @RequestMapping("/free/freeList.wow")
     // 요청을 받는 과정으로 웹에서 가져온 파라미터를 다 가지고 온다...! ㅇ0ㅇ!!! 그냥 매개변수로 할당하면 ok!
-    public String freeList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search, @ModelAttribute("searchCategory") String searchCategory) {
+    public String freeList(Model model,@ModelAttribute("freeBoardVO")  FreeBoardVO freeBoardVO) {
+        freeBoardVO.setCategoryCode("BO001");
 
-
-        List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(paging, search, searchCategory);
-        System.out.println(freeBoardList);
+        List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(freeBoardVO);
         model.addAttribute("freeBoardList", freeBoardList);
+        model.addAttribute("freeBoardVO", freeBoardVO);
+
 
         return "free/freeList";
     }
+
+    @RequestMapping("/free/freeForm.wow")
+    public String freeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
+        // List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
+        // model.addAttribute("codeList", codeList);
+
+
+        return "free/freeForm";
+    }
+
+
+    @RequestMapping("/free/insertForm.wow")
+    public String insertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+        // freeBoard.setCategory_Code("BO001");
+        freeBoard.setCategoryCode("BO001");
+        if (boFiles != null) {
+            List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, freeBoard.getCategoryCode(),freeBoard.getCategoryCode());
+            freeBoard.setAttaches(attaches);
+        }
+
+        freeBoardService.insertForm(freeBoard);
+
+        return "redirect:/free/freeList.wow";
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/free/freeView.wow")
+    public String freeView(Model model, int boNo) throws BizNotEffectedException, BizNotFoundException {
+
+        FreeBoardVO freeBoard = freeBoardService.freeView(boNo);
+        freeBoard.setCategoryCode("BO001");
+
+        List<AttachVO> attaches = attachDao.getAttachListByParent(freeBoard.getBoNo(),freeBoard.getCategoryCode());
+        freeBoard.setAttaches(attaches);
+        model.addAttribute("freeBoard", freeBoard);
+        freeBoardService.increaseHit(boNo);
+        return "free/freeView";
+    }
+
+
 
 
     @PostMapping("/free/freeModify.wow")
     //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
     public String freeModify(Model model, @Param("boPass")String boPass, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
-        freeBoard.setCategoryCode("99");
+        freeBoard.setCategoryCode("BO001");
 
         // 날라온 첨부파일들에 대해서는 form과 동일
         if(boFiles!=null){
@@ -137,24 +182,84 @@ public class FreeBoardController {
         return "common/message";
     }
 
-    @RequestMapping("/free/freeForm.wow")
-    public String freeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
-        // List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
-        // model.addAttribute("codeList", codeList);
 
-
-        return "free/freeForm";
-    }
 
     //@RequestMapping("/board/freeForm.wow")
     //public String freeForm() throws Exception {
     //    return "/free/freeForm";
     //}
 
-    @RequestMapping("/free/insertForm.wow")
-    public String insertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
-        // freeBoard.setCategory_Code("99");
-        freeBoard.setCategoryCode("99");
+
+
+
+
+    //수정페이지
+    @GetMapping("/free/freeEdit.wow")
+    public String freeEdit(Model model, int boNo) throws Exception {
+        FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
+        List<AttachVO> attaches = attachDao.getAttachListByParent(freeBoard.getBoNo(),freeBoard.getCategoryCode());
+        freeBoard.setAttaches(attaches);
+
+        model.addAttribute("freeBoard", freeBoard);
+
+        return "free/freeEdit";
+
+
+    }
+    /*
+     *  여기서부터 내꺼
+     * */
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @RequestMapping("/free/noticeList.wow")
+    // 요청을 받는 과정으로 웹에서 가져온 파라미터를 다 가지고 온다...! ㅇ0ㅇ!!! 그냥 매개변수로 할당하면 ok!
+    public String noticeList(Model model,@ModelAttribute("freeBoardVO")  FreeBoardVO freeBoardVO) {
+        freeBoardVO.setCategoryCode("BO002");
+        List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(freeBoardVO);
+        System.out.println(freeBoardList);
+        model.addAttribute("freeBoardList", freeBoardList);
+
+        return "free/noticeList";
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/free/noticeView.wow")
+    public String noticeView(Model model, int boNo) throws BizNotEffectedException, BizNotFoundException {
+        FreeBoardVO freeBoard = freeBoardService.freeView(boNo);
+        model.addAttribute("freeBoard", freeBoard);
+        freeBoardService.increaseHit(boNo);
+        return "free/noticeView";
+    }
+
+    @RequestMapping("/free/noticeForm.wow")
+    public String noticeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
+        // List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
+        // model.addAttribute("codeList", codeList);
+
+        return "free/noticeForm";
+    }
+
+    @RequestMapping("/free/noticeInsertForm.wow")
+    public String noticeInsertForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+        freeBoard.setCategoryCode("BO002");
 
         if (boFiles != null) {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, freeBoard.getCategoryCode(),freeBoard.getCategoryCode());
@@ -162,20 +267,11 @@ public class FreeBoardController {
         }
 
         freeBoardService.insertForm(freeBoard);
-        return "redirect:/free/freeList.wow";
+        return "redirect:/free/noticeList.wow";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/free/freeView.wow")
-    public String freeView(Model model, int boNo) throws BizNotEffectedException, BizNotFoundException {
-        FreeBoardVO freeBoard = freeBoardService.freeView(boNo);
-        model.addAttribute("freeBoard", freeBoard);
-        freeBoardService.increaseHit(boNo);
-        return "free/freeView";
-    }
-
-    //수정페이지
-    @GetMapping("/free/freeEdit.wow")
-    public String freeEdit(Model model, int boNo) throws Exception {
+    @GetMapping("/free/noticeEdit.wow")
+    public String noticeEdit(Model model, int boNo) throws Exception {
 
         List<CodeVO> codeList = freeBoardService.freeEdit(boNo);
         model.addAttribute("codeList", codeList);
@@ -183,10 +279,42 @@ public class FreeBoardController {
         FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
         model.addAttribute("freeBoard", freeBoard);
 
-        return "free/freeEdit";
+        return "free/noticeEdit";
 
 
     }
+    @PostMapping("/free/noticeModify.wow")
+    //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
+    public String noticeModify(Model model, @Param("boPass")String boPass, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+        freeBoard.setCategoryCode("BO002");
 
+        // 날라온 첨부파일들에 대해서는 form과 동일
+        if(boFiles!=null){
+            List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, freeBoard.getCategoryCode(),freeBoard.getCategoryCode() );
+            freeBoard.setAttaches(attaches);
+        }
+
+        //form과 차이점은 휴지통 버튼을 통해 삭제해야 할 첨부파일 번호들도 날라옴 -> service에서 처리함.
+        //freeBoardVO의 delAtchNos 필드가 있음.
+        freeBoardService.modifyBoard(freeBoard, boPass);
+
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
+        resultMessageVO.messageSetting(true, "수정", "수정성공", "/free/freeList.wow", "목록으로");
+        model.addAttribute("resultMessageVO", resultMessageVO);
+        return "common/message";
+    }
+
+    @PostMapping("/free/noticeDelete.wow")
+    //BizException를 상속받은거라 throws BizException 하나만 작성해도 ok
+    public String noticeDelete(Model model,@Param("boPass")String boPass, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
+
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
+
+        freeBoardService.removeBoard(freeBoard,boPass);
+        resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/free/freeList.wow", "목록으로");
+
+        model.addAttribute("resultMessageVO", resultMessageVO);
+        return "common/message";
+    }
 }
 

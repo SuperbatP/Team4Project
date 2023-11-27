@@ -149,16 +149,14 @@
         }).filter(':eq(0)').click();
     });
 
-    $form.find("button[type=submit1]").click(function (e) {
+    $form.find("button[id=cf-submit]").click(function (e) {
         e.preventDefault();
-        if ($input[0].value == "" || $select[0].value == "") {
-            alert("날짜 및 시간을 선택 해주세요");
-        } else {
-            if (window.confirm($("#td_date").val() + " 일 "+ $select[0].value +" 시에 "+ "예약하시겠습니까?")) {
-                $form.submit();
-            }
+        if (window.confirm("예약을 취소하시겠습니까?")) {
+            $form.submit();
         }
     });
+
+
 
 </script>
 
