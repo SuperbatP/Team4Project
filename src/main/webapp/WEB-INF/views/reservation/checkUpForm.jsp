@@ -218,7 +218,7 @@
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
-<div class="container">
+<div class="container2">
     <form class="width100 checkup-display" name="checkUp" action="checkUpRegist.wow" method="post">
         <h3 class="mar-top40">기본검진</h3>
 
@@ -269,92 +269,93 @@
                 </tr>
             </table>
         </div>
-                    <h3 class="mar-top40">날짜 및 시간 선택</h3>
-                    <div class="reservation-top">
-                        <div class="Calendar-frame col-sm-5">
-                            <table class="Calendar">
-                                <thead>
-                                <tr>
-                                    <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
-                                    <td colspan="5">
-                                        <span id="calYear"></span>년
-                                        <span id="calMonth"></span>월
-                                    </td>
-                                    <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
-                                </tr>
-                                <tr>
-                                    <td>일</td>
-                                    <td>월</td>
-                                    <td>화</td>
-                                    <td>수</td>
-                                    <td>목</td>
-                                    <td>금</td>
-                                    <td>토</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+        <h3 class="mar-top40">날짜 및 시간 선택</h3>
+        <div class="reservation-top">
+            <div class="Calendar-frame col-sm-5">
+                <table class="Calendar">
+                    <thead>
+                    <tr>
+                        <td onclick="prevCalendar()" style="cursor:pointer;">&#60;</td>
+                        <td colspan="5">
+                            <span id="calYear"></span>년
+                            <span id="calMonth"></span>월
+                        </td>
+                        <td onclick="nextCalendar()" style="cursor:pointer;">&#62;</td>
+                    </tr>
+                    <tr>
+                        <td>일</td>
+                        <td>월</td>
+                        <td>화</td>
+                        <td>수</td>
+                        <td>목</td>
+                        <td>금</td>
+                        <td>토</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
 
-                        <input type="hidden" name="reservationDate" value="">
+            <input type="hidden" name="reservationDate" value="">
 
-                        <div class="reservation-time-select col-sm-5">
-                            <div class="time-frame">
-                                <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
-                                <select name="reservationTime" required="required">
-                                    <option value="">예약시간 선택</option>
-                                    <option value="08:00~11:00">08:00~11:00</option>
-                                    <option value="13:30~16:00">13:30~16:00</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+            <div class="reservation-time-select col-sm-5">
+                <div class="time-frame">
+                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
+                    <select name="reservationTime" required="required">
+                        <option value="">예약시간 선택</option>
+                        <option value="08:00~11:00">08:00~11:00</option>
+                        <option value="13:30~16:00">13:30~16:00</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-                    <h3 class="mar-top40">기본검사</h3>
-                    <div class="basicCheckUp-frame">
-                        <c:forEach var="basic" items="${basicCodeList}">
-                            <label><input type="radio" id="basicCheckupCode" name="basicCheckupCode"
-                                          value="${basic.basicCheckupCode}"
-                                          required="required">${basic.basicCheckupName}</label>
-                        </c:forEach>
-                    </div>
+        <h3 class="mar-top40">기본검사</h3>
+        <div class="basicCheckUp-frame">
+            <c:forEach var="basic" items="${basicCodeList}">
+                <label><input type="radio" id="basicCheckupCode" name="basicCheckupCode"
+                              value="${basic.basicCheckupCode}"
+                              required="required">${basic.basicCheckupName}</label>
+            </c:forEach>
+        </div>
 
-                    <h3 class="mar-top40">추가검사</h3>
-                    <div class="addCheckUp-frame">
-                        <c:forEach var="add" items="${addCodeList}">
+        <h3 class="mar-top40">추가검사</h3>
+        <div class="addCheckUp-frame">
+            <c:forEach var="add" items="${addCodeList}">
 
-                            <c:if test="${add.addCheckupCode != '-'}"> <!-- if 조건 선언 -->
-                                <label><input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
-                                </label>
-                            </c:if>
+                <c:if test="${add.addCheckupCode != '-'}"> <!-- if 조건 선언 -->
+                    <label><input type="radio" name="addCheckupCode" value="${add.addCheckupCode}">${add.addCheckupName}
+                    </label>
+                </c:if>
 
-                        </c:forEach>
-                    </div>
+            </c:forEach>
+        </div>
 
-                    <h3 class="mar-top40">유전자검사</h3>
-                    <div class="dnaTest-frame">
-                        <c:forEach var="dna" items="${DNACodeList}">
+        <h3 class="mar-top40">유전자검사</h3>
+        <div class="dnaTest-frame">
+            <c:forEach var="dna" items="${DNACodeList}">
 
-                            <c:if test="${dna.dnaTestCode != '-'}"> <!-- if 조건 선언 -->
-                                <label><input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}</label>
-                            </c:if>
+                <c:if test="${dna.dnaTestCode != '-'}"> <!-- if 조건 선언 -->
+                    <label><input type="radio" name="dnaTestCode" value="${dna.dnaTestCode}">${dna.dnaTestName}</label>
+                </c:if>
 
-                        </c:forEach>
-                    </div>
+            </c:forEach>
+        </div>
 
 
-                    <%--    나중에 추가구현--%>
-                    <%--    문진표--%>
-                    <%--    선결제--%>
+        <%--    나중에 추가구현--%>
+        <%--    문진표--%>
+        <%--    선결제--%>
 
-                    <div class="reservation-btn">
-                        <button type="submit1"><b>예약하기</b></button>
-                        <button type="submit2"><b>이전</b></button>
-                    </div>
+        <div class="reservation-btn">
+            <button type="submit"><b>예약하기</b></button>
+            <button type="button"><b>이전</b></button>
+        </div>
     </form>
 
 </div>
+<input id="td_date" type="hidden">
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 
@@ -375,17 +376,20 @@
     $input = $("input[name='reservationDate']");
     $select = $("select[name='reservationTime']");
 
-    $form.find("button[type=submit1]").click(function (e) {
+    $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
         if ($input[0].value == "" || $select[0].value == "") {
-            alert("날짜를 선택해주세요");
+            alert("날짜 및 시간을 선택해주세요");
         } else {
-            $form.submit();
+            $tdDate = $("#td_date");
+            console.log($tdDate);
+            if (window.confirm($tdDate[0].value + " 일 "+ $select[0].value +"시로 "+ "예약하시겠습니까?")) {
+                $form.submit();
+            }
         }
     });
-
-    $form.find("button[type=submit2]").click(function () {
-        history.back();
+    $form.find("button[type=button]").click(function () {
+        window.history.back();
     });
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
@@ -462,6 +466,7 @@
                 options[i].style("display: none");
             }
         }
+        $('#td_date').attr('value', nowColumn.id);
     }
 
     // 이전달 버튼 클릭

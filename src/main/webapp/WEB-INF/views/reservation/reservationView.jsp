@@ -33,6 +33,8 @@
     <div class="tab-content">
         <div id="tab1">
             <div>
+                <form name="reservation" action="reservationEdit.wow" method="post">
+                    <sec:csrfInput/>
                 <table class="width100 border-bottom">
                     <tr class="table-tr fontW600">
                         <td class="width200px height50px">의료진</td>
@@ -68,8 +70,7 @@
                                 <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="submit" class="width80px height40px btn-green margin-left5"
-                                                id="cf-submit" formaction="reservationCancel.wow"><b>취소</b></button>
+                                        <button type="button" class="width80px height40px btn-green margin-left5" onclick="cancelAction(this, 'reservationCancel.wow')"><b>취소</b></button>
                                     </div>
                                 </td>
                             </tr>
@@ -123,8 +124,7 @@
                                 <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="submit" class="width80px height40px btn-green margin-left5"
-                                                formaction="checkUpCancel.wow"><b>취소</b></button>
+                                        <button type="button" class="width80px height40px btn-green margin-left5" onclick="cancelAction(this, 'checkUpCancel.wow')"><b>취소</b></button>
                                     </div>
                                 </td>
                             </tr>
@@ -149,12 +149,11 @@
         }).filter(':eq(0)').click();
     });
 
-    $form.find("button[id=cf-submit]").click(function (e) {
-        e.preventDefault();
+    function cancelAction(button, action) {
         if (window.confirm("예약을 취소하시겠습니까?")) {
             $form.submit();
         }
-    });
+    }
 
 
 

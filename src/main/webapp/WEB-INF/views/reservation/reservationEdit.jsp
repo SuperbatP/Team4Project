@@ -226,6 +226,7 @@
     </div>
 
     <div class="member-info">
+
         <table class="member-info-table">
             <tr class="member-info-table-tr">
                 <td scope="col">이름</td>
@@ -312,13 +313,13 @@
             </div>
             <input type="hidden" name="reservationDate" value="">
             <div class="reservation-btn">
-                <button type="submit1"><b>변경하기</b></button>
+                <button type="submit"><b>변경하기</b></button>
                 <button type="button"><b>이전</b></button>
             </div>
         </div>
     </form>
 </div>
-
+<input id="td_date" type="hidden">
 <!-- 코드 작성구역 시작-->
 
 <script>
@@ -342,15 +343,16 @@
     $myDate = $(".myReservationDate");
     $myTime = $(".myReservationTime");
 
-    $form.find("button[type=submit1]").click(function (e) {
+    $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
         if ($input[0].value == "" || $select[0].value == "") {
             alert("날짜 및 시간을 선택해주세요");
         } else {
-            if (window.confirm("예약을 변경 하시겠습니까?")) {
-                // 특정 날짜 값만 받아오면 400error 발생 ㅠ0ㅠ
-                $form.submit();
-            }
+                $tdDate = $("#td_date");
+                console.log($tdDate);
+                if (window.confirm($tdDate[0].value + " 일 "+ $select[0].value +"시로 "+ "예약 변경하시겠습니까?")) {
+                    $form.submit();
+                }
         }
     });
 

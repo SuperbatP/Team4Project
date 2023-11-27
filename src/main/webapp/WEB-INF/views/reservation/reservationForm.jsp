@@ -304,7 +304,7 @@
                 </tr>
             </table>
             <div class="reservation-btn">
-                <button type="submit1"><b>예약하기</b></button>
+                <button type="submit"><b>예약하기</b></button>
                 <button type="button"><b>이전</b></button>
             </div>
         </div>
@@ -340,7 +340,7 @@
 
 
 
-    $form.find("button[type=submit1]").click(function (e) {
+    $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
         if ($input[0].value == "" || $select[0].value == "") {
             alert("날짜 및 시간을 선택해주세요");

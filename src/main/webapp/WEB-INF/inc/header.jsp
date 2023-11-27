@@ -7,6 +7,7 @@
 <meta name="author" content="Tooplate">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/bootstrap.css">
 <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/font-awesome.min.css">
