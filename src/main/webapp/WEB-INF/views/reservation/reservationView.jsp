@@ -70,7 +70,7 @@
                                 <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="button" class="width80px height40px btn-green margin-left5" onclick="cancelAction(this, 'reservationCancel.wow')"><b>취소</b></button>
+                                        <button type="submit" formaction="reservationCancel.wow" class="width80px height40px btn-green margin-left5 cancelBtn" onclick="cancelAction()"><b>취소</b></button>
                                     </div>
                                 </td>
                             </tr>
@@ -124,7 +124,7 @@
                                 <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="button" class="width80px height40px btn-green margin-left5" onclick="cancelAction(this, 'checkUpCancel.wow')"><b>취소</b></button>
+                                        <button type="submit" formaction="checkUpCancel.wow" class="width80px height40px btn-green margin-left5 cancelBtn" onclick="cancelAction()"><b>취소</b></button>
                                     </div>
                                 </td>
                             </tr>
@@ -149,9 +149,9 @@
         }).filter(':eq(0)').click();
     });
 
-    function cancelAction(button, action) {
-        if (window.confirm("예약을 취소하시겠습니까?")) {
-            $form.submit();
+    function cancelAction() {
+        if (!window.confirm("예약을 취소하시겠습니까?")) {
+            event.preventDefault();
         }
     }
 

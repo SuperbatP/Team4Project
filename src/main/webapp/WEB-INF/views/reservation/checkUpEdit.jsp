@@ -240,7 +240,6 @@
             alert("날짜 및 시간을 선택해주세요");
         } else {
             $tdDate = $("#td_date");
-            console.log($tdDate);
             if (window.confirm($tdDate[0].value + " 일 "+ $select[0].value +"시로 "+ "예약 변경하시겠습니까?")) {
                 $form.submit();
             }
@@ -302,8 +301,11 @@
                 }
             }
 
-            if ($myDate[0].value === (nowDay.getFullYear() + "-" + (nowDay.getMonth() + 1) + "-" + nowDay.getDate())) {
+            if ($myDate[0].value === nowColumn.id) {
                 nowColumn.classList.add("choiceDay");
+                let nowDate = new Date(nowColumn.id);
+                $input.val(nowDate);
+                $('#td_date').attr('value', nowColumn.id);
             }
         }
     }
