@@ -60,7 +60,7 @@ public class LoginController {
     }
 
     //로그아웃
-    @RequestMapping("/logout")
+    @RequestMapping(value ="/logout", method = RequestMethod.POST)
     public String logout(HttpSession session) {
         session.invalidate();
         // 로그아웃할때 세션종료해서 정보 다없애고 다시 시작.

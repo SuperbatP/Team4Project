@@ -12,6 +12,26 @@
     <beans:bean id="g" class="com.PhoenixHospital.auth.UserLoginFailHandler"/>
 
 
+
+    <!-- Remember-me Property 셋팅 -->
+    <beans:bean id="jdbcTokenRepository"
+                class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+        <beans:property name="dataSource" ref="dataSource" />
+    </beans:bean>
+
+  <!--  <beans:bean id="persistentTokenBasedRememberMeServices"
+                class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+        <beans:constructor-arg name="key" value="codevang" />
+        <beans:constructor-arg name="userDetailsService" ref="customUserDetailsService" />
+        <beans:constructor-arg name="tokenRepository" ref="jdbcTokenRepository" />
+        <beans:property name="cookieName" value="HSWEB_U_REMEMBER" />
+        <beans:property name="parameter" value="remember-me" />
+        <beans:property name="tokenValiditySeconds" value="60000" />
+    </beans:bean>
+-->
+
+
+
     <http pattern="/resources/**" security="none" />
     <http auto-config="true">
 
@@ -21,6 +41,8 @@
         <intercept-url pattern="/reservation/reservationList.wow" access="isAuthenticated()" />
         <intercept-url pattern="/reservation/reservationView.wow" access="isAuthenticated()" />
         <intercept-url pattern="/member/memberList.wow" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/free/**" access="isAuthenticated()" />
+        <intercept-url pattern="/certificate/**" access="isAuthenticated()"  />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
 
         <intercept-url pattern="/**" access="permitAll" />
@@ -32,17 +54,19 @@
                 password-parameter="userPass"
                 authentication-failure-handler-ref="g" />
 
-
-
         <logout
                 logout-url="/logout"
                 logout-success-url="/"
+                invalidate-session="true"
                 delete-cookies="JSESSIONID, remember-me"/>
 
         <remember-me
                 token-validity-seconds="604800"
-                data-source-ref="dataSource"/>
+                data-source-ref="dataSource" />
+
     </http>
+
+
 
     <authentication-manager>
         <authentication-provider user-service-ref="customUserDetailsService">

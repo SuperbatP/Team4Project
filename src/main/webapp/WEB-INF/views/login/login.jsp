@@ -41,8 +41,8 @@
                     <div class="d-flex justify-content-around align-items-center mb-4">
                         <!-- 아이디 기억하기 -->
                         <div class="form-check">
-                            <label class="form-check-label" for="idRemember"> ID 기억하기 </label>
-                            <input class="form-check-input" type="checkbox" name="remember-me" id="idRemember" ${checked} >
+                            <label class="form-check-label" for="idRemember"> 로그인 상태 유지 </label>
+                            <input class="form-check-input" type="checkbox" name="remember-me" id="idRemember" value="True" ${checked} >
                         </div>
                         <!-- 아이디 찾기 -->
                         <div class="form-check">
