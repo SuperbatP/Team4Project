@@ -24,32 +24,45 @@
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
-<form name="certificate" method="post" action="certificateDownload.wow">
-    <sec:csrfInput/>
-    <input type="hidden" name="fileName" value="${fileName}">
-    <table>
-        <tr>
-            <td></td>
-            <td>진료과</td>
-            <td>담당의</td>
-            <td>내원일</td>
-        </tr>
-        <c:forEach var="hi" items="${history}">
-            <tr>
-                <td><input type="radio" name="reservationNo" value="${hi.reservationNo}"></td>
-                <td>${hi.dtName}</td>
-                <td>${hi.dcName}</td>
-                <td>${hi.reservationDateString}</td>
+
+<div class="container">
+    <h3 class="mar-top40">증명서 발급</h3>
+
+    <form name="certificate" method="post" action="certificateDownload.wow">
+        <sec:csrfInput/>
+        <input type="hidden" name="fileName" value="${fileName}">
+        <table class="width100 border-bottom">
+            <tr class="table-tr fontW600">
+                <td></td>
+                <td class="width200px height50px">진료과</td>
+                <td class="width200px height50px">담당의</td>
+                <td class="width200px height50px">내원일</td>
+                <td class="width200px height50px">발급</td>
             </tr>
-        </c:forEach>
-    </table>
-    <button type="submit">발급</button>
-</form>
-
-<!-- 코드 작성구역 시작-->
-
-
-<!-- 코드 작성구역 끝 -->
+            <c:forEach var="hi" items="${history}">
+            <tr class="table-tr">
+                <td class="width200px height50px">
+                    <input type="radio" name="reservationNo" value="${hi.reservationNo}">
+                </td>
+                <td class="width200px height50px">
+                    <span>${hi.dtName}</span>
+                </td>
+                <td class="width200px height50px">
+                    <span>${hi.dcName}</span>
+                </td>
+                <td class="width200px height50px">
+                    <span>${hi.reservationDateString}</span>
+                </td>
+                <td class="width200px height50px">
+                    <div class="reservation-btnbox">
+                        <button type="submit" class="width80px height40px btn-green margin-left5 cancelBtn">발급</button>
+                    </div>
+                </td>
+            </tr>
+            </c:forEach>
+        </table>
+    </form>
+</div>
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 </body>
