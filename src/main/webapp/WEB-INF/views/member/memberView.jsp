@@ -10,73 +10,120 @@
     <%@ include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body>
+<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/memberForm.css">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <div class="container">
-    <h3>상세보기</h3>
-    <form action="updateUser.wow" method="post">
-        <sec:csrfInput/>
-        <table class="table table-striped table-bordered">
-            <tbody>
-            <tr>
-                <th>아이디</th>
-                <td><input name="memId" value='${member.memId}' readonly="readonly"></td>
-            </tr>
-            <tr>
-                <th>회원명</th>
-                <td>${member.memName}</td>
-            </tr>
-            <tr>
-                <th>우편번호</th>
-                <td>${member.memZip}</td>
-            </tr>
-            <tr>
-                <th>주소</th>
-                <td>${member.memAdd1} ${member.memAdd2}</td>
-            </tr>
-            <tr>
-                <th>생일</th>
-                <td><input type="date" name="memBir" class="form-control input-sm" value='${member.memBir}'
-                           readonly="readonly"></td> <!-- 'YYYY-MM-DD'형태만 value값으로 들어갈수있어요 -->
-            </tr>
-            <tr>
-                <th>핸드폰</th>
-                <td>${member.memHp}</td>
-            </tr>
-            <tr>
-                <th>권한</th>
-                <td>
-                    <select name="memRole" class="form-control input-sm">
+    <h3>회원 정보 상세 보기</h3>
+    <section>
+        <form name="updateUser" action="updateUser.wow" method="post" class="form-horizontal">
+            <sec:csrfInput/>
+            <div class="form-group">
+                <input type="hidden" name="memId" value="${member.memId}">
+                <label for="memId" class="col-sm-3 control-label">아이디</label>
+                <div class="col-sm-6 ">
+                    <span id="memId">${member.memId}</span>
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memName" class="col-sm-3 control-label">이름</label>
+                <div class="col-sm-6 ">
+                    <span id="memName">${member.memName}</span>
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memZip" class="col-sm-3 control-label">우편번호</label>
+                <div class="col-sm-4">
+                    <input id="memZip" class="form-control input-sm" readonly="readonly" value='${member.memZip}'>
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memAdd1" class="col-sm-3 control-label">주소</label>
+                <div class="col-sm-6">
+                    <input id="memAdd1" class="form-control input-sm" value='${member.memAdd1}' readonly="readonly">
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memAdd2" class="col-sm-3 control-label">상세주소</label>
+                <div class="col-sm-6">
+                    <input id="memAdd2" class="form-control input-sm" value='${member.memAdd2}' readonly="readonly">
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memBir" class="col-sm-3 control-label">생일</label>
+                <div class="col-sm-6">
+                    <input id="memBir" type="date" readonly="readonly" class="form-control input-sm" value='${member.memBir}'>
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <input type="hidden" name="memEmail" value="${member.memEmail}">
+                <label for="memEmail" class="col-sm-3 control-label">이메일</label>
+                <div class="col-sm-6 ">
+                    <span id="memEmail">${member.memEmail}</span>
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memHp" class="col-sm-3 control-label">핸드폰</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="memHp" placeholder="-를 제외한 숫자만 입력하시오."
+                         oninput="addhyphen(),checkTel(), activateSignupbtn()" name="memHp" value='${member.memHp}'>
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memRole" class="col-sm-3 control-label">권한</label>
+                <div class="col-sm-6">
+                    <select id="memRole" name="memRole" class="form-control input-sm">
                         <option value="USER" ${member.memRole=='USER' ? "selected='selected'" : ""}>USER</option>
                         <option value="ADMIN" ${member.memRole=='ADMIN' ? "selected='selected'" : ""}>ADMIN</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <th>탈퇴여부</th>
-                <td>
-                    <select name="memDelYn" class="form-control input-sm">
+                </div>
+            </div>
+            <p class="divider-text"></p>
+            <div class="form-group">
+                <label for="memDelYn" class="col-sm-3 control-label">탈퇴여부</label>
+                <div class="col-sm-6">
+                    <select id="memDelYn" name="memDelYn" class="form-control input-sm">
                         <option value="Y" ${member.memDelYn=='Y' ? "selected='selected'" : ""}>Y</option>
                         <option value="N" ${member.memDelYn=='N' ? "selected='selected'" : ""}>N</option>
                     </select>
-                </td>
+                </div>
+            </div>
 
-            </tr>
-            <tr>
-                <td colspan="2"><a href="memberList.wow" class="btn btn-default btn-sm"> <span
-                        class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록
-                </a>
-                    <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                        &nbsp;&nbsp; 저장
+            <p class="divider-text"></p>
+            <div class="form-group" style="margin-top: 30px">
+                <label for="signupbtn" class="col-sm-3 control-label"></label>
+                <div class="col-sm-3">
+                    <button type="submit" class="form-control btn btn-block btn-secondary btn-lg"
+                            style="border: 0px; width: 100%; height: 50px; color: black;"
+                            id="signupbtn">저장
                     </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
+                </div>
+                <div class="col-sm-3">
+                    <a href="memberList.wow"  style="border: 0px; width: 100%; height: 50px; color: black;"
+                       class="glyphicon glyphicon-list form-control btn btn-block btn-secondary btn-lg">&nbsp;목록으로</a>
+                </div>
+            </div>
+        </form>
+    </section>
 </div>
 
+<script>
+    $form = $("form[name='updateUser']");
 
+    $form.find("button[type=submit]").click(function (e) {
+        e.preventDefault();
+        if (window.confirm("정보를 수정하시겠습니까?")) {
+            $form.submit();
+        }
+    });
+</script>
 </body>
 </html>

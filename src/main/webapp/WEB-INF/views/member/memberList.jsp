@@ -51,7 +51,7 @@
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-sm-3 form-inline">
-            전체 1000건 조회
+            전체 ${paging.totalRowCount} 조회
             <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">
                 <c:forEach var="i" begin="10" end="50" step="10">
                     <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>
