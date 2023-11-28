@@ -90,12 +90,12 @@ public class MemberController {
     //회원 정보 수정
     @PostMapping("/member/memberModify.wow")
     public String memberModify(Model model, MemberVO member) throws BizException {
-        System.out.println(member);
+
         memberService.modifyMember(member);
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         resultMessageVO.messageSetting(true, "수정", "수정성공했어요"
-                , "/member/memberList.wow", "목록으로");
+                , "/member/memberEdit.wow", "이전으로");
         model.addAttribute("resultMessageVO", resultMessageVO);
 
         return "common/message";

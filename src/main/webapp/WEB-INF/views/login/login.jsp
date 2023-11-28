@@ -22,7 +22,6 @@
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-0">
                 <form action="/login" class="" method="post">
-
                     <sec:csrfInput/>
                     <input type="hidden" name="remember" value="true">
 
@@ -42,9 +41,8 @@
                     <div class="d-flex justify-content-around align-items-center mb-4">
                         <!-- 아이디 기억하기 -->
                         <div class="form-check">
-                            <label class="form-check-label" for="form1Example3"> ID 기억하기 </label>
-                            <input class="form-check-input" type="checkbox" name="remember-me" value="Y"
-                                   id="form1Example3" ${checked} >
+                            <label class="form-check-label" for="idRemember"> ID 기억하기 </label>
+                            <input class="form-check-input" type="checkbox" name="remember-me" id="idRemember" ${checked} >
                         </div>
                         <!-- 아이디 찾기 -->
                         <div class="form-check">
@@ -59,19 +57,19 @@
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee"
                        href="/member/memberForm.wow"
                        role="button">회원가입</a>
-
-                    <div class="divider d-flex align-items-center my-4">
+                    <%-- 소셜 네트워크 로그인 관련   --%>
+               <%--     <div class="divider d-flex align-items-center my-4">
                         <p class="text-center fontW600 mx-3 mar-bottom0 text-muted">OR</p>
                     </div>
 
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="${ naver_url }"
                        role="button">
-                        <%--	SNS계정 로그인 아이콘	--%>
+                        &lt;%&ndash;	SNS계정 로그인 아이콘	&ndash;%&gt;
                         <i class="fab fa-facebook-f me-2"></i>Continue with Naver
                     </a>
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="${ google_url }"
                        role="button">
-                        <i class="fab fa-twitter me-2"></i>Continue with Google</a>
+                        <i class="fab fa-twitter me-2"></i>Continue with Google</a>--%>
                 </form>
             </div>
         </div>

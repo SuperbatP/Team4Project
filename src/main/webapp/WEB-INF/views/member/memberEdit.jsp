@@ -51,10 +51,6 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <a href="/" class="btn btn-info btn-sm">
-                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                        &nbsp;홈으로
-                    </a>
                     <button type="submit" class="btn btn-primary">
                         <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                         &nbsp;&nbsp; 저장
