@@ -10,8 +10,6 @@
     <meta charset="UTF-8">
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <title>건강검진예약</title>
-    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/common.css"/>
-    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/sub.css"/>
     <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.js"></script>
     <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
@@ -22,6 +20,14 @@
     <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/custom.js"></script>
 </head>
 <style>
+    .container2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 1200px;
+        margin: auto;
+    }
 
     td {
         width: 50px;
@@ -81,10 +87,16 @@
         flex-wrap: wrap;
     }
 
+    .basicCheckUp-list-tr:nth-child(1){
+        background-color: whitesmoke;
+        font-weight: 600;
+    }
+
     .basicCheckUp-list-tr > td {
         height: 55px;
         text-align: center;
         border: 1px solid gainsboro;
+
     }
 
     .basicCheckUp-list-tr > td:nth-child(1) {
@@ -212,6 +224,9 @@
         font-weight: normal;
     }
 
+    input {
+        border: none;
+    }
 
 </style>
 
@@ -219,8 +234,8 @@
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <div class="container2">
-    <form class="width100 checkup-display" name="checkUp" action="checkUpRegist.wow" method="post">
-        <h3 class="mar-top40">기본검진</h3>
+    <form class="checkup-display" name="checkUp" action="checkUpRegist.wow" method="post">
+        <h3>기본검진</h3>
 
         <c:forEach var="cu" items="${checkUp}">
             <input class="reservationDate" type="hidden" value="${cu.reservationDateString}">
@@ -228,27 +243,27 @@
         </c:forEach>
 
         <sec:csrfInput/>
-        <div class="mar-top20">
-            <table class="border-bottom width100">
-                <tr class="table-tr fontW600">
-                    <td class="height50px">프로그램</td>
-                    <td class="height50px">내용</td>
+        <div class="basicCheckUp-list">
+            <table>
+                <tr class="basicCheckUp-list-tr">
+                    <td>프로그램</td>
+                    <td>내용</td>
                 </tr>
                 <c:forEach var="basic" items="${basicCodeList}">
-                    <tr class="table-tr">
-                        <td class="height50px">${basic.basicCheckupName}</td>
-                        <td class="height50px">${basic.basicCheckupContent}</td>
+                    <tr class="basicCheckUp-list-tr">
+                        <td>${basic.basicCheckupName}</td>
+                        <td>${basic.basicCheckupContent}</td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
 
-        <h3 class="mar-top40">예약자 정보</h3>
+        <h3>예약자 정보</h3>
 
 
-        <div class="mar-top20">
-            <table class="border-bottom width100">
-                <tr class="table-tr">
+        <div class="checkup-info">
+            <table>
+                <tr class="checkup-info-tr">
                     <td>이름</td>
                     <td>
                         <input name="reservationName" required="required" style="width: 80%">
@@ -269,7 +284,7 @@
                 </tr>
             </table>
         </div>
-        <h3 class="mar-top40">날짜 및 시간 선택</h3>
+        <h3>날짜 및 시간 선택</h3>
         <div class="reservation-top">
             <div class="Calendar-frame col-sm-5">
                 <table class="Calendar">
@@ -311,7 +326,7 @@
             </div>
         </div>
 
-        <h3 class="mar-top40">기본검사</h3>
+        <h3>기본검사</h3>
         <div class="basicCheckUp-frame">
             <c:forEach var="basic" items="${basicCodeList}">
                 <label><input type="radio" id="basicCheckupCode" name="basicCheckupCode"
@@ -320,7 +335,7 @@
             </c:forEach>
         </div>
 
-        <h3 class="mar-top40">추가검사</h3>
+        <h3>추가검사</h3>
         <div class="addCheckUp-frame">
             <c:forEach var="add" items="${addCodeList}">
 
@@ -332,7 +347,7 @@
             </c:forEach>
         </div>
 
-        <h3 class="mar-top40">유전자검사</h3>
+        <h3>유전자검사</h3>
         <div class="dnaTest-frame">
             <c:forEach var="dna" items="${DNACodeList}">
 
