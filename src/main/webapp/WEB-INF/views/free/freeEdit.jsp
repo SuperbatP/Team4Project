@@ -47,16 +47,10 @@
 				<td><input type="text" name="boTitle" value="${freeBoard.boTitle }" class="form-control input-sm" required="required"></td>
 			</tr>
 			<tr>
-				<th>작성자</th>
+				<th>작성자ID</th>
 				<td>${freeBoard.boWriter } <input type="hidden" name="boWriter" value="${freeBoard.boWriter }">
 				</td>
 			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="boPass" value="" class="form-control input-sm" required="required" pattern="\w{4,}" title="알파벳과 숫자로 4글자 이상 입력"> <span class="text-danger"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 글 등록시에 입력한 비밀번호를 입력하세요.
-						</span></td>
-			</tr>
-
 			<tr>
 				<th>내용</th>
 				<td><textarea id="summernote" rows="10" name="boContents" class="form-control input-sm">${freeBoard.boContents } </textarea></td>
@@ -104,11 +98,11 @@
 
 						<a href="freeList.wow" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록으로
 						</a>
-						<button type="submit"  class="btn btn-sm btn-primary">
-							<span class="glyphicon glyphicon-save" aria-hidden="true"></span> &nbsp;&nbsp;저장
+						<button  type="submit"  class="btn btn-sm btn-primary" onclick=" confirm('정말로 수정 할까요??');">
+							<span class="glyphicon glyphicon-save" aria-hidden="true"></span> 저장
 						</button>
 
-						<button type="submit" formaction="freeDelete.wow" class="btn btn-sm btn-danger">
+						<button type="submit" formaction="freeDelete.wow" class="btn btn-sm btn-danger"  onclick="return confirm('정말로 삭제 할까요??');">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> &nbsp;&nbsp;삭제
 						</button>
 

@@ -91,7 +91,7 @@
              ,
             BO_NO, BO_TITLE ,  BO_WRITER
              , BO_CONTENTS,  BO_HIT, BO_REG_DATE
-             ,CATEGORY_CODE, BO_DEL_YN,BO_PASS
+             ,CATEGORY_CODE, BO_DEL_YN
         FROM board
         WHERE bo_no    = #{boNo}
     </select>
@@ -116,7 +116,7 @@
             'free_board' AS BO_TYPE,
             BO_NO, BO_TITLE ,  BO_WRITER
              , BO_CONTENTS,  BO_HIT, BO_REG_DATE
-             ,CATEGORY_CODE, BO_DEL_YN,BO_PASS
+             ,CATEGORY_CODE, BO_DEL_YN
         FROM board
         WHERE bo_no    = #{boNo}
     </select>
@@ -127,7 +127,7 @@
           , BO_CONTENTS = #{boContents}
           , BO_HIT      = bo_hit + 1
           , BO_MOD_DATE = sysdate
-          , BO_PASS = #{boPass}
+
         WHERE bo_no = #{boNo}
     </update>
     <update id="updateBoard"  parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
@@ -137,13 +137,13 @@
           , bo_hit      = bo_hit + 1
           , bo_mod_date = sysdate
         WHERE bo_no = #{boNo}
-          AND  bo_pass = #{boPass}
+
     </update>
     <delete id="deleteBoard" parameterType="com.PhoenixHospital.free.vo.FreeBoardVO">
         UPDATE board
         SET BO_DEL_YN= 'Y'
         WHERE bo_no = #{boNo}
-          AND bo_pass = #{boPass}
+
     </delete>
 
     <insert id="insertBoard"  parameterType="com.PhoenixHospital.free.vo.FreeBoardVO" >
@@ -155,12 +155,12 @@
         INSERT INTO BOARD (
         BO_NO, BO_TITLE ,  BO_WRITER
         , BO_CONTENTS,  BO_HIT, BO_REG_DATE
-        ,CATEGORY_CODE,BO_PASS
+        ,CATEGORY_CODE
         ) VALUES (
         -- 시퀀스 두 번 중복되지 않게, 현재의 boNo를 받아옴.
         #{boNo} , #{boTitle} , #{boWriter}
         ,#{boContents}, #{ boHit} , SYSDATE
-        , #{categoryCode},#{boPass}
+        , #{categoryCode}
         )
     </insert>
 

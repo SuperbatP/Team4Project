@@ -32,7 +32,7 @@
                     <div class="col-sm-2">
                         <select id="id_searchType" name="searchType" class="form-control input-sm">
                             <option value="T" ${freeBoardVO.searchType=='T' ? "selected='selected'" : ""} >제목</option>
-                            <option value="W" ${freeBoardVO.searchType=='W' ? "selected='selected'" : ""} >작성자</option>
+                            <option value="W" ${freeBoardVO.searchType=='W' ? "selected='selected'" : ""} >작성자ID</option>
                             <option value="C" ${freeBoardVO.searchType=='C' ? "selected='selected'" : ""} >내용</option>
                         </select>
                     </div>
@@ -104,7 +104,7 @@
         <tr>
             <th>글번호</th>
             <th>제목</th>
-            <th>작성자</th>
+            <th>작성자ID</th>
             <th>등록일</th>
             <th>조회수</th>
         </tr>

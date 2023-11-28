@@ -30,18 +30,9 @@
 				<td><input type="text" name="boTitle" value="" class="form-control input-sm"  required="required" ></td>
 			</tr>
 			<tr>
-				<th>작성자</th>
+				<th>작성자ID</th>
 				<td><input type="text" name="boWriter" value=""  class="form-control input-sm" required="required" ></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="boPass" value="" class="form-control input-sm"
-						   required="required" pattern="\w{4,}" title="알파벳과 숫자로 4글자 이상 입력"  >
-					<span class="text-danger">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            수정 또는 삭제시에 필요합니다.
-          </span><sec:csrfInput/>
-				</td>
+				</span><sec:csrfInput/>
 			</tr>
 
 			<tr>

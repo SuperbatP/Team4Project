@@ -13,7 +13,6 @@ import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
 import com.PhoenixHospital.free.service.IFreeBoardService;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
 import org.apache.commons.io.FileUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -97,7 +96,7 @@ public class FreeBoardController {
 
     @PostMapping("/free/freeModify.wow")
     //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
-    public String freeModify(Model model, @Param("boPass")String boPass, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+    public String freeModify(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
         freeBoard.setCategoryCode("BO001");
 
         // 날라온 첨부파일들에 대해서는 form과 동일
@@ -108,7 +107,7 @@ public class FreeBoardController {
 
         //form과 차이점은 휴지통 버튼을 통해 삭제해야 할 첨부파일 번호들도 날라옴 -> service에서 처리함.
         //freeBoardVO의 delAtchNos 필드가 있음.
-        freeBoardService.modifyBoard(freeBoard, boPass);
+        freeBoardService.modifyBoard(freeBoard);
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         resultMessageVO.messageSetting(true, "수정", "수정성공", "/free/freeList.wow", "목록으로");
@@ -128,11 +127,11 @@ public class FreeBoardController {
     //삭제하는단계
     @PostMapping("/free/freeDelete.wow")
     //BizException를 상속받은거라 throws BizException 하나만 작성해도 ok
-    public String freeDelete(Model model,@Param("boPass")String boPass, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
+    public String freeDelete(Model model, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
 
-        freeBoardService.removeBoard(freeBoard,boPass);
+        freeBoardService.removeBoard(freeBoard);
         resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/free/freeList.wow", "목록으로");
 
         model.addAttribute("resultMessageVO", resultMessageVO);
@@ -290,7 +289,7 @@ public class FreeBoardController {
     }
     @PostMapping("/notice/noticeModify.wow")
     //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
-    public String noticeModify(Model model, @Param("boPass")String boPass, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+    public String noticeModify(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
         freeBoard.setCategoryCode("BO002");
 
         // 날라온 첨부파일들에 대해서는 form과 동일
@@ -301,7 +300,7 @@ public class FreeBoardController {
 
         //form과 차이점은 휴지통 버튼을 통해 삭제해야 할 첨부파일 번호들도 날라옴 -> service에서 처리함.
         //freeBoardVO의 delAtchNos 필드가 있음.
-        freeBoardService.modifyBoard(freeBoard, boPass);
+        freeBoardService.modifyBoard(freeBoard);
 
 
 
@@ -314,11 +313,11 @@ public class FreeBoardController {
 
     @PostMapping("/notice/noticeDelete.wow")
     //BizException를 상속받은거라 throws BizException 하나만 작성해도 ok
-    public String noticeDelete(Model model,@Param("boPass")String boPass, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
+    public String noticeDelete(Model model, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
 
-        freeBoardService.removeBoard(freeBoard,boPass);
+        freeBoardService.removeBoard(freeBoard);
         resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/notice/noticeList.wow", "목록으로");
 
         model.addAttribute("resultMessageVO", resultMessageVO);
@@ -399,7 +398,7 @@ public class FreeBoardController {
     }
     @PostMapping("/health/healthModify.wow")
     //edit 후 여기로 옴. 첨부파일도 처리해줘야 함.
-    public String healthModify(Model model, @Param("boPass")String boPass, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+    public String healthModify(Model model,FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
         freeBoard.setCategoryCode("BO003");
 
         // 날라온 첨부파일들에 대해서는 form과 동일
@@ -410,7 +409,7 @@ public class FreeBoardController {
 
         //form과 차이점은 휴지통 버튼을 통해 삭제해야 할 첨부파일 번호들도 날라옴 -> service에서 처리함.
         //freeBoardVO의 delAtchNos 필드가 있음.
-        freeBoardService.modifyBoard(freeBoard, boPass);
+        freeBoardService.modifyBoard(freeBoard);
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         resultMessageVO.messageSetting(true, "수정", "수정성공", "/health/healthList.wow", "목록으로");
@@ -420,11 +419,11 @@ public class FreeBoardController {
 
     @PostMapping("/health/healthDelete.wow")
     //BizException를 상속받은거라 throws BizException 하나만 작성해도 ok
-    public String healthDelete(Model model,@Param("boPass")String boPass, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
+    public String healthDelete(Model model,@ModelAttribute("freeBoard") FreeBoardVO freeBoard) throws BizException {
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
 
-        freeBoardService.removeBoard(freeBoard,boPass);
+        freeBoardService.removeBoard(freeBoard);
         resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/health/healthList.wow", "목록으로");
 
         model.addAttribute("resultMessageVO", resultMessageVO);

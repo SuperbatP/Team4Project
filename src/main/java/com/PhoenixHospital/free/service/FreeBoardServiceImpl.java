@@ -9,7 +9,6 @@ import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
 import com.PhoenixHospital.free.dao.IFreeBoardDao;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,9 +43,9 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     //수정
     @Override
-    public void modifyBoard(FreeBoardVO freeBoard, @Param("boPass")String boPass) throws  BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
+    public void modifyBoard(FreeBoardVO freeBoard) throws  BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
 
-        if (boPass.equals(freeBoard.getBoPass())){
+        if (freeBoard.equals(freeBoard.getBoNo())){
             System.out.println(freeBoard);
             int result = freeBoardDao.updateBoard(freeBoard);
             if (result < 1) throw new BizNotEffectedException();
@@ -79,7 +78,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     //삭제
     @Override
-    public void removeBoard(FreeBoardVO freeBoard, @Param("boPass")String boPass) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
+    public void removeBoard(FreeBoardVO freeBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
         FreeBoardVO dbVO = freeBoardDao.getBoard(freeBoard.getBoNo());
         int result = freeBoardDao.deleteBoard(freeBoard);
         if (result < 1) throw new BizNotEffectedException();

@@ -32,7 +32,7 @@
       <td>${freeBoard.boTitle }</td>
     </tr>
     <tr>
-      <th>작성자명</th>
+      <th>작성자ID</th>
       <td>${freeBoard.boWriter }</td>
     </tr>
     <!-- 비밀번호는 보여주지 않음  -->
@@ -73,13 +73,18 @@
                                                                        aria-hidden="true"></span> &nbsp;&nbsp;목록
           </a>
         </div>
-        <c:if test='<sec:authentication property="principal.username"/> == ${freeBoard.boWriter}'>
-          <div class="pull-right">
-            <a href="freeEdit.wow?boNo=${freeBoard.boNo }" class="btn btn-success btn-sm"> <span
-                    class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
-            </a>
-          </div>
-        </c:if>
+
+        <sec:authentication property="principal" var="pinfo"/>
+        <sec:authorize access="isAuthenticated()">
+          <c:if test="${pinfo.username eq freeBoard.boWriter}">
+            <div class="pull-right">
+              <a href="noticeEdit.wow?boNo=${freeBoard.boNo }" class="btn btn-success btn-sm"> <span
+                      class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
+              </a>
+            </div>
+          </c:if>
+        </sec:authorize>
+
       </td>
     </tr>
     </tbody>
