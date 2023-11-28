@@ -28,39 +28,25 @@
     <form action="adminBoardModify.wow" method="post" enctype="multipart/form-data">
         <sec:csrfInput/>
         <%-- 첨부파일에 대한 정보도 받아야 하니까.	enctype="multipart/form-data" 추가	--%>
+        <input type="hidden" name="boWriter" value="${adminBoard.boWriter }">
+        <input type="hidden" name="boNo" value="${adminBoard.boNo }">
         <table class="table table-striped table-bordered">
             <colgroup>
                 <col width="20%"/>
                 <col/>
             </colgroup>
-            <tr>
-                <th>글번호</th>
-                <td>${adminBoard.boNo }<input type="hidden" name="boNo" value="${adminBoard.boNo }">
-                </td>
 
-            </tr>
             <tr>
                 <th>제목</th>
                 <td><input type="text" name="boTitle" value="${adminBoard.boTitle }" class="form-control input-sm"
                            required="required"></td>
             </tr>
-            <tr>
-                <th>작성자</th>
-                <td>${adminBoard.boWriter } <input type="hidden" name="boWriter" value="${adminBoard.boWriter }">
-                </td>
-            </tr>
-            <tr>
-                <th>비밀번호</th>
-                <td><input type="password" name="boPass" value="" class="form-control input-sm" required="required"
-                           pattern="\w{4,}" title="알파벳과 숫자로 4글자 이상 입력"> <span class="text-danger"> <span
-                        class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 글 등록시에 입력한 비밀번호를 입력하세요.
-						</span></td>
-            </tr>
 
             <tr>
                 <th>내용</th>
                 <td>
-                    <textarea id="summernote" name="boContents" class="form-control input-sm">${adminBoard.boContents } </textarea>
+                    <textarea style="min-height: 400px;" id="summernote" name="boContents"
+                              class="form-control input-sm">${adminBoard.boContents } </textarea>
                 </td>
             </tr>
             <tr>
@@ -154,7 +140,21 @@
     $('#summernote').summernote({
         lang: "ko-KR",
         height: 350,
-        placeholder: '내용을 작성하세요.'
+        placeholder: '내용을 작성하세요.',
+        callbacks: {
+            onImageUpload: function (image) {
+
+                var file = image[0];
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    var image = $('<img>').attr('src', reader.result);
+                    image.attr('height', '350px');
+                    $('#summernote').summernote("insertNode", image[0]);
+                }
+                reader.readAsDataURL(file);
+
+            }
+        }
     });
 
 

@@ -46,45 +46,37 @@ public class AdminBoardServiceImpl implements IAdminBoardService {
     }
 
     @Override
-    public void modifyBoard(AdminBoardVO adminBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
+    public void modifyBoard(AdminBoardVO adminBoard) throws BizNotFoundException, BizNotEffectedException {
         AdminBoardVO daoBoardList = adminBoardDao.getAdminBoard(adminBoard.getBoNo());
-        String boPass = daoBoardList.getBoPass();
-        String inputPass = adminBoard.getBoPass();
 
-        if (!boPass.equals(inputPass)) {
-            throw new BizPasswordNotMatchedException();
-        } else {
-            int count = adminBoardDao.updateBoard(adminBoard);
-            if(count < 1) {
-                throw new BizNotEffectedException();
-            }
-            if(daoBoardList == null) {
-                throw new BizNotFoundException();
-            }
+        int count = adminBoardDao.updateBoard(adminBoard);
+        if (count < 1) {
+            throw new BizNotEffectedException();
         }
+        if (daoBoardList == null) {
+            throw new BizNotFoundException();
+        }
+
         List<AttachVO> attaches = adminBoard.getAttaches();
-        if(attaches != null) {
-            for(AttachVO attach : attaches) {
+        if (attaches != null) {
+            for (AttachVO attach : attaches) {
                 attach.setAtchParentNo(adminBoard.getBoNo());
                 attachDao.insertAttach(attach);
             }
         }
         int[] delAtchNos = adminBoard.getDelAtchNos();
-        if(delAtchNos!=null && delAtchNos.length>0) {
+        if (delAtchNos != null && delAtchNos.length > 0) {
             attachDao.delAtchNos(delAtchNos);
         }
     }
 
     @Override
-    public void removeBoard(AdminBoardVO adminBoard) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
+    public void removeBoard(AdminBoardVO adminBoard) throws BizNotFoundException, BizNotEffectedException {
         AdminBoardVO daoBoardList = adminBoardDao.getAdminBoard(adminBoard.getBoNo());
-        String boPass = daoBoardList.getBoPass();
-        String inputPass = adminBoard.getBoPass();
-        if(!boPass.equals(inputPass)) {
-            throw new BizPasswordNotMatchedException();
-        }
+
+
         int count = adminBoardDao.deleteBoard(adminBoard);
-        if(count < 1 ) {
+        if (count < 1) {
             throw new BizNotFoundException();
         }
     }
@@ -93,12 +85,12 @@ public class AdminBoardServiceImpl implements IAdminBoardService {
     public void registBoard(AdminBoardVO adminBoard) throws BizNotEffectedException {
         int count = adminBoardDao.insertBoard(adminBoard);
 
-        if(count < 1 ) {
+        if (count < 1) {
             throw new BizNotEffectedException();
         }
         List<AttachVO> attaches = adminBoard.getAttaches();
-        if(attaches != null) {
-            for(AttachVO attach : attaches) {
+        if (attaches != null) {
+            for (AttachVO attach : attaches) {
                 attach.setAtchParentNo(adminBoard.getBoNo());
                 attachDao.insertAttach(attach);
             }

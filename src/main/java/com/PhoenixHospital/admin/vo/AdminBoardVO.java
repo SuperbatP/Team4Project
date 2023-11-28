@@ -15,7 +15,6 @@ public class AdminBoardVO {
     private String boModDate;
     private String boDelYn;
     private String atchNo;
-    private String boPass;
 
     private List<AttachVO> attaches;
     private int[] delAtchNos;
@@ -117,11 +116,4 @@ public class AdminBoardVO {
         this.atchNo = atchNo;
     }
 
-    public String getBoPass() {
-        return boPass;
-    }
-
-    public void setBoPass(String boPass) {
-        this.boPass = boPass;
-    }
 }

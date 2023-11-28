@@ -19,6 +19,7 @@
     </div>
     <form action="adminBoardRegist.wow" method="post" enctype="multipart/form-data">
         <sec:csrfInput/>
+        <input type="hidden" type="text" name="boWriter" value="<sec:authentication property="principal.username"/>">
         <table class="table table-striped table-bordered">
             <colgroup>
                 <col width="20%"/>
@@ -28,25 +29,11 @@
                 <th>제목</th>
                 <td><input type="text" name="boTitle" value="" class="form-control input-sm" required="required"></td>
             </tr>
-            <tr>
-                <th>작성자</th>
-                <td><input type="text" name="boWriter" value="" class="form-control input-sm" required="required"></td>
-            </tr>
-            <tr>
-                <th>비밀번호</th>
-                <td><input type="password" name="boPass" value="" class="form-control input-sm"
-                           required="required" pattern="\w{4,}" title="알파벳과 숫자로 4글자 이상 입력">
-                    <span class="text-danger">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            수정 또는 삭제시에 필요합니다.
-          </span>
-                </td>
-            </tr>
 
             <tr>
                 <th>내용</th>
                 <td>
-                    <textarea id="summernote" name="boContents" class="form-control"></textarea>
+                    <textarea style="min-height: 400px;" id="summernote" name="boContents" class="form-control"></textarea>
                 </td>
             </tr>
 
@@ -101,6 +88,20 @@
         lang: "ko-KR",
         height: 350,
         placeholder: '내용을 작성하세요.',
+        callbacks: {
+            onImageUpload: function (image) {
+
+                var file = image[0];
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    var image = $('<img>').attr('src', reader.result);
+                    image.attr('height', '350px');
+                    $('#summernote').summernote("insertNode", image[0]);
+                }
+                reader.readAsDataURL(file);
+
+            }
+        }
     });
 
 </script>

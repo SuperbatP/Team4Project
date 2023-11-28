@@ -19,12 +19,12 @@
         bo_no, bo_title, category_code
         , bo_contents, bo_writer, bo_hit
         , bo_reg_date, bo_mod_date, bo_del_yn
-        , bo_pass
+
         ) VALUES (
         #{boNo}, #{boTitle}, 'A001'
         , #{boContents}, #{boWriter}, 0
         , SYSDATE, null,  'N'
-        ,#{boPass})
+        )
     </insert>
     <update id="increaseHit">
         UPDATE board
@@ -61,7 +61,7 @@
         to_char(bo_mod_date, 'YYYY-MM-DD') as bo_mod_date,
         bo_no, bo_title, category_code,
         bo_contents, bo_writer, bo_hit,
-        bo_pass, bo_del_yn
+        bo_del_yn
         FROM board a
         WHERE a.category_code = 'A001'
         AND a.bo_del_yn = 'N'
@@ -83,7 +83,7 @@
                to_char(bo_mod_date, 'YYYY-MM-DD') as bo_mod_date ,
                bo_no,           bo_title,      category_code,
                bo_contents,     bo_writer,     bo_hit,
-               bo_pass,         bo_del_yn
+               bo_del_yn
         FROM board
         where bo_no = #{boNo}
     </select>

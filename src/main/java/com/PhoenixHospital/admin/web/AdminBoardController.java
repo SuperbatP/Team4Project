@@ -117,6 +117,7 @@ public class AdminBoardController {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         adminBoardService.removeBoard(adminBoard);
         resultMessageVO.messageSetting(true, "삭제", "삭제되었습니다.", "/admin/adminBoardList.wow", "목록으로");
+        model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
 

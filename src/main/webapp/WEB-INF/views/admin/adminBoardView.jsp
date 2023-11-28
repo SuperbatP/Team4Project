@@ -43,7 +43,7 @@
         <tr>
             <th>내용</th>
             <td>
-                <div style="height: 350px;" name="boContent" class="form-control input-sm" readonly="readonly">
+                <div style="height: 500px; overflow: scroll" name="boContent" class="form-control input-sm" readonly="readonly">
                     ${adminBoard.boContents }
                 </div>
             </td>
@@ -79,11 +79,18 @@
                                                                                        aria-hidden="true"></span> &nbsp;&nbsp;목록
                     </a>
                 </div>
-                <div class="pull-right">
-                    <a href="adminBoardEdit.wow?boNo=${adminBoard.boNo }" class="btn btn-success btn-sm"> <span
-                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
-                    </a>
-                </div>
+
+                <sec:authentication property="principal" var="pinfo"/>
+                <sec:authorize access="isAuthenticated()">
+                    <c:if test="${pinfo.username eq adminBoard.boWriter}">
+                        <div class="pull-right">
+                            <a href="adminBoardEdit.wow?boNo=${adminBoard.boNo }" class="btn btn-success btn-sm"> <span
+                                    class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
+                            </a>
+                        </div>
+                    </c:if>
+                </sec:authorize>
+
             </td>
         </tr>
         </tbody>
