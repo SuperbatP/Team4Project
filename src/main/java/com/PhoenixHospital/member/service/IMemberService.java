@@ -7,8 +7,6 @@ import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.member.vo.MemberVO;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface IMemberService {
@@ -29,9 +27,9 @@ public interface IMemberService {
 
 	public void updateUser(MemberVO member) throws BizNotEffectedException, BizNotFoundException ;
 
-	public List<MemberVO> findId(String memberEmail)throws Exception;
+	public List<MemberVO> findId(String memEmail)throws Exception;
 
-	public int findIdCheck(String memberEmail)throws Exception;
+	public int findIdCheck(String memEmail)throws Exception;
 
 	public void findPw(String memId, String memEmail)throws Exception;
 

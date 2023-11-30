@@ -117,65 +117,6 @@ public class MemberServiceImpl implements IMemberService {
         return false;
     }
 
-
-//    @Override
-//    public boolean loginCheck(MemberVO member, HttpServletResponse rep, HttpServletRequest req) throws BizNotEffectedException {
-//        MemberVO members = null;
-//
-//        System.out.println("member.getRemember():" + member.getRemember());
-//
-//
-//        if (member == null) {
-//            return false;
-//        } else {
-//            members = memberDao.loginCheck(member);
-//            System.out.println(members);
-//            //원하는걸로 잘들어옴
-//
-//            if (members == null) {
-//                return false;
-//            } else {
-//                Map<String, Object> map = new HashMap<String, Object>();
-//                map.put("memId", members.getMemId());
-//
-//            }
-//            try {
-//
-//                System.out.println(member.getMemPassword());
-//                //시큐리티를 이용해서 암호화된 비밀번호와 암호화되서 디비에들어간 값과 일치하는지확인
-//                //member.xml에서 로그인체크 xml에있는 비밀번호 비교값을 여기서 비교하게 만들고 아이디만있는지확인하는걸로 바뀜
-//                //passwordEncoder.matches(내가입력한값,이미 암호화된 디비에서 가져온값 ) -->> 꼭 기억하기
-//                boolean match = passwordEncoder.matches(member.getMemPassword(), members.getMemPassword());
-//                System.out.println("match : " + match);
-//                if (!match) {
-//                    return false;
-//                }
-//                String remember = member.getRemember();
-////                List<UserRoleVO> userRoleList = memMapper.getUserRole(member);
-////                System.out.println("UserRoleList: " + userRoleList);
-////                if (userRoleList != null) {
-////                    members.setUserRoleList(userRoleList);
-////                }
-//                req.getSession().setAttribute("member", members);
-//                if (remember != null && remember.equals("Y")) {
-//                    Cookie cookie = new Cookie("remember", member.getMemId());
-//                    cookie.setMaxAge(60 * 60 * 24);
-//                    cookie.setHttpOnly(true);
-//                    rep.addCookie(cookie);
-//                } else {
-//                    Cookie cookie = new Cookie("remember", "");
-//                    cookie.setMaxAge(0);
-//                    rep.addCookie(cookie);
-//                }
-//
-//            } catch (Exception e) {
-//                throw new BizNotEffectedException();
-//            }
-//            return true;
-//        }
-//
-//    }
-
     @Override
     public MemberVO getBySns(MemberVO snsUser) {
         if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
@@ -239,10 +180,8 @@ public class MemberServiceImpl implements IMemberService {
                 "<h1>임시비밀번호 발급</h1>" +
                         "<br/>" + memId + "님 " +
                         "<br/>비밀번호 찾기를 통한 임시 비밀번호입니다." +
-                        "<br/>임시비밀번호 :   <h2>" + memberKey + "</h2>" +
-                        "<br/>로그인 후 비밀번호 변경을 해주세요." +
-                        "<a href='http://localhost:8080/login/login.wow" +
-                        ">로그인 페이지</a>";
+                        "<br/>임시비밀번호 :  "+ "<h1 style='color:red;'><strong>" + memberKey + "</strong></h1>" +
+                        "<br/><strong>"+"로그인 후 비밀번호 변경을 해주세요."+"</strong>" ;
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");

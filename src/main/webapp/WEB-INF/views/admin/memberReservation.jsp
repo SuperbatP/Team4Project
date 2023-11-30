@@ -33,6 +33,7 @@
     <div class="tab-content">
         <div id="tab1">
             <div>
+
                 <table class="width100 border-bottom">
                     <tr class="table-tr fontW600">
                         <td class="width200px height50px">의료진</td>
@@ -42,8 +43,9 @@
                         <td class="width200px height50px"></td>
                     </tr>
                     <c:forEach var="re" items="${reservation}">
-                        <form name="reservation" action="reservationEdit.wow" method="post">
+                        <form name="reservation" action="/admin/adminReservationEdit.wow" method="post">
                             <sec:csrfInput/>
+                            <input name="memId" value="${member.memId}" type="hidden">
                             <tr class="table-tr">
                                 <input name="reservationNo" value="${re.reservationNo}" type="hidden">
                                 <input name="dcId" value="${re.dcId}" type="hidden">

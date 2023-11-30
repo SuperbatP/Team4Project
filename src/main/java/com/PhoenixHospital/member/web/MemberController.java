@@ -1,17 +1,16 @@
 package com.PhoenixHospital.member.web;
 
 import com.PhoenixHospital.checkUp.service.ICheckUpService;
-import com.PhoenixHospital.checkUp.vo.CheckUpVO;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.ResultMessageVO;
 import com.PhoenixHospital.common.vo.SearchVO;
+import com.PhoenixHospital.doctor_attendance.service.IAttendanceService;
+import com.PhoenixHospital.doctors.service.IDoctorsService;
 import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
-import com.PhoenixHospital.reservation.dao.IReservationDao;
 import com.PhoenixHospital.reservation.service.IReservationService;
-import com.PhoenixHospital.reservation.vo.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,19 +26,19 @@ import java.util.List;
 @Controller
 public class MemberController {
     @Autowired
-    IMemberService memberService;
+    private IMemberService memberService;
 
     @Autowired
-    IReservationDao reservationDao;
+    private IReservationService reservationService;
 
     @Autowired
-    IReservationService reservationService;
-
-    @Autowired
-    ICheckUpService checkUpService;
+    private ICheckUpService checkUpService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+
+
 
     //회원가입 양식 이동
     @RequestMapping("/member/memberForm.wow")
@@ -101,9 +100,6 @@ public class MemberController {
         return "common/message";
     }
 
-
-
-
     //관리자가 회원 권한 및 탈퇴여부 처리
     @PostMapping("/member/updateUser.wow")
     public String updateUser(Model model, MemberVO member) throws BizException {
@@ -117,19 +113,6 @@ public class MemberController {
         model.addAttribute("resultMessageVO", resultMessageVO);
 
         return "common/message";
-    }
-
-    //관리자가 회원의 예약 관리
-    @RequestMapping("/member/memberReservationList.wow")
-    public String memberReservationList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search) {
-
-        List<ReservationVO> reservationVOList = reservationService.getReservationList();
-        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUpList();
-
-        model.addAttribute("reservation", reservationVOList);
-        model.addAttribute("checkUp", checkUpVOList);
-
-        return "member/memberReservationList";
     }
 
     //회원이 비밀번호 변경: 페이지 이동

@@ -86,7 +86,13 @@
         <tbody>
         <c:forEach items="${memberList}" var="member">
         <tr>
-            <td>${member.memId}</td>
+            <form action="/admin/memberReservation.wow" method="post">
+                <sec:csrfInput/>
+                <td>
+                    <input type="submit" name="memId" value="${member.memId}" readonly="readonly">
+                </td>
+            </form>
+
             <td><a href="memberView.wow?memId=${member.memId}">
                     ${member.memName}</a></td>
             <td>${member.memHp}</td>
