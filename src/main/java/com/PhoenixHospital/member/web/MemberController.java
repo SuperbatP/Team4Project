@@ -4,8 +4,6 @@ import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.common.vo.PagingVO;
 import com.PhoenixHospital.common.vo.ResultMessageVO;
 import com.PhoenixHospital.common.vo.SearchVO;
-import com.PhoenixHospital.doctor_attendance.service.IAttendanceService;
-import com.PhoenixHospital.doctors.service.IDoctorsService;
 import com.PhoenixHospital.exception.BizException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.member.service.IMemberService;
@@ -102,17 +100,11 @@ public class MemberController {
 
     //관리자가 회원 권한 및 탈퇴여부 처리
     @PostMapping("/member/updateUser.wow")
-    public String updateUser(Model model, MemberVO member) throws BizException {
+    public String updateUser(Model model, MemberVO member, HttpServletRequest request) throws BizException {
 
         memberService.updateUser(member);
-
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
-        resultMessageVO.messageSetting(true, "수정"
-                , "수정에 성공했어요", "/member/memberList.wow", "목록으로");
-
-        model.addAttribute("resultMessageVO", resultMessageVO);
-
-        return "common/message";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 
     //회원이 비밀번호 변경: 페이지 이동

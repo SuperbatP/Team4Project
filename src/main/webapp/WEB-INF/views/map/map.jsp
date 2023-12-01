@@ -37,32 +37,32 @@
     </div>
 
 
-    <div class="mymap" style="width: 1200px; height: 300px; border: 0.5px solid; border-color: gainsboro; display: flex; justify-content: center; align-items: center;">
-        <section id="appointment" style="width: 90%; height: 90%; display: flex; justify-content: space-evenly; align-items: center;">
+    <div class="mymap"
+         style="width: 1200px; height: 300px; border: 0.5px solid; border-color: gainsboro; display: flex; justify-content: center; align-items: center;">
+        <section id="appointment"
+                 style="width: 90%; height: 90%; display: flex; justify-content: space-evenly; align-items: center;">
 
             <div class="col-sm-2 section-title" style="margin-top: -90px;">
-                <img style="width: 100%; height: 130px;" src="../../../resource/bootstrap-3.3.2/images/지도.png" class="img-responsive">
+                <img style="width: 100%; height: 130px;" src="../../../resource/bootstrap-3.3.2/images/지도.png"
+                     class="img-responsive">
             </div>
 
             <div class="col-sm-7" style="margin-top: -90px;">
-                    <!-- SECTION TITLE -->
-                    <div class="section-title">
-                        <h2>내 위치에서 오시는길</h2>
+                <!-- SECTION TITLE -->
+                <div class="section-title">
+                    <h2>내 위치에서 오시는길</h2>
 
-                        <div class="col-md-12 col-sm-12">
-                            <label for="myplace">내 위치</label>
-                            <input type="text" class="form-control" id="myplace" name="myplace" placeholder="주소를 입력해주세요.">
-                            <button type="button" class="form-control" id="cf-submit" name="submit" onclick="f_click()">검색</button>
-                        </div>
+                    <div class="col-md-12 col-sm-12">
+                        <label for="myplace">내 위치</label>
+                        <input type="text" class="form-control" id="myplace" name="myplace" placeholder="주소를 입력해주세요.">
+                        <button type="button" class="form-control" id="cf-submit" name="submit" onclick="f_click()">검색
+                        </button>
                     </div>
+                </div>
             </div>
-
         </section>
     </div>
-
 </div>
-
-
 
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33bc111ff5a741e88a74435f109f98c3"></script>
@@ -93,6 +93,7 @@
     marker.setMap(map);
 
     const form = document.getElementById("appointment-form")
+
     function f_click() {
         const place = document.querySelector("#myplace").value
         var openNewWindow = window.open("about:blank");
@@ -102,9 +103,7 @@
     }
 
 
-
 </script>
-
 
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>

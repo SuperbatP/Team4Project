@@ -10,109 +10,114 @@
 </head>
 <body>
 <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/memberForm.css">
+<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/login.css">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <div class="container">
-    <h3>회원 정보 수정</h3>
-    <section>
-        <form name="memberModify" action="memberModify.wow" method="post" class="form-horizontal">
-            <sec:csrfInput/>
-            <div class="form-group">
-                <input type="hidden" name="memId" value="${member.memId}">
-                <label for="memId" class="col-sm-3 control-label">아이디</label>
-                <div class="col-sm-6 ">
-                    <span id="memId"><sec:authentication property="principal.username"/></span>
+        <h3>회원 정보 수정</h3>
+        <section style="margin-top: 60px">
+            <form name="memberModify" action="memberModify.wow" method="post" class="form-horizontal">
+                <sec:csrfInput/>
+                <div class="form-group">
+                    <input type="hidden" name="memId" value="${member.memId}">
+                    <label for="memId" class="col-sm-3 control-label">아이디</label>
+                    <div class="col-sm-6 ">
+                        <span id="memId"><sec:authentication property="principal.username"/></span>
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
-            <div class="form-group">
-                <input type="hidden" name="memName" value="${member.memName}">
-                <label for="memName" class="col-sm-3 control-label">이름</label>
-                <div class="col-sm-6 ">
-                    <span id="memName">${member.memName}</span>
+                <p class="divider-text"></p>
+                <div class="form-group">
+                    <input type="hidden" name="memName" value="${member.memName}">
+                    <label for="memName" class="col-sm-3 control-label">이름</label>
+                    <div class="col-sm-6 ">
+                        <span id="memName">${member.memName}</span>
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">비밀번호</label>
-                <div class="col-sm-2">
-                    <a href="/member/memberPasswordForm.wow" class="form-control btn btn-block btn-secondary btn-sm"
-                       style="border: 0px; height: 33px; color: black;">비밀번호 변경</a>
+                <p class="divider-text"></p>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">비밀번호</label>
+                    <div class="col-sm-2">
+                        <a href="/member/memberPasswordForm.wow" class="form-control btn btn-block btn-secondary btn-mg"
+                           style="border: 0px; height: 33px; color: black;">비밀번호 변경</a>
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
+                <p class="divider-text"></p>
 
-            <div class="form-group">
-                <label for="memZip" class="col-sm-3 control-label">우편번호</label>
-                <div class="col-sm-4">
-                    <input type="text" name="memZip" id="memZip" class="form-control input-sm" required="required"
-                           readonly="readonly"
-                           value='${member.memZip}'>
+                <div class="form-group">
+                    <label for="memZip" class="col-sm-3 control-label">우편번호</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="memZip" id="memZip" class="form-control input-mg " required="required"
+                               readonly="readonly"
+                               value='${member.memZip}'>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="button" class="form-control btn btn-block btn-secondary btn-mg"
+                               onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+                               style="border: 0px; height: 33px; color: black;">
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <input type="button" class="form-control btn btn-block btn-secondary btn-sm"
-                           onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
-                           style="border: 0px; height: 33px; color: black;">
+                <p class="divider-text"></p>
+                <div class="form-group">
+                    <label for="memAdd1" class="col-sm-3 control-label">주소</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="memAdd1" id="memAdd1" class="form-control input-mg "
+                               value='${member.memAdd1}' required="required" readonly="readonly">
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
-            <div class="form-group">
-                <label for="memAdd1" class="col-sm-3 control-label">주소</label>
-                <div class="col-sm-6">
-                    <input type="text" name="memAdd1" id="memAdd1" class="form-control input-sm"
-                           value='${member.memAdd1}' required="required" readonly="readonly">
+                <p class="divider-text"></p>
+                <div class="form-group">
+                    <label for="memAdd2" class="col-sm-3 control-label">상세주소</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="memAdd2" id="memAdd2" class="form-control input-mg "
+                               value='${member.memAdd2}' required="required" readonly="readonly">
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
-            <div class="form-group">
-                <label for="memAdd2" class="col-sm-3 control-label">상세주소</label>
-                <div class="col-sm-6">
-                    <input type="text" name="memAdd2" id="memAdd2" class="form-control input-sm"
-                           value='${member.memAdd2}' required="required" readonly="readonly">
+                <p class="divider-text"></p>
+                <div class="form-group">
+                    <label for="memBir" class="col-sm-3 control-label">생일</label>
+                    <div class="col-sm-6">
+                        <input id="memBir" type="date" name="memBir" required="required" class="form-control input-mg"
+                               value='${member.memBir}'>
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
-            <div class="form-group">
-                <label for="memBir" class="col-sm-3 control-label">생일</label>
-                <div class="col-sm-6">
-                    <input id="memBir" type="date" name="memBir" required="required" class="form-control input-sm"
-                           value='${member.memBir}'>
+                <p class="divider-text"></p>
+                <div class="form-group">
+                    <input type="hidden" name="memEmail" value="${member.memEmail}">
+                    <label for="memEmail" class="col-sm-3 control-label">이메일</label>
+                    <div class="col-sm-6 ">
+                        <span id="memEmail">${member.memEmail}</span>
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
-            <div class="form-group">
-                <input type="hidden" name="memEmail" value="${member.memEmail}">
-                <label for="memEmail" class="col-sm-3 control-label">이메일</label>
-                <div class="col-sm-6 ">
-                    <span id="memEmail">${member.memEmail}</span>
+                <p class="divider-text"></p>
+                <div class="form-group">
+                    <label for="memHp" class="col-sm-3 control-label">핸드폰</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-mg" id="memHp" placeholder="-를 제외한 숫자만 입력하시오."
+                               required="required"
+                               oninput="addhyphen(),checkTel(), activateSignupbtn()" name="memHp"
+                               value='${member.memHp}'>
+                    </div>
                 </div>
-            </div>
-            <p class="divider-text"></p>
-            <div class="form-group">
-                <label for="memHp" class="col-sm-3 control-label">핸드폰</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="memHp" placeholder="-를 제외한 숫자만 입력하시오."
-                           required="required"
-                           oninput="addhyphen(),checkTel(), activateSignupbtn()" name="memHp" value='${member.memHp}'>
-                </div>
-            </div>
-            <p class="divider-text"></p>
+                <p class="divider-text"></p>
 
-            <div class="form-group" style="margin-top: 30px">
-                <label for="signupbtn" class="col-sm-3 control-label"></label>
-                <div class="col-sm-3">
-                    <button type="submit" class="form-control btn btn-block btn-secondary btn-lg"
-                            style="border: 0px; width: 100%; height: 50px; color: black;"
-                            id="signupbtn">저장
-                    </button>
+                <div class="form-group" style="margin-top: 30px">
+                    <label for="signupbtn" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-3">
+                        <button type="submit" class="form-control btn btn-block btn-secondary btn-lg"
+                                style="border: 0px; width: 100%; height: 50px; color: black;"
+                                id="signupbtn">저장
+                        </button>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="/member/memberCancelForm.wow"
+                           style="border: 0px; width: 100%; height: 50px; color: black;"
+                           class="form-control btn btn-block btn-danger btn-lg">탈퇴</a>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <a href="/member/memberCancelForm.wow" style="border: 0px; width: 100%; height: 50px; color: black;"
-                       class="form-control btn btn-block btn-danger btn-lg">탈퇴</a>
-                </div>
-            </div>
-        </form>
-    </section>
+            </form>
+        </section>
+
+
 </div>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

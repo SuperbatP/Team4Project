@@ -27,6 +27,7 @@
 <div class="container">
     <h3 class="mar-top40">증명서 조회</h3>
 
+    <div style="margin-top: 40px;">
     <table class="width100 border-bottom">
         <tr class="table-tr fontW600">
             <td class="width200px height50px">증명서 종류</td>
@@ -83,6 +84,7 @@
             </td>
         </tr>
     </table>
+    </div>
 </div>
 
 <!-- 코드 작성구역 끝 -->

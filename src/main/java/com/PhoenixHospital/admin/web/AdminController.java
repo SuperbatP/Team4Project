@@ -52,7 +52,6 @@ public class AdminController {
         model.addAttribute("reservation", reservationVOList);
         model.addAttribute("checkUp", checkUpVOList);
         model.addAttribute("member", memberVO);
-        System.out.println(memberVO);
         return "admin/memberReservation";
     }
 

@@ -39,6 +39,9 @@
                                placeholder="비밀번호를 입력하세요." required="required">
                     </div>
                     <div class="d-flex justify-content-around align-items-center mb-4">
+                        <div class="d-flex align-items-center my-6">
+                            <%--  공백 처리용--%>
+                        </div>
                         <!-- 아이디 기억하기 -->
                         <div class="form-check">
                             <label class="form-check-label" for="idRemember"> 로그인 상태 유지 </label>
@@ -49,9 +52,8 @@
                             <label class="form-check-label"><a href="/login/search_IdPw.wow">아이디 찾기 /  비밀번호 찾기</a> </label>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center my-6">
-                    <%--  공백 처리용--%>
-                    </div>
+
+
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
                     <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee"

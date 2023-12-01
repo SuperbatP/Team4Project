@@ -27,9 +27,9 @@
                 <div class="item item-first">
                     <div class="caption">
                         <div class="col-md-offset-1 col-md-10">
-                            <h3>Let's make your life happier</h3>
-                            <h1>Healthy Living</h1>
-                            <a href="#team" class="section-btn btn btn-default smoothScroll">Meet Our Doctors</a>
+                            <h3>집에서 진료 예약을 간편하게</h3>
+                            <h1>불사조 병원 예약 시스템</h1>
+                            <a href="/reservation/reservationSearch.wow" class="section-btn btn btn-default smoothScroll">진료예약 하기</a>
                         </div>
                     </div>
                 </div>
@@ -37,9 +37,9 @@
                 <div class="item item-second">
                     <div class="caption">
                         <div class="col-md-offset-1 col-md-10">
-                            <h3>Aenean luctus lobortis tellus</h3>
-                            <h1>New Lifestyle</h1>
-                            <a href="#about" class="section-btn btn btn-default btn-gray smoothScroll">More About Us</a>
+                            <h3>방문하기 편리한 위치</h3>
+                            <h1>불사조 병원</h1>
+                            <a href="/map/map.wow" class="section-btn btn btn-default btn-gray smoothScroll">위치 안내</a>
                         </div>
                     </div>
                 </div>
@@ -47,14 +47,13 @@
                 <div class="item item-third">
                     <div class="caption">
                         <div class="col-md-offset-1 col-md-10">
-                            <h3>Pellentesque nec libero nisi</h3>
-                            <h1>Your Health Benefits</h1>
-                            <a href="#news" class="section-btn btn btn-default btn-blue smoothScroll">Read Stories</a>
+                            <h3>불사조 병원 최근 뉴스</h3>
+                            <h1>불사조 병원 공지사항</h1>
+                            <a href="/notice/noticeList.wow" class="section-btn btn btn-default btn-blue smoothScroll">공지사항</a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -67,16 +66,17 @@
 
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.6s">Welcome to Your <i class="fa fa-h-square"></i>ealth Center</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.6s">불사조 병원을 방문해주셔서<br> 감사합니다.</h2>
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
-                        <p>Aenean luctus lobortis tellus, vel ornare enim molestie condimentum. Curabitur lacinia nisi vitae velit volutpat venenatis.</p>
-                        <p>Sed a dignissim lacus. Quisque fermentum est non orci commodo, a luctus urna mattis. Ut placerat, diam a tempus vehicula.</p>
+                        <p style="font-size: 16px;">불사조 병원은 환자의 입장에서 먼저 생각합니다.</p>
+                        <p style="font-size: 16px;">불사조 병원 예약 사이트는 무료입니다.</p>
+                        <p style="font-size: 16px;">회원가입 후 서비스를 이용하세요.</p>
                     </div>
                     <figure class="profile wow fadeInUp" data-wow-delay="1s">
-                        <img src="resource/bootstrap-3.3.2/images/author-image.jpg" class="img-responsive" alt="">
-                        <figcaption>
-                            <h3>Dr. Neil Jackson</h3>
-                            <p>General Principal</p>
+                        <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
+                        <figcaption style="margin-top: 20px;">
+                            <h3>김정환 원장</h3>
+                            <p>토니토니 초파</p>
                         </figcaption>
                     </figure>
                 </div>

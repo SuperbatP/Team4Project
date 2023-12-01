@@ -28,7 +28,9 @@
     }
 
     .dropdown-content a {
-        display: block;
+        display: flex;
+        text-align: center;
+        justify-content: center;
         text-decoration: none;
         font-size: 13px;
         padding: 12px 15px;
@@ -70,12 +72,12 @@
                     <span class=""> <sec:authentication property="principal.username"/> 관리자 님</span>
                     <span class=""><a href="/member/memberEdit.wow">My Page</a></span>
                     <span class=""><a href="/member/memberList.wow">회원정보관리</a></span>
+                    <span class=""><a href="/admin/adminBoardList.wow">관리자게시판</a></span>
                     <span class=""><a href="#" onclick="document.getElementById('logoutForm').submit();">로그아웃</a></span>
                     <form style="display: none;" id="logoutForm" action="/logout" method="post">
                         <!-- CSRF 토큰 추가 (Spring Security 설정에 따라 필요할 수 있음) -->
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
-                    <span class=""><a href="/admin/adminBoardList.wow">관리자게시판</a></span>
                     <span class=""><a href="#">사이트맵</a></span>
                 </sec:authorize>
             </div>
@@ -114,7 +116,7 @@
                 <div class="dropdown">
                     <li class="drop-btn"><a href="/certificate/certificateChoice.wow">증명서발급</a></li>
                     <div class="dropdown-content">
-                        <a class="smoothScroll" href="/certificate/certificateChoice.wow">증명서조회 및 발급</a>
+                        <a class="smoothScroll" href="/certificate/certificateChoice.wow">증명서 조회</a>
                     </div>
                 </div>
 

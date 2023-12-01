@@ -26,14 +26,15 @@
         </div>
     </section>
 
+
     <!--회원가입 양식-->
-    <section>
+    <section style="margin-top: 30px;">
         <form action="memberRegist.wow" method="post" class="form-horizontal">
             <sec:csrfInput/>
             <div class="form-group">
                 <label for="memId" class="col-sm-3 control-label">아이디<span class="req"> *</span></label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="memId"
+                    <input type="text" class="form-control input-mg" id="memId"
                            oninput="checkId(), activateSignupbtn()" name="memId" autocomplete='off' required="required">
                     <span id="failid"
                           style="display:none; margin-top: 5px; color: red;">6~16자의 영문자와 숫자를 조합해서 입력해주세요.</span>
@@ -44,7 +45,7 @@
             <div class="form-group">
                 <label for="memName" class="col-sm-3 control-label">이름<span class="req"> *</span></label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="memName"
+                    <input type="text" class="form-control input-mg" id="memName"
                            oninput="checkName(), activateSignupbtn()" name="memName" autocomplete='off'>
                     <span id="failname" style="display:none; margin-top: 5px; color: red; ">올바른 형식으로 입력하세요.</span>
                 </div>
@@ -53,7 +54,7 @@
             <div class="form-group">
                 <label for="memPassword" class="col-sm-3 control-label">비밀번호<span class="req"> *</span></label>
                 <div class="col-sm-6">
-                    <input type="password" name="memPassword" class="form-control input-sm"
+                    <input type="password" name="memPassword" class="form-control input-mg"
                            required="required" id="memPassword" oninput="checkPwd()">
                     <span id="failpwd"
                           style="display:none; margin-top: 5px; color: red; ">8~16자의 영문자와 숫자를 조합해서 입력해주세요.</span>
@@ -63,7 +64,7 @@
             <div class="form-group">
                 <label for="pwCheck" class="col-sm-3 control-label">비밀번호 확인<span class="req"> *</span></label>
                 <div class="col-sm-6">
-                    <input type="password" class="form-control" id="pwCheck"
+                    <input type="password" class="form-control input-mg" id="pwCheck"
                            oninput="checkPwd2(), activateSignupbtn()" name="pwCheck">
                     <span id="failpwd2" style="display:none; margin-top: 5px; color: red; ">비밀번호가 맞지 않습니다.</span>
                 </div>
@@ -72,17 +73,17 @@
             <div class="form-group">
                 <label for="memBir" class="col-sm-3 control-label">생일</label>
                 <div class="col-sm-6">
-                    <input type="date" id="memBir" name="memBir" class="form-control input-sm">
+                    <input type="date" id="memBir" name="memBir" class="form-control input-mg">
                 </div>
             </div>
             <p class="divider-text"></p>
             <div class="form-group">
                 <label for="memZip" class="col-sm-3 control-label">우편번호</label>
                 <div class="col-sm-4">
-                    <input type="text" name="memZip" id="memZip" class="form-control input-sm" disabled="disabled">
+                    <input type="text" name="memZip" id="memZip" class="form-control input-mg" disabled="disabled">
                 </div>
                 <div class="col-sm-2">
-                    <input type="button" class="form-control btn btn-block btn-secondary btn-sm"
+                    <input type="button" class="form-control btn btn-block btn-secondary btn-mg"
                            onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
                            style="border: 0px; height: 33px; color: black;">
                 </div>
@@ -91,24 +92,24 @@
             <div class="form-group">
                 <label for="memAdd1" class="col-sm-3 control-label">주소</label>
                 <div class="col-sm-6">
-                    <input type="text" name="memAdd1" id="memAdd1" class="form-control input-sm" disabled="disabled">
+                    <input type="text" name="memAdd1" id="memAdd1" class="form-control input-mg" disabled="disabled">
                 </div>
             </div>
             <p class="divider-text"></p>
             <div class="form-group">
                 <label for="memAdd2" class="col-sm-3 control-label">상세주소</label>
                 <div class="col-sm-6">
-                    <input type="text" name="memAdd2" id="memAdd2" class="form-control input-sm" disabled="disabled">
+                    <input type="text" name="memAdd2" id="memAdd2" class="form-control input-mg" disabled="disabled">
                 </div>
             </div>
             <p class="divider-text"></p>
             <div class="form-group">
                 <label for="memEmail" class="col-sm-3 control-label">이메일<span class="req"> *</span></label>
                 <div class="col-sm-4">
-                    <input type="email" id="memEmail" name="memEmail" class="form-control input-sm" required>
+                    <input type="email" id="memEmail" name="memEmail" class="form-control input-mg" required>
                 </div>
                 <div class="col-sm-2">
-                    <input type="button" class="form-control btn btn-block btn-secondary btn-sm" id="email_auth_btn"
+                    <input type="button" class="form-control btn btn-block btn-secondary btn-mg" id="email_auth_btn"
                            value="인증번호 받기"
                            style="border: 0px;  height: 33px; color: black;">
                 </div>
@@ -117,7 +118,7 @@
             <div class="form-group">
                 <label for="authNum" class="col-sm-3 control-label">인증번호 입력<span class="req"> *</span></label>
                 <div class="col-sm-6 mail_check_input">
-                    <input type="text" class="form-control mail_check_input" name="authNumber" id="authNum" value=""
+                    <input type="text" class="form-control mail_check_input input-mg" name="authNumber" id="authNum" value=""
                            disabled="disabled">
                     <span id="mail_check_input_box_warn" style="display:none; margin-top: 5px; color: red; ">비밀번호가 맞지 않습니다.</span>
                 </div>
@@ -126,7 +127,7 @@
             <div class="form-group">
                 <label for="memHp" class="col-sm-3 control-label">핸드폰<span class="req"> *</span></label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="memHp" placeholder="-를 제외한 숫자만 입력하시오."
+                    <input type="text" class="form-control input-mg" id="memHp" placeholder="-를 제외한 숫자만 입력하시오."
                            oninput="addhyphen(),checkTel(), activateSignupbtn()" name="memHp">
                 </div>
             </div>

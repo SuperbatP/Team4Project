@@ -12,13 +12,14 @@
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <div class="container">
+
     <!--회원가입 안내문-->
     <section class="vh-100">
         <div class="form-title">
             <div class="col-md-7" style="margin-left: 40px">
-                <h2 style="margin-top: 40px">비밀번호 변경</h2>
-<%--                <p style="font-size: 15px; font-weight: bold">불사조병원 홈페이지는 회원의 개인정보보호를 위해 항상 최선을 다하고 있습니다.</p>--%>
-<%--                <p style="font-size: 15px; font-weight: bold">아래의 항목을 모두 기입하시고 "회원가입" 버튼을 누르시면 회원가입이 완료 됩니다.</p>--%>
+                <h2 style="margin-top: 60px">비밀번호 변경</h2>
+                <p style="font-size: 18px; font-weight: bold">정기적인 비밀번호 변경으로 회원님의 개인정보를 보호해 주세요.</p>
+                <p style="font-size: 18px; font-weight: bold">ID, 주민번호, 생일, 전화번호 등 개인정보는 사용을 지양해 주세요.</p>
             </div>
             <div class="form-img">
                 <img src="/resource/bootstrap-3.3.2/images/form-img.png" style="height: 280px">
@@ -27,27 +28,27 @@
     </section>
 
     <%-- 비밀번호 변경   --%>
-    <section>
+    <section style="margin-top: 30px">
         <form action="/pwUpdate" method="post" id="pwUpdateForm" name="pwUpdateForm">
             <sec:csrfInput/>
             <input type="hidden" id="memId" name="memId" value="${member.memId}">
             <div class="col-sm-8 col-sm-offset-2">
-                <div class="panel panel-default panel-margin-10">
+                <div class="panel panel-default" style="border: none;">
                     <div class="panel-body panel-body-content text-center">
-                        <p class="lead">변경하실 비밀번호를 입력해 주세요.</p>
+                        <p class="lead" style="font-weight: bold; color: #0f0f0f">변경하실 비밀번호를 입력해 주세요.</p>
                         <div class="form-group">
                             <input type="password" name="memPassword" id="memPassword" onchange="checkpassword()"
-                                   class="form-control form-control-inline text-center" placeholder="현재 비밀번호" autoComplete="off"/>
+                                   class="form-control form-control-inline text-center input-mg" placeholder="현재 비밀번호" autoComplete="off"/>
                             <span  id="fail" style="display:none; color: red;">현재 비밀번호와 맞지 않습니다.</span>
                         </div>
                         <div class="form-group">
-                            <input type="password" id="memberPw1" name="memberPw1" class="form-control form-control-inline text-center"
+                            <input type="password" id="memberPw1" name="memberPw1" class="form-control form-control-inline text-center input-mg"
                                    placeholder="새 비밀번호" oninput="checkPwd()" autoComplete="off" >
                             <span id="failpwd"
                                   style="display:none; margin-top: 5px; color: red; ">8~16자의 영문자와 숫자를 조합해서 입력해주세요.</span>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control form-control-inline text-center"
+                            <input type="password" class="form-control form-control-inline text-center input-mg"
                                    oninput="checkPwd2()" placeholder="새 비밀번호 확인" id="pwCheck" autoComplete="off" >
                             <span id="failpwd2"
                                   style="display:none; margin-top: 5px; color: red; ">비밀번호가 맞지 않습니다.</span>
