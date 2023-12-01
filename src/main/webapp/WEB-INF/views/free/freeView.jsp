@@ -8,8 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="ko">
 <head>
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <%@ include file="/WEB-INF/inc/header.jsp" %>
     <title>자유게시판 - 글 보기</title>
 </head>
@@ -19,7 +22,7 @@
 <div class="container">
     <div class="page-header">
         <h3>
-            자유게시판 - <small>글 보기</small>
+            민원게시판 - <small>글 보기</small>
         </h3>
     </div>
     <table class="table table-striped table-bordered">
@@ -39,7 +42,7 @@
         <!-- 비밀번호는 보여주지 않음  -->
         <tr>
             <th>내용</th>
-            <td><div  rows="10" name="boContent" class="form-control input-sm" readonly="readonly">
+            <td><div style="height: 500px;"   name="boContent" class="form-control input-sm" readonly="readonly">
                 ${freeBoard.boContents }
             </div></td>
         </tr>
@@ -80,7 +83,7 @@
                     <c:if test="${pinfo.username eq freeBoard.boWriter}">
                         <div class="pull-right">
                             <a href="freeEdit.wow?boNo=${freeBoard.boNo }" class="btn btn-success btn-sm"> <span
-                                    class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
+                                    class="glyphicon glyphicon-pencil" aria-hidden="true"></span>  &nbsp;&nbsp;&nbsp;수정
                             </a>
                         </div>
                     </c:if>
@@ -168,6 +171,7 @@
 <!-- reply container -->
 <script type="text/javascript">
     // 댓글 데이터를 딱 10개만 가지고 오도록 하는 파라미터 모음
+
     var params = {
         "curPage": 1, "rowSizePerPage": 10
         , "categoryCode": "BO001", "reParentNo": ${freeBoard.boNo}

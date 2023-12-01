@@ -19,6 +19,7 @@
     </div>
     <form action="/health/healthInsertForm.wow" method="post" enctype="multipart/form-data">
         <sec:csrfInput/>
+        <input type="hidden" type="text" name="boWriter" value="<sec:authentication property="principal.username"/>">
         <table class="table table-striped table-bordered">
             <colgroup>
                 <col width="20%" />
@@ -27,13 +28,8 @@
             <tr>
                 <th>제목</th>
                 <td><input type="text" name="boTitle" value="" class="form-control input-sm"  required="required" ></td>
-            </tr>
-            <tr>
-                <th>작성자ID</th>
                 </span><sec:csrfInput/>
-                <td><input type="text" name="boWriter" value=""  class="form-control input-sm" required="required" ></td>
             </tr>
-
             <tr>
                 <th>내용</th>
                 <td><textarea id="summernote" rows="10" name="boContents" class="form-control"></textarea>

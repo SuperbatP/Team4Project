@@ -208,7 +208,9 @@
     </insert>
 
 
-
+    <resultMap id="adminBoardAttaches" type="com.PhoenixHospital.free.vo.FreeBoardVO">
+        <collection property="attaches" column="{atchParentNo=bo_no, categoryCode=bo_type}" ofType="com.PhoenixHospital.attach.vo.AttachVO" select="com.PhoenixHospital.attach.dao.IAttachDao.getAttachListByParent"/>
+    </resultMap>
 
 
 

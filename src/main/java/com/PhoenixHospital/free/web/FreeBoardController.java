@@ -40,6 +40,9 @@ public class FreeBoardController {
     @Autowired
     private IAttachDao attachDao;
 
+
+
+
     @RequestMapping("/free/freeList.wow")
     // 요청을 받는 과정으로 웹에서 가져온 파라미터를 다 가지고 온다...! ㅇ0ㅇ!!! 그냥 매개변수로 할당하면 ok!
     public String freeList(Model model,@ModelAttribute("freeBoardVO")  FreeBoardVO freeBoardVO) {
@@ -52,6 +55,8 @@ public class FreeBoardController {
 
         return "free/freeList";
     }
+
+
 
     @RequestMapping("/free/freeForm.wow")
     public String freeForm(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws Exception {
@@ -76,6 +81,8 @@ public class FreeBoardController {
 
         return "redirect:/free/freeList.wow";
     }
+
+
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/free/freeView.wow")
