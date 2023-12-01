@@ -94,73 +94,55 @@
 
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Our Doctors</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">의료진 소개</h2>
                 </div>
             </div>
-
             <div class="clearfix"></div>
 
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                    <img src="resource/bootstrap-3.3.2/images/team-image1.jpg" class="img-responsive" alt="">
-
+                    <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/DC024.jpg" class="img-responsive" alt="">
                     <div class="team-info">
-                        <h3>Nate Baston</h3>
-                        <p>General Principal</p>
+                        <h3>김영희</h3>
+                        <p>가정의학과</p>
                         <div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-020-0120</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">general@company.com</a></p>
+                            <p>서울대학교 의과대학</p>
+                            <p>서울의료원 가정의학과전문의 경력 10년</p>
+                            <br>
                         </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-linkedin-square"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                        </ul>
                     </div>
-
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <img src="resource/bootstrap-3.3.2/images/team-image2.jpg" class="img-responsive" alt="">
-
+                    <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/DC025.jpg" class="img-responsive" alt="">
                     <div class="team-info">
-                        <h3>Jason Stewart</h3>
-                        <p>Pregnancy</p>
+                        <h3>박민정</h3>
+                        <p>감염내과</p>
                         <div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-070-0170</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">pregnancy@company.com</a></p>
+                            <p>연세대학교 의과대학</p>
+                            <p>연세의료원 감염내과전문의 경력 8년</p>
+                            <br>
                         </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                            <li><a href="#" class="fa fa-flickr"></a></li>
-                        </ul>
                     </div>
-
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <img src="resource/bootstrap-3.3.2/images/team-image3.jpg" class="img-responsive" alt="">
-
+                    <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/DC026.jpg" class="img-responsive" alt="">
                     <div class="team-info">
-                        <h3>Miasha Nakahara</h3>
-                        <p>Cardiology</p>
+                        <h3>박영미</h3>
+                        <p>내분비대사내과</p>
                         <div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-040-0140</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">cardio@company.com</a></p>
+                            <p>고려대학교 의과대학</p>
+                            <p>한양의료원 내분비대사내과전문의 경력 15년</p>
+                            <br>
                         </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                        </ul>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -174,7 +156,7 @@
             <div class="col-md-12 col-sm-12">
                 <!-- SECTION TITLE -->
                 <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>Latest News</h2>
+                    <h2>최신 뉴스</h2>
                 </div>
             </div>
 
@@ -185,14 +167,15 @@
                         <img src="resource/bootstrap-3.3.2/images/news-image1.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
-                        <span>March 08, 2018</span>
-                        <h3><a href="news-detail.html">About Amazing Technology</a></h3>
-                        <p>Maecenas risus neque, placerat volutpat tempor ut, vehicula et felis.</p>
+                        <span>2023 12 12</span>
+                        <h3><a href="news-detail.html">불사조 병원 최종 합격자</a></h3>
+                        <p>제 1회 불사조 병원 합격지원자 명단 확인</p>
+                        <p>지원해주신 19명은 명단을 확인해주세요.</p>
                         <div class="author">
-                            <img src="resource/bootstrap-3.3.2/images/author-image.jpg" class="img-responsive" alt="">
+                            <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
-                                <h5>Jeremie Carlson</h5>
-                                <p>CEO / Founder</p>
+                                <h5>김정환 원장</h5>
+                                <p>토니토니 초파</p>
                             </div>
                         </div>
                     </div>
@@ -206,14 +189,14 @@
                         <img src="resource/bootstrap-3.3.2/images/news-image2.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
-                        <span>February 20, 2018</span>
-                        <h3><a href="news-detail.html">Introducing a new healing process</a></h3>
-                        <p>Fusce vel sem finibus, rhoncus massa non, aliquam velit. Nam et est ligula.</p>
+                        <span>2023 12 04</span>
+                        <h3><a href="news-detail.html">재활의학과의 확장이전 소식</a></h3>
+                        <p>불사조 병원에 재활의학과가 확장 이전합니다. 환자분들의 편의를 위해 더욱 접근이 용이한 위치로 옮기게 되었습니다.</p>
                         <div class="author">
-                            <img src="resource/bootstrap-3.3.2/images/author-image.jpg" class="img-responsive" alt="">
+                            <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
-                                <h5>Jason Stewart</h5>
-                                <p>General Director</p>
+                                <h5>김정환 원장</h5>
+                                <p>토니토니 초파</p>
                             </div>
                         </div>
                     </div>
@@ -227,14 +210,15 @@
                         <img src="resource/bootstrap-3.3.2/images/news-image3.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
-                        <span>January 27, 2018</span>
-                        <h3><a href="news-detail.html">Review Annual Medical Research</a></h3>
-                        <p>Vivamus non nulla semper diam cursus maximus. Pellentesque dignissim.</p>
+                        <span>2023 12 01</span>
+                        <h3><a href="news-detail.html">불사조 병원 의료진 추가채용</a></h3>
+                        <p>불사조 병원의 의료진를 추가 모집합니다.</p>
+                        <p>해당 게시글을 확인하세요.</p>
                         <div class="author">
-                            <img src="resource/bootstrap-3.3.2/images/author-image.jpg" class="img-responsive" alt="">
+                            <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
-                                <h5>Andrio Abero</h5>
-                                <p>Online Advertising</p>
+                                <h5>김정환 원장</h5>
+                                <p>토니토니 초파</p>
                             </div>
                         </div>
                     </div>
@@ -243,68 +227,6 @@
 
         </div>
     </div>
-</section>
-
-
-<!-- MAKE AN APPOINTMENT -->
-<section id="appointment" data-stellar-background-ratio="3">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-6 col-sm-6">
-                <img src="resource/bootstrap-3.3.2/images/appointment-image.jpg" class="img-responsive" alt="">
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <!-- CONTACT FORM HERE -->
-                <form id="appointment-form" role="form" method="post" action="#">
-
-                    <!-- SECTION TITLE -->
-                    <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
-                        <h2>Make an appointment</h2>
-                    </div>
-
-                    <div class="wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="col-md-6 col-sm-6">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name">
-                        </div>
-
-                        <div class="col-md-6 col-sm-6">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
-                        </div>
-
-                        <div class="col-md-6 col-sm-6">
-                            <label for="date">Select Date</label>
-                            <input type="date" name="date" value="" class="form-control">
-                        </div>
-
-                        <div class="col-md-6 col-sm-6">
-                            <label for="select">Select Department</label>
-                            <select class="form-control">
-                                <option>General Health</option>
-                                <option>Cardiology</option>
-                                <option>Dental</option>
-                                <option>Medical Research</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <label for="telephone">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
-                            <label for="Message">Additional Message</label>
-                            <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message"></textarea>
-                            <button type="submit" class="form-control" id="cf-submit" name="submit">Submit Button</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-
-        </div>
-    </div>
-
 </section>
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
