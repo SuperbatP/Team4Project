@@ -71,7 +71,7 @@
                 <sec:authorize access="hasRole('ADMIN')">
                     <span class=""> <sec:authentication property="principal.username"/> 관리자 님</span>
                     <span class=""><a href="/member/memberEdit.wow">My Page</a></span>
-                    <span class=""><a href="/member/memberList.wow">회원정보관리</a></span>
+                    <span class=""><a href="/member/memberList.wow">회원관리</a></span>
                     <span class=""><a href="/admin/adminBoardList.wow">관리자게시판</a></span>
                     <span class=""><a href="#" onclick="document.getElementById('logoutForm').submit();">로그아웃</a></span>
                     <form style="display: none;" id="logoutForm" action="/logout" method="post">
