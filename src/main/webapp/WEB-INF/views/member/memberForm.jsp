@@ -20,8 +20,6 @@
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 
-
-
 <div class="container">
     <!--회원가입 안내문-->
     <section class="vh-100">

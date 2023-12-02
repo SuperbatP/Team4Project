@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <title>진료예약</title>

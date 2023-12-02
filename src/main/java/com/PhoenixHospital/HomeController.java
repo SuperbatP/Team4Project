@@ -13,14 +13,15 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private IFreeBoardDao freeBoardDao;
-
     @RequestMapping("/")
     public String index(Model model){
         return "index";
         //return의 타입에 상관없이 HandlerAdapter가 처리해줌. 그 결과를 viewResolver로 보내줌.
     }
 
+    @RequestMapping("/common/siteMap.wow")
+    public String siteMapView(Model model){
+        return "common/siteMap";
+    }
 
 }
