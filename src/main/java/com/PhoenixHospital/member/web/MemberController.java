@@ -98,14 +98,6 @@ public class MemberController {
         return "common/message";
     }
 
-    //관리자가 회원 권한 및 탈퇴여부 처리
-    @PostMapping("/member/updateUser.wow")
-    public String updateUser(Model model, MemberVO member, HttpServletRequest request) throws BizException {
-
-        memberService.updateUser(member);
-        String referer = request.getHeader("Referer");
-        return "redirect:" + referer;
-    }
 
     //회원이 비밀번호 변경: 페이지 이동
     @RequestMapping(value = "/member/memberPasswordForm.wow", method = RequestMethod.GET)

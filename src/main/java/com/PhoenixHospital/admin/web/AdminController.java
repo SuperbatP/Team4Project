@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -87,6 +88,15 @@ public class AdminController {
         model.addAttribute("checkUp", checkUpVOList);
 
         return "admin/memberReservation";
+    }
+
+    //관리자가 회원 권한 및 탈퇴여부 + 모든 정보 처리
+    @PostMapping("/member/updateUser.wow")
+    public String updateUser(Model model, MemberVO member, HttpServletRequest request) throws BizException {
+
+        memberService.updateUser(member);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 }
 

@@ -109,10 +109,18 @@
         WHERE googleid = #{googleid}
     </select>
 
-    <update id="updateUser" parameterType="String">
+    <update id="updateUser" parameterType="com.PhoenixHospital.member.vo.MemberVO">
         UPDATE member
-        SET mem_role   = #{memRole}
-          , mem_del_yn = #{memDelYn}
+        SET
+            mem_name     =#{memName}
+          , mem_bir      =#{memBir}
+          , mem_zip      =#{memZip}
+          , mem_add1     =#{memAdd1}
+          , mem_add2     =#{memAdd2}
+          , mem_hp       =#{memHp}
+          , mem_email    =#{memEmail}
+          , mem_role   =#{memRole}
+          , mem_del_yn =#{memDelYn}
         WHERE mem_id = #{memId}
     </update>
 
