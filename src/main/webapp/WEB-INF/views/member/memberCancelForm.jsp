@@ -4,16 +4,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <%@ include file="/WEB-INF/inc/header.jsp" %>
+    <%@include file="/WEB-INF/inc/header.jsp" %>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/resource/bootstrap/css/memberForm.css">
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/wow.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/custom.js"></script>
 </head>
-<body>
-<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/memberForm.css">
-
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
+
 <div class="container">
-    <!--회원가입 안내문-->
-    <section class="vh-100">
+    <!--안내문-->
+    <section>
             <div class="form-title">
                 <div class="col-md-7" style="margin-left: 40px">
                     <h4 style="margin-top: 40px">지금까지 충남대학교병원 홈페이지를 <br>이용해 주셔서 감사합니다</h4>
@@ -23,18 +32,18 @@
 
                 </div>
                 <div class="form-img" >
-                    <img src="/resource/bootstrap-3.3.2/images/form-img.png" style="height: 280px">
+                    <img src="/resource/images/form-img.png" style="height: 280px">
                 </div>
             </div>
     </section>
 
-    <%-- 비밀번호 변경   --%>
-    <section>
+    <%-- 탈퇴 양식   --%>
+    <section style="margin-top: 30px">
         <form action="/removeMember" method="post" id="pwUpdateForm" name="pwUpdateForm">
             <sec:csrfInput/>
             <input type="hidden" id="memId" name="memId" value="${member.memId}">
             <div class="col-sm-8 col-sm-offset-2">
-                <div class="panel panel-default panel-margin-10">
+                <div class="panel panel-default panel-margin-10"  style="border: none;">
                     <div class="panel-body panel-body-content text-center">
                         <p class="lead">비밀번호를 입력해주세요.</p>
                         <div class="form-group">
@@ -51,8 +60,6 @@
         </form>
     </section>
 </div>
-
-<%@include file="/WEB-INF/inc/footer.jsp" %>
 
 <script>
     function removeMember() {
@@ -89,16 +96,6 @@
     }
 
 </script>
-
-<!-- SCRIPTS -->
-<script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/custom.js"></script>
-
+<%@include file="/WEB-INF/inc/footer.jsp" %>
 </body>
 </html>

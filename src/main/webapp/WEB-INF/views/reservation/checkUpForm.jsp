@@ -10,14 +10,14 @@
     <meta charset="UTF-8">
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <title>건강검진예약</title>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.js"></script>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/wow.min.js"></script>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="/resource/bootstrap-3.3.2/js/custom.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/wow.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/custom.js"></script>
 </head>
 <style>
     .container2{

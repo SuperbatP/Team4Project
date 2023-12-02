@@ -12,9 +12,9 @@
 <html lang="ko">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp"%>
-    <script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
-    <script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
+    <script src="/resource/bootstrap/js/summernote/summernote-lite.js"></script>
+    <script src="/resource/bootstrap/js/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/resource/bootstrap/css/summernote/summernote-lite.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/navi.jsp"%>
@@ -147,14 +147,14 @@
 
 
 </script>
-<script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/custom.js"></script>
+<script src="resource/bootstrap/js/jquery.js"></script>
+<script src="resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="resource/bootstrap/js/jquery.sticky.js"></script>
+<script src="resource/bootstrap/js/jquery.stellar.min.js"></script>
+<script src="resource/bootstrap/js/wow.min.js"></script>
+<script src="resource/bootstrap/js/smoothscroll.js"></script>
+<script src="resource/bootstrap/js/owl.carousel.min.js"></script>
+<script src="resource/bootstrap/js/custom.js"></script>
 </body>
 </html>
 

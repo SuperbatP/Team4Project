@@ -6,9 +6,17 @@
 <html lang="en">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/wow.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/custom.js"></script>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <style>
@@ -149,7 +157,7 @@
                         </div>
                         <a href="reservationForm.wow?dcId=${doctor.dcId}">
                             <div class="reservation-box col-sm-2">
-                                <img src="../../../resource/bootstrap-3.3.2/images/달력6.png">
+                                <img src="../../../resource/images/달력6.png">
                                 <p>진료예약</p>
                             </div>
                         </a>
@@ -216,15 +224,6 @@
 
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
-<!-- SCRIPTS -->
-<script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/custom.js"></script>
 
 </body>
 </html>

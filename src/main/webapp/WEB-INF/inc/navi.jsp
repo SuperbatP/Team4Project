@@ -46,7 +46,6 @@
 <header>
     <div class="container">
         <div class="row">
-
             <div class="col-md-4 col-sm-5">
                 <p style="font-size: 16px;">Phoenix Hospital</p>
             </div>
@@ -92,7 +91,7 @@
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
             <div class="nav navbar-nav navbar-left"><a href="/"><img
-                    src="/resource/bootstrap-3.3.2/images/logo_small.png" style="width:150px; "></a>
+                    src="/resource/images/logo_small.png" style="width:150px; "></a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">

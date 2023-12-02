@@ -9,16 +9,16 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <title>오시는길</title>
-<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/common.css"/>
-<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/sub.css"/>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/custom.js"></script>
+<link rel="stylesheet" href="/resource/bootstrap/css/common.css"/>
+<link rel="stylesheet" href="/resource/bootstrap/css/sub.css"/>
+<script type="text/javascript" src="/resource/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="/resource/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap/js/jquery.sticky.js"></script>
+<script type="text/javascript" src="/resource/bootstrap/js/jquery.stellar.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap/js/wow.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap/js/smoothscroll.js"></script>
+<script type="text/javascript" src="/resource/bootstrap/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap/js/custom.js"></script>
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <div id="mapframe" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
@@ -33,13 +33,13 @@
             <div class="author" style="display: flex; justify-content: start; align-items: center;">
                 <a href="">
                     <div class="author-info" style="display: flex; margin-right: 20px;">
-                        <img src="../../../resource/bootstrap-3.3.2/images/원내배치도.png" class="img-responsive" alt="">
+                        <img src="../../../resource/images/원내배치도.png" class="img-responsive" alt="">
                         <h5>원내배치도</h5>
                     </div>
                 </a>
                 <a href="https://map.kakao.com/link/to/희영빌딩,36.32679775351748,127.40783011006639">
                     <div class="author-info" style="display: flex;">
-                        <img src="../../../resource/bootstrap-3.3.2/images/버스.png" class="img-responsive" alt="">
+                        <img src="../../../resource/images/버스.png" class="img-responsive" alt="">
                         <h5>길찾기</h5>
                     </div>
                 </a>
@@ -54,7 +54,7 @@
                  style="width: 90%; height: 90%; display: flex; justify-content: space-evenly; align-items: center;">
 
             <div class="col-sm-2 section-title" style="margin-top: -90px;">
-                <img style="width: 100%; height: 130px;" src="../../../resource/bootstrap-3.3.2/images/지도.png"
+                <img style="width: 100%; height: 130px;" src="../../../resource/images/지도.png"
                      class="img-responsive">
             </div>
 
@@ -115,19 +115,6 @@
 
 
 </script>
-
-
 <%@include file="/WEB-INF/inc/footer.jsp" %>
-<!-- SCRIPTS -->
-<script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery1.11.2.js"></script>
-<script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/custom.js"></script>
-
 </body>
 </html>
