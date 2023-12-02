@@ -161,12 +161,12 @@
             <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
                 <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <a href="news-detail.html">
+                    <a href="/notice/noticeView.wow?boNo=%2083">
                         <img src="resource/images/news-image1.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
                         <span>2023 12 12</span>
-                        <h3><a href="news-detail.html">불사조 병원 최종 합격자</a></h3>
+                        <h3><a href="/notice/noticeView.wow?boNo=%2083">불사조 병원 최종 합격자</a></h3>
                         <p>제 1회 불사조 병원 합격지원자 명단 확인</p>
                         <p>지원해주신 19명은 명단을 확인해주세요.</p>
                         <div class="author">
@@ -183,12 +183,12 @@
             <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
                 <div class="news-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <a href="news-detail.html">
+                    <a href="/notice/noticeView.wow?boNo=%2082">
                         <img src="resource/images/news-image2.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
                         <span>2023 12 04</span>
-                        <h3><a href="news-detail.html">재활의학과의 확장이전 소식</a></h3>
+                        <h3><a href="/notice/noticeView.wow?boNo=%2082">재활의학과의 확장이전 소식</a></h3>
                         <p>불사조 병원에 재활의학과가 확장 이전합니다. 환자분들의 편의를 위해 더욱 접근이 용이한 위치로 옮기게 되었습니다.</p>
                         <div class="author">
                             <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
@@ -204,14 +204,13 @@
             <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
                 <div class="news-thumb wow fadeInUp" data-wow-delay="0.8s">
-                    <a href="news-detail.html">
+                    <a href="/notice/noticeView.wow?boNo=%2081">
                         <img src="resource/images/news-image3.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
                         <span>2023 12 01</span>
-                        <h3><a href="news-detail.html">불사조 병원 의료진 추가채용</a></h3>
+                        <h3><a href="/notice/noticeView.wow?boNo=%2081">불사조 병원 의료진 추가채용</a></h3>
                         <p>불사조 병원의 의료진를 추가 모집합니다.</p>
-                        <p>해당 게시글을 확인하세요.</p>
                         <div class="author">
                             <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">

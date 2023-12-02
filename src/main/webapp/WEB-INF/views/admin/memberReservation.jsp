@@ -12,6 +12,7 @@
     <title>예약확인 및 취소</title>
     <link rel="stylesheet" href="/resource/bootstrap/css/common.css"/>
     <link rel="stylesheet" href="/resource/bootstrap/css/sub.css"/>
+    <link rel="stylesheet" href="/resource/bootstrap/css/reservation.css">
     <script type="text/javascript" src="/resource/bootstrap/js/jquery.js"></script>
     <script type="text/javascript" src="/resource/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/resource/bootstrap/js/jquery.sticky.js"></script>

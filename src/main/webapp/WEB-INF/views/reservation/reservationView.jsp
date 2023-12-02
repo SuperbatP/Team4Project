@@ -163,7 +163,5 @@
 <!-- 코드 작성구역 끝 -->
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
-
-
 </body>
 </html>

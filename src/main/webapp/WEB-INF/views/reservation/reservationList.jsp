@@ -218,11 +218,6 @@
     </c:forEach>
 </div>
 
-<script>
-
-</script>
-
-
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 
 </body>

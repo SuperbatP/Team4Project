@@ -63,18 +63,6 @@
 </section>
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
-<!-- SCRIPTS -->
-<script>
-
-</script>
-<script src="resource/bootstrap/js/jquery.js"></script>
-<script src="resource/bootstrap/js/bootstrap.min.js"></script>
-<script src="resource/bootstrap/js/jquery.sticky.js"></script>
-<script src="resource/bootstrap/js/jquery.stellar.min.js"></script>
-<script src="resource/bootstrap/js/wow.min.js"></script>
-<script src="resource/bootstrap/js/smoothscroll.js"></script>
-<script src="resource/bootstrap/js/owl.carousel.min.js"></script>
-<script src="resource/bootstrap/js/custom.js"></script>
 
 </body>
 </html>
