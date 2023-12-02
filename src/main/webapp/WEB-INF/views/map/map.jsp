@@ -8,6 +8,17 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<title>오시는길</title>
+<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/common.css"/>
+<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/sub.css"/>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.js"></script>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/wow.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/resource/bootstrap-3.3.2/js/custom.js"></script>
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 
 <div id="mapframe" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
