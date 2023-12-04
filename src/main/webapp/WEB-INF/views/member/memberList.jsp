@@ -7,6 +7,7 @@
 
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+    <link rel="stylesheet" href="/resource/bootstrap/css/common.css">
     <link rel="stylesheet" href="/resource/bootstrap/css/memberForm.css">
     <link rel="stylesheet" href="/resource/bootstrap/css/login.css">
     <link rel="stylesheet" href="/resource/bootstrap/css/memberList.css">
@@ -59,7 +60,7 @@
                             </button>
                         </div>
                         <div class="col-sm-1 text-right">
-                            <button type="submit" class="btn btn-sm btn-primary ">
+                            <button type="submit" class="btn btn-sm btn-green ">
                                 <i class="fa fa-search"></i> &nbsp;&nbsp;검 색
                             </button>
                         </div>
