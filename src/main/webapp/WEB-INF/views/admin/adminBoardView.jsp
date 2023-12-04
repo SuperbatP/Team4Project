@@ -14,87 +14,86 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <%@ include file="/WEB-INF/inc/header.jsp" %>
-    <title>자유게시판 - 글 보기</title>
+    <title>관리자게시판 - 글 보기</title>
 </head>
+<style>
+    .view-header {
+        border-bottom: 1px solid gainsboro;
+        border-top: 3px solid gainsboro;
+        margin-top: 5px;
+        height: 110px;
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
 <body>
 <%@ include file="/WEB-INF/inc/navi.jsp" %>
 
 <div class="container">
-    <div class="page-header">
-        <h3>
-            자유게시판 - <small>글 보기</small>
-        </h3>
+    <%--        <div>--%>
+    <%--            <h3>--%>
+    <%--                자유게시판 - <small>글 보기</small>--%>
+    <%--            </h3>--%>
+    <%--        </div>--%>
+
+    <div class="view-header">
+        <div style="padding-left: 10px; padding-top: 15px">
+            <h3>${adminBoard.boTitle }
+                <small style="margin-left: 15px">${adminBoard.boNo}</small>
+            </h3>
+            <div style="padding-top: 10px; font-size: 16px; padding-left: 5px;">
+            ${adminBoard.boWriter}
+            </div>
+        </div>
+        <div style="padding-right: 10px; padding-top: 70px;">
+            ${adminBoard.boRegDate}
+        </div>
     </div>
-    <table class="table table-striped table-bordered">
-        <tbody>
-        <tr>
-            <th>글번호</th>
-            <td>${adminBoard.boNo }</td>
-        </tr>
-        <tr>
-            <th>글제목</th>
-            <td>${adminBoard.boTitle }</td>
-        </tr>
-        <tr>
-            <th>작성자명</th>
-            <td>${adminBoard.boWriter }</td>
-        </tr>
-        <!-- 비밀번호는 보여주지 않음  -->
-        <tr>
-            <th>내용</th>
-            <td>
-                <div style="height: 500px; overflow: scroll" name="boContent" class="form-control input-sm" readonly="readonly">
-                    ${adminBoard.boContents }
-                </div>
-            </td>
-        </tr>
 
-        <tr>
-            <th>조회수</th>
-            <td>${adminBoard.boHit }</td>
-        </tr>
-        <tr>
-            <th>최근등록일자</th>
-            <td>${adminBoard.boRegDate}</td>
-        </tr>
+    <div style="height: auto; min-height: 500px; border: none; padding-top: 20px; padding-bottom: 20px"
+         name="boContent" class="form-control input-sm">
+        ${adminBoard.boContents }
+    </div>
 
-        <tr>
-            <th>첨부파일</th>
-            <td>
-                <c:forEach var="f" items="${adminBoard.attaches}" varStatus="st">
-                    <div> 파일 ${st.count} <a href="<c:url value='/attach/download/${f.atchNo}' />" target="_blank">
-                            <%-- DB에 originalName, fileName(우리가 찾을 랜덤값), filePath  -> 파일 전송; response    --%>
-                            <%-- target="_blank" 새 탭이 생겼다가 사라짐. 꼭 써줘야함. --%>
-                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}
-                    </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
+    <div style="border-top: 1px solid gainsboro; height: auto; padding-top: 10px; padding-bottom: 10px;">
+        <b style="font-size: 17px">첨부파일</b>
+
+        <c:forEach var="f" items="${adminBoard.attaches}" varStatus="st">
+            <div style="padding-top: 5px"> 파일 ${st.count} <a href="<c:url value='/attach/download/${f.atchNo}' />"
+                                                             target="_blank">
+                    <%-- DB에 originalName, fileName(우리가 찾을 랜덤값), filePath  -> 파일 전송; response    --%>
+                    <%-- target="_blank" 새 탭이 생겼다가 사라짐. 꼭 써줘야함. --%>
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span> <b>${f.atchOriginalName}</b>
+            </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
+            </div>
+        </c:forEach>
+
+    </div>
+    <tr>
+        <td colspan="2">
+            <div class="pull-left" style="padding-top: 10px; padding-bottom: 10px;">
+                <a href="adminBoardList.wow" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-list"
+                                                                                   aria-hidden="true"></span> &nbsp;&nbsp;목록
+                </a>
+            </div>
+
+            <sec:authentication property="principal" var="pinfo"/>
+            <sec:authorize access="isAuthenticated()">
+                <c:if test="${pinfo.username eq adminBoard.boWriter}">
+                    <div class="pull-right" style="padding-top: 10px; padding-bottom: 10px;">
+                        <a href="/admin/answerForm.wow?boNo=${adminBoard.boNo}" class="btn btn-success btn-sm">답글 쓰기</a>
+                        <a href="adminBoardEdit.wow?boNo=${adminBoard.boNo }"
+                           class="btn btn-edit btn-success btn-sm">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
+                        </a>
                     </div>
-                </c:forEach>
-            </td>
-        </tr>
+                </c:if>
+            </sec:authorize>
 
-        <tr>
-            <td colspan="2">
-                <div class="pull-left">
-                    <a href="adminBoardList.wow" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-list"
-                                                                                       aria-hidden="true"></span> &nbsp;&nbsp;목록
-                    </a>
-                </div>
+        </td>
+    </tr>
 
-                <sec:authentication property="principal" var="pinfo"/>
-                <sec:authorize access="isAuthenticated()">
-                    <c:if test="${pinfo.username eq adminBoard.boWriter}">
-                        <div class="pull-right">
-                            <a href="adminBoardEdit.wow?boNo=${adminBoard.boNo }" class="btn btn-success btn-sm"> <span
-                                    class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
-                            </a>
-                        </div>
-                    </c:if>
-                </sec:authorize>
 
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>
 <!-- container -->
 <div class="container">
@@ -153,13 +152,14 @@
                     <div class="modal-body">
                         <input type="hidden" name="reNo" value="">
                         <textarea rows="3" name="reContent" class="form-control"></textarea>
-                        <input type="hidden" name="memId" value="<sec:authentication property="principal.username"/>">
+                        <input type="hidden" name="memId"
+                               value="<sec:authentication property="principal.username"/>">
                     </div>
                     <div class="modal-footer">
                         <button id="btn_reply_modify" type="button"
                                 class="btn btn-sm btn-info">저장
                         </button>
-                        <button type="button" class="btn btn-default btn-sm"
+                        <button id="btn_reply_modify_x" type="button" class="btn btn-default btn-sm"
                                 data-dismiss="modal">닫기
                         </button>
                     </div>
@@ -269,35 +269,37 @@
 
         $("#id_reply_list_area").on("click", 'button[name="btn_reply_edit"]'
             , function (e) {
+                e.preventDefault();
+                if (window.confirm("댓글을 수정하시겠습니까?")) {
+                    //현재 버튼의 상위 div(한개 댓글) 찾기
+                    //div에서 현재 댓글 내용을 modal에 있는 textarea에 복사
+                    //div태그의 data-re-no 값을 modal에 있는 input name="reNo" 태그의 value값에 복사
+                    //복사 후   .modal('show')
+                    $btn = $(this);//수정버튼
+                    $div = $btn.closest('div.row'); //div class="row"
+                    $modal = $('#id_reply_edit_modal'); //댓글 수정용 모달 찾기
+                    $pre = $div.find('pre')
+                    //<pre> 태그는 미리 정의된 형식(preformatted)의 텍스트를 정의할 때 사용.
+                    var content = $pre.html();
+                    //pre 태그 안에 이너태그 -> 모달에 내용을 뿌리기
+                    $textarea = $modal.find('textarea');
+                    $textarea.val(content);
 
-                //현재 버튼의 상위 div(한개 댓글) 찾기
-                //div에서 현재 댓글 내용을 modal에 있는 textarea에 복사
-                //div태그의 data-re-no 값을 modal에 있는 input name="reNo" 태그의 value값에 복사
-                //복사 후   .modal('show')
-                $btn = $(this);//수정버튼
-                $div = $btn.closest('div.row'); //div class="row"
-                $modal = $('#id_reply_edit_modal'); //댓글 수정용 모달 찾기
-                $pre = $div.find('pre')
-                //<pre> 태그는 미리 정의된 형식(preformatted)의 텍스트를 정의할 때 사용.
-                var content = $pre.html();
-                //pre 태그 안에 이너태그 -> 모달에 내용을 뿌리기
-                $textarea = $modal.find('textarea');
-                $textarea.val(content);
-
-                var reNo = $div.data('re-no');
-                // div class="row" data-re-no= 동적태그 안에도 가능하니까!
-                // 모달이 아닌 부모페이지에서 reNo를 받아다가 넣어줌.
-                $modal.find('input[name=reNo]').val(reNo);
-                //"modal-body" -> input type="hidden" name="reNo"
-                $modal.modal('show');
-                //2개 복사했으면   $('#id_reply_edit_modal').modal('show')
-
+                    var reNo = $div.data('re-no');
+                    // div class="row" data-re-no= 동적태그 안에도 가능하니까!
+                    // 모달이 아닌 부모페이지에서 reNo를 받아다가 넣어줌.
+                    $modal.find('input[name=reNo]').val(reNo);
+                    //"modal-body" -> input type="hidden" name="reNo"
+                    $modal.modal('show');
+                    //2개 복사했으면   $('#id_reply_edit_modal').modal('show')
+                }
             });//수정버튼
 
 
         //모달창 저장 버튼
         $("#btn_reply_modify").on("click", function (e) {
             e.preventDefault();
+
             //html 태그에 있는 것이 먼저 일어나는 것 방지
             $form = $(this).closest("form[name='frm_reply_edit']");
             //가장 가까운form 찾기
@@ -329,36 +331,39 @@
         $("#id_reply_list_area").on("click", 'button[name="btn_reply_delete"]'
             , function (e) {
                 e.preventDefault();
-                //가장 가까운 div 찾기
-                $div = $(this).closest('.row');
-                //reNo,  reMemId(현재 로그인 한 사람의 id) 구하기
-                reNo = $div.data('re-no');
-                memId = '<sec:authentication property="principal.username"/>';
-                // CSRF 토큰 가져오기
-                var csrfToken = $("meta[name='_csrf']").attr("content");
-                var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-                // ajax 호출(reNo, reMemeId보내기) reMemId는 본인이 쓴 글인지 확인하는데 쓰임 (BizAccessFailException)
-                $.ajax({
-                    url: "<c:url value='/reply/replyDelete.wow' />"
-                    , type: "POST"
-                    , data: {"reNo": reNo, "memId": memId}
-                    , dataType: 'JSON'
-                    ,
-                    // CSRF 토큰을 헤더에 추가
-                    beforeSend: function(xhr) {
-                        xhr.setRequestHeader(csrfHeader, csrfToken);
-                    },
-                    success: function () {
-                        //성공  후 해당 div.remove
-                        $div.remove();
-                    }
+                if (window.confirm("댓글을 삭제하시겠습니까?")) {
+                    //가장 가까운 div 찾기
+                    $div = $(this).closest('.row');
+                    //reNo,  reMemId(현재 로그인 한 사람의 id) 구하기
+                    reNo = $div.data('re-no');
+                    memId = '<sec:authentication property="principal.username"/>';
+                    // CSRF 토큰 가져오기
+                    var csrfToken = $("meta[name='_csrf']").attr("content");
+                    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+                    // ajax 호출(reNo, reMemeId보내기) reMemId는 본인이 쓴 글인지 확인하는데 쓰임 (BizAccessFailException)
+                    $.ajax({
+                        url: "<c:url value='/reply/replyDelete.wow' />"
+                        , type: "POST"
+                        , data: {"reNo": reNo, "memId": memId}
+                        , dataType: 'JSON'
+                        ,
+                        // CSRF 토큰을 헤더에 추가
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader(csrfHeader, csrfToken);
+                        },
+                        success: function () {
+                            //성공  후 해당 div.remove
+                            $div.remove();
+                        }
 
-                });
+                    });
+                }
 
             }); //삭제버튼
     });
 
 </script>
+
 </body>
 
 </html>

@@ -24,7 +24,9 @@ public interface IAdminBoardDao {
     int updateBoard(AdminBoardVO adminBoard);
     int deleteBoard(AdminBoardVO adminBoard);
     int insertBoard(AdminBoardVO adminBoard);
-
-
+    int notice_answer_insert(AdminBoardVO adminBoard);
+    int changeboNo(int boNo);
+    int changeboNoAttach(int boNo);
+    int changeboNoReply(int boNo);
 
 }

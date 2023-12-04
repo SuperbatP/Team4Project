@@ -20,5 +20,6 @@ public interface IAdminBoardService {
     public void removeBoard(AdminBoardVO adminBoard)
             throws BizNotFoundException,BizPasswordNotMatchedException, BizNotEffectedException ;
     public void registBoard(AdminBoardVO adminBoard) throws BizNotEffectedException;
+    public void answerRegistBoard(AdminBoardVO adminBoard)throws BizNotEffectedException;
 
 }

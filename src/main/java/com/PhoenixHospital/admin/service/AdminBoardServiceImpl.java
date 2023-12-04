@@ -96,5 +96,24 @@ public class AdminBoardServiceImpl implements IAdminBoardService {
         }
 
     }
+
+    @Override
+    public void answerRegistBoard(AdminBoardVO adminBoard) throws BizNotEffectedException {
+        int count = adminBoardDao.notice_answer_insert(adminBoard);
+
+        if (count < 1) {
+            throw new BizNotEffectedException();
+        }
+        List<AttachVO> attaches = adminBoard.getAttaches();
+        if (attaches != null) {
+            for (AttachVO attach : attaches) {
+                attach.setAtchParentNo(adminBoard.getBoNo());
+                attachDao.insertAttach(attach);
+            }
+        }
+
+
+    }
+
 }
 

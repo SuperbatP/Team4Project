@@ -15,6 +15,33 @@ public class AdminBoardVO {
     private String boModDate;
     private String boDelYn;
     private String atchNo;
+    private int root;
+    private int step;
+    private int indent;
+
+    public int getRoot() {
+        return root;
+    }
+
+    public void setRoot(int root) {
+        this.root = root;
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
+
+    public int getIndent() {
+        return indent;
+    }
+
+    public void setIndent(int indent) {
+        this.indent = indent;
+    }
 
     private List<AttachVO> attaches;
     private int[] delAtchNos;

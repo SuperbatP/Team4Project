@@ -1,5 +1,6 @@
 package com.PhoenixHospital.admin.web;
 
+import com.PhoenixHospital.admin.dao.IAdminBoardDao;
 import com.PhoenixHospital.admin.service.IAdminBoardService;
 import com.PhoenixHospital.admin.vo.AdminBoardVO;
 import com.PhoenixHospital.attach.vo.AttachVO;
@@ -14,6 +15,7 @@ import com.PhoenixHospital.exception.BizNotEffectedException;
 import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.exception.BizPasswordNotMatchedException;
 import com.PhoenixHospital.free.vo.FreeBoardVO;
+import com.PhoenixHospital.reply.vo.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,8 @@ public class AdminBoardController {
     IAdminBoardService adminBoardService;
     @Autowired
     private StudyAttachUtils attachUtils;
+    @Autowired
+    private IAdminBoardDao adminBoardDao;
 
     @ExceptionHandler(value = {BizNotEffectedException.class,
             BizNotFoundException.class,
@@ -54,8 +58,7 @@ public class AdminBoardController {
         List<AdminBoardVO> adminBoardList = adminBoardService.getAdminBoardList(paging, search, searchCategory);
 
         //뭐가 있을 때만 넣기
-        if(adminBoardList.size() > 0)
-        {
+        if (adminBoardList.size() > 0) {
             model.addAttribute("adminBoardList", adminBoardList);
         }
         return "admin/adminBoardList";
@@ -119,6 +122,40 @@ public class AdminBoardController {
         resultMessageVO.messageSetting(true, "삭제", "삭제되었습니다.", "/admin/adminBoardList.wow", "목록으로");
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
+    }
+
+    //공지글 답글 쓰기 화면 요청=============================================================================================
+    @RequestMapping("admin/answerForm.wow")
+    public String answer(Model model, @RequestParam int boNo) throws BizNotFoundException {
+
+        List<CategoryVO> categoryList = categoryService.getCategoryList();
+
+        AdminBoardVO adminBoardVO = adminBoardService.getAdminBoard(boNo);
+
+        model.addAttribute("categoryList", categoryList);
+
+        model.addAttribute("adminBoardVO", adminBoardVO);
+
+        //원글의 정보를 답글 쓰기 화면에서 알 수 있도록 한다.
+        return "admin/answerForm";
+    } //reply()
+
+    //공지글 신규 답글 저장 처리 요청=============================================================================================
+    @RequestMapping("admin/answerRegist.wow")
+    public String notice_answer_insert(Model model, AdminBoardVO adminBoard, AttachVO attach, ReplyVO reply, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+        if (boFiles != null) {
+            List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "A001", "admin");
+            adminBoard.setAttaches(attaches);
+        }
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
+        adminBoardDao.changeboNo(adminBoard.getBoNo());
+        adminBoardDao.changeboNoAttach(adminBoard.getBoNo());
+        adminBoardDao.changeboNoReply(adminBoard.getBoNo());
+        adminBoardService.answerRegistBoard(adminBoard);
+        resultMessageVO.messageSetting(true, "생성", "생성하셨습니다.", "/admin/adminBoardList.wow", "목록으로");
+        model.addAttribute("resultMessageVO", resultMessageVO);
+        return "common/message";
+
     }
 
 }
