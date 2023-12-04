@@ -118,7 +118,7 @@
                                                 class="fa fa-user"></i></button>
                                     </td>
                                     <td>
-                                        <form action="/admin/memberReservation.wow" method="post">
+                                        <form action="/admin/memberReservation.wow" method="get">
                                             <sec:csrfInput/>
                                             <input type="hidden" name="memId" value="${member.memId}">
                                             <button type="submit"

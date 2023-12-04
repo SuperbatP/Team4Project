@@ -4,12 +4,29 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       https://www.springframework.org/schema/util/spring-util.xsd
+       http://mybatis.org/schema/mybatis-spring
+       http://mybatis.org/schema/mybatis-spring.xsd
+       http://www.springframework.org/schema/websocket
+      ">
+<!--
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+    http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd
+-->
+
+
 
     <context:component-scan base-package="com.PhoenixHospital"
                             use-default-filters="true">
         <context:exclude-filter type="annotation"
-                                expression="org.springframework.stereotype.Controller" />
+                                expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     <!-- component-scan : 기본적으로  @Component, @Repository, @Service,
 	@Controller, @RestController, @ControllerAdvice, and @Configuration를 bean으로 등록하는데 Controller를 제외한다.
@@ -17,7 +34,7 @@
 
     <!-- properties파일 읽은 프로퍼티 객체, DB말고도 여러가지 작성할 거라 main에 빈등록 -->
     <util:properties id="util"
-                     location="classpath:/spring/appconfig.properties" />
+                     location="classpath:/spring/appconfig.properties"/>
 
 
     <!-- ContextLoaderListenr 빈 중 DB관련 빈들 등록 -->
@@ -27,22 +44,22 @@
           class="org.apache.commons.dbcp2.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName"
-                  value="#{util['jdbc.driverClassName']}" />
-        <property name="url" value="#{util['jdbc.url']}" />
-        <property name="username" value="#{util['jdbc.username']}" />
-        <property name="password" value="#{util['jdbc.password']}" />
+                  value="#{util['jdbc.driverClassName']}"/>
+        <property name="url" value="#{util['jdbc.url']}"/>
+        <property name="username" value="#{util['jdbc.username']}"/>
+        <property name="password" value="#{util['jdbc.password']}"/>
         <property name="defaultAutoCommit"
-                  value="#{util['jdbc.defaultAutoCommit']}" />
+                  value="#{util['jdbc.defaultAutoCommit']}"/>
     </bean>
 
     <!-- SqlSession setup for MyBatis Database Layer -->
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="configLocation"
-                  value="classpath:/mybatis/mybatis-config.xml" />
+                  value="classpath:/mybatis/mybatis-config.xml"/>
         <property name="mapperLocations"
-                  value="classpath:/mybatis/mapper/*.xml" />
+                  value="classpath:/mybatis/mapper/*.xml"/>
     </bean>
 
 
@@ -54,10 +71,10 @@
     <!-- 이메일 보내기 관련 git에 올릴때 조심할 것.  -->
     <bean id="mailSender"
           class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="587" />
-        <property name="username" value="nextitproject1213@gmail.com" />
-        <property name="password" value="" />
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="nextitproject1213@gmail.com"/>
+        <property name="password" value="nnbk sikx nujy tiwf"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
@@ -70,16 +87,17 @@
         </property>
     </bean>
 
+    <!--spring websocket-->
+ <!--   <websocket:handlers>
+        <websocket:mapping path="/myHandler" handler="myHandler"/>
+    </websocket:handlers>
 
-
-
-
+    <bean id="myHandler" class="org.springframework.samples.MyHandler"/>-->
 
     <!-- component-scan의 scan은 @Compent, @Controller 등등만 스캔. mybatis @인 @Mapper는 component-scan이 스캔안함.
      그래서 따로 mybatis-sprig scan을 통해 스캔-->
     <mybatis-spring:scan base-package="com.PhoenixHospital"
-                         annotation="org.apache.ibatis.annotations.Mapper" />
-
+                         annotation="org.apache.ibatis.annotations.Mapper"/>
 
 
 </beans>

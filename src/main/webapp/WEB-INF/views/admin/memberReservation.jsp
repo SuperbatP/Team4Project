@@ -96,7 +96,7 @@
                         <td class="width200px height50px"></td>
                     </tr>
                     <c:forEach var="ck" items="${checkUp}">
-                        <form name="checkUp" action="checkUpEdit.wow" method="post">
+                        <form name="checkUp" action="/admin/adminCheckUpEdit.wow" method="post">
                             <sec:csrfInput/>
                             <input name="ckReservationNo" value="${ck.ckReservationNo}" type="hidden">
                             <input name="reservationGender" value="${ck.reservationGender}" type="hidden">

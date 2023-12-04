@@ -1,7 +1,13 @@
 package com.PhoenixHospital.admin.web;
 
+import com.PhoenixHospital.add_checkUp_code.service.IAddCheckUpService;
+import com.PhoenixHospital.add_checkUp_code.vo.AddCheckUpVO;
+import com.PhoenixHospital.basic_checkUp_code.service.IBasicCheckUpService;
+import com.PhoenixHospital.basic_checkUp_code.vo.BasicCheckUpVO;
 import com.PhoenixHospital.checkUp.service.ICheckUpService;
 import com.PhoenixHospital.checkUp.vo.CheckUpVO;
+import com.PhoenixHospital.dna_test_code.service.IDNATestService;
+import com.PhoenixHospital.dna_test_code.vo.DNATestVO;
 import com.PhoenixHospital.doctor_attendance.service.IAttendanceService;
 import com.PhoenixHospital.doctor_attendance.vo.AttendanceVO;
 import com.PhoenixHospital.doctors.service.IDoctorsService;
@@ -42,8 +48,18 @@ public class AdminController {
     @Autowired
     ICheckUpService checkUpService;
 
+    @Autowired
+    IBasicCheckUpService basicCheckUpService;
+
+    @Autowired
+    IAddCheckUpService addCheckUpService;
+
+    @Autowired
+    IDNATestService dnaTestService;
+
+
     //관리자가 개별 예약 확인(사용자 아이디 클릭시 모든 예약 과정 다 나옴)
-    @RequestMapping(method = RequestMethod.POST, value = "/admin/memberReservation.wow")
+    @RequestMapping(method = RequestMethod.GET, value = "/admin/memberReservation.wow")
     public String memberReservationView(Model model, String memId) throws BizException {
 
         MemberVO memberVO = memberService.getMember(memId);
@@ -53,7 +69,7 @@ public class AdminController {
         model.addAttribute("reservation", reservationVOList);
         model.addAttribute("checkUp", checkUpVOList);
         model.addAttribute("member", memberVO);
-        return "admin/memberReservation";
+        return "/admin/memberReservation";
     }
 
     //관리자가 개별 예약 수정
@@ -87,8 +103,45 @@ public class AdminController {
         model.addAttribute("reservation", reservationVOList);
         model.addAttribute("checkUp", checkUpVOList);
 
-        return "admin/memberReservation";
+        return "/admin/memberReservation";
     }
+
+    //관리자가 개별 건강검진 예약 수정
+    @RequestMapping(method = RequestMethod.POST, value = "/admin/adminCheckUpEdit.wow")
+    public String checkUpEdit(Model model, CheckUpVO checkUp) throws BizException {
+
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUpList();
+        List<BasicCheckUpVO> basicCheckUpVOList = basicCheckUpService.getCodeList();
+        List<AddCheckUpVO> addCheckUpVOList = addCheckUpService.getCodeList();
+        List<DNATestVO> dnaTestVOList = dnaTestService.getCodeList();
+
+        model.addAttribute("checkUp", checkUpVOList);
+        model.addAttribute("basicCodeList", basicCheckUpVOList);
+        model.addAttribute("addCodeList", addCheckUpVOList);
+        model.addAttribute("DNACodeList", dnaTestVOList);
+
+        model.addAttribute("myCheckUp", checkUp);
+
+        return "/admin/adminCheckUpEdit";
+
+    }
+
+    //관리자가 개별 건강검진 예약 수정 후 완료
+    @PostMapping("/admin/adminCheckUpModify.wow")
+    public String checkUpModify(Model model,CheckUpVO checkUp, String memId){
+        checkUpService.modifyCheckUp(checkUp);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(memId);
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(memId);
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
+        model.addAttribute("memId", memId);
+
+        return "/admin/memberReservation";
+    }
+
+
 
     //관리자가 회원 권한 및 탈퇴여부 + 모든 정보 처리
     @PostMapping("/member/updateUser.wow")
