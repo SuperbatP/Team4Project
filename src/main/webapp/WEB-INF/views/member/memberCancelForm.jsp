@@ -25,7 +25,7 @@
     <section>
             <div class="form-title">
                 <div class="col-md-7" style="margin-left: 40px">
-                    <h4 style="margin-top: 40px">지금까지 충남대학교병원 홈페이지를 <br>이용해 주셔서 감사합니다</h4>
+                    <h4 style="margin-top: 40px">지금까지 불사조 병원 홈페이지를 <br>이용해 주셔서 감사합니다</h4>
                     <p style="font-size: 15px; font-weight: bold">회원을 탈퇴하실 경우, 고객님의 모든 정보는 병원 홈페이지 시스템에서 완전히 삭제됩니다. </p>
                     <p style="font-size: 15px; font-weight: bold; color: #a10000;">탈퇴 후 아이디를 제외한 모든 정보는 삭제되며 </p>
                     <p style="font-size: 15px; font-weight: bold; color: #a10000;">의료정보기록이 있는 회원의 경우 본원의 환자 관련 정보는 삭제되지 않고 저장 됩니다.</p>
