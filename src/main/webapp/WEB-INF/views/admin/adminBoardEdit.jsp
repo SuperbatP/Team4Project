@@ -14,6 +14,7 @@
     <script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
     <script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
     <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
+    <title>관리자게시판-글수정</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/navi.jsp" %>
@@ -22,10 +23,10 @@
 <div class="container">
     <div class="page-header">
         <h3>
-            자유게시판 - <small>글 수정</small>
+            관리자게시판 - <small>글 수정</small>
         </h3>
     </div>
-    <form action="adminBoardModify.wow" method="post" enctype="multipart/form-data">
+    <form name="adminModify" action="adminBoardModify.wow" method="post" enctype="multipart/form-data">
         <sec:csrfInput/>
         <%-- 첨부파일에 대한 정보도 받아야 하니까.	enctype="multipart/form-data" 추가	--%>
         <input type="hidden" name="boWriter" value="${adminBoard.boWriter }">
@@ -38,14 +39,14 @@
 
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="boTitle" value="${adminBoard.boTitle }" class="form-control input-sm"
+                <td><input style="font-size: 15px;" type="text" name="boTitle" value="${adminBoard.boTitle }" class="form-control input-sm"
                            required="required"></td>
             </tr>
 
             <tr>
                 <th>내용</th>
                 <td>
-                    <textarea style="min-height: 400px;" id="summernote" name="boContents"
+                    <textarea id="summernote" name="boContents"
                               class="form-control input-sm">${adminBoard.boContents } </textarea>
                 </td>
             </tr>
@@ -85,22 +86,18 @@
 
             <tr>
                 <td colspan="2">
-                    <div class="pull-left">
-                        <a href="adminBoardList.wow" class="btn btn-default btn-sm"> <span
-                                class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;&nbsp;목록
-                        </a>
-                    </div>
+
                     <div class="pull-right">
 
-                        <a href="adminBoardList.wow" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-list"
+                        <a name="listbtn" href="adminBoardList.wow" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-list"
                                                                                         aria-hidden="true"></span>
                             &nbsp;목록으로
                         </a>
-                        <button type="submit" class="btn btn-sm btn-primary">
+                        <button name="savebtn" type="submit" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-save" aria-hidden="true"></span> &nbsp;&nbsp;저장
                         </button>
 
-                        <button type="submit" formaction="adminBoardDelete.wow" class="btn btn-sm btn-danger">
+                        <button name="removebtn" type="submit" formaction="adminBoardDelete.wow" class="btn btn-sm btn-danger" onclick="cancelAction()">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> &nbsp;&nbsp;삭제
                         </button>
 
@@ -139,23 +136,25 @@
 
     $('#summernote').summernote({
         lang: "ko-KR",
-        height: 350,
-        placeholder: '내용을 작성하세요.',
-        callbacks: {
-            onImageUpload: function (image) {
+        height: 500,
+        placeholder: '내용을 작성하세요.'
+    });
 
-                var file = image[0];
-                var reader = new FileReader();
-                reader.onloadend = function () {
-                    var image = $('<img>').attr('src', reader.result);
-                    image.attr('height', '350px');
-                    $('#summernote').summernote("insertNode", image[0]);
-                }
-                reader.readAsDataURL(file);
+    $form = $("form[name='adminModify']");
 
-            }
+
+    $form.find("button[name=savebtn]").click(function (e) {
+        e.preventDefault();
+        if (window.confirm("게시글을 수정하시겠습니까?")) {
+            $form.submit();
         }
     });
+
+    function cancelAction() {
+        if (!window.confirm("게시글을 삭제하시겠습니까?")) {
+            event.preventDefault();
+        }
+    }
 
 
 </script>

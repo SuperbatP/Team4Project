@@ -10,12 +10,14 @@
     <script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
     <script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
     <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
+    <title>관리자게시판-글 등록</title>
+
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
 <div class="container">
     <div class="page-header">
-        <h3>자유게시판 - <small>글 등록</small></h3>
+        <h3>관리자게시판 - <small>글 등록</small></h3>
     </div>
     <form action="adminBoardRegist.wow" method="post" enctype="multipart/form-data">
         <sec:csrfInput/>
@@ -27,13 +29,13 @@
             </colgroup>
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="boTitle" value="" class="form-control input-sm" required="required"></td>
+                <td><input style="font-size: 15px;" type="text" name="boTitle" value="" class="form-control input-sm" required="required"></td>
             </tr>
 
             <tr>
                 <th>내용</th>
                 <td>
-                    <textarea style="min-height: 400px;" id="summernote" name="boContents" class="form-control"></textarea>
+                    <textarea id="summernote" name="boContents" class="form-control"></textarea>
                 </td>
             </tr>
 
@@ -51,7 +53,7 @@
             <tr>
                 <td colspan="2">
                     <div class="pull-left">
-                        <a href="adminBoardList.jsp" class="btn btn-default btn-sm">
+                        <a href="adminBoardList.wow" class="btn btn-default btn-sm">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             &nbsp;&nbsp;목록
                         </a>
@@ -81,28 +83,17 @@
     });
 
     $('.file_area').on('click', '.btn_delete', function () {
+
         $(this).closest('div').remove();
     });
 
     $('#summernote').summernote({
         lang: "ko-KR",
-        height: 350,
-        placeholder: '내용을 작성하세요.',
-        callbacks: {
-            onImageUpload: function (image) {
-
-                var file = image[0];
-                var reader = new FileReader();
-                reader.onloadend = function () {
-                    var image = $('<img>').attr('src', reader.result);
-                    image.attr('height', '350px');
-                    $('#summernote').summernote("insertNode", image[0]);
-                }
-                reader.readAsDataURL(file);
-
-            }
-        }
+        height: 500,
+        placeholder: '내용을 작성하세요.'
     });
+
+
 
 </script>
 
