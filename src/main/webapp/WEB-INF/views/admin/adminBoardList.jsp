@@ -9,6 +9,7 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <title>관리자게시판</title>
 </head>
+
 <div id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
     <%@include file="/WEB-INF/inc/navi.jsp" %>
     <style>
@@ -49,7 +50,7 @@
 
     <div class="container">
         <div style="display: flex; justify-content: center; align-items: center; height: 180px;">
-            <h2 style="font-weight: 500; font-size: 33px">관리자게시판</h2>
+            <h2 style="font-weight: 500; font-size: 33px"><a href="adminBoardList.wow">관리자게시판</a></h2>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 1200px;">
@@ -66,11 +67,12 @@
 
                 <div style="display: flex; margin-bottom: 10px;">
                     <div style="border: 1px solid gainsboro; display: flex; justify-content: space-between">
-                    <select style="border: none; font-size: 15px; height: 40px; width: 110px;" id="id_searchType" name="searchType" class="form-control input-sm">
-                        <option value="T" ${search.searchType=='T' ? "selected = 'selected'" : ""}>제목</option>
-                        <option value="W" ${search.searchType=='W' ? "selected = 'selected'" : ""}>작성자</option>
-                        <option value="C" ${search.searchType=='C' ? "selected = 'selected'" : ""}>내용</option>
-                    </select>
+                        <select style="border: none; font-size: 15px; height: 40px; width: 110px;" id="id_searchType"
+                                name="searchType" class="form-control input-sm">
+                            <option value="T" ${search.searchType=='T' ? "selected = 'selected'" : ""}>제목</option>
+                            <option value="W" ${search.searchType=='W' ? "selected = 'selected'" : ""}>작성자</option>
+                            <option value="C" ${search.searchType=='C' ? "selected = 'selected'" : ""}>내용</option>
+                        </select>
                     </div>
                     <div style="border: 1px solid gainsboro; display: flex; justify-content: space-between">
                         <input style="border: none; font-size: 15px; height: 40px;" type="text" name="searchWord"
@@ -138,7 +140,8 @@
                 <!-- 페이지 넘버링 -->
                 <c:forEach var="i" begin="${paging.firstPage}" end="${paging.lastPage}">
                     <c:set var="click" value="${paging.curPage eq i ? 'active' : ''}"/>
-                    <li class="${click}"><a href="adminBoardList.wow?curPage=${i}" data-page="${i}">${i}</a></li>
+                    <li class="${click}"><a href="adminBoardList.wow?curPage=${i}"
+                                            data-page="${i}">${i}</a></li>
                 </c:forEach>
 
                 <!-- 다음 페이지 -->
@@ -156,8 +159,7 @@
         <!-- 페이지네이션 끝 -->
         <div style="display: flex; justify-content: end; width: 1200px; margin-top: -10px;">
             <a style="color: white" href="adminBoardForm.wow">
-                <div class="btn-green">
-                    &nbsp;글쓰기
+                <div class="btn-green">글쓰기
                 </div>
             </a>
         </div>
@@ -230,5 +232,5 @@
     <script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
     <script src="resource/bootstrap-3.3.2/js/custom.js"></script>
 
-    </body>
+</div>
 </html>

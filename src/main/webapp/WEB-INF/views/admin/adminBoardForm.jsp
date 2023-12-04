@@ -7,9 +7,9 @@
 <html lang="en">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
-    <script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
+    <script src="/resource/bootstrap/js/summernote/summernote-lite.js"></script>
+    <script src="/resource/bootstrap/js/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/resource/bootstrap/css/summernote/summernote-lite.css">
     <title>관리자게시판-글 등록</title>
 
 </head>

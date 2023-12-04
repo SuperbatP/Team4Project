@@ -11,9 +11,9 @@
 <html lang="ko">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <script src="/resource/bootstrap-3.3.2/js/summernote/summernote-lite.js"></script>
-    <script src="/resource/bootstrap-3.3.2/js/summernote/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/summernote/summernote-lite.css">
+    <script src="/resource/bootstrap/js/summernote/summernote-lite.js"></script>
+    <script src="/resource/bootstrap/js/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/resource/bootstrap/css/summernote/summernote-lite.css">
     <title>관리자게시판-글수정</title>
 </head>
 <body>
@@ -49,10 +49,6 @@
                     <textarea id="summernote" name="boContents"
                               class="form-control input-sm">${adminBoard.boContents } </textarea>
                 </td>
-            </tr>
-            <tr>
-                <th>조회수</th>
-                <td>${adminBoard.boHit } </td>
             </tr>
             <tr>
                 <th>최근등록일자</th>
