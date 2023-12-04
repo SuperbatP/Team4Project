@@ -45,8 +45,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     @Override
     public void modifyBoard(FreeBoardVO freeBoard) throws  BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
 
-        if (freeBoard.equals(freeBoard.getBoNo())){
-            System.out.println(freeBoard);
+
             int result = freeBoardDao.updateBoard(freeBoard);
             if (result < 1) throw new BizNotEffectedException();
             //추가된 첨부파일 DB에 넣는 건 regist랑 똑같이.
@@ -58,7 +57,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
                     attach.setAtchParentNo(freeBoard.getBoNo());
                     attachDao.insertAttach(attach);
                 }
-            }
+            
 
             //휴지통 버튼에 의해 삭제될 첨부파일들을 처리해줘야 함.
             int[] delAtchNos = freeBoard.getDelAtchNos();
