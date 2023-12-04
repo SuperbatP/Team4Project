@@ -4,12 +4,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <%@ include file="/WEB-INF/inc/header.jsp" %>
+    <%@include file="/WEB-INF/inc/header.jsp" %>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/resource/bootstrap/css/memberForm.css">
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/wow.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/custom.js"></script>
 </head>
-<body>
-<link rel="stylesheet" href="/resource/bootstrap-3.3.2/css/memberForm.css">
-
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
+
 
 <div class="container">
     <!--회원가입 안내문-->
@@ -21,7 +30,7 @@
                 <p style="font-size: 15px; font-weight: bold">아래의 항목을 모두 기입하시고 "회원가입" 버튼을 누르시면 회원가입이 완료 됩니다.</p>
             </div>
             <div class="form-img">
-                <img src="/resource/bootstrap-3.3.2/images/form-img.png" style="height: 280px">
+                <img src="/resource/images/form-img.png" style="height: 280px">
             </div>
         </div>
     </section>
@@ -151,13 +160,10 @@
     </section>
 </div>
 
-<%@include file="/WEB-INF/inc/footer.jsp" %>
-
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
-
     function regMemberid(memId) { //영문자 또는 숫자 6~16자
         // var regExp = /^[A-za-z0-9]{5,15}/g;
         var regExp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,16}$/g;
@@ -184,11 +190,6 @@
             $(this).val($(this).val().replace(/[^0-9]/g, "").replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, "$1-$2-$3").replace("--", "-")); //- 자동으로 입력
         })
     }
-
-</script>
-
-
-<script>
 
     var idCheck = 0;
     var pwdCheck = 0;
@@ -320,9 +321,7 @@
             $(".signupbtn").prop("disabled", true);
         }
     }
-</script>
 
-<script>
     //    우편번호 검색기
     var cehckBox1 = $("#memZip");     // 인증번호 입력란
     var cehckBox2 = $("#memAdd1");     // 인증번호 입력란
@@ -357,9 +356,6 @@
         }).open();
     }
 
-</script>
-
-<script>
     <%-- 이메일 인증   --%>
     let header = "${_csrf.headerName}";
     let token = "${_csrf.token}";
@@ -386,33 +382,7 @@
 
     });
 
-    // $("#btn").submit(function () {
-    //     var pos = $("#job").find("option:selected").data("no");
-    //     var jcd = $("#position").val(pos);
-    //     var memberjobcd = $("#job option:selected").val();
-    //     var jod = $("#job option:selected").text();
-    //     $("#jobgubun").val(jod);
-    //
-    //     temp_pw_issuance()
-    //
-    //     if ($("#memEmail").val() == null || $("#memEmail").val() == "") {
-    //         alert("이메일을 입력해주세요.");
-    //         $("#memEmail").focus();
-    //
-    //         return false;
-    //     }
-    //
-    //     if ($("#authNum").val() == "") {
-    //         alert("인증번호를 입력해주세요.");
-    //         $("#authNum").focus();
-    //
-    //         return false;
-    //     }
-    //
-    //     alert("회원가입이 완료되었습니다.");
-    // });
-
-    /* 인증번호 이메일 전송 */
+     /* 인증번호 이메일 전송 */
 
     $("#email_auth_btn").click(function () {
 
@@ -442,22 +412,7 @@
         }
     });
 
-
-
-
-
-
-
 </script>
-<!-- SCRIPTS -->
-<script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/custom.js"></script>
-
+<%@include file="/WEB-INF/inc/footer.jsp" %>
 </body>
 </html>

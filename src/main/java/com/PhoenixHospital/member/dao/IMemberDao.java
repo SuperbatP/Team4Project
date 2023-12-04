@@ -33,10 +33,6 @@ public interface IMemberDao {
 
     public int EmCheck(String memEmail);
 
-    MemberVO loginCheck(MemberVO member);
-
-    MemberVO getBySns(MemberVO snsUser);
-
     public int updateUser(MemberVO member);
 
     public List<MemberVO> findId(String memEmail) throws Exception;

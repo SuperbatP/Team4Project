@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
@@ -22,7 +22,6 @@
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row">
-
             <div class="owl-carousel owl-theme">
                 <div class="item item-first">
                     <div class="caption">
@@ -33,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item item-second">
                     <div class="caption">
                         <div class="col-md-offset-1 col-md-10">
@@ -73,7 +71,7 @@
                         <p style="font-size: 16px;">회원가입 후 서비스를 이용하세요.</p>
                     </div>
                     <figure class="profile wow fadeInUp" data-wow-delay="1s">
-                        <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
+                        <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                         <figcaption style="margin-top: 20px;">
                             <h3>김정환 원장</h3>
                             <p>토니토니 초파</p>
@@ -101,7 +99,7 @@
 
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                    <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/DC024.jpg" class="img-responsive" alt="">
+                    <img src="resource/images/의료진대표이미지/DC024.jpg" class="img-responsive" alt="">
                     <div class="team-info">
                         <h3>김영희</h3>
                         <p>가정의학과</p>
@@ -116,7 +114,7 @@
 
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/DC025.jpg" class="img-responsive" alt="">
+                    <img src="resource/images/의료진대표이미지/DC025.jpg" class="img-responsive" alt="">
                     <div class="team-info">
                         <h3>박민정</h3>
                         <p>감염내과</p>
@@ -131,7 +129,7 @@
 
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/DC026.jpg" class="img-responsive" alt="">
+                    <img src="resource/images/의료진대표이미지/DC026.jpg" class="img-responsive" alt="">
                     <div class="team-info">
                         <h3>박영미</h3>
                         <p>내분비대사내과</p>
@@ -163,16 +161,16 @@
             <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
                 <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <a href="news-detail.html">
-                        <img src="resource/bootstrap-3.3.2/images/news-image1.jpg" class="img-responsive" alt="">
+                    <a href="/notice/noticeView.wow?boNo=%2083">
+                        <img src="resource/images/news-image1.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
                         <span>2023 12 12</span>
-                        <h3><a href="news-detail.html">불사조 병원 최종 합격자</a></h3>
+                        <h3><a href="/notice/noticeView.wow?boNo=%2083">불사조 병원 최종 합격자</a></h3>
                         <p>제 1회 불사조 병원 합격지원자 명단 확인</p>
                         <p>지원해주신 19명은 명단을 확인해주세요.</p>
                         <div class="author">
-                            <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
+                            <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
                                 <h5>김정환 원장</h5>
                                 <p>토니토니 초파</p>
@@ -185,15 +183,15 @@
             <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
                 <div class="news-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <a href="news-detail.html">
-                        <img src="resource/bootstrap-3.3.2/images/news-image2.jpg" class="img-responsive" alt="">
+                    <a href="/notice/noticeView.wow?boNo=%2082">
+                        <img src="resource/images/news-image2.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
                         <span>2023 12 04</span>
-                        <h3><a href="news-detail.html">재활의학과의 확장이전 소식</a></h3>
+                        <h3><a href="/notice/noticeView.wow?boNo=%2082">재활의학과의 확장이전 소식</a></h3>
                         <p>불사조 병원에 재활의학과가 확장 이전합니다. 환자분들의 편의를 위해 더욱 접근이 용이한 위치로 옮기게 되었습니다.</p>
                         <div class="author">
-                            <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
+                            <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
                                 <h5>김정환 원장</h5>
                                 <p>토니토니 초파</p>
@@ -206,16 +204,15 @@
             <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
                 <div class="news-thumb wow fadeInUp" data-wow-delay="0.8s">
-                    <a href="news-detail.html">
-                        <img src="resource/bootstrap-3.3.2/images/news-image3.jpg" class="img-responsive" alt="">
+                    <a href="/notice/noticeView.wow?boNo=%2081">
+                        <img src="resource/images/news-image3.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="news-info">
                         <span>2023 12 01</span>
-                        <h3><a href="news-detail.html">불사조 병원 의료진 추가채용</a></h3>
+                        <h3><a href="/notice/noticeView.wow?boNo=%2081">불사조 병원 의료진 추가채용</a></h3>
                         <p>불사조 병원의 의료진를 추가 모집합니다.</p>
-                        <p>해당 게시글을 확인하세요.</p>
                         <div class="author">
-                            <img src="resource/bootstrap-3.3.2/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
+                            <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
                                 <h5>김정환 원장</h5>
                                 <p>토니토니 초파</p>
@@ -231,14 +228,14 @@
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 <!-- SCRIPTS -->
-<script src="resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="resource/bootstrap-3.3.2/js/custom.js"></script>
+<script src="resource/bootstrap/js/jquery.js"></script>
+<script src="resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="resource/bootstrap/js/jquery.sticky.js"></script>
+<script src="resource/bootstrap/js/jquery.stellar.min.js"></script>
+<script src="resource/bootstrap/js/wow.min.js"></script>
+<script src="resource/bootstrap/js/smoothscroll.js"></script>
+<script src="resource/bootstrap/js/owl.carousel.min.js"></script>
+<script src="resource/bootstrap/js/custom.js"></script>
 
 </body>
 </html>

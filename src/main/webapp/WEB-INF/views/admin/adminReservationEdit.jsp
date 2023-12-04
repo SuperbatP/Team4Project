@@ -9,161 +9,16 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <title></title>
-    <style>
-        .container2 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .reservation-top {
-            width: 1200px;
-            display: flex;
-            justify-content: space-around;
-            align-items: start;
-            height: 500px;
-        }
-
-        .calendar-frame {
-            border: 1px solid gainsboro;
-            height: 450px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .reservation-time-select {
-            border: 1px solid gainsboro;
-            height: 450px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-
-        td {
-            width: 50px;
-            height: 50px;
-        }
-
-        .Calendar {
-            text-align: center;
-            margin: 0 auto;
-        }
-
-        .Calendar > thead > tr:first-child > td {
-            font-weight: bold;
-        }
-
-        .Calendar > thead > tr:last-child > td {
-            background-color: gray;
-            color: white;
-        }
-
-        .pastDay {
-            background-color: lightgray;
-        }
-
-        .today {
-            background-color: #FFCA64;
-            cursor: pointer;
-        }
-
-        .futureDay {
-            background-color: #FFFFFF;
-            cursor: pointer;
-        }
-
-        .futureDay.choiceDay, .today.choiceDay {
-            background-color: #3E85EF;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .futureDay.choiceDay, .today.choiceDay {
-            background: #a5c422;
-            color: #fff;
-            cursor: pointer;
-        }
-
-
-        .reservation-title {
-            padding-left: 55px;
-            padding-top: 78px;
-            width: 1200px;
-            height: 150px;
-
-        }
-
-        .member-info {
-            height: 370px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: start;
-            justify-content: center;
-            width: 1200px;
-        }
-
-        .member-info-table-tr > td {
-            height: 55px;
-            text-align: center;
-            border: 1px solid gainsboro;
-            color: gray;
-        }
-
-        .member-info-table-tr > td:nth-child(1), .member-info-table-tr > td:nth-child(3) {
-            width: 240px;
-            background-color: whitesmoke;
-        }
-
-        .member-info-table-tr > td:nth-child(2), .member-info-table-tr > td:nth-child(4) {
-            width: 310px;
-        }
-
-        input {
-            border: none;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-        .reservation-btn {
-            width: 1200px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .reservation-btn > button:nth-child(1) {
-            width: 130px;
-            height: 100%;
-            margin-right: 10px;
-            border: 1px solid gainsboro;
-            background-color: whitesmoke;
-            color: dimgray;
-        }
-
-        .reservation-btn > button:nth-child(2) {
-            width: 130px;
-            height: 100%;
-            margin-left: 10px;
-            border: 1px solid gainsboro;
-            background-color: #a5c422;
-            color: white;
-
-        }
-
-        .time-frame {
-            width: 380px;
-            height: 200px;
-        }
-    </style>
+    <link rel="stylesheet" href="/resource/bootstrap/css/reservation.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/wow.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/resource/bootstrap/js/custom.js"></script>
 
     <script>
 
@@ -203,6 +58,7 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 <%@include file="/WEB-INF/inc/navi.jsp" %>
+
 <div class="container2">
     <c:forEach var="at" items="${attendance}">
         <input class="attendanceDate" type="hidden" value="${at.attendanceDate}">
@@ -505,16 +361,6 @@
 <!-- 코드 작성구역 끝 -->
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
-<!-- SCRIPTS -->
-<script src="/resource/bootstrap-3.3.2/js/jquery.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/jquery.sticky.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/jquery.stellar.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/wow.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/smoothscroll.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/owl.carousel.min.js"></script>
-<script src="/resource/bootstrap-3.3.2/js/custom.js"></script>
-
 
 </body>
 </html>
