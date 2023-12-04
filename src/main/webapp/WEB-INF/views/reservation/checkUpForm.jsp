@@ -74,7 +74,7 @@
         width: 1100px;
         height: 70px;
         margin-bottom: -10px;
-        padding-left: 35px;
+        padding-left: 55px;
     }
 
     .basicCheckUp-list {
@@ -284,7 +284,7 @@
                 </tr>
             </table>
         </div>
-        <h3>날짜 및 시간 선택</h3>
+        <h3>🌈날짜 및 시간 선택</h3>
         <div class="reservation-top">
             <div class="Calendar-frame col-sm-5">
                 <table class="Calendar">

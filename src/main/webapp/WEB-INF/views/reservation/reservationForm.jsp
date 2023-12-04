@@ -226,7 +226,7 @@
         <input type="hidden" name="dcId" value="${doctor.dcId}">
         <input type="hidden" name="treatmentCode" value="${doctor.treatmentCode}">
         <div class="reservation-title">
-            <h3>날짜 및 시간 선택</h3>
+            <h3>🌈날짜 및 시간 선택</h3>
         </div>
         <div class="reservation-top">
             <div class="calendar-frame col-sm-5">
