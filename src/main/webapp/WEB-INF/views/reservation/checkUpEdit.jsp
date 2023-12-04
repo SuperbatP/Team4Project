@@ -250,7 +250,6 @@
         <input name="reservationGender" value="${myCheckUp.reservationGender}" type="hidden">
         <input name="reservationBirthday" value="${myCheckUp.reservationBirthday}" type="hidden">
 
-        <input name="reservationHp" value="${myCheckUp.reservationHp}" type="hidden">
         <h3>🌈날짜 및 시간 선택</h3>
         <div class="reservation-top">
             <div class="Calendar-frame col-sm-5">
