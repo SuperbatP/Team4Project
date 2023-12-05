@@ -43,8 +43,8 @@
             <sec:csrfInput/>
             <input type="hidden" id="memId" name="memId" value="${member.memId}">
             <div class="col-sm-8 col-sm-offset-2">
-                <div class="panel panel-default panel-margin-10"  style="border: none;">
-                    <div class="panel-body panel-body-content text-center">
+                <div class="panel-default panel-margin-10"  style="border: none;">
+                    <div class="panel-body text-center">
                         <p class="lead">비밀번호를 입력해주세요.</p>
                         <div class="form-group">
                             <input type="password" name="memPassword" id="memPassword" onchange="checkpassword()"

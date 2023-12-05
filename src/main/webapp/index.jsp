@@ -252,9 +252,9 @@
                     </div>
 
                     <ul class="social-icon">
-                        <li><a href="https://www.nextit.or.kr/" class="fa fa-home"></a></li>
-                        <li><a href="https://blog.naver.com/nextit_center" class="fa fa-bookmark"></a></li>
-                        <li><a href="https://www.instagram.com/__nextit__/" class="fa fa-instagram"></a></li>
+                        <li><a href="https://www.nextit.or.kr/" target="_blank" class="fa fa-home"></a></li>
+                        <li><a href="https://blog.naver.com/nextit_center" target="_blank" class="fa fa-bookmark"></a></li>
+                        <li><a href="https://www.instagram.com/__nextit__/" target="_blank" class="fa fa-instagram"></a></li>
                     </ul>
                 </div>
             </div>

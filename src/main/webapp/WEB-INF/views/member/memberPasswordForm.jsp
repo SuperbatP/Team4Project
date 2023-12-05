@@ -40,7 +40,7 @@
             <sec:csrfInput/>
             <input type="hidden" id="memId" name="memId" value="${member.memId}">
             <div class="col-sm-8 col-sm-offset-2">
-                <div class="panel panel-default" style="border: none;">
+                <div class="panel-default" style="border: none;">
                     <div class="panel-body panel-body-content text-center" style="border: none;">
                         <p class="lead" style="font-weight: bold; color: #0f0f0f">변경하실 비밀번호를 입력해 주세요.</p>
                         <div class="form-group">

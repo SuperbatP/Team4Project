@@ -49,9 +49,10 @@
                             </select>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" name="searchWord" class="form-control input-mg"
+                            <input type="text" name="searchWord" class="form-control input-mg" onkeyup="characterCheck(this)" onkeydown="characterCheck(this)"
                                    value="${search.searchWord}"
                                    placeholder="검색어">
+                            <span color="red" id="fail" style="display:none">특수문자는 검색할 수 없습니다.</span>
                         </div>
                         <div class="col-sm-1 text-right">
                             <button type="button" id="id_btn_reset"
@@ -231,6 +232,14 @@
         $("#id_searchHobby option:eq(0)").prop("selected", "selected");
 
     }); // #id_btn_reset.click
+
+    function characterCheck(obj){
+        var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+        if( regExp.test(obj.value) ){
+            alert("특수문자는 입력하실수 없습니다.");
+            obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+        }
+    }
 
 
 </script>
