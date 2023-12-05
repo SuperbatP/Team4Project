@@ -61,8 +61,16 @@
         </div>
     </div>
 </section>
-
 <%@include file="/WEB-INF/inc/footer.jsp" %>
-
+<script>
+    function f_click() {
+        event.preventDefault();
+        if($("input[name='searchWord']")[0].value=="") {
+            alert("검색어를 입력해주세요");
+        } else {
+            $("form[name='search']").submit();
+        }
+    }
+</script>
 </body>
 </html>

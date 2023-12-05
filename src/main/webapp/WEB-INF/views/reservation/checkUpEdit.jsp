@@ -194,7 +194,21 @@
             font-weight: normal;
         }
 
+        .time-radio {
+            appearance: none;
+        }
 
+        .time-label {
+            background-color: #a5c422;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .choiceTime {
+            background-color: #66790e;
+        }
     </style>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -283,15 +297,16 @@
             <div class="reservation-time-select col-sm-5">
                 <div class="time-frame">
                     <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
-                    <select name="reservationTime" required="required">
-                        <option value="">예약시간 선택</option>
-                        <option value="08:00~11:00" ${myCheckUp.reservationTime eq "08:00~11:00" ? "selected='selected'":""}>
+                    <div name="reservationTime">
+                        <label class="time-label" onclick="timeSelect()">
+                            <input type="radio" class="time-radio" value="08:00~11:00" required="required" ${myCheckUp.reservationTime eq "08:00~11:00" ? "checked='checked'":""}>
                             08:00~11:00
-                        </option>
-                        <option value="13:30~16:00" ${myCheckUp.reservationTime eq "13:30~16:00" ? "selected='selected'":""}>
+                        </label>
+                        <label class="time-label" onclick="timeSelect()">
+                            <input type="radio" class="time-radio" value="13:30~16:00" required="required" ${myCheckUp.reservationTime eq "13:30~16:00" ? "checked='checked'":""}>
                             13:30~16:00
-                        </option>
-                    </select>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -339,6 +354,7 @@
     </form>
 </div>
 <input id="td_date" type="hidden">
+<input id="td_time" type="hidden">
 <!-- 코드 작성구역 시작-->
 
 <script>
@@ -362,11 +378,11 @@
 
     $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
-        if ($input[0].value == "" || $select[0].value == "") {
+        if ($input[0].value == "" || $('#td_time').attr('value') == null) {
             alert("날짜 및 시간을 선택해주세요");
         } else {
             $tdDate = $("#td_date");
-            if (window.confirm($tdDate[0].value + " 일 " + $select[0].value + "시로 " + "예약 변경하시겠습니까?")) {
+            if (window.confirm($tdDate[0].value + " 일 " + $('#td_time').attr('value') + "시로 예약 변경하시겠습니까?")) {
                 $form.submit();
             }
         }
@@ -376,6 +392,13 @@
         window.history.back();
     });
 
+    function timeSelect() {
+        if (document.getElementsByClassName("choiceTime")[0]) {                              // 기존에 선택한 날짜가 있으면
+            document.getElementsByClassName("choiceTime")[0].classList.remove("choiceTime");  // 해당 날짜의 "choiceDay" class 제거
+        }
+        event.target.parentNode.classList.add("choiceTime");
+        $('#td_time').attr('value', event.target.value);
+    }
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
     function buildCalendar() {
