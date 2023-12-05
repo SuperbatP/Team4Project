@@ -44,7 +44,8 @@
             </tr>
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="boTitle" value="${freeBoard.boTitle }" class="form-control input-sm" required="required"></td>
+                <td><input type="text" name="boTitle" value="${freeBoard.boTitle }" class="form-control input-sm" required="required"
+                           onkeyup="characterCheck(this)" onkeydown="characterCheck(this)"></td>
             </tr>
             <tr>
                 <th>작성자ID</th>
@@ -144,9 +145,26 @@
         height: 350,
         placeholder: '내용을 작성하세요.',
     })
+    function characterCheck(obj){
+        var regExp = /[\{\}\[\];:|\)*~`^\-_+┼<>@\#$%&\'\"\\\(\=]/gi
+
+// 허용할 특수문자는 여기서 삭제하면 됨
+// 지금은 띄어쓰기도 특수문자 처리됨 참고하셈
+        if( regExp.test(obj.value) ){
+            alert("특수문자는 입력하실수 없습니다.");
+            obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+        }
+    }
+
+    window.onpageshow = function(event){
+        if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+            service.onLoadPage();
+        }
+    }
 
 
 </script>
+<%@include file="/WEB-INF/inc/footer.jsp" %>
 <script src="resource/bootstrap/js/jquery.js"></script>
 <script src="resource/bootstrap/js/bootstrap.min.js"></script>
 <script src="resource/bootstrap/js/jquery.sticky.js"></script>

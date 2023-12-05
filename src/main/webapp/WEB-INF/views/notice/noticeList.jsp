@@ -37,7 +37,8 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <input type="text" name="searchWord" class="form-control input-sm" value="${freeBoardVO.searchWord}" placeholder="검색어">
+                        <input type="text" name="searchWord" id="searchWord" class="form-control input-sm" value="${freeBoardVO.searchWord}" placeholder="검색어"
+                               onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
                     </div>
                     <label for="id_searchCategory" class="col-sm-2 col-sm-offset-2 control-label">분류</label>
                     <div class="col-sm-2">
@@ -70,7 +71,7 @@
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-sm-3 form-inline">
-            전체 1000건 조회
+            전체 50건 조회
             <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">
                 <c:forEach var="i" begin="10" end="50" step="10">
                     <option value="${i}" ${freeBoardVO.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>
@@ -239,7 +240,26 @@
     }); // #id_btn_reset.click
 
 
+    function characterCheck(obj){
+        var regExp = /[\{\}\[\];:|\)*~`^\-_+┼<>@\#$%&\'\"\\\(\=]/gi
+
+// 허용할 특수문자는 여기서 삭제하면 됨
+// 지금은 띄어쓰기도 특수문자 처리됨 참고하셈
+        if( regExp.test(obj.value) ){
+            alert("특수문자는 입력하실수 없습니다.");
+            obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+        }
+    }
+
+    window.onpageshow = function(event){
+        if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+            service.onLoadPage();
+        }
+    }
+
+
 </script>
+<%@include file="/WEB-INF/inc/footer.jsp" %>
 </html>
 
 

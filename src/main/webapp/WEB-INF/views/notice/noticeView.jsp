@@ -355,6 +355,7 @@
             }); //삭제버튼
   });
 </script>
+<%@include file="/WEB-INF/inc/footer.jsp" %>
 </body>
 
 </html>
