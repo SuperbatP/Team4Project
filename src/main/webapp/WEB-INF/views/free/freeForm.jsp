@@ -16,7 +16,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h3>자유게시판 - <small>글 등록</small></h3>
+		<h3>민원게시판 - <small>글 등록</small></h3>
 	</div>
 	<form action="/free/insertForm.wow" method="post" enctype="multipart/form-data">
 		<sec:csrfInput/>

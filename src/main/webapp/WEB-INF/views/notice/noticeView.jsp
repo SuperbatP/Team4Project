@@ -20,7 +20,7 @@
 <div class="container">
   <div class="page-header">
     <h3>
-      건강정보 - <small>글 보기</small>
+      공자사항 - <small>글 보기</small>
     </h3>
   </div>
   <table class="table table-striped table-bordered">
