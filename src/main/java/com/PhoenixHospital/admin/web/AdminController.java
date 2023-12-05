@@ -13,6 +13,7 @@ import com.PhoenixHospital.doctor_attendance.vo.AttendanceVO;
 import com.PhoenixHospital.doctors.service.IDoctorsService;
 import com.PhoenixHospital.doctors.vo.DoctorsVO;
 import com.PhoenixHospital.exception.BizException;
+import com.PhoenixHospital.exception.BizNotFoundException;
 import com.PhoenixHospital.member.service.IMemberService;
 import com.PhoenixHospital.member.vo.MemberVO;
 import com.PhoenixHospital.reservation.service.IReservationService;
@@ -74,9 +75,9 @@ public class AdminController {
 
     //관리자가 개별 예약 수정
     @RequestMapping(method = RequestMethod.POST, value = "/admin/adminReservationEdit.wow")
-    public String memberReservationEdit(Model model, ReservationVO reservation, MemberVO memberVO) throws BizException {
+    public String memberReservationEdit(Model model, ReservationVO reservation, String memId) throws BizException {
 
-        MemberVO member = memberService.getMember(reservation.getMemId());
+        MemberVO member = memberService.getMember(memId);
         DoctorsVO doctorsVO = doctorsService.getDoc(reservation.getDcId());
         List<AttendanceVO> attendanceVOList = attendanceService.getAttendance(reservation.getDcId());
         List<ReservationVO> reservationVOList = reservationService.getReservationList();
@@ -102,14 +103,32 @@ public class AdminController {
 
         model.addAttribute("reservation", reservationVOList);
         model.addAttribute("checkUp", checkUpVOList);
+        model.addAttribute("member", memberVO);
+
+        return "/admin/memberReservation";
+    }
+
+    //관리자가 개별 예약 삭제
+    @PostMapping("/admin/adminReservationCancel.wow")
+    public String reservationCancel(Model model, ReservationVO reservation, String memId) throws BizNotFoundException {
+        MemberVO memberVO = memberService.getMember(memId);
+        reservationService.cancelReservation(reservation);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(memId);
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(memId);
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
+        model.addAttribute("member", memberVO);
 
         return "/admin/memberReservation";
     }
 
     //관리자가 개별 건강검진 예약 수정
     @RequestMapping(method = RequestMethod.POST, value = "/admin/adminCheckUpEdit.wow")
-    public String checkUpEdit(Model model, CheckUpVO checkUp) throws BizException {
+    public String checkUpEdit(Model model, CheckUpVO checkUp, String memId) throws BizException {
 
+        MemberVO memberVO = memberService.getMember(memId);
         List<CheckUpVO> checkUpVOList = checkUpService.getCheckUpList();
         List<BasicCheckUpVO> basicCheckUpVOList = basicCheckUpService.getCodeList();
         List<AddCheckUpVO> addCheckUpVOList = addCheckUpService.getCodeList();
@@ -121,6 +140,7 @@ public class AdminController {
         model.addAttribute("DNACodeList", dnaTestVOList);
 
         model.addAttribute("myCheckUp", checkUp);
+        model.addAttribute("member", memberVO);
 
         return "/admin/adminCheckUpEdit";
 
@@ -128,19 +148,35 @@ public class AdminController {
 
     //관리자가 개별 건강검진 예약 수정 후 완료
     @PostMapping("/admin/adminCheckUpModify.wow")
-    public String checkUpModify(Model model,CheckUpVO checkUp, String memId){
+    public String checkUpModify(Model model,CheckUpVO checkUp, String memId) throws BizNotFoundException {
         checkUpService.modifyCheckUp(checkUp);
+
+        List<ReservationVO> reservationVOList = reservationService.getReservation(memId);
+        List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(memId);
+        MemberVO memberVO = memberService.getMember(memId);
+
+        model.addAttribute("reservation", reservationVOList);
+        model.addAttribute("checkUp", checkUpVOList);
+        model.addAttribute("member", memberVO);
+
+        return "/admin/memberReservation";
+    }
+
+    //관리자가 개별 건강검진 예약 삭제
+    @PostMapping("/admin/adminCheckUpCancel.wow")
+    public String checkUpCancel(Model model, CheckUpVO checkUp, String memId) throws BizNotFoundException {
+        MemberVO memberVO = memberService.getMember(memId);
+        checkUpService.cancelCheckUp(checkUp);
 
         List<ReservationVO> reservationVOList = reservationService.getReservation(memId);
         List<CheckUpVO> checkUpVOList = checkUpService.getCheckUp(memId);
 
         model.addAttribute("reservation", reservationVOList);
         model.addAttribute("checkUp", checkUpVOList);
-        model.addAttribute("memId", memId);
+        model.addAttribute("member", memberVO);
 
         return "/admin/memberReservation";
     }
-
 
 
     //관리자가 회원 권한 및 탈퇴여부 + 모든 정보 처리

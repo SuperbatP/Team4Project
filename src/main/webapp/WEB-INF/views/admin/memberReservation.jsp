@@ -71,7 +71,7 @@
                                 <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="submit" formaction="reservationCancel.wow"
+                                        <button type="submit" formaction="/admin/adminReservationCancel.wow"
                                                 class="width80px height40px btn-green margin-left5 cancelBtn"
                                                 onclick="cancelAction()"><b>취소</b></button>
                                     </div>
@@ -98,6 +98,7 @@
                     <c:forEach var="ck" items="${checkUp}">
                         <form name="checkUp" action="/admin/adminCheckUpEdit.wow" method="post">
                             <sec:csrfInput/>
+                            <input name="memId" value="${member.memId}" type="hidden">
                             <input name="ckReservationNo" value="${ck.ckReservationNo}" type="hidden">
                             <input name="reservationGender" value="${ck.reservationGender}" type="hidden">
                             <input name="reservationBirthday" value="${ck.reservationBirthday}" type="hidden">
@@ -127,7 +128,7 @@
                                 <td class="width200px height50px">
                                     <div class="reservation-btnbox">
                                         <button type="submit" class="width80px height40px btn-gray"><b>수정</b></button>
-                                        <button type="submit" formaction="checkUpCancel.wow"
+                                        <button type="submit" formaction="/admin/adminCheckUpCancel.wow"
                                                 class="width80px height40px btn-green margin-left5 cancelBtn"
                                                 onclick="cancelAction()"><b>취소</b></button>
                                     </div>
