@@ -66,9 +66,9 @@
                 <div class="about-info">
                     <h2 class="wow fadeInUp" data-wow-delay="0.6s">불사조 병원을 방문해주셔서<br> 감사합니다.</h2>
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
-                        <p style="font-size: 16px;">불사조 병원은 환자의 입장에서 먼저 생각합니다.</p>
-                        <p style="font-size: 16px;">불사조 병원 예약 사이트는 무료입니다.</p>
-                        <p style="font-size: 16px;">회원가입 후 서비스를 이용하세요.</p>
+                        <p style="font-size: 18px;">불사조 병원은 환자의 입장에서 먼저 생각합니다.</p>
+                        <p style="font-size: 18px;">불사조 병원 예약 사이트는 무료입니다.</p>
+                        <p style="font-size: 18px;">회원가입 후 서비스를 이용하세요.</p>
                     </div>
                     <figure class="profile wow fadeInUp" data-wow-delay="1s">
                         <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
@@ -104,8 +104,8 @@
                         <h3>김영희</h3>
                         <p>가정의학과</p>
                         <div class="team-contact-info">
-                            <p>서울대학교 의과대학</p>
-                            <p>서울의료원 가정의학과전문의 경력 10년</p>
+                            <p style="font-size: 16px;">서울대학교 의과대학</p>
+                            <p style="font-size: 16px;">서울의료원 가정의학과전문의 경력 10년</p>
                             <br>
                         </div>
                     </div>
@@ -119,8 +119,8 @@
                         <h3>박민정</h3>
                         <p>감염내과</p>
                         <div class="team-contact-info">
-                            <p>연세대학교 의과대학</p>
-                            <p>연세의료원 감염내과전문의 경력 8년</p>
+                            <p style="font-size: 16px;">연세대학교 의과대학</p>
+                            <p style="font-size: 16px;">연세의료원 감염내과전문의 경력 8년</p>
                             <br>
                         </div>
                     </div>
@@ -134,8 +134,8 @@
                         <h3>박영미</h3>
                         <p>내분비대사내과</p>
                         <div class="team-contact-info">
-                            <p>고려대학교 의과대학</p>
-                            <p>한양의료원 내분비대사내과전문의 경력 15년</p>
+                            <p style="font-size: 16px;">고려대학교 의과대학</p>
+                            <p style="font-size: 16px;">한양의료원 내분비대사내과전문의 경력 15년</p>
                             <br>
                         </div>
                     </div>
@@ -167,8 +167,8 @@
                     <div class="news-info">
                         <span>2023 12 12</span>
                         <h3><a href="/notice/noticeView.wow?boNo=%2083">불사조 병원 최종 합격자</a></h3>
-                        <p>제 1회 불사조 병원 합격지원자 명단 확인</p>
-                        <p>지원해주신 19명은 명단을 확인해주세요.</p>
+                        <p style="font-size: 16px;">제 1회 불사조 병원 합격지원자 명단 확인</p>
+                        <p style="font-size: 16px;">지원해주신 19명은 명단을 확인해주세요.</p>
                         <div class="author">
                             <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
@@ -189,7 +189,8 @@
                     <div class="news-info">
                         <span>2023 12 04</span>
                         <h3><a href="/notice/noticeView.wow?boNo=%2082">재활의학과의 확장이전 소식</a></h3>
-                        <p>불사조 병원에 재활의학과가 확장 이전합니다. 환자분들의 편의를 위해 더욱 접근이 용이한 위치로 옮기게 되었습니다.</p>
+                        <p style="font-size: 16px;">불사조 병원에 재활의학과가 확장 이전합니다.</p>
+                        <p style="font-size: 16px;">환자분들의 편의를 위해 더욱 접근이 용이한 위치로 옮기게 되었습니다.</p>
                         <div class="author">
                             <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
@@ -210,7 +211,7 @@
                     <div class="news-info">
                         <span>2023 12 01</span>
                         <h3><a href="/notice/noticeView.wow?boNo=%2081">불사조 병원 의료진 추가채용</a></h3>
-                        <p>불사조 병원의 의료진를 추가 모집합니다.</p>
+                        <p style="font-size: 16px;">불사조 병원의 의료진를 추가 모집합니다.</p>
                         <div class="author">
                             <img src="resource/images/의료진대표이미지/김정환원장님.jpg" class="img-responsive" alt="">
                             <div class="author-info">
@@ -225,6 +226,54 @@
         </div>
     </div>
 </section>
+
+<!-- FOOTER -->
+<footer data-stellar-background-ratio="5" style="margin-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="footer-thumb">
+                    <h4 class="wow fadeInUp" data-wow-delay="0.4s">불사조 병원연락처</h4>
+                    <p>고객님들의 소중한 의견 감사히 받겠습니다.</p>
+
+                    <div class="contact-info">
+                        <p><i class="fa fa-phone"></i> 042-719-8850</p>
+                        <p><i class="fa fa-fax"></i> 042-719-8851</p>
+                        <p><i class="fa fa-envelope-o"></i> nextit_center@naver.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="footer-thumb">
+                    <div class="opening-hours">
+                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">불사조 병원 이용시간</h4>
+                        <p>월요일 - 금요일 <span>09:00 AM - 06:00 PM</span></p>
+                        <p>토요일 - 일요일 <span>09:00 AM - 13:00 PM</span></p>
+                    </div>
+
+                    <ul class="social-icon">
+                        <li><a href="https://www.nextit.or.kr/" class="fa fa-home"></a></li>
+                        <li><a href="https://blog.naver.com/nextit_center" class="fa fa-bookmark"></a></li>
+                        <li><a href="https://www.instagram.com/__nextit__/" class="fa fa-instagram"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="footer-thumb">
+                    <div class="opening-hours">
+                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">불사조 병원 주소</h4>
+                        <p><span> (34856) 넥스트 IT 교육센터</span></p>
+                        <p><span> 대전광역시 중구 계룡로 825 (용두동, 희영빌딩 2층) </span></p>
+                    </div>
+
+                    <ul class="social-icon">
+                        <li><a href="/map/map.wow" class="fa fa-map"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 <!-- SCRIPTS -->
