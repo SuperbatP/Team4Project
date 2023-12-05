@@ -28,7 +28,7 @@
                 <sec:csrfInput/>
                 <input type="hidden" name="curPage" value="${freeBoardVO.curPage}"> <input type="hidden" name="rowSizePerPage" value="${freeBoardVO.rowSizePerPage}">
                 <div class="form-group">
-                    <label for="id_searchType" class="col-sm-2 control-label">검색</label>
+                    <label for="id_searchType" class="col-sm-2 control-label" >검색</label>
                     <div class="col-sm-2">
                         <select id="id_searchType" name="searchType" class="form-control input-sm">
                             <option value="T" ${freeBoardVO.searchType=='T' ? "selected='selected'" : ""} >제목</option>
@@ -37,7 +37,8 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <input type="text" name="searchWord" class="form-control input-sm" value="${freeBoardVO.searchWord}" placeholder="검색어">
+                        <input type="text" name="searchWord" class="form-control input-sm" value="${freeBoardVO.searchWord}" placeholder="검색어"
+                               onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
                     </div>
                     <label for="id_searchCategory" class="col-sm-2 col-sm-offset-2 control-label">분류</label>
                     <div class="col-sm-2">
@@ -237,8 +238,26 @@
 
     }); // #id_btn_reset.click
 
+    function characterCheck(obj){
+        var regExp = /[\{\}\[\];:|\)*~`^\-_+┼<>@\#$%&\'\"\\\(\=]/gi
+
+// 허용할 특수문자는 여기서 삭제하면 됨
+// 지금은 띄어쓰기도 특수문자 처리됨 참고하셈
+        if( regExp.test(obj.value) ){
+            alert("특수문자는 입력하실수 없습니다.");
+            obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+        }
+    }
+
+    window.onpageshow = function(event){
+        if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+            service.onLoadPage();
+        }
+    }
+
 
 </script>
+<%@include file="/WEB-INF/inc/footer.jsp" %>
 </html>
 
 

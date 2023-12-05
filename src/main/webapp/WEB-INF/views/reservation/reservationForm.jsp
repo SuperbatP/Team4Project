@@ -164,7 +164,21 @@
             height: 200px;
         }
 
+        .time-radio {
+            appearance: none;
+        }
 
+        .time-label {
+            background-color: #a5c422;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .choiceTime {
+            background-color: #66790e;
+        }
     </style>
 
 
@@ -258,10 +272,10 @@
             </div>
             <div class="reservation-time-select col-sm-5">
                 <div class="time-frame">
-                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
-                    <select name="reservationTime" required="required">
+                    <p id="timeMessage" style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
+                    <div name="reservationTimeDiv">
 
-                    </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -336,24 +350,30 @@
 
     $form = $("form[name='reservation']")
     $input = $("input[name='reservationDate']");
-    $select = $("select[name='reservationTime']");
-
-
+    $select = $("div[name='reservationTimeDiv']");
 
     $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
-        if ($input[0].value == "" || $select[0].value == "") {
+        if ($input[0].value == "" || $('#td_time').attr('value') == null) {
             alert("날짜 및 시간을 선택해주세요");
         } else {
-            if (window.confirm($("#td_date").val() + " 일 "+ $select[0].value +"시에 "+ "예약하시겠습니까?")) {
+            if (window.confirm($("#td_date").val() + " 일 "+ $('#td_time').attr('value') + "시에 예약하시겠습니까?")) {
                 $form.submit();
             }
         }
     });
 
-    $form.find("button[type=button]").click(function () {
+    $form.find("button[type=button]").click(function() {
         window.history.back();
     });
+
+    function timeSelect() {
+        if (document.getElementsByClassName("choiceTime")[0]) {                              // 기존에 선택한 날짜가 있으면
+            document.getElementsByClassName("choiceTime")[0].classList.remove("choiceTime");  // 해당 날짜의 "choiceDay" class 제거
+        }
+        event.target.parentNode.classList.add("choiceTime");
+        $('#td_time').attr('value', event.target.value);
+    }
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
     function buildCalendar() {
@@ -438,24 +458,29 @@
         let nowDate = new Date(nowColumn.id);
         $input.val(nowDate);
         let str = "";
-        str += "<option value='' selected='selected'>예약시간 선택</option>";
         for (let i = 0; i < atDate.length; i++) {
             if (nowDate.getDay() == DayToNum(atDate[i].value)) {
-                str += "<option value='" + atTime[i].value;
+                str += "<label class='time-label' onclick='timeSelect()'";
                 for (let j = 0; j < reDate.length; j++) {
                     let reservationDate = new Date(reDate[j].value);
                     if (reservationDate.getFullYear() == nowDate.getFullYear() && reservationDate.getMonth() == nowDate.getMonth() && reservationDate.getDate() == nowDate.getDate() && reTime[j].value == atTime[i].value) {
-                        str += "' style='display: none";
+                        str += " style='display: none'";
                         break;
                     }
                 }
-                str += "'>" + atTime[i].value + "</option>";
+                str += "><input type='radio' class='time-radio' name='reservationTime' value='" + atTime[i].value + "' required='required'>" + atTime[i].value + "</label>";
             }
         }
         $select.empty();
         $select.append(str);
         $('#td_date').attr('value', nowColumn.id);
 
+        if($select.childElementCount == 0){
+            $('#timeMessage')[0].innerText = "예약 가능한 시간이 없습니다.";
+        }
+        else {
+            $('#timeMessage')[0].innerText = "진료시간을 선택해주세요.";
+        }
     }
 
     // 이전달 버튼 클릭
@@ -497,10 +522,6 @@
                 return 6;
         }
     }
-
-    $select.change(() => {
-        $('#td_time').attr('value', $select[0].value)
-    });
 </script>
 <!-- 코드 작성구역 끝 -->
 
