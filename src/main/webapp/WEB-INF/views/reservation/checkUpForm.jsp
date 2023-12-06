@@ -294,7 +294,7 @@
                     </td>
                     <td>전화번호</td>
                     <td>
-                        <input type="text" name="reservationHp" required="required" style="width: 80%">
+                        <input type="text" id="reservationHp" name="reservationHp" required="required" style="width: 80%" oninput="addhyphen(),checkTel()" placeholder="-를 제외한 숫자만 입력.">
                     </td>
                 </tr>
             </table>
@@ -333,8 +333,8 @@
                 <div class="time-frame">
                     <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
                     <div name="reservationTimeDiv">
-                        <label class="time-label" onclick="timeSelect()"><input type="radio" class="time-radio" value="08:00~11:00" required="required">08:00~11:00</label>
-                        <label class="time-label" onclick="timeSelect()"><input type="radio" class="time-radio" value="13:30~16:00" required="required">13:30~16:00</label>
+                        <label class="time-label" onclick="timeSelect()"><input type="radio" class="time-radio" value="08:00~11:00" required="required" name="reservationTime">08:00~11:00</label>
+                        <label class="time-label" onclick="timeSelect()"><input type="radio" class="time-radio" value="13:30~16:00" required="required" name="reservationTime">13:30~16:00</label>
                     </div>
                 </div>
             </div>
@@ -545,6 +545,29 @@
             case '토':
                 return 6;
         }
+    }
+
+    function addhyphen() {
+        $(document).on("keyup", "#reservationHp", function () {
+            $(this).val($(this).val().replace(/[^0-9]/g, "").replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, "$1-$2-$3").replace("--", "-")); //- 자동으로 입력
+        })
+    }
+
+    function checkTel() {
+        var inputed = $('#reservationHp').val();
+
+        $.ajax({
+            success: function () {
+                if (regPhoneNumber(inputed) == false) {
+                    $("#reservationHp").css("background-color", "#FFCECE");
+                    inputed = $('#mTel').val();
+                    phoneCheck = 0;
+                } else if (regPhoneNumber(inputed) == true) {
+                    $("#reservationHp").css("background-color", "#B0F6AC");
+                    phoneCheck = 1;
+                }
+            }
+        })
     }
 </script>
 <!-- 코드 작성구역 끝 -->

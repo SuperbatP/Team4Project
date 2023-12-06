@@ -36,9 +36,9 @@
                     </div>
                     <div class="search-input">
                         <input style="margin-top: 10px;" type="text" class="form-control" name="searchWord"
-                               placeholder="진료과 및 의료진 명으로 검색하실 수 있습니다..">
+                               placeholder="진료과 및 의료진 명으로 검색하실 수 있습니다.."  onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
                     </div>
-                    <button type="submit" class="search-btn" id="cf-submit" name="submit" onclick="f_click()">검색
+                    <button type="submit" class="search-btn" id="cf-submit" name="submit" onclick="f_click()" >검색
                     </button>
                 </section>
             </form>
@@ -64,11 +64,19 @@
 <%@include file="/WEB-INF/inc/footer.jsp" %>
 <script>
     function f_click() {
-        event.preventDefault();
+        e.preventDefault();
         if($("input[name='searchWord']")[0].value=="") {
             alert("검색어를 입력해주세요");
         } else {
             $("form[name='search']").submit();
+        }
+    }
+
+    function characterCheck(obj){
+        var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+        if( regExp.test(obj.value) ){
+            alert("특수문자는 입력하실수 없습니다.");
+            obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
         }
     }
 </script>
