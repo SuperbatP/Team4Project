@@ -43,7 +43,7 @@
                         <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
                         &nbsp;뒤로가기
                     </a>
-                    <sec:authorize access="hasRole('ADMIN')">
+                    <sec:authorize access="isAuthenticated()">
                         <c:if test="${not empty resultMessageVO.url}">
                             <a href="<c:url value='${resultMessageVO.url}' />"
                                class="btn btn-warning">
