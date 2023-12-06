@@ -42,6 +42,7 @@
         display: flex;
         align-items: center;
         height: 400px;
+        width: 1050px;
     }
 
     table {
@@ -72,11 +73,11 @@
 
 
 <div class="container2">
-    <div id="map" class="col-sm-7" style="min-width:786px; height:350px;"></div>
-    <div class="col-sm-7" style="min-width: 786px; padding-top: 30px">
+    <div id="map" style="width:1050px; height:350px;"></div>
+    <div style="width: 1050px; padding-top: 30px">
         <h3 style="font-size: 26px">인근약국 리스트</h3>
     </div>
-    <div class="pharmacy-list col-sm-7">
+    <div class="pharmacy-list">
         <table>
             <tr>
                 <td scope="col">약국명</td>
