@@ -23,7 +23,7 @@
 
 <div id="mapframe" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
 
-    <div id="map" class="col-sm-7" style="min-width: 400px; height: 350px; margin-top: 40px;"></div>
+    <div id="map" style="width: 1050px; height: 350px; margin-top: 40px;"></div>
 
     <div style="width: 1050px; height: 350px;">
         <div class="news-info">
