@@ -25,7 +25,7 @@
 
     <div id="map" class="col-sm-7" style="min-width: 400px; height: 350px; margin-top: 40px;"></div>
 
-    <div style="width: 1150px; height: 350px;">
+    <div style="width: 1050px; height: 350px;">
         <div class="news-info">
             <h3>불사조 병원</h3>
             <p>주소: 대전광역시 중구 용두동 번지 2층 35-17 희영빌딩</p>
@@ -49,7 +49,7 @@
 
 
     <div class="mymap"
-         style="width: 1200px; height: 300px; border: 0.5px solid; border-color: gainsboro; display: flex; justify-content: center; align-items: center;">
+         style="width: 1050px; height: 300px; border: 0.5px solid; border-color: gainsboro; display: flex; justify-content: center; align-items: center;">
         <section id="appointment"
                  style="width: 90%; height: 90%; display: flex; justify-content: space-evenly; align-items: center;">
 
