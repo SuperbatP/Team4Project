@@ -281,7 +281,7 @@
                 <tr class="checkup-info-tr">
                     <td>이름</td>
                     <td>
-                        <input name="reservationName" required="required" style="width: 80%">
+                        <input name="reservationName" onkeyup="characterCheck(this)" onkeydown="characterCheck(this)" required="required" style="width: 80%">
                     </td>
                     <td>성별</td>
                     <td>
@@ -568,6 +568,14 @@
                 }
             }
         })
+    }
+
+    function characterCheck(obj){
+        var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+        if( regExp.test(obj.value) ){
+            alert("특수문자는 입력하실수 없습니다.");
+            obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+        }
     }
 </script>
 <!-- 코드 작성구역 끝 -->
