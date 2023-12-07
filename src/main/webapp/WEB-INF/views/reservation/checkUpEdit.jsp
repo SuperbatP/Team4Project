@@ -376,6 +376,26 @@
     $myDate = $(".myReservationDate");
     $myTime = $(".myReservationTime");
 
+    let additionalCheckVal="";
+    $("div.dnaTest-frame input[type=radio]").click(function (e) {
+        if($(this).val() == additionalCheckVal){
+            $(this).prop("checked", false);
+            additionalCheckVal="";
+        }else{
+            additionalCheckVal=$(this).val() ;
+        }
+    });
+
+    let dnaCheckVal="";
+    $("div.addCheckUp-frame input[type=radio]").click(function (e) {
+        if($(this).val() == dnaCheckVal){
+            $(this).prop("checked", false);
+            dnaCheckVal="";
+        }else{
+            dnaCheckVal=$(this).val() ;
+        }
+    });
+
     $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();
         if ($input[0].value == "" || $('#td_time').attr('value') == null) {
