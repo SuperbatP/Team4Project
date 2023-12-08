@@ -331,7 +331,7 @@
 
             <div class="reservation-time-select col-sm-5">
                 <div class="time-frame">
-                    <p style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
+                    <p id="timeMessage" style="padding-bottom: 10px;">진료시간을 선택해주세요.</p>
                     <div name="reservationTimeDiv">
                         <label class="time-label" onclick="timeSelect()"><input type="radio" class="time-radio" value="08:00~11:00" required="required" name="reservationTime">08:00~11:00</label>
                         <label class="time-label" onclick="timeSelect()"><input type="radio" class="time-radio" value="13:30~16:00" required="required" name="reservationTime">13:30~16:00</label>
