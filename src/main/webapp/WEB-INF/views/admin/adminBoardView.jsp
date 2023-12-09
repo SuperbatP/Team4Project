@@ -42,7 +42,7 @@
                 <small style="margin-left: 15px">${adminBoard.boNo}</small>
             </h3>
             <div style="padding-top: 10px; font-size: 16px; padding-left: 5px;">
-            ${adminBoard.boWriter}
+                ${adminBoard.boWriter}
             </div>
         </div>
         <div style="padding-right: 10px; padding-top: 70px;">
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <div style="height: auto; min-height: 500px; border: none; padding-top: 20px; padding-bottom: 20px"
+    <div style="height: auto; min-height: 500px; border: none; padding-top: 20px; padding-bottom: 20px; font-size: 18px;"
          name="boContent" class="form-control input-sm">
         ${adminBoard.boContents }
     </div>
@@ -77,18 +77,19 @@
                 </a>
             </div>
 
-            <sec:authentication property="principal" var="pinfo"/>
-            <sec:authorize access="isAuthenticated()">
-                <c:if test="${pinfo.username eq adminBoard.boWriter}">
-                    <div class="pull-right" style="padding-top: 10px; padding-bottom: 10px;">
-                        <a href="/admin/answerForm.wow?boNo=${adminBoard.boNo}" class="btn btn-success btn-sm">답글 쓰기</a>
+
+            <div class="pull-right" style="padding-top: 10px; padding-bottom: 10px;">
+                <a href="/admin/answerForm.wow?boNo=${adminBoard.boNo}" class="btn btn-success btn-sm">답글 쓰기</a>
+                <sec:authentication property="principal" var="pinfo"/>
+                <sec:authorize access="isAuthenticated()">
+                    <c:if test="${pinfo.username eq adminBoard.boWriter}">
                         <a href="adminBoardEdit.wow?boNo=${adminBoard.boNo }"
                            class="btn btn-edit btn-success btn-sm">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
                         </a>
-                    </div>
-                </c:if>
-            </sec:authorize>
+                    </c:if>
+                </sec:authorize>
+            </div>
 
         </td>
     </tr>

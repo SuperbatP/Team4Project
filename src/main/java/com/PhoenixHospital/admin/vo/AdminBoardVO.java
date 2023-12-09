@@ -1,6 +1,8 @@
 package com.PhoenixHospital.admin.vo;
 
 import com.PhoenixHospital.attach.vo.AttachVO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.List;
 
@@ -15,32 +17,14 @@ public class AdminBoardVO {
     private String boModDate;
     private String boDelYn;
     private String atchNo;
-    private int root;
-    private int step;
-    private int indent;
+    private String answer;
 
-    public int getRoot() {
-        return root;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setRoot(int root) {
-        this.root = root;
-    }
-
-    public int getStep() {
-        return step;
-    }
-
-    public void setStep(int step) {
-        this.step = step;
-    }
-
-    public int getIndent() {
-        return indent;
-    }
-
-    public void setIndent(int indent) {
-        this.indent = indent;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     private List<AttachVO> attaches;
@@ -143,4 +127,9 @@ public class AdminBoardVO {
         this.atchNo = atchNo;
     }
 
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString
+                (this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

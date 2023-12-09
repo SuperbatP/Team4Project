@@ -18,7 +18,7 @@
     <div class="page-header">
         <h3>관리자게시판 - <small>답글 등록</small></h3>
     </div>
-    <form action="answerRegist.wow" method="post" enctype="multipart/form-data">
+    <form action="/admin/answerRegist.wow" method="post" enctype="multipart/form-data">
         <sec:csrfInput/>
         <input type="hidden" name="boWriter" value="<sec:authentication property="principal.username"/>">
         <input type="hidden" name="boNo" value="${adminBoardVO.boNo}">
@@ -29,7 +29,9 @@
             </colgroup>
             <tr>
                 <th>제목</th>
-                <td><input style="font-size: 15px;" type="text" name="boTitle" value="RE: ${adminBoardVO.boTitle}" class="form-control input-sm" readonly></td>
+                <td><input style="font-size: 15px;" type="text" name="boTitle" class="form-control input-sm">
+
+                </td>
             </tr>
 
             <tr>

@@ -85,11 +85,9 @@ public class AdminBoardController {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "A001", "admin");
             adminBoard.setAttaches(attaches);
         }
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
         adminBoardService.registBoard(adminBoard);
-        resultMessageVO.messageSetting(true, "생성", "생성하셨습니다.", "/admin/adminBoardList.wow", "목록으로");
-        model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        model.addAttribute("adminBoard", adminBoard);
+        return "redirect:/admin/adminBoardList.wow";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "admin/adminBoardEdit.wow")
@@ -109,19 +107,15 @@ public class AdminBoardController {
             adminBoard.setAttaches(attaches);
         }
         adminBoardService.modifyBoard(adminBoard);
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
-        resultMessageVO.messageSetting(true, "수정", "수정에 성공하셨습니다.", "/admin/adminBoardList.wow", "목록으로");
-        model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        model.addAttribute("adminBoard", adminBoard);
+        return "redirect:/admin/adminBoardList.wow";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "admin/adminBoardDelete.wow")
     public String adminBoardDelete(Model model, AdminBoardVO adminBoard) throws BizException {
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
         adminBoardService.removeBoard(adminBoard);
-        resultMessageVO.messageSetting(true, "삭제", "삭제되었습니다.", "/admin/adminBoardList.wow", "목록으로");
-        model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        model.addAttribute("adminBoard", adminBoard);
+        return "redirect:/admin/adminBoardList.wow";
     }
 
     //공지글 답글 쓰기 화면 요청=============================================================================================
@@ -147,17 +141,14 @@ public class AdminBoardController {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "A001", "admin");
             adminBoard.setAttaches(attaches);
         }
-        ResultMessageVO resultMessageVO = new ResultMessageVO();
         adminBoardDao.changeboNo(adminBoard.getBoNo());
         adminBoardDao.changeboNoAttach(adminBoard.getBoNo());
         adminBoardDao.changeboNoReply(adminBoard.getBoNo());
         adminBoardService.answerRegistBoard(adminBoard);
-        resultMessageVO.messageSetting(true, "생성", "생성하셨습니다.", "/admin/adminBoardList.wow", "목록으로");
-        model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        model.addAttribute("adminBoard", adminBoard);
+        return "redirect:/admin/adminBoardList.wow";
 
     }
 
 }
-
 

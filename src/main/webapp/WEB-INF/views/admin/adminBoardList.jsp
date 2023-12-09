@@ -108,9 +108,17 @@
             <tbody>
             <c:forEach var="adminBoard" items="${adminBoardList}">
                 <tr class="text-center">
-                    <td>${adminBoard.boNo}</td>
+                    <td>
+                    <c:if test="${adminBoard.answer eq null}">
+                    ${adminBoard.boNo}
+                    </c:if>
+                    </td>
                     <td style="padding-left: 40px" class="text-left">
                         <a href="adminBoardView.wow?boNo=${adminBoard.boNo}">
+                            <c:if test="${adminBoard.answer eq 'Y'}">
+                                &nbsp; &nbsp; &nbsp;<img src="../../../resource/images/답글화살표.png"
+                                                   style="width: 30px; height: 30px;"> &nbsp;
+                            </c:if>
                                 ${adminBoard.boTitle}
                         </a>
                     </td>

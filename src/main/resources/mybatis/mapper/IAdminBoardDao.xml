@@ -11,6 +11,9 @@
 
     </sql>
     <insert id="insertBoard" parameterType="com.PhoenixHospital.admin.vo.AdminBoardVO">
+    <selectKey resultType="int" keyProperty="boNo" order="BEFORE">
+        SELECT  BOARD_SEQ.nextval + 1 FROM dual
+    </selectKey>
         INSERT INTO board (
         bo_no, bo_title, category_code
         , bo_contents, bo_writer, bo_hit
@@ -18,7 +21,7 @@
 
 
         ) VALUES (
-        BOARD_SEQ.nextval + 1, #{boTitle}, 'A001'
+         #{boNo} , #{boTitle}, 'A001'
         , #{boContents}, #{boWriter}, 0
         , SYSDATE, null,  'N'
         )
@@ -30,12 +33,12 @@
         INSERT INTO BOARD (
             bo_no, bo_title, category_code,
             bo_contents, bo_writer, bo_hit,
-            bo_reg_date, bo_mod_date, bo_del_yn
+            bo_reg_date, bo_mod_date, bo_del_yn, answer
         )
         VALUES (
                    BOARD_SEQ.nextval, #{boTitle}, 'A001',
                    #{boContents}, #{boWriter}, 0,
-                   SYSDATE, null, 'N'
+                   SYSDATE, null, 'N', 'Y'
                )
 
         ]]>
@@ -94,7 +97,7 @@
         to_char(bo_mod_date, 'YYYY-MM-DD') as bo_mod_date,
         bo_no, bo_title, category_code,
         bo_contents, bo_writer, bo_hit,
-        bo_del_yn
+        bo_del_yn, answer
         FROM board a
         WHERE a.category_code = 'A001'
         AND a.bo_del_yn = 'N'
