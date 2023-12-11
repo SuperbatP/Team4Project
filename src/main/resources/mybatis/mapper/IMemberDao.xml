@@ -68,7 +68,7 @@
         UPDATE member
         SET
             mem_name     =#{memName}
-          , mem_bir      =#{memBir}
+          , mem_bir      =TO_CHAR(#{memBir})
           , mem_zip      =#{memZip}
           , mem_add1     =#{memAdd1}
           , mem_add2     =#{memAdd2}
@@ -91,7 +91,7 @@
                            , mem_add2, mem_hp, mem_email
                            , mem_del_yn, mem_role)
         VALUES ( #{memId}, #{memPassword}, #{memName}
-               , #{memBir}, #{memZip}, #{memAdd1}
+               , TO_CHAR(#{memBir}), #{memZip}, #{memAdd1}
                , #{memAdd2}, #{memHp}, #{memEmail}
                , 'N', 'USER')
 
@@ -113,7 +113,7 @@
         UPDATE member
         SET
             mem_name     =#{memName}
-          , mem_bir      =#{memBir}
+          , mem_bir      =TO_CHAR(#{memBir})
           , mem_zip      =#{memZip}
           , mem_add1     =#{memAdd1}
           , mem_add2     =#{memAdd2}
